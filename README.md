@@ -32,3 +32,6 @@ should open up index page at `https://localhost:8000`. At this point, browser wi
 warn you about self-signed certificate. This is normal, one-time step. Just confirm 
 this certificate as a security exception and you're ready to roll.
 
+### Contributing to One Love
+
+We will happily accept pull requests that conform to our [Contributing guidelines](CONTRIBUTING.md)
