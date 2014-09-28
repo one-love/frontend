@@ -4,6 +4,7 @@
   "description": "Web client for One Love project https://one-love.github.io",
   "main": "index.js",
   "scripts": {
+    "start": "npm install && bower install && gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

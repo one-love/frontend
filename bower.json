@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/one-love/web-client",
   "authors": [
-    "Mladen Stepanic <mladen.stepanic@sixsentix.com>"
+    "Mladen Stepanic <mladen.stepanic@gmail.com>"
   ],
   "description": "Web client for One Love project https://one-love.github.io\"",
   "main": "app/index.html",
