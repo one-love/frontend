@@ -12,6 +12,9 @@
 # Generated CSS folder
 app/css/
 
+# Generated javascripts
+js/
+
 # Logs
 
 logs
