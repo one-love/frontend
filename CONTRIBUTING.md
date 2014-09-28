@@ -3,7 +3,7 @@ Contribute to One Love
 
 ### Git workflow
 
-Create feature branch for every feature. When done, submit a pull request.
+Fork this repo and create feature branch for every feature. When done, submit a pull request.
 
 __Branch naming__
 
@@ -44,6 +44,12 @@ or:
 
     The rest of the message can be as long as you want
     spanning across multiple lines.
+
+__Merging requests:__
+
+Always use Github's web interface for merging pull requests. If merge isn't possible, rebase
+local branch on master, resolve any conflicts that might happen and do a forced push to 
+remote feature branch. After that, use web interface to merge pull request.
 
 __IMPORTANT:__ Never push to master branch, even if you have access rights that allow it.
 
