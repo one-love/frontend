@@ -1,0 +1,30 @@
+{
+  "name": "one-love",
+  "version": "0.0.0",
+  "description": "Web client for One Love project http://one-love.github.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/one-love/web-client.git"
+  },
+  "keywords": [
+    "one-love",
+    "server",
+    "migration",
+    "hosting",
+    "hosting",
+    "agnostic",
+    "ansible",
+    "provision",
+    "provisioning"
+  ],
+  "author": "Mladen Stepanić <mladen.stepanic@gmail.com>",
+  "license": "GNU GPLv3",
+  "bugs": {
+    "url": "https://github.com/one-love/web-client/issues"
+  },
+  "homepage": "https://github.com/one-love/web-client"
+}
