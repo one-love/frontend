@@ -45,7 +45,7 @@ or:
     The rest of the message can be as long as you want
     spanning across multiple lines.
 
-__IMPORTANT:__ Never push to master branch, even if you have access right that allow it.
+__IMPORTANT:__ Never push to master branch, even if you have access rights that allow it.
 
 ### Naming conventions
 
@@ -68,7 +68,11 @@ _Incorrect:_
 Test it, don't guess it. Cover all features you make with unit tests. If refactoring,
 make sure tests pass, otherwise your pull request won't be accepted.
 
-### Coding style for html, javascript and sass
+### Coding style
+
+Use spaces for indentation, never tabs. Configure your editor to use soft tabs (or translate tabs to spaces, as
+labeled in some editors). Set it to 2 spaces per tab.
+
 ### Resources
 
 - [A note about commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html), by Tim Pope
