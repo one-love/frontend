@@ -77,4 +77,3 @@ labeled in some editors). Set it to 2 spaces per tab.
 
 - [A note about commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html), by Tim Pope
 - [Atomic commit](http://en.wikipedia.org/wiki/Atomic_commit) on Wikipedia
-- 
