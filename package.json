@@ -29,6 +29,7 @@
   "homepage": "https://github.com/one-love/web-client",
   "devDependencies": {
     "gulp": "^3.8.8",
+    "gulp-ruby-sass": "^0.7.1",
     "gulp-webserver": "^0.8.2"
   }
 }

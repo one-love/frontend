@@ -9,6 +9,9 @@
 .sass-cache
 *.css.map
 
+# Generated CSS folder
+app/css/
+
 # Logs
 
 logs
