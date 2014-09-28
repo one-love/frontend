@@ -45,13 +45,14 @@ or:
     The rest of the message can be as long as you want
     spanning across multiple lines.
 
-__Merging requests:__
+__Merging pull requests:__
 
-Always use Github's web interface for merging pull requests. If merge isn't possible, rebase
-local branch on master, resolve any conflicts that might happen and do a forced push to 
-remote feature branch. After that, use web interface to merge pull request.
+Make sure pull request passes all tests and always use Github's web interface to do the merge.
+If merge isn't possible, rebase local branch on master, resolve any conflicts that might 
+happen and do a forced push to remote feature branch. After that, use web interface to merge 
+pull request. Always delete remote feature branch after merge.
 
-__IMPORTANT:__ Never push to master branch, even if you have access rights that allow it.
+__IMPORTANT:__ Never push to master branch, even if your access rights permit that.
 
 ### Naming conventions
 
