@@ -37,7 +37,8 @@ gulp.task('compile:sass', function() {
   return gulp.src(paths.sass)
     .pipe(sass({
       style: 'compact',
-      lineNumbers: true
+      lineNumbers: true,
+      loadPath: './'
     }))
     .on('error', function(err) {
       console.log(err.message);
