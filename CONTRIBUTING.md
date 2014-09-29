@@ -77,8 +77,18 @@ make sure tests pass, otherwise your pull request won't be accepted.
 
 ### Coding style
 
-Use spaces for indentation, never tabs. Configure your editor to use soft tabs (or translate tabs to spaces, as
-labeled in some editors). Set it to 2 spaces per tab.
+__Indentation:__
+
+Use spaces for indentation, never tabs. Configure your editor to use soft tabs (or translate 
+tabs to spaces, as labeled in some editors). Set it to 2 spaces per tab.
+
+__JavaScript:__
+
+One Love web uses [JSCS](https://www.npmjs.org/package/jscs) in conjuction with Gulp to check 
+your coding style. Please use JSCS enabled editor or IDE, see "Friendly Packages" list on JSCS 
+npm page for more details. When you install the extension for your editor it will read `.jscs.json`
+from this repository. In addition to that, use [jshint](http://www.jshint.com/) plugin for your 
+editor to discover errors found by jshint. 
 
 ### Resources
 
