@@ -47,6 +47,7 @@ gulp.task('compile:sass', function() {
 gulp.task('compile:browserify', function() {
   gulp.src(paths.jsEntry)
     .pipe(browserify({
+      transform: ['browserify-ngannotate'],
       debug: true
     }))
     .on('error', function(error) {
