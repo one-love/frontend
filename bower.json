@@ -25,6 +25,7 @@
     "tests"
   ],
   "devDependencies": {
-    "inuit-starter-kit": "~0.2.8"
+    "inuit-starter-kit": "~0.2.8",
+    "inuit-reset": "~0.1.1"
   }
 }
