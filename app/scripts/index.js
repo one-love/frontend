@@ -2,4 +2,5 @@
 
 var angular = require('angular');
 
-var app = angular.module('Onelove', []);
+var app = angular.module('Onelove', [])
+  .controller('TestCtrl', function($scope) {});
