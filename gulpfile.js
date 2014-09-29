@@ -9,6 +9,7 @@ var gulp = require('gulp');
 var webserver = require('gulp-webserver');
 var sass = require('gulp-ruby-sass');
 var browserify = require('gulp-browserify');
+var autoprefixer = require('gulp-autoprefixer');
 
 /**
  * Core development server task.
@@ -38,6 +39,7 @@ gulp.task('compile:sass', function() {
     .on('error', function(err) {
       console.log(err.message);
     })
+    .pipe(autoprefixer(['last 2 versions', 'ie9']))
     .pipe(gulp.dest(paths.cssFolder));
 });
 
