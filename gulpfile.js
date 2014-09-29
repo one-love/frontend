@@ -10,6 +10,9 @@ var webserver = require('gulp-webserver');
 var sass = require('gulp-ruby-sass');
 var browserify = require('gulp-browserify');
 var autoprefixer = require('gulp-autoprefixer');
+var jshint = require('gulp-jshint');
+var jscs = require('gulp-jscs');
+var stylish = require('jshint-stylish');
 
 /**
  * Core development server task.
@@ -46,7 +49,7 @@ gulp.task('compile:sass', function() {
 /**
  * Browserify allows use of node.js tools in browser environment.
  */
-gulp.task('compile:browserify', function() {
+gulp.task('compile:browserify', ['check:javascript'], function() {
   gulp.src(paths.jsEntry)
     .pipe(browserify({
       transform: ['browserify-ngannotate'],
@@ -56,6 +59,17 @@ gulp.task('compile:browserify', function() {
       console.log(error);
     })
     .pipe(gulp.dest('app/js'));
+});
+
+/**
+ * Checks javascripts from app/scripts directory against
+ * Javascript Coding Style (JSCS) and jshint.
+ */
+gulp.task('check:javascript', function() {
+  gulp.src('app/scripts/**/*.js')
+    .pipe(jscs())
+    .pipe(jshint())
+    .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('watch', function() {
