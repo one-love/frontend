@@ -4,6 +4,9 @@
 *.swp
 *.swo
 
+# Mac OS X junk
+.DS_Store
+
 # Sass junk files
 
 .sass-cache

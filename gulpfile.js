@@ -1,81 +1,17 @@
-var paths = {
-  sass: 'app/sass/**/*.scss',
-  css: 'app/css/**/*.css',
-  cssFolder: 'app/css',
-  jsEntry: 'app/scripts/index.js',
-  scripts: 'app/scripts/**/*.js'
-};
-var gulp = require('gulp');
-var webserver = require('gulp-webserver');
-var sass = require('gulp-ruby-sass');
-var browserify = require('gulp-browserify');
-var autoprefixer = require('gulp-autoprefixer');
-var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
-var stylish = require('jshint-stylish');
+global.oneLovePaths = require('./tasks/paths.js');
+global.gulp = require('gulp');
 
 /**
- * Core development server task.
- * Initializes connect webserver as gulp task, with livereload and SSL enabled.
+ * Development setup is located in files in ./tasks/development/
  */
-var webserverDeps = ['compile:sass', 'compile:browserify', 'watch'];
-gulp.task('webserver', webserverDeps, function() {
-  return gulp.src('app')
-    .pipe(webserver({
-      port: 8000,
-      livereload: true,
-      https: true,
-      open: true,
-      fallback: 'index.html'
-    }));
-});
+require('./tasks/development');
 
 /**
- * Compiles sass files into css.
+ * Watches for file change events and executes task specified for each event.
  */
-gulp.task('compile:sass', function() {
-  return gulp.src(paths.sass)
-    .pipe(sass({
-      style: 'compact',
-      lineNumbers: true,
-      loadPath: './'
-    }))
-    .on('error', function(err) {
-      console.log(err.message);
-    })
-    .pipe(autoprefixer(['last 2 versions', 'ie9']))
-    .pipe(gulp.dest(paths.cssFolder));
-});
-
-/**
- * Browserify allows use of node.js tools in browser environment.
- */
-gulp.task('compile:browserify', ['check:javascript'], function() {
-  gulp.src(paths.jsEntry)
-    .pipe(browserify({
-      transform: ['browserify-ngannotate'],
-      debug: true
-    }))
-    .on('error', function(error) {
-      console.log(error);
-    })
-    .pipe(gulp.dest('app/js'));
-});
-
-/**
- * Checks javascripts from app/scripts directory against
- * Javascript Coding Style (JSCS) and jshint.
- */
-gulp.task('check:javascript', function() {
-  gulp.src('app/scripts/**/*.js')
-    .pipe(jscs())
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish));
-});
-
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['compile:sass'] )
-  gulp.watch(paths.scripts, ['compile:browserify'] )
+  gulp.watch(oneLovePaths.sass, ['compile:sass'] )
+  gulp.watch(oneLovePaths.scripts, ['compile:browserify'] )
 });
 
 gulp.task('default', ['webserver']);
