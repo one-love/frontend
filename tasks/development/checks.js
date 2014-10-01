@@ -12,8 +12,3 @@ gulp.task('check:javascript', function() {
     .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['compile:sass'] )
-  gulp.watch(paths.scripts, ['compile:browserify'] )
-});
-
