@@ -1,10 +1,4 @@
-var paths = {
-  sass: 'app/sass/**/*.scss',
-  css: 'app/css/**/*.css',
-  cssFolder: 'app/css',
-  jsEntry: 'app/scripts/index.js',
-  scripts: 'app/scripts/**/*.js'
-};
+var paths = require('./tasks/paths.js');
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
 var sass = require('gulp-ruby-sass');
