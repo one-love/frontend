@@ -1,11 +1,6 @@
-global.paths = require('./tasks/paths.js');
-global.gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var stylish = require('jshint-stylish');
-
-require('./tasks/development');
-
 /**
  * Checks javascripts from app/scripts directory against
  * Javascript Coding Style (JSCS) and jshint.
