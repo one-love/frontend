@@ -17,4 +17,3 @@ gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['compile:browserify'] )
 });
 
-gulp.task('default', ['webserver']);
