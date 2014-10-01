@@ -25,7 +25,7 @@ gulp.task('webserver', webserverDeps, function() {
  * Compiles sass files into css.
  */
 gulp.task('compile:sass', function() {
-  return gulp.src(paths.sass)
+  return gulp.src(oneLovePaths.sass)
     .pipe(sass({
       style: 'compact',
       lineNumbers: true,
@@ -35,14 +35,14 @@ gulp.task('compile:sass', function() {
       console.log(err.message);
     })
     .pipe(autoprefixer(['last 2 versions', 'ie9']))
-    .pipe(gulp.dest(paths.cssFolder));
+    .pipe(gulp.dest(oneLovePaths.cssFolder));
 });
 
 /**
  * Browserify allows use of node.js tools in browser environment.
  */
 gulp.task('compile:browserify', ['check:javascript'], function() {
-  gulp.src(paths.jsEntry)
+  gulp.src(oneLovePaths.jsEntry)
     .pipe(browserify({
       transform: ['browserify-ngannotate'],
       debug: true

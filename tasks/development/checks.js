@@ -6,7 +6,7 @@ var stylish = require('jshint-stylish');
  * Javascript Coding Style (JSCS) and jshint.
  */
 gulp.task('check:javascript', function() {
-  gulp.src('app/scripts/**/*.js')
+  gulp.src(oneLovePaths.scripts)
     .pipe(jscs())
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
