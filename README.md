@@ -3,7 +3,7 @@ One love web client
 
 This is AngularJS based web client for [One Love](https://one-love.github.io) project.
 
-You will most likely need [One Love's API server](https://github.com/one-love/ansible-one-love).
+You will most likely need [One Love's API server](https://github.com/one-love/api).
 Follow the instructions from link in order to get it running.
 
 ### Requirements and development setup
