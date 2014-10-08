@@ -9,7 +9,12 @@ require('./checks.js');
  * Core development server task.
  * Initializes connect webserver as gulp task, with livereload and SSL enabled.
  */
-var webserverDeps = ['compile:sass', 'compile:browserify', 'watch'];
+var webserverDeps = [
+  'compile:sass',
+  'compile:browserify',
+  'watch',
+  'check:scss'
+];
 gulp.task('webserver', webserverDeps, function() {
   return gulp.src('app')
     .pipe(webserver({

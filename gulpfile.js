@@ -12,6 +12,7 @@ require('./tasks/development');
 gulp.task('watch', function() {
   gulp.watch(oneLovePaths.sass, ['compile:sass'] )
   gulp.watch(oneLovePaths.scripts, ['compile:browserify'] )
+  gulp.watch(oneLovePaths.sass, ['check:scss'] )
 });
 
 gulp.task('default', ['webserver']);

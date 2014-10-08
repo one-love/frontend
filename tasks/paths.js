@@ -3,6 +3,7 @@ module.exports = {
   css: 'app/css/**/*.css',
   cssFolder: 'app/css',
   jsEntry: 'app/scripts/index.js',
-  scripts: 'app/scripts/**/*.js'
+  scripts: 'app/scripts/**/*.js',
+  scssLintConfig: 'scss-lint.conf.yml'
 };
 

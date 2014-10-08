@@ -13,13 +13,15 @@ Follow the instructions from link in order to get it running.
     For Mac OS X, [homebrew](brew.sh) is recommended.
     - Windows uses can download installer from [Node.js download page](http://nodejs.org/download/).
     - Once you have node.js installed, install gulp globally with `npm install -g gulp`.
-- Ruby and Sass
+- Ruby, Sass and SCSS Lint
     - Ruby implementation of Sass is used, as node-sass isn't mature nor stable enough.
     - Mac OS X and most GNU Linux systems have Ruby installed out of the box.
     - For systems that don't, installation instructions are available at 
     [Ruby website](https://www.ruby-lang.org/en/installation/).
     - Once you have Ruby on your system, install Sass with `gem install sass`
     - Some users will have to use sudo, depending on their operating system
+    - after sass has been installed, run `gem install scss-lint`. Although we use `gulp-scss-lint`, 
+    `scss-lint` gem is it's hard dependency. 
 - Bower
     - Bower is required for fetching some front end dependencies. Install it 
     with `npm install -g bower`
