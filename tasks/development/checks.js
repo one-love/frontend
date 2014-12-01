@@ -9,7 +9,6 @@ var scsslint = require('gulp-scss-lint');
  */
 gulp.task('check:javascript', function() {
   gulp.src(oneLovePaths.scripts)
-    .pipe(jscs())
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
 });
