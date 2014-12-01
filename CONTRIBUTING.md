@@ -8,8 +8,8 @@ Fork this repo and create feature branch for every feature. When done, submit a 
 __Branch naming__
 
 Branch name should reflect feature name. If using multiple words, use dash (`-`)
-as delimiter. Also, include prefix `feature`, `bug`, `refactor` in branch name, 
-followed by slash (`/`). 
+as delimiter. Also, include prefix `feature`, `bug`, `refactor` in branch name,
+followed by slash (`/`).
 
 _Correct:_
 
@@ -24,7 +24,7 @@ _Incorrect:_
 __Commits:__
 
 Commits should be atomic - the smaller they are, the better it gets.
-    
+
 __Commit messages:__
 
 Start your commit message with capital letter and end with period (`.`).
@@ -48,8 +48,8 @@ or:
 __Merging pull requests:__
 
 Make sure pull request passes all tests and always use Github's web interface to do the merge.
-If merge isn't possible, rebase local branch on master, resolve any conflicts that might 
-happen and do a forced push to remote feature branch. After that, use web interface to merge 
+If merge isn't possible, rebase local branch on master, resolve any conflicts that might
+happen and do a forced push to remote feature branch. After that, use web interface to merge
 pull request. Always delete remote feature branch after merge.
 
 __IMPORTANT:__ Never push to master branch, even if your access rights permit that.
@@ -79,16 +79,16 @@ make sure tests pass, otherwise your pull request won't be accepted.
 
 __Indentation:__
 
-Use spaces for indentation, never tabs. Configure your editor to use soft tabs (or translate 
+Use spaces for indentation, never tabs. Configure your editor to use soft tabs (or translate
 tabs to spaces, as labeled in some editors). Set it to 2 spaces per tab.
 
 __JavaScript:__
 
-One Love web uses [JSCS](https://www.npmjs.org/package/jscs) in conjuction with Gulp to check 
-your coding style. Please use JSCS enabled editor or IDE, see "Friendly Packages" list on JSCS 
+One Love web uses [JSCS](https://www.npmjs.org/package/jscs) [CURRENTLY DISABLED] in conjuction with Gulp to check
+your coding style. Please use JSCS enabled editor or IDE, see "Friendly Packages" list on JSCS
 npm page for more details. When you install the extension for your editor it will read `.jscs.json`
-from this repository. In addition to that, use [jshint](http://www.jshint.com/) plugin for your 
-editor to discover errors found by jshint. 
+from this repository. In addition to that, use [jshint](http://www.jshint.com/) plugin for your
+editor to discover errors found by jshint.
 
 ### Resources
 
