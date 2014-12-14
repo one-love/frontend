@@ -1,4 +1,5 @@
 var webserver = require('gulp-webserver');
+var changed = require('gulp-changed');
 var browserify = require('gulp-browserify');
 var sass = require('gulp-ruby-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -31,6 +32,7 @@ gulp.task('webserver', webserverDeps, function() {
  */
 gulp.task('compile:sass', function() {
   return gulp.src(oneLovePaths.sass)
+    .pipe(changed(oneLovePaths.cssFolder))
     .pipe(sass({
       style: 'compact',
       lineNumbers: true,
@@ -48,6 +50,7 @@ gulp.task('compile:sass', function() {
  */
 gulp.task('compile:browserify', ['check:javascript'], function() {
   gulp.src(oneLovePaths.jsEntry)
+    .pipe(changed('app/js'))
     .pipe(browserify({
       transform: ['browserify-ngannotate'],
       debug: true
