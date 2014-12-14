@@ -3,14 +3,14 @@
 module.exports = [
   '$rootScope',
   '$state',
-  'authService',
-  function appRunPhase($rootScope, $state, authService) {
+  'loginService',
+  function appRunPhase($rootScope, $state, loginService) {
 
     function routeChecker(event, next, current) {
-      var loggedIn = authService.isLoggedIn();
+      var loggedIn = loginService.isLoggedIn();
 
       if (loggedIn) {
-        authService.attachToken(loggedIn);
+        loginService.attachToken(loggedIn);
       }
 
       if (!loggedIn && !next.public) {

@@ -8,5 +8,5 @@ angular.module('Onelove', [require('angular-ui-router'), 'OneloveServices'])
   .run(require('./run.js'));
 
 angular.module('OneloveServices', [])
-  .service('authService', require('./login/service.js'));
+  .service('loginService', require('./login/service.js'));
 

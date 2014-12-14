@@ -5,10 +5,10 @@ module.exports = [
   'API_URL',
   '$q',
   '$window',
-  function authService($http, API_URL, $q, $window) {
+  function loginService($http, API_URL, $q, $window) {
 
     function attachToken(token) {
-      $http.defaults.headers.common['Authorization'] = 'Token ' + token;
+      $http.defaults.headers.common['Authorization'] = 'JWT ' + token;
     }
 
     function authenticate(token) {

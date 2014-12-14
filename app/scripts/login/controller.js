@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function loginController($scope, authService, $state) {
+module.exports = function loginController($scope, loginService, $state) {
 
   $scope.userLoggingIn = {
     email: '',
@@ -8,7 +8,7 @@ module.exports = function loginController($scope, authService, $state) {
   }
 
   $scope.logIn = function logIn() {
-    authService.logIn($scope.userLoggingIn)
+    loginService.logIn($scope.userLoggingIn)
       .then(function logInSuccess(response) {
         $state.go('home');
       }, function logInFailed(error) {
