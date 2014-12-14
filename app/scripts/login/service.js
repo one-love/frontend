@@ -7,8 +7,12 @@ module.exports = [
   '$window',
   function authService($http, API_URL, $q, $window) {
 
+    function attachToken(token) {
+      $http.defaults.headers.common['Authorization'] = 'Token ' + token;
+    }
+
     function authenticate(token) {
-        $http.defaults.headers.common['Authorization'] = 'Token ' + token;
+        attachToken(token);
         $window.sessionStorage.oneloveAuthToken = token;
     }
 
@@ -25,6 +29,7 @@ module.exports = [
 
     return {
       logIn: logIn,
+      attachToken: attachToken,
       isLoggedIn: isLoggedIn
     };
   }

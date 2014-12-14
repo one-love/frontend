@@ -9,6 +9,10 @@ module.exports = [
     function routeChecker(event, next, current) {
       var loggedIn = authService.isLoggedIn();
 
+      if (loggedIn) {
+        authService.attachToken(loggedIn);
+      }
+
       if (!loggedIn && !next.public) {
         event.preventDefault();
         $state.go('login');
@@ -16,7 +20,6 @@ module.exports = [
 
       if (loggedIn && next.public) {
         event.preventDefault();
-        $state.go('home');
       }
 
     }
