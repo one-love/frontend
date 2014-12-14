@@ -52,7 +52,6 @@ gulp.task('compile:browserify', ['check:javascript'], function() {
   gulp.src(oneLovePaths.jsEntry)
     .pipe(changed('app/js'))
     .pipe(browserify({
-      transform: ['browserify-ngannotate'],
       debug: true
     }))
     .on('error', function(error) {
