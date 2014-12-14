@@ -1,9 +1,26 @@
 'use strict';
 
-module.exports = function appRunPhase($rootScope, $state) {
-  function routeChecker(event, next, current) {
-    console.log('test');
-  }
+module.exports = [
+  '$rootScope',
+  '$state',
+  'authService',
+  function appRunPhase($rootScope, $state, authService) {
 
-  $rootScope.$on('$stateChangeStart', routeChecker);
-};
+    function routeChecker(event, next, current) {
+      var loggedIn = authService.isLoggedIn();
+
+      if (!loggedIn && !next.public) {
+        event.preventDefault();
+        $state.go('login');
+      }
+
+      if (loggedIn && next.public) {
+        event.preventDefault();
+        $state.go('home');
+      }
+
+    }
+
+    $rootScope.$on('$stateChangeStart', routeChecker);
+  }
+];

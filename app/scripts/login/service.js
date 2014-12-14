@@ -7,17 +7,25 @@ module.exports = [
   '$window',
   function authService($http, API_URL, $q, $window) {
 
+    function authenticate(token) {
+        $http.defaults.headers.common['Authorization'] = 'Token ' + token;
+        $window.sessionStorage.oneloveAuthToken = token;
+    }
+
+    function isLoggedIn() {
+      return $window.sessionStorage.oneloveAuthToken;
+    }
+
     function logIn(user) {
       return $http.post(API_URL + 'auth/', user)
         .then(function(response) {
-          $http.defaults.headers.common['Authorization'] = 'Token ' +
-            response.data.token;
-          $window.sessionStorage.oneloveAuthToken = response.data.token;
+          authenticate(response.data.token);
         });
     }
 
     return {
-      logIn: logIn
+      logIn: logIn,
+      isLoggedIn: isLoggedIn
     };
   }
 ];
