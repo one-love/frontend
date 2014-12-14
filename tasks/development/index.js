@@ -20,7 +20,7 @@ gulp.task('webserver', webserverDeps, function() {
     .pipe(webserver({
       port: 8000,
       livereload: true,
-      open: true,
+      https: true,
       sourcemaps: true,
       fallback: 'index.html'
     }));

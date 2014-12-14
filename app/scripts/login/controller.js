@@ -2,13 +2,13 @@
 
 module.exports = function loginController($scope, authService, $state) {
 
-  $scope.user = {
-    username: '',
+  $scope.userLoggingIn = {
+    email: '',
     password: ''
   }
 
   $scope.logIn = function logIn() {
-    authService.logIn($scope.user)
+    authService.logIn($scope.userLoggingIn)
       .then(function logInSuccess(response) {
         $state.go('home');
       }, function logInFailed(error) {
