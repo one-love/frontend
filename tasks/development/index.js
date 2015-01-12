@@ -22,7 +22,7 @@ gulp.task('webserver', webserverDeps, function() {
       port: 8000,
       livereload: true,
       https: true,
-      open: true,
+      sourcemaps: true,
       fallback: 'index.html'
     }));
 });
