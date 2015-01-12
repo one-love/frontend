@@ -8,7 +8,7 @@ module.exports = [
   function loginService($http, API_URL, $q, $window) {
 
     function attachToken(token) {
-      $http.defaults.headers.common['Authorization'] = 'JWT ' + token;
+      $http.defaults.headers.common.Authorization = 'JWT ' + token;
     }
 
     function authenticate(token) {
@@ -27,10 +27,16 @@ module.exports = [
         });
     }
 
+    function logOut() {
+      delete $http.defaults.headers.common.Authorization;
+      delete $window.sessionStorage.oneloveAuthToken;
+    }
+
     return {
       logIn: logIn,
       attachToken: attachToken,
-      isLoggedIn: isLoggedIn
+      isLoggedIn: isLoggedIn,
+      logOut: logOut
     };
   }
 ];

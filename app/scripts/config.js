@@ -8,7 +8,7 @@ module.exports = function oneLoveConfig($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/',
       controller: require('./app-controller.js'),
-      templateUrl: 'scripts/views/home.html'
+      templateUrl: 'scripts/views/home.html',
     })
     .state('login', {
       url: '/login',
