@@ -47,10 +47,11 @@ or:
 
 __Merging pull requests:__
 
-Make sure pull request passes all tests and always use Github's web interface to do the merge.
-If merge isn't possible, rebase local branch on master, resolve any conflicts that might
-happen and do a forced push to remote feature branch. After that, use web interface to merge
-pull request. Always delete remote feature branch after merge.
+Make sure pull request passes all tests and always use Github's web interface
+to do the merge.  If merge isn't possible, merge master branch into your local
+feature branch, resolve any conflicts that might happen and commit the merge.
+After that, use web interface to merge pull request. Always delete remote
+feature branch after merge.
 
 __IMPORTANT:__ Never push to master branch, even if your access rights permit that.
 
