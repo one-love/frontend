@@ -1,5 +1,8 @@
 'use strict';
 
-module.exports = function appController($scope, $timeout) {
-  $scope.hello = 'Hello world';
-};
+module.exports = [
+  '$scope',
+  function appController($scope) {
+    $scope.pageError = '';
+  }
+];

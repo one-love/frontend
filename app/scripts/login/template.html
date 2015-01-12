@@ -1,4 +1,10 @@
 <form class="login form" novalidate ng-submit="logIn()">
+  <div
+      ng-show="error"
+      class="form__error"
+  >
+    Invalid username and/or password.
+  </div>
   <div class="form__item">
     <label class="label--block label" for="login-username">
       Username (email):
