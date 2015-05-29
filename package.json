@@ -3,10 +3,6 @@
   "version": "0.0.0",
   "description": "Web client for One Love project https://one-love.github.io",
   "main": "index.js",
-  "scripts": {
-    "start": "npm install && bower install && gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/one-love/web-client.git"
@@ -27,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/one-love/web-client/issues"
   },
-  "homepage": "https://github.com/one-love/web-client"
+  "homepage": "https://github.com/one-love/web-client",
+  "scripts": {
+    "start": "npm install && bower install && gulp",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "js-repl": "babel-node"
+  },
+  "devDependencies": {
+    "babel": "^5.4.7"
+  }
 }
