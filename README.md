@@ -12,26 +12,14 @@ Follow the instructions from link in order to get it running.
     - GNU Linux and Mac OS X users should get it from their respective package managers.
     For Mac OS X, [homebrew](brew.sh) is recommended.
     - Windows uses can download installer from [Node.js download page](http://nodejs.org/download/).
-    - Once you have node.js installed, install gulp globally with `npm install -g gulp`.
-- Ruby, Sass and SCSS Lint
-    - Ruby implementation of Sass is used, as node-sass isn't mature nor stable enough.
-    - Mac OS X and most GNU Linux systems have Ruby installed out of the box.
-    - For systems that don't, installation instructions are available at 
-    [Ruby website](https://www.ruby-lang.org/en/installation/).
-    - Once you have Ruby on your system, install Sass with `gem install sass`
-    - Some users will have to use sudo, depending on their operating system
-    - after sass has been installed, run `gem install scss-lint`. Although we use `gulp-scss-lint`, 
-    `scss-lint` gem is it's hard dependency. 
-- Bower
-    - Bower is required for fetching some front end dependencies. Install it 
-    with `npm install -g bower`
-    
+    - Once you have node.js installed, run `npm install` to install all dependencies
+
 ### First run
 
-Clone this repo to your hard drive, `cd` into repo directory and hit `npm start`. 
+Clone this repo to your hard drive, `cd` into repo directory and hit `npm start`.
 If you have completed all steps from __Requirements__ section, your primary browser
 should open up index page at `https://localhost:8000`. At this point, browser will
-warn you about self-signed certificate. This is normal, one-time step. Just confirm 
+warn you about self-signed certificate. This is normal, one-time step. Just confirm
 this certificate as a security exception and you're ready to roll.
 
 ### Contributing to One Love
