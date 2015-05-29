@@ -1,3 +1,13 @@
-body {
-  color: #040404;
-}
+// SETTINGS
+@import "inuit-defaults/settings.defaults";
+
+// TOOLS
+@import "inuit-functions/tools.functions";
+@import "inuit-mixins/tools.mixins";
+
+// GENERIC
+@import "inuit-normalize/generic.normalize";
+@import "inuit-box-sizing/generic.box-sizing";
+
+// BASE
+@import "inuit-page/base.page";
