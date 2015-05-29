@@ -14,13 +14,9 @@ Follow the instructions from link in order to get it running.
     - Windows uses can download installer from [Node.js download page](http://nodejs.org/download/).
     - Once you have node.js installed, run `npm install` to install all dependencies
 
-### First run
+### Running
 
-Clone this repo to your hard drive, `cd` into repo directory and hit `npm start`.
-If you have completed all steps from __Requirements__ section, your primary browser
-should open up index page at `https://localhost:8000`. At this point, browser will
-warn you about self-signed certificate. This is normal, one-time step. Just confirm
-this certificate as a security exception and you're ready to roll.
+Execute `npm start` to install dependencies and compile all the files.
 
 ### Contributing to One Love
 

@@ -25,11 +25,17 @@
   },
   "homepage": "https://github.com/one-love/web-client",
   "scripts": {
-    "start": "npm install && bower install && gulp",
+    "start": "npm install && js-compile",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "js-repl": "babel-node"
+    "js-repl": "babel-node",
+    "js-compile": "browserify -t babelify app/js/entry.js -o app/js/bundle.js"
   },
   "devDependencies": {
-    "babel": "^5.4.7"
+    "babel": "^5.4.7",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.3"
+  },
+  "dependencies": {
+    "core-js": "^0.9.13"
   }
 }

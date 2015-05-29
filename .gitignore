@@ -55,8 +55,4 @@ node_modules
 
 .lock-wscript
 
-# Bower files that should stay outside repo
-
-/bower_components
-/app/vendor
-
+bundle.js
