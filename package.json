@@ -27,20 +27,5 @@
   "bugs": {
     "url": "https://github.com/one-love/web-client/issues"
   },
-  "homepage": "https://github.com/one-love/web-client",
-  "devDependencies": {
-    "angular": "^1.2.23",
-    "angular-ui-router": "^0.2.11",
-    "browserify-ngannotate": "^0.2.0",
-    "gulp": "^3.8.8",
-    "gulp-autoprefixer": "^1.0.1",
-    "gulp-browserify": "^0.5.0",
-    "gulp-jscs": "^1.1.2",
-    "gulp-jshint": "^1.8.5",
-    "gulp-ruby-sass": "^0.7.1",
-    "gulp-scss-lint": "^0.1.4",
-    "gulp-webserver": "^0.8.2",
-    "jshint-stylish": "^1.0.0",
-    "gulp-changed": "~1.1.0"
-  }
+  "homepage": "https://github.com/one-love/web-client"
 }
