@@ -19,7 +19,7 @@
     "provisioning"
   ],
   "author": "Mladen Stepanić <mladen.stepanic@gmail.com>",
-  "license": "GNU GPLv3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/one-love/web-client/issues"
   },
