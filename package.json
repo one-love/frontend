@@ -27,16 +27,20 @@
   "scripts": {
     "start": "npm install && js-compile",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "css-compile": "node-sass app/sass/ -o app/css/",
     "js-repl": "babel-node",
     "js-compile": "browserify -t babelify app/js/entry.js -o app/js/bundle.js",
     "js-lint": "eslint app/js/",
-    "prejs-compile": "npm run js-lint"
+    "prejs-compile": "npm run js-lint",
+    "precss-compile": "trash --force app/css"
   },
   "devDependencies": {
     "babel": "^5.4.7",
     "babelify": "^6.1.2",
     "browserify": "^10.2.3",
-    "eslint": "^0.21.2"
+    "eslint": "^0.21.2",
+    "node-sass": "^3.1.2",
+    "trash": "^1.4.1"
   },
   "dependencies": {
     "core-js": "^0.9.13"
