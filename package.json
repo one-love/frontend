@@ -30,7 +30,7 @@
     "css-compile": "node-sass app/sass/ -o app/css/ --include-path node_modules",
     "js-repl": "babel-node",
     "js-compile": "browserify -t babelify app/src/entry.js -o app/js/bundle.js",
-    "js-server": "babel-node app/server/index.js",
+    "js-server": "babel-node server/index.js",
     "js-lint-client": "eslint app/src/",
     "prejs-compile": "npm run js-lint-server",
     "precss-compile": "trash --force app/css"

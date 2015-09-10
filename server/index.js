@@ -2,6 +2,8 @@ import express from 'express';
 
 let app = express();
 
+app.use(express.static('./app'))
+
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
