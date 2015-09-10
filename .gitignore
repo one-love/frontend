@@ -18,6 +18,9 @@ app/css/
 # Generated javascripts
 js/
 
+# Generated css files
+css/
+
 # Logs
 
 logs
