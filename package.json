@@ -27,13 +27,13 @@
   "scripts": {
     "start": "npm install && npm run js-compile",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "css-compile": "node-sass app/sass/ -o app/css/ --include-path node_modules",
+    "css-compile": "node-sass client/sass/ -o client/css/ --include-path node_modules",
     "js-repl": "babel-node",
-    "js-compile": "browserify -t babelify app/src/entry.js -o app/js/bundle.js",
+    "js-compile": "browserify -t babelify client/src/entry.js -o client/js/bundle.js",
     "js-server": "babel-node server/index.js",
-    "js-lint-client": "eslint app/src/",
+    "js-lint-client": "eslint client/src/",
     "prejs-compile": "npm run js-lint-client",
-    "precss-compile": "trash --force app/css"
+    "precss-compile": "trash --force client/css"
   },
   "devDependencies": {
     "babel": "^5.4.7",
