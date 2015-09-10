@@ -25,12 +25,12 @@
   },
   "homepage": "https://github.com/one-love/web-client",
   "scripts": {
-    "start": "npm install && js-compile",
+    "start": "npm install && npm run js-compile",
     "test": "echo \"Error: no test specified\" && exit 1",
     "css-compile": "node-sass app/sass/ -o app/css/ --include-path node_modules",
     "js-repl": "babel-node",
-    "js-compile": "browserify -t babelify app/js/entry.js -o app/js/bundle.js",
-    "js-lint": "eslint app/js/",
+    "js-compile": "browserify -t babelify app/src/entry.js -o app/js/bundle.js",
+    "js-lint": "eslint app/src/",
     "prejs-compile": "npm run js-lint",
     "precss-compile": "trash --force app/css"
   },
