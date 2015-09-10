@@ -30,8 +30,9 @@
     "css-compile": "node-sass app/sass/ -o app/css/ --include-path node_modules",
     "js-repl": "babel-node",
     "js-compile": "browserify -t babelify app/src/entry.js -o app/js/bundle.js",
-    "js-lint": "eslint app/src/",
-    "prejs-compile": "npm run js-lint",
+    "js-server": "babel-node app/server/index.js",
+    "js-lint-client": "eslint app/src/",
+    "prejs-compile": "npm run js-lint-server",
     "precss-compile": "trash --force app/css"
   },
   "devDependencies": {
@@ -39,6 +40,7 @@
     "babelify": "^6.1.2",
     "browserify": "^10.2.3",
     "eslint": "^0.21.2",
+    "express": "^4.13.3",
     "inuit-box-sizing": "^0.2.0",
     "inuit-defaults": "^0.2.3",
     "inuit-functions": "^0.2.0",
