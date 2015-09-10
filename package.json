@@ -32,7 +32,7 @@
     "js-compile": "browserify -t babelify app/src/entry.js -o app/js/bundle.js",
     "js-server": "babel-node server/index.js",
     "js-lint-client": "eslint app/src/",
-    "prejs-compile": "npm run js-lint-server",
+    "prejs-compile": "npm run js-lint-client",
     "precss-compile": "trash --force app/css"
   },
   "devDependencies": {
