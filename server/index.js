@@ -33,7 +33,6 @@ import livereload from 'livereload';
 if (isDevelopment) {
   /**
    * Setup livereload server to lift with the app
-   * TODO: Scope this to development env
    */
   let lrserver = livereload.createServer({
     port: 15000
