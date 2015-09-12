@@ -28,12 +28,13 @@
     "start": "npm install && npm run js-compile",
     "test": "echo \"Error: no test specified\" && exit 1",
     "css-compile": "node-sass client/sass/ -o client/css/ --include-path node_modules",
+      "precss-compile": "trash --force client/css",
     "js-repl": "babel-node",
-    "js-compile": "browserify -t babelify client/src/entry.js -o client/js/bundle.js",
+      "js-compile": "browserify -t babelify client/src/entry.js -o client/js/bundle.js",
+    "prejs-compile": "npm run js-lint-client",
     "js-server": "babel-node server/index.js",
     "js-lint-client": "eslint client/src/",
-    "prejs-compile": "npm run js-lint-client",
-    "precss-compile": "trash --force client/css"
+    "js-watch": "watch 'npm run js-compile' client/src"
   },
   "devDependencies": {
     "babel": "^5.4.7",
@@ -48,7 +49,8 @@
     "inuit-normalize": "^3.0.3",
     "inuit-page": "^0.2.1",
     "node-sass": "^3.1.2",
-    "trash": "^1.4.1"
+    "trash": "^1.4.1",
+    "watch": "^0.16.0"
   },
   "dependencies": {
     "core-js": "^0.9.13"
