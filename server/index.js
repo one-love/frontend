@@ -1,33 +1,35 @@
+// DEPENDENCIES
 import isDevelopment from './utils';
-/**
- * Create app
- */
+import hbs from 'hbs';
 import express from 'express';
+import livereload from 'livereload';
+
 
 let app = express();
-/**
- * Add middleware so we don't have to reload manually
- * all the time
- */
+
+// CONGIFURE
+app.set('view engine', 'handlebars');
+app.set('views', `${__dirname}/views`);
+
+// ADD MIDDLEWARE
+app.use(express.static('./client'));
+app.use(require('./routes/main'));
+
 if (isDevelopment) {
+  // livereload only in development env
   app.use(require('connect-livereload')({
     port: 15000,
     excludeList: ['client/sass', 'client/src']
   }));
 }
-/**
- * Setup directory for serving static files
- */
-app.use(express.static('./client'));
 
-let server = app.listen(3000, function () {
+let port = process.env.PORT || 3000
+
+let server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
-
   console.log('Example app listening at http://%s:%s', host, port);
 });
-
-import livereload from 'livereload';
 
 
 if (isDevelopment) {
