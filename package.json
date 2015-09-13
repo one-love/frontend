@@ -3,10 +3,6 @@
   "version": "0.0.0",
   "description": "Web client for One Love project https://one-love.github.io",
   "main": "index.js",
-  "scripts": {
-    "start": "npm install && bower install && gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/one-love/web-client.git"
@@ -23,24 +19,49 @@
     "provisioning"
   ],
   "author": "Mladen Stepanić <mladen.stepanic@gmail.com>",
-  "license": "GNU GPLv3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/one-love/web-client/issues"
   },
   "homepage": "https://github.com/one-love/web-client",
+  "scripts": {
+    "babel-node": "babel-node --stage 0",
+    "start": "npm install && npm run js-compile",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css-compile": "node-sass client/sass/ -o client/css/ --include-path node_modules",
+    "precss-compile": "trash --force client/css",
+    "css-watch": "watch 'npm run css-compile' client/sass",
+    "js-repl": "babel-node",
+    "js-compile": "browserify -t babelify client/src/entry.js -o client/js/bundle.js",
+    "prejs-compile": "npm run js-lint-client",
+    "js-server": "babel-node server/index.js",
+    "js-dev-server": "NODE_ENV=development nodemon --exec npm run babel-node server/index.js",
+    "js-lint-client": "eslint client/src/",
+    "js-watch": "watch 'npm run js-compile' client/src",
+    "develop": "parallelshell 'npm run js-dev-server' 'npm run css-watch' 'npm run js-watch'"
+  },
   "devDependencies": {
-    "angular": "^1.2.23",
-    "angular-ui-router": "^0.2.11",
-    "browserify-ngannotate": "^0.2.0",
-    "gulp": "^3.8.8",
-    "gulp-autoprefixer": "^1.0.1",
-    "gulp-browserify": "^0.5.0",
-    "gulp-jscs": "^1.1.2",
-    "gulp-jshint": "^1.8.5",
-    "gulp-ruby-sass": "^0.7.1",
-    "gulp-scss-lint": "^0.1.4",
-    "gulp-webserver": "^0.8.2",
-    "jshint-stylish": "^1.0.0",
-    "gulp-changed": "~1.1.0"
+    "browserify": "^10.2.3",
+    "babelify": "^6.1.2",
+    "connect-livereload": "^0.5.3",
+    "eslint": "^0.21.2",
+    "inuit-box-sizing": "^0.2.0",
+    "inuit-defaults": "^0.2.3",
+    "inuit-functions": "^0.2.0",
+    "inuit-mixins": "^0.2.3",
+    "inuit-normalize": "^3.0.3",
+    "inuit-page": "^0.2.1",
+    "livereload": "^0.3.7",
+    "node-sass": "^3.1.2",
+    "nodemon": "^1.5.0",
+    "parallelshell": "^2.0.0",
+    "trash": "^1.4.1",
+    "watch": "^0.16.0"
+  },
+  "dependencies": {
+    "babel": "^5.4.7",
+    "core-js": "^0.9.13",
+    "express": "^4.13.3",
+    "hbs": "^3.1.1"
   }
 }
