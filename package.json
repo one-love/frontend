@@ -41,13 +41,10 @@
     "develop": "parallelshell 'npm run js-dev-server' 'npm run css-watch' 'npm run js-watch'"
   },
   "devDependencies": {
-    "babel": "^5.4.7",
-    "babelify": "^6.1.2",
     "browserify": "^10.2.3",
+    "babelify": "^6.1.2",
     "connect-livereload": "^0.5.3",
     "eslint": "^0.21.2",
-    "express": "^4.13.3",
-    "hbs": "^3.1.1",
     "inuit-box-sizing": "^0.2.0",
     "inuit-defaults": "^0.2.3",
     "inuit-functions": "^0.2.0",
@@ -62,6 +59,9 @@
     "watch": "^0.16.0"
   },
   "dependencies": {
-    "core-js": "^0.9.13"
+    "babel": "^5.4.7",
+    "core-js": "^0.9.13",
+    "express": "^4.13.3",
+    "hbs": "^3.1.1"
   }
 }
