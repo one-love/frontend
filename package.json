@@ -33,7 +33,7 @@
     "css-watch": "watch 'npm run css-compile' client/sass",
     "js-repl": "babel-node",
     "js-compile": "browserify -t babelify client/src/entry.js -o client/js/bundle.js",
-    "prejs-compile": "npm run js-lint-client; mkdir client/js/; touch client/js/bundle.js",
+    "prejs-compile": "npm run js-lint-client",
     "js-server": "babel-node server/index.js",
     "js-dev-server": "NODE_ENV=development nodemon --exec npm run babel-node server/index.js",
     "js-lint-client": "eslint client/src/",
@@ -41,27 +41,27 @@
     "develop": "parallelshell 'npm run js-dev-server' 'npm run css-watch' 'npm run js-watch'"
   },
   "devDependencies": {
-    "browserify": "^10.2.3",
-    "babelify": "^6.1.2",
-    "connect-livereload": "^0.5.3",
-    "eslint": "^0.21.2",
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.2",
+    "connect-livereload": "^0.5.4",
+    "eslint": "^1.10.3",
     "inuit-box-sizing": "^0.2.0",
     "inuit-defaults": "^0.2.3",
     "inuit-functions": "^0.2.0",
     "inuit-mixins": "^0.2.3",
     "inuit-normalize": "^3.0.3",
     "inuit-page": "^0.2.1",
-    "livereload": "^0.3.7",
-    "node-sass": "^3.1.2",
-    "nodemon": "^1.5.0",
+    "livereload": "^0.4.0",
+    "node-sass": "^3.4.2",
+    "nodemon": "^1.8.1",
     "parallelshell": "^2.0.0",
-    "trash": "^1.4.1",
-    "watch": "^0.16.0"
+    "trash": "^3.4.1",
+    "watch": "^0.17.1"
   },
   "dependencies": {
-    "babel": "^5.4.7",
-    "core-js": "^0.9.13",
     "express": "^4.13.3",
-    "hbs": "^3.1.1"
+    "hbs": "^4.0.0"
   }
 }
