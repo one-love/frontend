@@ -12,14 +12,9 @@
 .sass-cache
 *.css.map
 
-# Generated CSS folder
-app/css/
-
-# Generated javascripts
-js/
-
-# Generated css files
-css/
+# Generated static files
+client/static/css/
+client/static/js/
 
 # Logs
 
