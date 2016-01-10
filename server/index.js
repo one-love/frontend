@@ -20,8 +20,7 @@ app.use(express.static('./client'));
 if (isDevelopment) {
   // livereload only in development env
   app.use(require('connect-livereload')({
-    port: 15000,
-    excludeList: ['client/sass', 'client/src']
+    port: 15000
   }));
 }
 
@@ -30,7 +29,7 @@ let port = process.env.PORT || 3000
 let server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
+  console.log('Listening at http://%s:%s', host, port);
 });
 
 
@@ -42,5 +41,5 @@ if (isDevelopment) {
     port: 15000
   });
 
-  lrserver.watch(`${__dirname}/../client/`);
+  lrserver.watch(`${__dirname}/../client/static`);
 }
