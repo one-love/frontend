@@ -1,8 +1,8 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-var Hello = require('./components/hello.jsx');
+var LoginForm = require('./components/hello.jsx');
 
 ReactDom.render(
-  <Hello />,
+  <LoginForm />,
   document.getElementById('ReactApp')
 );
