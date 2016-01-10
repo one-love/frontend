@@ -3,6 +3,8 @@ import isDevelopment from './utils';
 import hbs from 'hbs';
 import express from 'express';
 import livereload from 'livereload';
+import router from './routes/main';
+
 
 
 let app = express();
@@ -12,8 +14,8 @@ app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/views`);
 
 // ADD MIDDLEWARE
+app.use(router);
 app.use(express.static('./client'));
-// app.use(require('./routes/main'));
 
 if (isDevelopment) {
   // livereload only in development env
