@@ -13,7 +13,7 @@ app.set('views', `${__dirname}/views`);
 
 // ADD MIDDLEWARE
 app.use(express.static('./client'));
-app.use(require('./routes/main'));
+// app.use(require('./routes/main'));
 
 if (isDevelopment) {
   // livereload only in development env
