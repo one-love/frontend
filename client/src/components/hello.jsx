@@ -14,7 +14,7 @@ var LoginForm = React.createClass({
       <label htmlFor="password">Password</label>
       <input type="password" className="form-control" id="password" ref="password" placeholder="Password" />
       </div>
-      <button className="btn btn-default" >Submit</button>
+      <button className="btn btn-default">Submit</button>
       </form>
       </div>
     );
