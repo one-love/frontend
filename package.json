@@ -28,17 +28,15 @@
     "babel-node": "babel-node --presets es2015",
     "start": "npm install && npm run js-compile",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "css-compile": "node-sass client/sass/ -o client/static/css/ --include-path node_modules",
     "precss-compile": "trash --force client/static/css/*",
+    "css-compile": "node-sass client/sass/ -o client/static/css/ --include-path node_modules",
     "css-watch": "watch 'npm run css-compile' client/sass",
-    "js-repl": "babel-node --presets es2015",
+    "prejs-compile": "eslint client/src/",
     "js-compile": "browserify -t [ babelify --presets [ es2015 react ] ] client/src/entry.jsx -o client/static/js/bundle.js",
-    "prejs-compile": "npm run js-lint-client",
-    "js-server": "babel-node server/index.js",
-    "js-dev-server": "NODE_ENV=development nodemon --exec npm run babel-node server/index.js",
-    "js-lint-client": "eslint client/src/",
-    "js-watch": "watch 'npm run js-compile' client/src server",
-    "develop": "parallelshell 'npm run js-dev-server' 'npm run css-watch' 'npm run js-watch'"
+    "js-watch": "watch 'npm run js-compile' client/src",
+    "js-server": "NODE_ENV=development http-server client -p 3000 -P http://localhost:5000/",
+    "livereload": "livereload client/static",
+    "develop": "parallelshell 'npm run js-server' 'npm run js-watch' 'npm run css-watch' 'npm run livereload'"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
@@ -50,6 +48,7 @@
     "browserify": "^12.0.2",
     "connect-livereload": "^0.5.4",
     "eslint": "^1.10.3",
+    "http-server": "^0.8.5",
     "inuit-box-sizing": "^0.2.0",
     "inuit-defaults": "^0.2.3",
     "inuit-functions": "^0.2.0",
@@ -60,13 +59,11 @@
     "node-sass": "^3.4.2",
     "nodemon": "^1.8.1",
     "parallelshell": "^2.0.0",
-    "react": "^0.14.6",
-    "react-dom": "^0.14.6",
     "trash": "^1.4.1",
     "watch": "^0.17.1"
   },
   "dependencies": {
-    "express": "^4.13.3",
-    "hbs": "^4.0.0"
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6"
   }
 }
