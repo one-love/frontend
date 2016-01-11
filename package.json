@@ -34,7 +34,7 @@
     "prejs-compile": "eslint client/src/",
     "js-compile": "browserify -t [ babelify --presets [ es2015 react ] ] client/src/entry.jsx -o client/static/js/bundle.js",
     "js-watch": "watch 'npm run js-compile' client/src",
-    "js-server": "NODE_ENV=development http-server client -p 3000 -P http://localhost:5000/",
+    "js-server": "NODE_ENV=development http-server client -p 3000",
     "livereload": "livereload client/static",
     "develop": "parallelshell 'npm run js-server' 'npm run js-watch' 'npm run css-watch' 'npm run livereload'"
   },
