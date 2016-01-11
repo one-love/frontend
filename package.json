@@ -32,7 +32,7 @@
     "precss-compile": "trash --force client/static/css/*",
     "css-watch": "watch 'npm run css-compile' client/sass",
     "js-repl": "babel-node --presets es2015",
-    "js-compile": "browserify -t [ babelify --presets [ es2015 react ] ] client/src/entry.js -o client/static/js/bundle.js",
+    "js-compile": "browserify -t [ babelify --presets [ es2015 react ] ] client/src/entry.jsx -o client/static/js/bundle.js",
     "prejs-compile": "npm run js-lint-client",
     "js-server": "babel-node server/index.js",
     "js-dev-server": "NODE_ENV=development nodemon --exec npm run babel-node server/index.js",
@@ -60,6 +60,8 @@
     "node-sass": "^3.4.2",
     "nodemon": "^1.8.1",
     "parallelshell": "^2.0.0",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
     "trash": "^1.4.1",
     "watch": "^0.17.1"
   },
