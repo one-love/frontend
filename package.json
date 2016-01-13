@@ -26,16 +26,12 @@
   "homepage": "https://github.com/one-love/web-client",
   "scripts": {
     "babel-node": "babel-node --presets es2015",
-    "start": "npm install && npm run js-compile",
+    "start": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "precss-compile": "trash --force client/static/css/*",
     "css-compile": "node-sass client/sass/ -o client/static/css/ --include-path node_modules",
     "css-watch": "watch 'npm run css-compile' client/sass",
-    "prejs-compile": "eslint client/src/",
-    "js-watch": "watch 'npm run js-compile' client/src",
-    "js-server": "NODE_ENV=development http-server client -p 3000",
-    "livereload": "livereload client/static",
-    "develop": "parallelshell 'npm run js-server' 'npm run js-watch' 'npm run css-watch' 'npm run livereload'"
+    "build:js": "webpack client/src/entry.js static/js/build.js"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
@@ -61,3 +57,5 @@
     "react-dom": "^0.14.6"
   }
 }
+
+
