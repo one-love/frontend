@@ -1,24 +1,34 @@
-var React = require('react');
+import { React } from 'react';
 
-var LoginForm = React.createClass({
-  render(){
+export default LoginForm = React.createClass({
+  render() {
     return(
-      <div className="login jumbotron center-block">
-      <h1>Login</h1>
-      <form role="form">
-      <div className="form-group">
-      <label htmlFor="username">Username</label>
-      <input type="text" className="form-control" id="username" placeholder="Username" />
-      </div>
-      <div className="form-group">
-      <label htmlFor="password">Password</label>
-      <input type="password" className="form-control" id="password" ref="password" placeholder="Password" />
-      </div>
-      <button className="btn btn-default">Submit</button>
-      </form>
+      <div className="form-container">
+        <h1 className="form__title">Login</h1>
+        <form role="form">
+          <div className="form__item">
+            <label htmlFor="username">Username</label>
+            <input
+                type="text"
+                className="form__field"
+                id="username"
+                placeholder="Username"
+            />
+          </div>
+          <div className="form__title">
+            <label htmlFor="password">Password</label>
+            <input
+                type="password"
+                className="form__item"
+                id="password"
+                ref="password"
+                placeholder="Password"
+            />
+          </div>
+          <button className="button button--primary">Submit</button>
+        </form>
       </div>
     );
   }
 });
 
-module.exports = LoginForm;

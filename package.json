@@ -31,7 +31,7 @@
     "precss-compile": "trash --force client/static/css/*",
     "css-compile": "node-sass client/sass/ -o client/static/css/ --include-path node_modules",
     "css-watch": "watch 'npm run css-compile' client/sass",
-    "build:js": "webpack client/src/entry.js static/js/build.js"
+    "build:js": "webpack"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
@@ -50,7 +50,8 @@
     "nodemon": "^1.8.1",
     "parallelshell": "^2.0.0",
     "trash": "^1.4.1",
-    "watch": "^0.17.1"
+    "watch": "^0.17.1",
+    "webpack": "^1.12.11"
   },
   "dependencies": {
     "react": "^0.14.6",
