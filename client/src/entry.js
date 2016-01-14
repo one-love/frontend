@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDom = require('react-dom');
-var LoginForm = require('./components/hello');
+import React from 'react';
+import ReactDom from 'react-dom';
+import LoginForm from './components/hello';
 
 ReactDom.render(
   <LoginForm />,
-  document.getElementById('ReactApp')
+  document.getElementById('onelove')
 );

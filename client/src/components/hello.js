@@ -1,6 +1,6 @@
-import { React } from 'react';
+import React from 'react';
 
-export default LoginForm = React.createClass({
+const LoginForm = React.createClass({
   render() {
     return(
       <div className="form-container">
@@ -32,3 +32,4 @@ export default LoginForm = React.createClass({
   }
 });
 
+export default LoginForm;

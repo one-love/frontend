@@ -2,17 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: {
-    app: ["./client/src/entry.js"]
-  },
+  entry: [
+    path.resolve(__dirname, './client/src/entry.js')
+  ],
   output: {
-    path: path.resolve(__dirname, "static"),
+    path: path.resolve(__dirname, "./client/build/"),
     publicPath: "/static/",
     filename: "bundle.js"
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
   module: {
     loaders: [{
       test: /\.js$/,
