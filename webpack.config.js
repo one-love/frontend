@@ -3,18 +3,26 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: [
-    path.resolve(__dirname, './client/src/entry.js')
+    path.resolve(__dirname, 'client/src/entry.js'),
+    path.resolve(__dirname, 'client/sass/screen.scss'),
   ],
   output: {
     path: path.resolve(__dirname, "./client/build/"),
     publicPath: "/static/",
-    filename: "bundle.js"
+    filename: "js/bundle.js"
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, 'client/src')
-    }]
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['react-hot-loader', 'babel-loader'],
+        include: path.join(__dirname, 'client/src')
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass'],
+        include: path.join(__dirname, 'client/sass')
+      }
+    ]
   }
 };
