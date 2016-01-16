@@ -40,6 +40,7 @@
     "eslint-config-airbnb": "^3.1.0",
     "eslint-loader": "^1.2.0",
     "eslint-plugin-react": "^3.15.0",
+    "history": "^1.17.0",
     "inuit-box-sizing": "^0.2.0",
     "inuit-defaults": "^0.2.3",
     "inuit-functions": "^0.2.0",
