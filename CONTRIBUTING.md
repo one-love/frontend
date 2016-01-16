@@ -83,6 +83,11 @@ __Indentation:__
 Use spaces for indentation, never tabs. Configure your editor to use soft tabs (or translate
 tabs to spaces, as labeled in some editors). Set it to 2 spaces per tab.
 
+We use eslint to check JavaScript. Our `.eslintrc` is based on airbnb's, with
+slight changes. For more info, see [airbnb's es6 style
+guide](https://github.com/airbnb/javascript) and [airbnb React
+style guide](https://github.com/airbnb/javascript/tree/master/react)
+
 ### Resources
 
 - [A note about commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html), by Tim Pope
