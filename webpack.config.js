@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devtool: 'source-map',
   entry: [
     path.resolve(__dirname, 'client/src/entry.js'),
     path.resolve(__dirname, 'client/sass/screen.scss'),
