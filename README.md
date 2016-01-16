@@ -16,10 +16,8 @@ Follow the instructions from link in order to get it running.
 
 ### Running
 
-Execute `npm start` to install dependencies and compile all the files for the first time.
-
-Run `npm run develop` for lifting up the development server with automated compilation
-and live reload.
+Run `npm install` to install dependencies and `npm start` to compile all the
+files and lift a development server.
 
 ### Contributing to One Love
 
