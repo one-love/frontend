@@ -12,7 +12,6 @@ import {
 
 const appTag = document.createElement('main');
 
-
 function requireAuth(nextState, replace) {
   if (!isLoggedIn()) {
     replace(nextState, '/login', '');
