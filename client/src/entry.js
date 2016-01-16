@@ -7,6 +7,12 @@ import {
   Router,
 } from 'react-router';
 
+const appTag = document.createElement('main');
+
+appTag.setAttribute('id', 'onelove');
+
+document.body.insertBefore(appTag, document.getElementsByTagName('script')[0]);
+
 ReactDom.render((
   <Router>
     <Route path="/" component={OneLove} />
