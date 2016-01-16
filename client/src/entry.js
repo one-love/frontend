@@ -6,8 +6,18 @@ import {
   Route,
   Router,
 } from 'react-router';
+import {
+  isLoggedIn,
+} from './utils/auth';
 
 const appTag = document.createElement('main');
+
+
+function requireAuth(nextState, replace) {
+  if (!isLoggedIn()) {
+    replace(nextState, '/login', '');
+  }
+}
 
 appTag.setAttribute('id', 'onelove');
 
@@ -15,7 +25,7 @@ document.body.insertBefore(appTag, document.getElementsByTagName('script')[0]);
 
 ReactDom.render((
   <Router>
-    <Route path="/" component={OneLove} />
+    <Route onEnter={requireAuth} path="/" component={OneLove} />
     <Route path="/login" component={LoginForm} />
   </Router>
 ), document.getElementById('onelove'));
