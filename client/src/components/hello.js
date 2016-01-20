@@ -1,11 +1,19 @@
 import React from 'react';
 
 const LoginForm = React.createClass({
+  propTypes: {
+    store: React.PropTypes.object.isRequired,
+  },
+
+  handleSubmit(e) {
+    e.preventDefault();
+  },
+
   render() {
     return (
       <div className="form-container">
         <h1 className="form__title">Login</h1>
-        <form role="form">
+        <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="username">Username</label>
             <input
