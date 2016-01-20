@@ -1,12 +1,18 @@
-import { createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { routeReducer, syncHistory } from 'redux-simple-router';
+import thunk from 'redux-thunk';
+import oneloveReducer from './actions';
 
 
-function reducer(state, action) {
-  console.log('reducer was called with state', state, 'and action', action);
-}
+const reducer = combineReducers({
+  oneloveReducer,
+  routeReducer,
+});
 
 
-export default function configureStore() {
-  const store = createStore(reducer);
+export default function configureStore(initialState = {}, history) {
+  const routerMiddleware = syncHistory(history);
+  const middleware = applyMiddleware(thunk, routerMiddleware);
+  const store = middleware(createStore)(reducer, initialState);
   return store;
 }

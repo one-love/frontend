@@ -1,12 +1,38 @@
 import React from 'react';
+import { routeActions } from 'redux-simple-router';
+import { login } from '../actions';
+
 
 const LoginForm = React.createClass({
   propTypes: {
     store: React.PropTypes.object.isRequired,
+    children: React.PropTypes.node,
   },
 
-  handleSubmit(e) {
-    e.preventDefault();
+  getInitialState() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+
+  componentWillMount() {
+    if (window.localStorage.OneLoveAuthToken) {
+      this.props.store.dispatch(routeActions.push('/'));
+    }
+  },
+
+  handleEmailChange(event) {
+    this.setState({ email: event.target.value });
+  },
+
+  handlePasswordChange(event) {
+    this.setState({ password: event.target.value });
+  },
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.store.dispatch(login(this.state.email, this.state.password));
   },
 
   render() {
@@ -15,22 +41,24 @@ const LoginForm = React.createClass({
         <h1 className="form__title">Login</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <input
               type="text"
               className="form__field"
-              id="username"
-              placeholder="Username"
+              id="email"
+              placeholder="Email"
+              onChange={this.handleEmailChange}
             />
           </div>
-          <div className="form__title">
+          <div className="form__item">
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              className="form__item"
+              className="form__field"
               id="password"
               ref="password"
               placeholder="Password"
+              onChange={this.handlePasswordChange}
             />
           </div>
           <button className="button button--primary">Submit</button>
@@ -39,5 +67,6 @@ const LoginForm = React.createClass({
     );
   },
 });
+
 
 export default LoginForm;
