@@ -1,6 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
-import { login } from '../actions';
+import { login, actions } from '../actions';
+
+
+const mapStateToProps = (state) => {
+  return {
+    token: state.oneloveReducer.token,
+  };
+};
 
 
 const LoginForm = React.createClass({
@@ -20,6 +28,13 @@ const LoginForm = React.createClass({
     if (window.localStorage.OneLoveAuthToken) {
       this.props.store.dispatch(routeActions.push('/'));
     }
+  },
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.token) {
+      this.props.store.dispatch(routeActions.push('/'));
+    }
+    return true;
   },
 
   handleEmailChange(event) {
@@ -69,4 +84,4 @@ const LoginForm = React.createClass({
 });
 
 
-export default LoginForm;
+export default connect(mapStateToProps, actions)(LoginForm);
