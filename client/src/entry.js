@@ -37,7 +37,7 @@ ReactDom.render((
   <Provider store={store}>
     <Router history={history}>
       <Route onEnter={requireAuth} path="/">
-        <IndexRoute component={OneLove} />
+        <IndexRoute component={wrapComponent(OneLove, { store })} />
         <Route path="logout" component={wrapComponent(LogoutForm, { store })} />
       </Route>
       <Route path="/login" component={wrapComponent(LoginForm, { store })} />

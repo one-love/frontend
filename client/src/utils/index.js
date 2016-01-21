@@ -1,5 +1,7 @@
+/* eslint quote-props: 0 */
 import React from 'react';
 import isomorphicFetch from 'isomorphic-fetch';
+import { getAuthToken } from '../components/auth/utils';
 
 
 /**
@@ -27,10 +29,14 @@ export function fetch(url, body, method = 'get') {
     body: newbody,
     method,
     headers: {
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Authorization': `JWT ${getAuthToken()}`,
     },
   };
+  if (!getAuthToken()) {
+    delete newargs.headers.Authorization;
+  }
   return isomorphicFetch(url, newargs)
     .then(response => {
       const json = response.json();

@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { fetch } from '../../utils';
-import API_URL from '../../constants';
+import { API_URL } from '../../constants';
 
 // ------------------------------------
 // Constants
@@ -10,23 +10,15 @@ export const GET_CLUSTERS = 'GET_CLUSTERS';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const saveToken = createAction(GET_CLUSTERS, json => {
-  window.localStorage.OneLoveAuthToken = json.token;
+export const gotClusters = createAction(GET_CLUSTERS, json => {
   return json;
 });
 
-export const getClusters = (email, password) => {
+export const getClusters = () => {
   return dispatch => {
-    fetch(
-      `${API_URL}/auth/tokens`,
-      {
-        email,
-        password,
-      },
-      'post'
-    )
+    fetch(`${API_URL}/clusters?page=1&per_page=10`)
       .then(json => {
-        dispatch(saveToken(json));
+        dispatch(gotClusters(json));
         return json;
       })
       .catch(error => {
@@ -36,13 +28,13 @@ export const getClusters = (email, password) => {
 };
 
 export const actions = {
-  saveToken,
-  login,
+  getClusters,
+  gotClusters,
 };
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 export default handleActions({
-  LOGIN: (state, { payload }) => payload,
+  GET_CLUSTERS: (state, { payload }) => payload,
 }, 1);

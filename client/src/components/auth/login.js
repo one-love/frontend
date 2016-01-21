@@ -10,7 +10,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-
 const LoginForm = React.createClass({
   propTypes: {
     store: React.PropTypes.object.isRequired,
