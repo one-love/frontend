@@ -1,21 +1,21 @@
 import { createAction, handleActions } from 'redux-actions';
 import { fetch } from '../../utils';
-import { API_URL } from '../../constants';
+import API_URL from '../../constants';
 
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const LOGIN = 'LOGIN';
+export const GET_CLUSTERS = 'GET_CLUSTERS';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const saveToken = createAction(LOGIN, json => {
+export const saveToken = createAction(GET_CLUSTERS, json => {
   window.localStorage.OneLoveAuthToken = json.token;
   return json;
 });
 
-export const login = (email, password) => {
+export const getClusters = (email, password) => {
   return dispatch => {
     fetch(
       `${API_URL}/auth/tokens`,

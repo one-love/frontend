@@ -6,7 +6,7 @@ import { login, actions } from './actions';
 
 const mapStateToProps = (state) => {
   return {
-    token: state.oneloveReducer.token,
+    token: state.onelove.token,
   };
 };
 

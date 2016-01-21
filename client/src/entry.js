@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import LoginForm from './components/auth/login';
-import LogoutForm from './components/auth/logout';
-import OneLove from './components/app';
-import { isLoggedIn } from '././components/auth/utils';
-import { wrapComponent } from './utils';
-import configureStore from './components/auth/store';
 import { Provider } from 'react-redux';
 import { IndexRoute, Route, Router } from 'react-router';
+
+import { wrapComponent } from './utils';
 import { createHashHistory } from 'history';
+
+import OneLove from './components/app';
+import LoginForm from './components/auth/login';
+import LogoutForm from './components/auth/logout';
+import configureStore from './store';
+import { isLoggedIn } from '././components/auth/utils';
 
 
 const appTag = document.createElement('main');

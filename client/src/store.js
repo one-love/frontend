@@ -1,12 +1,11 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import { routeReducer, syncHistory } from 'redux-simple-router';
+import { routeReducer as route, syncHistory } from 'redux-simple-router';
 import thunk from 'redux-thunk';
-import oneloveReducer from './actions';
-
+import { default as onelove } from './components/auth/actions';
 
 const reducer = combineReducers({
-  oneloveReducer,
-  routeReducer,
+  onelove,
+  route,
 });
 
 export default function configureStore(initialState = {}, history) {
