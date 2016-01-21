@@ -7,7 +7,7 @@ import { isLoggedIn } from './utils/auth';
 import { wrapComponent } from './utils';
 import configureStore from './store';
 import { Provider } from 'react-redux';
-import { Route, Router } from 'react-router';
+import { IndexRoute, Route, Router } from 'react-router';
 import { createHashHistory } from 'history';
 
 
@@ -34,8 +34,10 @@ const store = configureStore(initialState, history);
 ReactDom.render((
   <Provider store={store}>
     <Router history={history}>
-      <Route onEnter={requireAuth} path="/" component={OneLove} />
-      <Route path="/logout" component={wrapComponent(LogoutForm, { store })} />
+      <Route onEnter={requireAuth} path="/">
+        <IndexRoute component={OneLove} />
+        <Route path="logout" component={wrapComponent(LogoutForm, { store })} />
+      </Route>
       <Route path="/login" component={wrapComponent(LoginForm, { store })} />
     </Router>
   </Provider>
