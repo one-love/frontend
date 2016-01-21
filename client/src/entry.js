@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import LoginForm from './components/hello';
+import LoginForm from './components/login';
+import LogoutForm from './components/logout';
 import OneLove from './components/app';
 import { isLoggedIn } from './utils/auth';
 import { wrapComponent } from './utils';
@@ -34,6 +35,7 @@ ReactDom.render((
   <Provider store={store}>
     <Router history={history}>
       <Route onEnter={requireAuth} path="/" component={OneLove} />
+      <Route path="/logout" component={wrapComponent(LogoutForm, { store })} />
       <Route path="/login" component={wrapComponent(LoginForm, { store })} />
     </Router>
   </Provider>

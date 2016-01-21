@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 
 const OneLove = React.createClass({
   render() {
     return (
       <main className="app">
-        <a href="/#/login">Go to Login</a>
+        <Link to="/login">Go to Login</Link><br />
+        <Link to="/logout">Go to Logout</Link>
       </main>
     );
   },
