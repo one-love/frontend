@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import LoginForm from './components/login';
-import LogoutForm from './components/logout';
+import LoginForm from './components/auth/login';
+import LogoutForm from './components/auth/logout';
 import OneLove from './components/app';
 import { isLoggedIn } from './utils/auth';
 import { wrapComponent } from './utils';

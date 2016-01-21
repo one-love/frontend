@@ -17,7 +17,7 @@ export const saveToken = createAction(LOGIN, json => {
 export const login = (email, password) => {
   return dispatch => {
     fetch(
-      'http://localhost:5000/api/v0/auth/tokens',
+      'http://onelove.vagrant:5000/api/v0/auth/tokens',
       {
         email,
         password,
