@@ -9,7 +9,6 @@ const reducer = combineReducers({
   routeReducer,
 });
 
-
 export default function configureStore(initialState = {}, history) {
   const routerMiddleware = syncHistory(history);
   const middleware = applyMiddleware(thunk, routerMiddleware);

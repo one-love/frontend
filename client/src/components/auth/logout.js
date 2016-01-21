@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
-import { actions } from '../../actions';
+import { actions } from './actions';
 
 
 const mapStateToProps = (state) => {

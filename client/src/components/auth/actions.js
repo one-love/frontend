@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-import { fetch } from './utils';
+import { fetch } from '../../utils';
 
 // ------------------------------------
 // Constants
