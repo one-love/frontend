@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import LoginForm from './components/login';
-import LogoutForm from './components/logout';
-import OneLove from './components/app';
-import { isLoggedIn } from './utils/auth';
-import { wrapComponent } from './utils';
-import configureStore from './store';
 import { Provider } from 'react-redux';
 import { IndexRoute, Route, Router } from 'react-router';
+
+import { wrapComponent } from './utils';
 import { createHashHistory } from 'history';
+
+import OneLove from './components/app';
+import LoginForm from './components/auth/login';
+import LogoutForm from './components/auth/logout';
+import configureStore from './store';
+import { isLoggedIn } from '././components/auth/utils';
 
 
 const appTag = document.createElement('main');
@@ -35,7 +37,7 @@ ReactDom.render((
   <Provider store={store}>
     <Router history={history}>
       <Route onEnter={requireAuth} path="/">
-        <IndexRoute component={OneLove} />
+        <IndexRoute component={wrapComponent(OneLove, { store })} />
         <Route path="logout" component={wrapComponent(LogoutForm, { store })} />
       </Route>
       <Route path="/login" component={wrapComponent(LoginForm, { store })} />

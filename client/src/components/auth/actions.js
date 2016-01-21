@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
-import { fetch } from './utils';
+import { fetch } from '../../utils';
+import { API_URL } from '../../constants';
 
 // ------------------------------------
 // Constants
@@ -17,7 +18,7 @@ export const saveToken = createAction(LOGIN, json => {
 export const login = (email, password) => {
   return dispatch => {
     fetch(
-      'http://localhost:5000/api/v0/auth/tokens',
+      `${API_URL}/auth/tokens`,
       {
         email,
         password,
@@ -43,5 +44,5 @@ export const actions = {
 // Reducer
 // ------------------------------------
 export default handleActions({
-  [LOGIN]: (state, { payload }) => payload,
+  LOGIN: (state, { payload }) => payload,
 }, 1);
