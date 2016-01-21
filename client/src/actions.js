@@ -43,5 +43,5 @@ export const actions = {
 // Reducer
 // ------------------------------------
 export default handleActions({
-  [LOGIN]: (state, { payload }) => payload,
+  LOGIN: (state, { payload }) => payload,
 }, 1);
