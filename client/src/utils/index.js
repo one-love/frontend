@@ -1,7 +1,6 @@
-/* eslint quote-props: 0 */
 import React from 'react';
 import isomorphicFetch from 'isomorphic-fetch';
-import { getAuthToken } from '../components/auth/utils';
+import { getAuthToken, isLoggedIn } from '../components/auth/utils';
 
 
 /**
@@ -29,13 +28,21 @@ export function fetch(url, body, method = 'get') {
     body: newbody,
     method,
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `JWT ${getAuthToken()}`,
+      Accept: 'application/json',
+      Authorization: `JWT ${getAuthToken()}`,
     },
   };
-  if (!getAuthToken()) {
+  if (!isLoggedIn()) {
     delete newargs.headers.Authorization;
+  }
+  switch (method) {
+    case 'post':
+    case 'put':
+    case 'patch':
+      newargs.headers['Content-Type'] = 'application/json';
+      break;
+    default:
+      console.log('not setting content-type header');
   }
   return isomorphicFetch(url, newargs)
     .then(response => {
