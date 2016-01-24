@@ -7,6 +7,7 @@ import { login, actions } from './actions';
 const mapStateToProps = (state) => {
   return {
     token: state.onelove.token,
+    status: state.onelove.status,
   };
 };
 
@@ -14,6 +15,7 @@ const LoginForm = React.createClass({
   propTypes: {
     store: React.PropTypes.object.isRequired,
     children: React.PropTypes.node,
+    status: React.PropTypes.string.isRequired,
   },
 
   getInitialState() {
@@ -50,8 +52,13 @@ const LoginForm = React.createClass({
   },
 
   render() {
+    let spinner = '';
+    if (this.props.status === 'pending') {
+      spinner = <div>spinner</div>;
+    }
     return (
       <div className="form-container">
+        {spinner}
         <h1 className="form__title">Login</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">

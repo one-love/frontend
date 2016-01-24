@@ -12,11 +12,21 @@ export const LOGIN = 'LOGIN';
 // ------------------------------------
 export const saveToken = createAction(LOGIN, json => {
   window.localStorage.OneLoveAuthToken = json.token;
-  return json;
+  return {
+    token: json.token,
+    status: 'success',
+  };
+});
+
+export const beginLogin = createAction(LOGIN, () => {
+  return {
+    status: 'pending',
+  };
 });
 
 export const login = (email, password) => {
   return dispatch => {
+    dispatch(beginLogin());
     fetch(
       `${API_URL}/auth/tokens`,
       {
@@ -44,5 +54,7 @@ export const actions = {
 // Reducer
 // ------------------------------------
 export default handleActions({
-  LOGIN: (state, { payload }) => payload,
-}, 1);
+  LOGIN: (state, action) => action.payload,
+}, {
+  status: 'initial',
+});
