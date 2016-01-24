@@ -57,6 +57,7 @@ const LoginForm = React.createClass({
           <div className="form__item">
             <label htmlFor="email">Email</label>
             <input
+              autoFocus
               type="text"
               className="form__field"
               id="email"
