@@ -12,9 +12,7 @@ import LogoutForm from './components/auth/logout';
 import configureStore from './store';
 import { isLoggedIn } from '././components/auth/utils';
 
-
 const appTag = document.createElement('main');
-
 
 function requireAuth(nextState, replace) {
   if (!isLoggedIn()) {
@@ -25,7 +23,8 @@ function requireAuth(nextState, replace) {
 
 appTag.setAttribute('id', 'onelove');
 
-document.body.insertBefore(appTag, document.getElementsByTagName('script')[0]);
+document.getElementsByTagName('body')[0]
+  .insertBefore(appTag, document.body.childNodes[0]);
 
 const history = createHashHistory({ queryKey: false });
 
