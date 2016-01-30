@@ -21,12 +21,17 @@ export function wrapComponent(component, props) {
   });
 }
 
-
-export function fetch(url, body, method = 'get') {
+export function fetch(args) {
+  const {
+    url,
+    body,
+    method,
+    contentType,
+  } = args;
   const newbody = JSON.stringify(body);
   const newargs = {
     body: newbody,
-    method,
+    method: method ? method : 'get',
     headers: {
       Accept: 'application/json',
       Authorization: `JWT ${getAuthToken()}`,
@@ -35,14 +40,10 @@ export function fetch(url, body, method = 'get') {
   if (!isLoggedIn()) {
     delete newargs.headers.Authorization;
   }
-  switch (method) {
-    case 'post':
-    case 'put':
-    case 'patch':
-      newargs.headers['Content-Type'] = 'application/json';
-      break;
-    default:
-      console.log('not setting content-type header');
+  if (contentType) {
+    console.log('content type', contentType);
+    newargs.headers['Content-Type'] = contentType;
+    console.log('content-type added');
   }
   return isomorphicFetch(url, newargs)
     .then(response => {

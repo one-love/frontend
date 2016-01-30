@@ -4,7 +4,7 @@ import { getClusters } from './actions';
 
 const ClusterList = React.createClass({
   propTypes: {
-    store: React.PropTypes.object.isRequired,
+    store: React.PropTypes.object,
     children: React.PropTypes.node,
   },
   componentWillMount() {

@@ -10,13 +10,16 @@ export const GET_CLUSTERS = 'GET_CLUSTERS';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const gotClusters = createAction(GET_CLUSTERS, json => {
-  return json;
+export const gotClusters = createAction(GET_CLUSTERS, clusters => {
+  return clusters;
 });
 
 export const getClusters = () => {
   return dispatch => {
-    fetch(`${API_URL}/clusters?page=1&per_page=10`)
+    fetch({
+      url: `${API_URL}/clusters?page=1&per_page=10`,
+      method: 'get',
+    })
       .then(json => {
         dispatch(gotClusters(json));
         return json;
@@ -36,5 +39,8 @@ export const actions = {
 // Reducer
 // ------------------------------------
 export default handleActions({
-  GET_CLUSTERS: (state, { payload }) => payload,
+  GET_CLUSTERS: (state, { payload }) => {
+    console.log('blah');
+    return payload;
+  },
 }, 1);
