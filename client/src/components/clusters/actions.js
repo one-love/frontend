@@ -25,7 +25,7 @@ export const getClusters = () => {
         return json;
       })
       .catch(error => {
-        console.log('in catch', error);
+        console.trace('in catch', error);
       });
   };
 };
@@ -40,7 +40,6 @@ export const actions = {
 // ------------------------------------
 export default handleActions({
   GET_CLUSTERS: (state, { payload }) => {
-    console.log('blah');
     return payload;
   },
-}, 1);
+}, []);
