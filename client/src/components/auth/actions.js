@@ -17,14 +17,15 @@ export const saveToken = createAction(LOGIN, json => {
 
 export const login = (email, password) => {
   return dispatch => {
-    fetch(
-      `${API_URL}/auth/tokens`,
-      {
+    fetch({
+      url: `${API_URL}/auth/tokens`,
+      body: {
         email,
         password,
       },
-      'post'
-    )
+      contentType: 'application/json',
+      method: 'post',
+    })
       .then(json => {
         dispatch(saveToken(json));
         return json;
@@ -44,5 +45,7 @@ export const actions = {
 // Reducer
 // ------------------------------------
 export default handleActions({
-  LOGIN: (state, { payload }) => payload,
-}, 1);
+  LOGIN: (state, { payload }) => {
+    return payload;
+  },
+}, { loggedIn: false });
