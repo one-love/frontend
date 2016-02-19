@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
 import ClusterList from '../clusters';
+import Header from '../header/index';
+import Footer from '../footer/index';
 
 const OneLove = React.createClass({
   propTypes: {
@@ -10,10 +11,9 @@ const OneLove = React.createClass({
   render() {
     return (
       <main className="app">
-        <Link to="/login">Go to Login</Link><br />
-        <Link to="/logout">Go to Logout</Link>
-        <br />
+        <Header/>
         <ClusterList store={this.props.store} />
+        <Footer />
       </main>
     );
   },
