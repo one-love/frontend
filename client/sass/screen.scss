@@ -1,16 +1,16 @@
 // SETTINGS
-@import "inuit-defaults/settings.defaults";
+@import "~inuit-defaults";
 
 // TOOLS
-@import "inuit-functions/tools.functions";
-@import "inuit-mixins/tools.mixins";
+@import "~inuit-functions";
+@import "~inuit-mixins";
 
 // GENERIC
-@import "inuit-normalize/generic.normalize";
-@import "inuit-box-sizing/generic.box-sizing";
+@import "~inuit-normalize";
+@import "~inuit-box-sizing";
 
 // BASE
-@import "inuit-page/base.page";
+@import "~inuit-page";
 
 body {
   background: #eaeaea;
