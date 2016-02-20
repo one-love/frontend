@@ -26,7 +26,6 @@ appTag.setAttribute('id', 'onelove');
 document.getElementsByTagName('body')[0]
   .insertBefore(appTag, document.body.childNodes[0]);
 
-console.log('store', store);
 
 ReactDom.render((
   <Provider store={store}>
