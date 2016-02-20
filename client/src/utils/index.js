@@ -41,9 +41,7 @@ export function fetch(args) {
     delete newargs.headers.Authorization;
   }
   if (contentType) {
-    console.log('content type', contentType);
     newargs.headers['Content-Type'] = contentType;
-    console.log('content-type added');
   }
   return isomorphicFetch(url, newargs)
     .then(response => {

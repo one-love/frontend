@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { fetch } from '../../utils';
-import { API_URL } from '../../constants';
+import { API_URL } from '../../backend_url';
 
 // ------------------------------------
 // Constants

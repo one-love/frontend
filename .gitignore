@@ -48,3 +48,5 @@ node_modules
 
 .lock-wscript
 .tern-project
+
+client/src/backend_url.js
