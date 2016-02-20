@@ -24,6 +24,13 @@ export const beginLogin = createAction(LOGIN, () => {
   };
 });
 
+export const errorLogin = createAction(LOGIN, error => {
+  return {
+    status: 'error',
+    error: error.message,
+  };
+});
+
 export const login = (email, password) => {
   return dispatch => {
     dispatch(beginLogin());
@@ -41,7 +48,7 @@ export const login = (email, password) => {
         return json;
       })
       .catch(error => {
-        console.log('in catch', error);
+        dispatch(errorLogin(error));
       });
   };
 };

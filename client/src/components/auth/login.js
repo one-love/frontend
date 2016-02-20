@@ -4,18 +4,25 @@ import { routeActions } from 'redux-simple-router';
 import { login, actions } from './actions';
 
 
+const errorMessages = {
+  UNAUTHORIZED: 'Wrong user/password',
+};
+
+
 const mapStateToProps = (state) => {
   return {
     token: state.onelove.token,
     status: state.onelove.status,
+    error: state.onelove.error,
   };
 };
 
 const LoginForm = React.createClass({
   propTypes: {
-    store: React.PropTypes.object.isRequired,
+    store: React.PropTypes.object,
     children: React.PropTypes.node,
-    status: React.PropTypes.string.isRequired,
+    status: React.PropTypes.string,
+    error: React.PropTypes.string,
   },
 
   getInitialState() {
@@ -53,12 +60,21 @@ const LoginForm = React.createClass({
 
   render() {
     let spinner = '';
-    if (this.props.status === 'pending') {
-      spinner = <div>spinner</div>;
+    let error = '';
+    switch (this.props.status) {
+      case 'pending':
+        spinner = <div>spinner</div>;
+        break;
+      case 'error':
+        error = <div>{errorMessages[this.props.error]}</div>;
+        break;
+      default:
+        break;
     }
     return (
       <div className="form-container">
         {spinner}
+        {error}
         <h1 className="form__title">Login</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
