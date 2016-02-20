@@ -26,6 +26,7 @@ export const beginLogin = createAction(LOGIN, () => {
 
 export const login = (email, password) => {
   return dispatch => {
+    dispatch(beginLogin());
     fetch({
       url: `${API_URL}/auth/tokens`,
       body: {
@@ -57,4 +58,4 @@ export default handleActions({
   LOGIN: (state, { payload }) => {
     return payload;
   },
-}, { loggedIn: false });
+}, { status: 'initial' });
