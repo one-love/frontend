@@ -11,6 +11,7 @@ import LoginForm from './components/auth/login';
 import LogoutForm from './components/auth/logout';
 import configureStore from './store';
 import { isLoggedIn } from '././components/auth/utils';
+import Layout from './components/layout';
 
 const appTag = document.createElement('main');
 
@@ -35,7 +36,7 @@ const store = configureStore(initialState, history);
 ReactDom.render((
   <Provider store={store}>
     <Router history={history}>
-      <Route onEnter={requireAuth} path="/">
+      <Route onEnter={requireAuth} path="/" component={Layout}>
         <IndexRoute component={wrapComponent(OneLove, { store })} />
         <Route path="logout" component={wrapComponent(LogoutForm, { store })} />
       </Route>
