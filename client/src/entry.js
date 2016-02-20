@@ -4,17 +4,15 @@ import { Provider } from 'react-redux';
 import { IndexRoute, Route, Router } from 'react-router';
 
 import { wrapComponent } from './utils';
-import { createHashHistory } from 'history';
 
 import OneLove from './components/app';
 import LoginForm from './components/auth/login';
 import LogoutForm from './components/auth/logout';
-import configureStore from './store';
-import { isLoggedIn } from '././components/auth/utils';
-
+import { history, store } from './store';
+import { isLoggedIn } from './components/auth/utils';
+import Layout from './components/layout';
 
 const appTag = document.createElement('main');
-
 
 function requireAuth(nextState, replace) {
   if (!isLoggedIn()) {
@@ -25,22 +23,19 @@ function requireAuth(nextState, replace) {
 
 appTag.setAttribute('id', 'onelove');
 
-document.body.insertBefore(appTag, document.getElementsByTagName('script')[0]);
+document.getElementsByTagName('body')[0]
+  .insertBefore(appTag, document.body.childNodes[0]);
 
-const history = createHashHistory({ queryKey: false });
-
-const initialState = window.__INITIAL_STATE__;
-const store = configureStore(initialState, history);
-
+console.log('store', store);
 
 ReactDom.render((
   <Provider store={store}>
     <Router history={history}>
-      <Route onEnter={requireAuth} path="/">
-        <IndexRoute component={wrapComponent(OneLove, { store })} />
-        <Route path="logout" component={wrapComponent(LogoutForm, { store })} />
+      <Route onEnter={requireAuth} path="/" component={Layout}>
+        <IndexRoute component={wrapComponent(OneLove)} />
+        <Route path="logout" component={wrapComponent(LogoutForm)} />
       </Route>
-      <Route path="/login" component={wrapComponent(LoginForm, { store })} />
+      <Route path="/login" component={wrapComponent(LoginForm)} />
     </Router>
   </Provider>
 ), document.getElementById('onelove'));

@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { fetch } from '../../utils';
-import { API_URL } from '../../constants';
+import { API_URL } from '../../backend_url';
 
 // ------------------------------------
 // Constants
@@ -26,15 +26,15 @@ export const beginLogin = createAction(LOGIN, () => {
 
 export const login = (email, password) => {
   return dispatch => {
-    dispatch(beginLogin());
-    fetch(
-      `${API_URL}/auth/tokens`,
-      {
+    fetch({
+      url: `${API_URL}/auth/tokens`,
+      body: {
         email,
         password,
       },
-      'post'
-    )
+      contentType: 'application/json',
+      method: 'post',
+    })
       .then(json => {
         dispatch(saveToken(json));
         return json;
@@ -54,7 +54,7 @@ export const actions = {
 // Reducer
 // ------------------------------------
 export default handleActions({
-  LOGIN: (state, action) => action.payload,
-}, {
-  status: 'initial',
-});
+  LOGIN: (state, { payload }) => {
+    return payload;
+  },
+}, { loggedIn: false });

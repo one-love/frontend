@@ -1,6 +1,7 @@
 import React from 'react';
 import isomorphicFetch from 'isomorphic-fetch';
 import { getAuthToken, isLoggedIn } from '../components/auth/utils';
+import { store } from '../store';
 
 
 /**
@@ -9,24 +10,29 @@ import { getAuthToken, isLoggedIn } from '../components/auth/utils';
  * @param component - component that will receive props
  * @param props - props to pass to component as state
  */
-export function wrapComponent(component, props) {
+export function wrapComponent(component) {
   return React.createClass({
     propTypes: {
       children: React.PropTypes.node,
     },
 
     render() {
-      return React.createElement(component, props, this.props.children);
+      return React.createElement(component, { store }, this.props.children);
     },
   });
 }
 
-
-export function fetch(url, body, method = 'get') {
+export function fetch(args) {
+  const {
+    url,
+    body,
+    method,
+    contentType,
+  } = args;
   const newbody = JSON.stringify(body);
   const newargs = {
     body: newbody,
-    method,
+    method: method ? method : 'get',
     headers: {
       Accept: 'application/json',
       Authorization: `JWT ${getAuthToken()}`,
@@ -35,14 +41,8 @@ export function fetch(url, body, method = 'get') {
   if (!isLoggedIn()) {
     delete newargs.headers.Authorization;
   }
-  switch (method) {
-    case 'post':
-    case 'put':
-    case 'patch':
-      newargs.headers['Content-Type'] = 'application/json';
-      break;
-    default:
-      console.log('not setting content-type header');
+  if (contentType) {
+    newargs.headers['Content-Type'] = contentType;
   }
   return isomorphicFetch(url, newargs)
     .then(response => {
