@@ -3,8 +3,8 @@ import Header from '../header/index';
 import Footer from '../footer/index';
 
 const Layout = React.createClass({
-  propTypes:{
-    children: React.PropTypes.node
+  propTypes: {
+    children: React.PropTypes.node,
   },
   render() {
     return (
