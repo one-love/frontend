@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { getClusters } from './actions';
+import store from '../../store';
 
 
 const mapStateToProps = (state) => {
@@ -12,12 +13,11 @@ const mapStateToProps = (state) => {
 
 const ClusterList = React.createClass({
   propTypes: {
-    store: React.PropTypes.object,
     children: React.PropTypes.node,
     clusters: React.PropTypes.array,
   },
   componentWillMount() {
-    this.props.store.dispatch(getClusters());
+    store.dispatch(getClusters());
   },
   render() {
     return (

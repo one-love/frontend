@@ -1,1 +1,1 @@
-export const postLogoutURL = '/login';
+export const postLogoutURL = '/login/';

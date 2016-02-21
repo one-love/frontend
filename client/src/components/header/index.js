@@ -5,7 +5,7 @@ const Header = React.createClass({
   render() {
     return (
       <div>
-        <Link to="/logout">Go to Logout</Link>
+        <Link to="/logout/">Go to Logout</Link>
       </div>
     );
   },

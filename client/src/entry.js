@@ -3,12 +3,12 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { IndexRoute, Route, Router } from 'react-router';
 
-import { wrapComponent } from './utils';
+import { fetch } from './utils';
 
 import OneLove from './components/app';
 import LoginForm from './components/auth/login';
 import LogoutForm from './components/auth/logout';
-import { history, store } from './store';
+import { history, default as store } from './store';
 import { isLoggedIn } from './components/auth/utils';
 import Layout from './components/layout';
 import ClusterList from './components/clusters';
@@ -18,7 +18,7 @@ const appTag = document.createElement('main');
 
 function requireAuth(nextState, replace) {
   if (!isLoggedIn()) {
-    replace(nextState, '/login', '');
+    replace(nextState, '/login/', '');
   }
 }
 
@@ -33,14 +33,14 @@ ReactDom.render((
   <Provider store={store}>
     <Router history={history}>
       <Route onEnter={requireAuth} path="/" component={Layout}>
-        <IndexRoute component={wrapComponent(OneLove)} />
-        <Route path="logout" component={wrapComponent(LogoutForm)} />
+        <IndexRoute component={OneLove} />
+        <Route path="logout/" component={LogoutForm} />
         <Route path="clusters/">
-          <IndexRoute component={wrapComponent(ClusterList)} />
-          <Route path=":clusterId/" component={wrapComponent(Cluster)} />
+          <IndexRoute component={ClusterList} />
+          <Route path=":clusterId/" component={Cluster} />
         </Route>
       </Route>
-      <Route path="/login" component={wrapComponent(LoginForm)} />
+      <Route path="/login/" component={LoginForm} />
     </Router>
   </Provider>
 ), document.getElementById('onelove'));

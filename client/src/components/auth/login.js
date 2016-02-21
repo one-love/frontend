@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
 import { login, actions } from './actions';
+import store from '../../store';
 
 
 const errorMessages = {
@@ -10,6 +11,7 @@ const errorMessages = {
 
 
 const mapStateToProps = (state) => {
+  console.log(state.onelove);
   return {
     token: state.onelove.token,
     status: state.onelove.status,
@@ -19,7 +21,6 @@ const mapStateToProps = (state) => {
 
 const LoginForm = React.createClass({
   propTypes: {
-    store: React.PropTypes.object,
     children: React.PropTypes.node,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
@@ -34,13 +35,13 @@ const LoginForm = React.createClass({
 
   componentWillMount() {
     if (window.localStorage.OneLoveAuthToken) {
-      this.props.store.dispatch(routeActions.push('/'));
+      store.dispatch(routeActions.push('/'));
     }
   },
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.token) {
-      this.props.store.dispatch(routeActions.push('/'));
+      store.dispatch(routeActions.push('/'));
     }
     return true;
   },
@@ -55,7 +56,7 @@ const LoginForm = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.store.dispatch(login(this.state.email, this.state.password));
+    store.dispatch(login(this.state.email, this.state.password));
   },
 
   render() {
