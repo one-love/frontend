@@ -1,10 +1,10 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { routeReducer as route, syncHistory } from 'redux-simple-router';
 import thunk from 'redux-thunk';
-import { default as onelove } from './components/auth/actions';
-import { default as clusters } from './components/clusters/actions';
 import { createHashHistory } from 'history';
-import { default as cluster } from './components/cluster/actions';
+import onelove from './components/auth/actions';
+import clusters from './components/clusters/actions';
+import cluster from './components/cluster/actions';
 
 const reducer = combineReducers({
   onelove,

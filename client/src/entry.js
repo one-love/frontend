@@ -3,8 +3,6 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { IndexRoute, Route, Router } from 'react-router';
 
-import { fetch } from './utils';
-
 import OneLove from './components/app';
 import LoginForm from './components/auth/login';
 import LogoutForm from './components/auth/logout';
