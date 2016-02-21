@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCluster } from './actions';
+import { getCluster } from './actions/detail';
 import store from '../../store';
 
 

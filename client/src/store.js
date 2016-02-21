@@ -3,8 +3,8 @@ import { routeReducer as route, syncHistory } from 'redux-simple-router';
 import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
 import onelove from './components/auth/actions';
-import clusters from './components/clusters/actions';
-import cluster from './components/cluster/actions';
+import clusters from './components/cluster/actions/list';
+import cluster from './components/cluster/actions/detail';
 
 const reducer = combineReducers({
   onelove,
