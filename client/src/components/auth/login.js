@@ -11,7 +11,6 @@ const errorMessages = {
 
 
 const mapStateToProps = (state) => {
-  console.log(state.onelove);
   return {
     token: state.onelove.token,
     status: state.onelove.status,
