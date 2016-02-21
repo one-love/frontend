@@ -9,7 +9,7 @@ import LogoutForm from './components/auth/logout';
 import { history, default as store } from './store';
 import { isLoggedIn } from './components/auth/utils';
 import Layout from './components/layout';
-import ClusterList from './components/clusters';
+import ClusterList from './components/cluster/list';
 import Cluster from './components/cluster';
 
 const appTag = document.createElement('main');
