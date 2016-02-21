@@ -35,3 +35,9 @@ export function fetch(args) {
       return json;
     });
 }
+
+export function initApp() {
+  const appTag = document.createElement('main');
+  appTag.setAttribute('id', 'onelove');
+  document.body.insertBefore(appTag, document.body.childNodes[0]);
+}
