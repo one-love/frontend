@@ -1,5 +1,5 @@
 import React from 'react';
-import ClusterList from '../clusters';
+import { Link } from 'react-router';
 
 const OneLove = React.createClass({
   propTypes: {
@@ -9,7 +9,7 @@ const OneLove = React.createClass({
   render() {
     return (
       <main className="app">
-        <ClusterList store={this.props.store} />
+        <Link to="/clusters/" > clusters </Link>
       </main>
     );
   },

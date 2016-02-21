@@ -1,11 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getCluster } from './actions';
 
+const mapStateToProps = (state) => {
+  const data = {
+    cluster: state.cluster.cluster,
+  };
+  if (data.cluster !== undefined) {
+    data.applications = state.cluster.applications;
+    data.roles = state.cluster.roles;
+  }
+  return data;
+};
 const Cluster = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
+    applications: React.PropTypes.array,
+    roles: React.PropTypes.array,
+    store: React.PropTypes.object,
+
+  },
+  componentWillMount() {
+    this.clusterId = this.props.store.getState().route.location.pathname.split('/')[2];
+    this.props.store.dispatch(getCluster(this.clusterId));
   },
   render() {
     const c = this.props.cluster;
+    if (c === undefined) {
+      return <div></div>;
+    }
     return (
       <li className="item">
         <ul className="item__list">
@@ -22,7 +45,7 @@ const Cluster = React.createClass({
               <b className="item__fragment item__fragment--bold">Roles: </b>
               <span className="item__value">{
                   c.roles.length ?
-                  c.applications.map((role) => <span>{role}</span>) :
+                  c.roles.map((role) => <span key={role.id}>{role.name} </span>) :
                   'No roles right now'
               }</span>
           </li>
@@ -32,4 +55,4 @@ const Cluster = React.createClass({
   },
 });
 
-export default Cluster;
+export default connect(mapStateToProps)(Cluster);

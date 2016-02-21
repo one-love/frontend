@@ -11,6 +11,8 @@ import LogoutForm from './components/auth/logout';
 import { history, store } from './store';
 import { isLoggedIn } from './components/auth/utils';
 import Layout from './components/layout';
+import ClusterList from './components/clusters';
+import Cluster from './components/cluster';
 
 const appTag = document.createElement('main');
 
@@ -33,6 +35,10 @@ ReactDom.render((
       <Route onEnter={requireAuth} path="/" component={Layout}>
         <IndexRoute component={wrapComponent(OneLove)} />
         <Route path="logout" component={wrapComponent(LogoutForm)} />
+        <Route path="clusters/">
+          <IndexRoute component={wrapComponent(ClusterList)} />
+          <Route path=":clusterId/" component={wrapComponent(Cluster)} />
+        </Route>
       </Route>
       <Route path="/login" component={wrapComponent(LoginForm)} />
     </Router>
