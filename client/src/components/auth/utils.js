@@ -15,3 +15,10 @@ export function getAuthToken() {
 export function isLoggedIn() {
   return Boolean(getAuthToken());
 }
+
+
+export function requireAuth(nextState, replace) {
+  if (!isLoggedIn()) {
+    replace(nextState, '/login/', '');
+  }
+}
