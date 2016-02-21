@@ -3,29 +3,18 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { IndexRoute, Route, Router } from 'react-router';
 
-import OneLove from './components/app';
+import OneLove from './components/onelove';
 import LoginForm from './components/auth/login';
 import LogoutForm from './components/auth/logout';
 import { history, default as store } from './store';
-import { isLoggedIn } from './components/auth/utils';
+import { requireAuth } from './components/auth/utils';
 import Layout from './components/layout';
 import ClusterList from './components/cluster/list';
 import Cluster from './components/cluster';
-
-const appTag = document.createElement('main');
-
-function requireAuth(nextState, replace) {
-  if (!isLoggedIn()) {
-    replace(nextState, '/login/', '');
-  }
-}
+import { initApp } from './utils';
 
 
-appTag.setAttribute('id', 'onelove');
-
-const body = document.getElementsByTagName('body')[0];
-body.insertBefore(appTag, document.body.childNodes[0]);
-
+initApp();
 
 ReactDom.render((
   <Provider store={store}>
