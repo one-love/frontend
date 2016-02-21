@@ -23,8 +23,8 @@ function requireAuth(nextState, replace) {
 
 appTag.setAttribute('id', 'onelove');
 
-document.getElementsByTagName('body')[0]
-  .insertBefore(appTag, document.body.childNodes[0]);
+const body = document.getElementsByTagName('body')[0];
+body.insertBefore(appTag, document.body.childNodes[0]);
 
 
 ReactDom.render((

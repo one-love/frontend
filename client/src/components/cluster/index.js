@@ -42,7 +42,7 @@ const Cluster = React.createClass({
               <b className="item__fragment item__fragment--bold">Applications: </b>
               <span className="item__value">{
                   c.applications.length ?
-                  c.applications.map((app) => <span>{app}</span>) :
+                  c.applications.map((app) => <span key={app.name}>{app}</span>) :
                   'No applications right now'
               }</span>
           </li>
@@ -50,7 +50,7 @@ const Cluster = React.createClass({
               <b className="item__fragment item__fragment--bold">Roles: </b>
               <span className="item__value">{
                   c.roles.length ?
-                  c.roles.map((role) => <span key={role.id}>{role.name} </span>) :
+                  c.roles.map((role) => <span key={role.name}>{role.name} </span>) :
                   'No roles right now'
               }</span>
           </li>
