@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Cluster from './cluster';
+import { Link } from 'react-router';
 import { getClusters } from './actions';
 
 
@@ -24,7 +24,17 @@ const ClusterList = React.createClass({
       <div>
         <h2>My clusters:</h2>
         <ul>
-          {this.props.clusters.map(cluster => <Cluster key={cluster.id} cluster={cluster} />)}
+          {
+            this.props.clusters.map(
+              cluster =>
+              <li key={cluster.id}>
+              <Link
+                key={cluster.id}
+                to={'/clusters/' + cluster.id + '/'}
+                cluster={cluster}
+              > {cluster.name} </Link> </li>
+            )
+          }
         </ul>
       </div>
     );

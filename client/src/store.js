@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import { default as onelove } from './components/auth/actions';
 import { default as clusters } from './components/clusters/actions';
 import { createHashHistory } from 'history';
+import { default as cluster } from './components/cluster/actions';
 
 const reducer = combineReducers({
   onelove,
   route,
   clusters,
+  cluster,
 });
 
 export function configureStore(initialState = {}, history) {

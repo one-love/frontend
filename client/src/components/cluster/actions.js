@@ -5,51 +5,55 @@ import { API_URL } from '../../backend_url';
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const GET_CLUSTERS = 'GET_CLUSTERS';
-export const GET_CLUSTERS_ERROR = 'GET_CLUSTERS_ERROR';
+export const GET_CLUSTER = 'GET_CLUSTER';
+export const GET_CLUSTER_ERROR = 'GET_CLUSTER_ERROR';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const gotClusters = createAction(GET_CLUSTERS, clusters => {
-  return clusters;
+export const gotCluster = createAction(GET_CLUSTER, cluster => {
+  return {
+    cluster,
+    applications: cluster.applications,
+    roles: cluster.roles,
+  };
 });
 
 
-export const errorClusters = createAction(GET_CLUSTERS_ERROR, error => {
+export const errorCluster = createAction(GET_CLUSTER_ERROR, error => {
   return error.message;
 });
 
-export const getClusters = () => {
+
+export const getCluster = id => {
   return dispatch => {
     fetch({
-      url: `${API_URL}/clusters?page=1&per_page=10`,
+      url: API_URL + '/clusters/' + id,
       method: 'get',
     })
       .then(json => {
-        dispatch(gotClusters(json));
+        dispatch(gotCluster(json));
         return json;
       })
       .catch(error => {
-        dispatch(errorClusters(error));
+        dispatch(errorCluster(error));
       });
   };
 };
 
-
 export const actions = {
-  getClusters,
-  gotClusters,
+  getCluster,
+  gotCluster,
 };
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 export default handleActions({
-  GET_CLUSTERS: (state, { payload }) => {
+  GET_CLUSTER: (state, { payload }) => {
     return payload;
   },
-  GET_CLUSTERS_ERROR: (state, { payload }) => {
+  GET_CLUSTER_ERROR: (state, { payload }) => {
     return payload;
   },
-}, []);
+}, {});
