@@ -1,26 +1,6 @@
-import React from 'react';
 import isomorphicFetch from 'isomorphic-fetch';
 import { getAuthToken, isLoggedIn } from '../components/auth/utils';
-import { store } from '../store';
 
-
-/**
- * Pass store as props
- *
- * @param component - component that will receive props
- * @param props - props to pass to component as state
- */
-export function wrapComponent(component) {
-  return React.createClass({
-    propTypes: {
-      children: React.PropTypes.node,
-    },
-
-    render() {
-      return React.createElement(component, { store }, this.props.children);
-    },
-  });
-}
 
 export function fetch(args) {
   const {

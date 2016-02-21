@@ -13,7 +13,7 @@ const reducer = combineReducers({
   cluster,
 });
 
-export function configureStore(initialState = {}, history) {
+function configureStore(initialState = {}, history) {
   const routerMiddleware = syncHistory(history);
   const middleware = applyMiddleware(thunk, routerMiddleware);
   const store = middleware(createStore)(reducer, initialState);
@@ -23,4 +23,6 @@ export function configureStore(initialState = {}, history) {
 export const history = createHashHistory({ queryKey: false });
 
 const initialState = window.__INITIAL_STATE__;
-export const store = configureStore(initialState, history);
+const store = configureStore(initialState, history);
+
+export default store;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCluster } from './actions';
+import store from '../../store';
+
 
 const mapStateToProps = (state) => {
   const data = {
@@ -12,18 +14,21 @@ const mapStateToProps = (state) => {
   }
   return data;
 };
+
+
 const Cluster = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     applications: React.PropTypes.array,
     roles: React.PropTypes.array,
-    store: React.PropTypes.object,
+    params: React.PropTypes.object,
 
   },
+
   componentWillMount() {
-    this.clusterId = this.props.store.getState().route.location.pathname.split('/')[2];
-    this.props.store.dispatch(getCluster(this.clusterId));
+    store.dispatch(getCluster(this.props.params.clusterId));
   },
+
   render() {
     const c = this.props.cluster;
     if (c === undefined) {

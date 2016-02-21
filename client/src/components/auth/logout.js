@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
 import { actions } from './actions';
 import { postLogoutURL } from '../../constants';
+import store from '../../store';
 
 
 const mapStateToProps = (state) => {
@@ -14,19 +15,18 @@ const mapStateToProps = (state) => {
 
 const LogoutForm = React.createClass({
   propTypes: {
-    store: React.PropTypes.object.isRequired,
     children: React.PropTypes.node,
   },
 
   componentWillMount() {
     if (!window.localStorage.OneLoveAuthToken) {
-      this.props.store.dispatch(routeActions.push(postLogoutURL));
+      store.dispatch(routeActions.push(postLogoutURL));
     }
   },
 
   shouldComponentUpdate(nextProps) {
     if (!nextProps.token) {
-      this.props.store.dispatch(routeActions.push(postLogoutURL));
+      store.dispatch(routeActions.push(postLogoutURL));
     }
     return true;
   },
@@ -34,7 +34,7 @@ const LogoutForm = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
     window.localStorage.removeItem('OneLoveAuthToken');
-    this.props.store.dispatch(routeActions.push(postLogoutURL));
+    store.dispatch(routeActions.push(postLogoutURL));
   },
 
   render() {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../header/index';
-import Footer from '../footer/index';
+import Header from '../header';
+import Footer from '../footer';
 
 const Layout = React.createClass({
   propTypes: {
@@ -10,7 +10,7 @@ const Layout = React.createClass({
     return (
       <div>
         <Header />
-        {this.props.children}
+          {this.props.children}
         <Footer />
       </div>
     );
