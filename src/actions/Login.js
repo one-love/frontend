@@ -6,7 +6,9 @@ import { LOGIN } from '../constants/ActionTypes';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const begin = createAction(LOGIN, () => ({ status: 'pending' }));
+export const begin = createAction(LOGIN, () => ({
+  status: 'pending',
+}));
 
 export const success = createAction(LOGIN, json => {
   window.localStorage.OneLoveAuthToken = json.token;
@@ -17,8 +19,8 @@ export const success = createAction(LOGIN, json => {
 });
 
 export const fail = createAction(LOGIN, error => ({
-  status: 'error',
   error: error.message,
+  status: 'error',
 }));
 
 export const login = (email, password) =>
@@ -38,7 +40,7 @@ export const login = (email, password) =>
         return token;
       })
       .catch(error => {
-        dispatch(fail(error.message));
+        dispatch(fail(error));
       });
   };
 

@@ -2,8 +2,13 @@ import { LOGIN } from '../constants/ActionTypes';
 
 export default function login(state = { status: 'initial' }, action) {
   switch (action.type) {
-    case LOGIN:
-      return { token: action.payload.token };
+    case LOGIN: {
+      return {
+        token: action.payload.token,
+        error: action.payload.error,
+        status: action.payload.status,
+      };
+    }
     default:
       return state;
   }
