@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { get } from '../actions/cluster/Detail';
 import store from '../store';
+import { Link } from 'react-router';
 
 
 const mapStateToProps = (state) => {
@@ -39,12 +40,9 @@ const Cluster = React.createClass({
         <ul className="item__list">
           <li className="item__heading">Name: {c.name}</li>
           <li className="item__child">
-              <b className="item__fragment item__fragment--bold">Applications: </b>
-              <span className="item__value">{
-                  c.applications.length ?
-                  c.applications.map((app) => <span key={app.name}>{app}</span>) :
-                  'No applications right now'
-              }</span>
+            <Link to={`/clusters/${this.props.params.clusterId}/applications/`}>
+              Applications
+            </Link>
           </li>
           <li className="item__child">
               <b className="item__fragment item__fragment--bold">Roles: </b>
