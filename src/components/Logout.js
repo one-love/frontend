@@ -1,32 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { routeActions } from 'redux-simple-router';
-import { actions } from './actions';
-import { postLogoutURL } from '../../constants';
-import store from '../../store';
+import { actions } from '../actions/Login';
+import { postLogoutURL } from '../constants';
+import { history } from '../constants';
 
 
-const mapStateToProps = (state) => {
-  return {
-    token: state.onelove.token || '',
-  };
-};
+const mapStateToProps = (state) => ({ token: state.login.token || '' });
 
 
-const LogoutForm = React.createClass({
+const Logout = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
   },
 
   componentWillMount() {
     if (!window.localStorage.OneLoveAuthToken) {
-      store.dispatch(routeActions.push(postLogoutURL));
+      history.push(postLogoutURL);
     }
   },
 
   shouldComponentUpdate(nextProps) {
     if (!nextProps.token) {
-      store.dispatch(routeActions.push(postLogoutURL));
+      history.push(postLogoutURL);
     }
     return true;
   },
@@ -34,7 +29,7 @@ const LogoutForm = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
     window.localStorage.removeItem('OneLoveAuthToken');
-    store.dispatch(routeActions.push(postLogoutURL));
+    history.push(postLogoutURL);
   },
 
   render() {
@@ -50,4 +45,4 @@ const LogoutForm = React.createClass({
 });
 
 
-export default connect(mapStateToProps, actions)(LogoutForm);
+export default connect(mapStateToProps, actions)(Logout);

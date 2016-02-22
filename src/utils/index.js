@@ -1,6 +1,28 @@
 import isomorphicFetch from 'isomorphic-fetch';
-import { getAuthToken, isLoggedIn } from '../components/auth/utils';
+/**
+ * Return authentication token for One Love
+ *
+ * @return {String} || undefined
+ */
+export function getAuthToken() {
+  return window.localStorage.OneLoveAuthToken;
+}
 
+/**
+ * Check if user is logged in or not
+ *
+ * @return {Boolean}
+ */
+export function isLoggedIn() {
+  return Boolean(getAuthToken());
+}
+
+
+export function requireAuth(nextState, replace) {
+  if (!isLoggedIn()) {
+    replace(nextState, '/login/', '');
+  }
+}
 
 export function fetch(args) {
   const {
@@ -34,10 +56,4 @@ export function fetch(args) {
       }
       return json;
     });
-}
-
-export function initApp() {
-  const appTag = document.createElement('main');
-  appTag.setAttribute('id', 'onelove');
-  document.body.insertBefore(appTag, document.body.childNodes[0]);
 }

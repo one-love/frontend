@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { getClusters } from './actions/list';
-import store from '../../store';
+import { getClusters, actions } from '../actions/GetClusters';
+import store from '../store';
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     clusters: state.clusters,
   };
@@ -30,7 +30,7 @@ const ClusterList = React.createClass({
               <li key={cluster.id}>
               <Link
                 key={cluster.id}
-                to={'/clusters/' + cluster.id + '/'}
+                to={`/clusters/${cluster.id}/`}
                 cluster={cluster}
               > {cluster.name} </Link> </li>
             )
@@ -41,4 +41,5 @@ const ClusterList = React.createClass({
   },
 });
 
-export default connect(mapStateToProps)(ClusterList);
+export default connect(mapStateToProps, actions)(ClusterList);
+
