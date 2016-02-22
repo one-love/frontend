@@ -5,20 +5,20 @@ import { getClusters, actions } from '../actions/GetClusters';
 import store from '../store';
 
 
-const mapStateToProps = state => {
-  return {
-    clusters: state.clusters,
-  };
-};
+const mapStateToProps = state => ({
+  clusters: state.clusters,
+});
 
 const ClusterList = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     clusters: React.PropTypes.array,
   },
+
   componentWillMount() {
     store.dispatch(getClusters());
   },
+
   render() {
     return (
       <div>
