@@ -22,7 +22,7 @@ export const get = () =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters?page=1&per_page=10`,
+      url: `${API_URL}/clusters`,
       method: 'get',
     })
       .then(clusters => {
