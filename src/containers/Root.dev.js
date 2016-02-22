@@ -9,6 +9,7 @@ import ClusterList from '../components/ClusterList';
 import DevTools from './DevTools';
 import { Router, IndexRoute, Route } from 'react-router';
 import { history } from '../constants';
+import { requireAuth } from '../utils';
 
 
 const Root = React.createClass({
@@ -22,7 +23,7 @@ const Root = React.createClass({
       <Provider store={store}>
         <div>
           <Router history={history}>
-            <Route path="/" component={Layout}>
+            <Route onEnter={requireAuth} path="/" component={Layout}>
               <IndexRoute component={OneLoveApp} />
               <Route path="logout/" component={Logout} />
               <Route path="clusters/">

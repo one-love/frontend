@@ -22,8 +22,9 @@ export const errorLogin = createAction(LOGIN, error => ({
   error: error.message,
 }));
 
-export function login(email, password) {
-  return dispatch => {
+
+export const login = (email, password) =>
+  dispatch => {
     dispatch(beginLogin());
     fetch({
       url: `${API_URL}/auth/tokens`,
@@ -42,7 +43,7 @@ export function login(email, password) {
         dispatch(errorLogin(error));
       });
   };
-}
+
 
 export const actions = {
   saveToken,

@@ -34,7 +34,7 @@ export function fetch(args) {
   const newbody = JSON.stringify(body);
   const newargs = {
     body: newbody,
-    method: method ? method : 'get',
+    method: method || 'get',
     headers: {
       Accept: 'application/json',
       Authorization: `JWT ${getAuthToken()}`,

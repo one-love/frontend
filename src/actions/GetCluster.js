@@ -3,17 +3,16 @@ import { fetch } from '../utils';
 import { API_URL } from '../backend_url';
 import { CLUSTER } from '../constants/ActionTypes';
 
-export const gotCluster = createAction(CLUSTER, cluster => {
-  return {
-    cluster,
-    applications: cluster.applications,
-    roles: cluster.roles,
-  };
-});
+export const gotCluster = createAction(CLUSTER, cluster => ({
+  cluster,
+  applications: cluster.applications,
+  roles: cluster.roles,
+}));
 
+export const errorCluster = createAction(CLUSTER, error => error);
 
-export const getCluster = id => {
-  return dispatch => {
+export const getCluster = id =>
+  dispatch => {
     fetch({
       url: `${API_URL}/clusters/${id}`,
     })
@@ -22,10 +21,10 @@ export const getCluster = id => {
         return json;
       })
       .catch(error => {
-        console.log(error);
+        dispatch(errorCluster(error.message));
       });
   };
-};
+
 
 export const actions = {
   getCluster,
