@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCluster } from '../actions/GetCluster';
+import { get } from '../actions/cluster/Detail';
 import store from '../store';
 
 
@@ -26,7 +26,7 @@ const Cluster = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(getCluster(this.props.params.clusterId));
+    store.dispatch(get(this.props.params.clusterId));
   },
 
   render() {
