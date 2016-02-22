@@ -6,7 +6,9 @@ import { LOGIN } from '../constants/ActionTypes';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const saveToken = createAction(LOGIN, json => {
+export const begin = createAction(LOGIN, () => ({ status: 'pending' }));
+
+export const success = createAction(LOGIN, json => {
   window.localStorage.OneLoveAuthToken = json.token;
   return {
     token: json.token,
@@ -14,18 +16,14 @@ export const saveToken = createAction(LOGIN, json => {
   };
 });
 
-export const beginLogin = createAction(LOGIN, () => ({ status: 'pending' }));
-
-
-export const errorLogin = createAction(LOGIN, error => ({
+export const fail = createAction(LOGIN, error => ({
   status: 'error',
   error: error.message,
 }));
 
-
 export const login = (email, password) =>
   dispatch => {
-    dispatch(beginLogin());
+    dispatch(begin());
     fetch({
       url: `${API_URL}/auth/tokens`,
       body: {
@@ -36,16 +34,17 @@ export const login = (email, password) =>
       method: 'post',
     })
       .then(token => {
-        dispatch(saveToken(token));
+        dispatch(success(token));
         return token;
       })
       .catch(error => {
-        dispatch(errorLogin(error));
+        dispatch(fail(error.message));
       });
   };
 
-
 export const actions = {
-  saveToken,
+  begin,
+  success,
+  fail,
   login,
 };
