@@ -1,39 +1,44 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
   entry: [
-    path.resolve(__dirname, 'client/src/entry.js'),
-    path.resolve(__dirname, 'client/sass/screen.scss'),
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    './src/sass/screen.scss',
+    './src/index'
   ],
   output: {
-    path: path.resolve(__dirname, './client/build/'),
-    publicPath: '/static/',
-    filename: 'js/bundle.js',
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/static/'
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
-  module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/,
-      },
-    ],
-    loaders: [
-      {
-        test: /\.js$/,
-        loaders: ['react-hot-loader', 'babel-loader'],
-        include: path.join(__dirname, 'client/src'),
-      },
-      {
-        test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
-        include: path.join(__dirname, 'client/sass'),
-      },
-    ],
+  resolveLoader: {
+    'fallback': path.join(__dirname, 'node_modules')
   },
+  module: {
+    preLoaders: [{
+      test: /\.js$/,
+      loader: 'eslint-loader',
+      exclude: /node_modules/,
+    }],
+    loaders: [{
+      test: /\.js$/,
+      loaders: ['react-hot', 'babel'],
+      exclude: /node_modules/,
+      include: path.join(__dirname, 'src')
+    }, {
+      test: /\.js$/,
+      loaders: ['react-hot', 'babel'],
+      include: path.join(__dirname, '..', '..', 'src')
+    }, {
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'sass'],
+      include: path.join(__dirname, 'src/sass'),
+    }]
+  }
 };

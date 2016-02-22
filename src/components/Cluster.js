@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCluster } from './actions/detail';
-import store from '../../store';
+import { getCluster } from '../actions/GetCluster';
+import store from '../store';
 
 
 const mapStateToProps = (state) => {
@@ -61,3 +61,4 @@ const Cluster = React.createClass({
 });
 
 export default connect(mapStateToProps)(Cluster);
+

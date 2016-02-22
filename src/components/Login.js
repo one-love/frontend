@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { routeActions } from 'redux-simple-router';
-import { login, actions } from './actions';
-import store from '../../store';
+import { login, actions } from '../actions/Login';
+import store from '../store';
+import { history } from '../constants';
+import { isLoggedIn } from '../utils';
 
 
 const errorMessages = {
@@ -10,13 +11,13 @@ const errorMessages = {
 };
 
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
-    token: state.onelove.token,
-    status: state.onelove.status,
-    error: state.onelove.error,
+    token: state.login.token,
+    status: state.login.status,
+    error: state.login.error,
   };
-};
+}
 
 const LoginForm = React.createClass({
   propTypes: {
@@ -33,14 +34,14 @@ const LoginForm = React.createClass({
   },
 
   componentWillMount() {
-    if (window.localStorage.OneLoveAuthToken) {
-      store.dispatch(routeActions.push('/'));
+    if (isLoggedIn()) {
+      history.push('/');
     }
   },
 
-  shouldComponentUpdate(nextProps) {
-    if (nextProps.token) {
-      store.dispatch(routeActions.push('/'));
+  shouldComponentUpdate() {
+    if (isLoggedIn()) {
+      history.push('/');
     }
     return true;
   },
