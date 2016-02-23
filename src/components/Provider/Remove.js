@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../actions/cluster/remove';
+import actions from '../../actions/provider/remove';
 import store from '../../store';
 import { history } from '../../constants';
 
@@ -11,12 +11,12 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  status: state.clusterRemove.status,
-  error: state.clusterRemove.error,
+  status: state.providerRemove.status,
+  error: state.providerRemove.error,
 });
 
 
-const ClusterRemove = React.createClass({
+const ProviderRemove = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -25,7 +25,7 @@ const ClusterRemove = React.createClass({
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push('/clusters/');
+      history.push(`/clusters/${nextProps.params.clusterId}/providers/`);
       return false;
     }
     return true;
@@ -41,7 +41,10 @@ const ClusterRemove = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.remove(this.props.params.clusterId));
+    store.dispatch(actions.remove(
+      this.props.params.clusterId,
+      this.props.params.providerName
+    ));
   },
 
   render() {
@@ -61,7 +64,7 @@ const ClusterRemove = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Remove Cluster</h1>
+        <h1 className="form__title">Remove Provider</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Are you sure?</label>
@@ -73,4 +76,4 @@ const ClusterRemove = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ClusterRemove);
+export default connect(mapStateToProps, actions)(ProviderRemove);
