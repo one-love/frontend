@@ -29,7 +29,6 @@ export function fetch(args) {
     url,
     body,
     method,
-    contentType,
   } = args;
   const newbody = JSON.stringify(body);
   const newargs = {
@@ -43,8 +42,8 @@ export function fetch(args) {
   if (!isLoggedIn()) {
     delete newargs.headers.Authorization;
   }
-  if (contentType) {
-    newargs.headers['Content-Type'] = contentType;
+  if (method === 'post') {
+    newargs.headers['Content-Type'] = 'application/json';
   }
   return isomorphicFetch(url, newargs)
     .then(response => {
