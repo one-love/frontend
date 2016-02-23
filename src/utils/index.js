@@ -42,7 +42,7 @@ export function fetch(args) {
   if (!isLoggedIn()) {
     delete newargs.headers.Authorization;
   }
-  if (method === 'post') {
+  if (method === 'post' || method === 'put') {
     newargs.headers['Content-Type'] = 'application/json';
   }
   return isomorphicFetch(url, newargs)
