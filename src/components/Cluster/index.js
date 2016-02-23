@@ -35,14 +35,13 @@ const Cluster = React.createClass({
   },
 
   render() {
-    const c = this.props.cluster;
-    if (c === undefined) {
+    if (this.props.cluster === undefined) {
       return <div></div>;
     }
     return (
       <div>
         <ul className="item__list">
-          <li className="item__heading">Name: {c.name}</li>
+          <li className="item__heading">Name: {this.props.cluster.name}</li>
           <li className="item__child">
             <Link to={`/clusters/${this.props.params.clusterId}/applications/`}>
               Applications
@@ -51,13 +50,16 @@ const Cluster = React.createClass({
           <li className="item__child">
               <b className="item__fragment item__fragment--bold">Roles: </b>
               <span className="item__value">{
-                  c.roles.length ?
-                  c.roles.map((role) => <span key={role.name}>{role.name} </span>) :
+                  this.props.cluster.roles.length ?
+                  this.props.cluster.roles.map(
+                    (role) => <span key={role.name}>{role.name} </span>
+                  ) :
                   'No roles right now'
               }</span>
           </li>
         </ul>
         <Link to={`/clusters/${this.props.params.clusterId}/edit/`}>Edit</Link>
+        <Link to={`/clusters/${this.props.params.clusterId}/remove/`}>Remove</Link>
       </div>
     );
   },

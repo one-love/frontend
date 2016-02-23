@@ -6,6 +6,7 @@ import Logout from '../components/Logout';
 import Cluster from '../components/Cluster';
 import ClusterCreate from '../components/Cluster/Create';
 import ClusterEdit from '../components/Cluster/Edit';
+import ClusterRemove from '../components/Cluster/Remove';
 import ClusterList from '../components/Cluster/List';
 import Applications from '../components/Applications';
 import { Router, IndexRoute, Route } from 'react-router';
@@ -27,6 +28,7 @@ const Main = React.createClass({
               <IndexRoute component={Cluster} />
               <Route path="applications/" component={Applications} />
               <Route path="edit/" component={ClusterEdit} />
+              <Route path="remove/" component={ClusterRemove} />
             </Route>
           </Route>
         </Route>

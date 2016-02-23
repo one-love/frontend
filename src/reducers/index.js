@@ -4,6 +4,7 @@ import clusterDetail from './cluster';
 import clusterCreate from './cluster/create';
 import clusterEdit from './cluster/edit';
 import clusterList from './cluster/list';
+import clusterRemove from './cluster/remove';
 import applications from './applications';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   clusterDetail,
   clusterEdit,
   clusterList,
+  clusterRemove,
   applications,
 });
 
