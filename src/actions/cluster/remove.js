@@ -1,24 +1,32 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
-import { CLUSTER_DETAIL } from '../../constants/ActionTypes';
+import { CLUSTER_REMOVE } from '../../constants/ActionTypes';
 
-export const reset = createAction(CLUSTER_DETAIL, () => ({ status: 'initial' }));
-export const begin = createAction(CLUSTER_DETAIL, () => ({ status: 'pending' }));
-
-export const success = createAction(CLUSTER_DETAIL, cluster => ({
-  cluster,
-  applications: cluster.applications,
-  roles: cluster.roles,
+export const reset = createAction(CLUSTER_REMOVE, () => ({
+  status: 'initial',
 }));
 
-export const fail = createAction(CLUSTER_DETAIL, error => error);
+export const begin = createAction(CLUSTER_REMOVE, () => ({
+  status: 'pending',
+}));
 
-export const get = id =>
+export const success = createAction(CLUSTER_REMOVE, cluster => ({
+  cluster,
+  status: 'success',
+}));
+
+export const fail = createAction(CLUSTER_REMOVE, error => ({
+  status: 'error',
+  error,
+}));
+
+export const remove = (id) =>
   dispatch => {
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${id}`,
+      method: 'delete',
     })
       .then(cluster => {
         dispatch(success(cluster));
@@ -34,7 +42,7 @@ const actions = {
   begin,
   success,
   fail,
-  get,
+  remove,
 };
 
 export default actions;
