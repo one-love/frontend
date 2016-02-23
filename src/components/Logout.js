@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actions } from '../actions/Login';
+import { actions } from '../actions/login';
 import { postLogoutURL } from '../constants';
 import { history } from '../constants';
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { edit, reset, actions } from '../actions/cluster/Edit';
-import { get } from '../actions/cluster/Detail';
-import store from '../store';
-import { history } from '../constants';
+import actions from '../../actions/cluster/create';
+import store from '../../store';
+import { history } from '../../constants';
 
 
 const errorMessages = {
@@ -11,14 +10,16 @@ const errorMessages = {
 };
 
 
-const mapStateToProps = state => ({
-  cluster: state.cluster.cluster,
-  status: state.clusterEdit.status,
-  error: state.clusterEdit.error,
-});
+const mapStateToProps = state => {
+  const data = {
+    cluster: state.clusterCreate.cluster,
+    status: state.clusterCreate.status,
+  };
+  return data;
+};
 
 
-const ClusterEdit = React.createClass({
+const ClusterCreate = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -32,17 +33,16 @@ const ClusterEdit = React.createClass({
     };
   },
 
-  componentWillMount() {
-    store.dispatch(get(this.props.params.clusterId));
-  },
-
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      store.dispatch(reset());
-      history.push(`/clusters/${this.props.params.clusterId}/`);
+      history.push(`/clusters/${nextProps.cluster.id}/`);
       return false;
     }
     return true;
+  },
+
+  componentWillUnmount() {
+    store.dispatch(actions.reset());
   },
 
   handleNameChange(event) {
@@ -51,7 +51,7 @@ const ClusterEdit = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(edit(this.props.params.clusterId, this.state.name));
+    store.dispatch(actions.create(this.state.name));
   },
 
   render() {
@@ -84,11 +84,11 @@ const ClusterEdit = React.createClass({
               onChange={this.handleNameChange}
             />
           </div>
-          <button className="button button--primary">Edit</button>
+          <button className="button button--primary">Create</button>
         </form>
       </div>
     );
   },
 });
 
-export default connect(mapStateToProps, actions)(ClusterEdit);
+export default connect(mapStateToProps, actions)(ClusterCreate);

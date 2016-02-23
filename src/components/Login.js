@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login, actions } from '../actions/Login';
+import { login, actions } from '../actions/login';
 import store from '../store';
 import { history } from '../constants';
 import { isLoggedIn } from '../utils';

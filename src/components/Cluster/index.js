@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get } from '../actions/cluster/Detail';
-import store from '../store';
+import actions from '../../actions/cluster';
+import store from '../../store';
 import { Link } from 'react-router';
 
 
 const mapStateToProps = (state) => {
   const data = {
-    cluster: state.cluster.cluster,
+    cluster: state.clusterDetail.cluster,
   };
   if (data.cluster !== undefined) {
-    data.applications = state.cluster.applications;
-    data.roles = state.cluster.roles;
+    data.applications = state.clusterDetail.applications;
+    data.roles = state.clusterDetail.roles;
   }
   return data;
 };
@@ -27,7 +27,11 @@ const Cluster = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(get(this.props.params.clusterId));
+    store.dispatch(actions.get(this.props.params.clusterId));
+  },
+
+  componentWillUnmount() {
+    store.dispatch(actions.reset());
   },
 
   render() {
@@ -59,5 +63,4 @@ const Cluster = React.createClass({
   },
 });
 
-export default connect(mapStateToProps)(Cluster);
-
+export default connect(mapStateToProps, actions)(Cluster);

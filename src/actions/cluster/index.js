@@ -1,17 +1,18 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
-import { CLUSTER } from '../../constants/ActionTypes';
+import { CLUSTER_DETAIL } from '../../constants/ActionTypes';
 
-export const begin = createAction(CLUSTER, () => ({ status: 'pending' }));
+export const reset = createAction(CLUSTER_DETAIL, () => ({ status: 'initial' }));
+export const begin = createAction(CLUSTER_DETAIL, () => ({ status: 'pending' }));
 
-export const success = createAction(CLUSTER, cluster => ({
+export const success = createAction(CLUSTER_DETAIL, cluster => ({
   cluster,
   applications: cluster.applications,
   roles: cluster.roles,
 }));
 
-export const fail = createAction(CLUSTER, error => error);
+export const fail = createAction(CLUSTER_DETAIL, error => error);
 
 export const get = id =>
   dispatch => {
@@ -28,10 +29,12 @@ export const get = id =>
       });
   };
 
-export const actions = {
+const actions = {
+  reset,
   begin,
   success,
   fail,
   get,
 };
 
+export default actions;
