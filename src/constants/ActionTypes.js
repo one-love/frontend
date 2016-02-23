@@ -4,3 +4,4 @@ export const APPLICATIONS = 'APPLICATIONS';
 export const APPLICATION = 'APPLICATION';
 export const CLUSTER = 'CLUSTER';
 export const CLUSTER_CREATE = 'CLUSTER_CREATE';
+export const CLUSTER_EDIT = 'CLUSTER_EDIT';

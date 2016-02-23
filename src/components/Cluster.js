@@ -36,7 +36,7 @@ const Cluster = React.createClass({
       return <div></div>;
     }
     return (
-      <li className="item">
+      <div>
         <ul className="item__list">
           <li className="item__heading">Name: {c.name}</li>
           <li className="item__child">
@@ -53,7 +53,8 @@ const Cluster = React.createClass({
               }</span>
           </li>
         </ul>
-      </li>
+        <Link to={`/clusters/${this.props.params.clusterId}/edit/`}>Edit</Link>
+      </div>
     );
   },
 });
