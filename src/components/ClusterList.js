@@ -38,6 +38,7 @@ const ClusterList = React.createClass({
             )
           }
         </ul>
+        <Link to={'/clusters/create/'}>Create</Link>
       </div>
     );
   },

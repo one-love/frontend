@@ -4,8 +4,9 @@ import Layout from '../components/Layout';
 import Login from '../components/Login';
 import Logout from '../components/Logout';
 import Cluster from '../components/Cluster';
+import ClusterCreate from '../components/ClusterCreate';
 import ClusterList from '../components/ClusterList';
-import Applications from '../components/Applications.js';
+import Applications from '../components/Applications';
 import { Router, IndexRoute, Route } from 'react-router';
 import { history } from '../constants';
 import { requireAuth } from '../utils';
@@ -20,6 +21,7 @@ const Main = React.createClass({
           <Route path="logout/" component={Logout} />
           <Route path="clusters/">
             <IndexRoute component={ClusterList} />
+            <Route path="create/" component={ClusterCreate} />
             <Route path=":clusterId/" >
               <IndexRoute component={Cluster} />
               <Route path="applications/" component={Applications} />
