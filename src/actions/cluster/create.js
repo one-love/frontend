@@ -3,6 +3,10 @@ import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
 import { CLUSTER_CREATE } from '../../constants/ActionTypes';
 
+export const reset = createAction(CLUSTER_CREATE, () => ({
+  status: 'initial',
+}));
+
 export const begin = createAction(CLUSTER_CREATE, () => ({
   status: 'pending',
 }));
@@ -36,9 +40,12 @@ export const create = name =>
       });
   };
 
-export const actions = {
+const actions = {
+  reset,
   begin,
   success,
   fail,
   create,
 };
+
+export default actions;

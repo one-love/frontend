@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get, actions } from '../actions/application/List';
+import { get, actions } from '../actions/application/list';
 import store from '../store';
 
 

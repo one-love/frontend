@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { get, actions } from '../actions/cluster/List';
-import store from '../store';
+import actions from '../../actions/cluster/list';
+import store from '../../store';
 
 
 const mapStateToProps = state => ({
-  clusters: state.clusters.clusters,
-  status: state.clusters.status,
+  clusters: state.clusterList.clusters,
+  status: state.clusterList.status,
 });
 
 const ClusterList = React.createClass({
@@ -18,7 +18,11 @@ const ClusterList = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(get());
+    store.dispatch(actions.get());
+  },
+
+  componentWillUnmount() {
+    store.dispatch(actions.reset());
   },
 
   render() {

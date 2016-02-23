@@ -40,10 +40,12 @@ export const edit = (id, name) =>
       });
   };
 
-export const actions = {
+const actions = {
   reset,
   begin,
   success,
   fail,
   edit,
 };
+
+export default actions;

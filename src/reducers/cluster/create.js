@@ -1,4 +1,4 @@
-import { CLUSTER_CREATE } from '../constants/ActionTypes';
+import { CLUSTER_CREATE } from '../../constants/ActionTypes';
 
 export default function clusterCreate(
   state = { status: 'initial' },
