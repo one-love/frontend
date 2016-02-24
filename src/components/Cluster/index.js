@@ -48,6 +48,11 @@ const Cluster = React.createClass({
             </Link>
           </li>
           <li className="item__child">
+            <Link to={`/clusters/${this.props.params.clusterId}/providers/`}>
+              Providers
+            </Link>
+          </li>
+          <li className="item__child">
               <b className="item__fragment item__fragment--bold">Roles: </b>
               <span className="item__value">{
                   this.props.cluster.roles.length ?
