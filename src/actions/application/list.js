@@ -1,28 +1,33 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
-import { APPLICATIONS } from '../../constants/ActionTypes';
+import { PROVIDER_LIST } from '../../constants/ActionTypes';
 
-export const begin = createAction(APPLICATIONS, () => ({
+export const reset = createAction(PROVIDER_LIST, () => ({
+  status: 'initial',
+  applications: [],
+}));
+
+export const begin = createAction(PROVIDER_LIST, () => ({
   status: 'pending',
   applications: [],
 }));
 
-export const success = createAction(APPLICATIONS, applications => ({
+export const success = createAction(PROVIDER_LIST, applications => ({
   applications,
   status: 'success',
 }));
 
-export const fail = createAction(APPLICATIONS, error => ({
+export const fail = createAction(PROVIDER_LIST, error => ({
   status: 'error',
   error,
 }));
 
-export const get = (id) =>
+export const get = clusterId =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters/${id}/applications`,
+      url: `${API_URL}/clusters/${clusterId}/applications`,
       method: 'get',
     })
       .then(applications => {
@@ -34,9 +39,12 @@ export const get = (id) =>
       });
   };
 
-export const actions = {
+const actions = {
+  reset,
   begin,
   success,
   fail,
   get,
 };
+
+export default actions;

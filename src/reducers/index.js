@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import login from './login';
 
-import applications from './applications';
 
 import clusterCreate from './cluster/create';
 import clusterDetail from './cluster';
@@ -15,9 +14,14 @@ import providerEdit from './provider/edit';
 import providerList from './provider/list';
 import providerRemove from './provider/remove';
 
+import applicationCreate from './application/create';
+import applicationDetail from './application';
+import applicationEdit from './application/edit';
+import applicationList from './application/list';
+import applicationRemove from './application/remove';
+
 const rootReducer = combineReducers({
   login,
-  applications,
 
   clusterCreate,
   clusterDetail,
@@ -30,6 +34,12 @@ const rootReducer = combineReducers({
   providerEdit,
   providerList,
   providerRemove,
+
+  applicationCreate,
+  applicationDetail,
+  applicationEdit,
+  applicationList,
+  applicationRemove,
 });
 
 export default rootReducer;

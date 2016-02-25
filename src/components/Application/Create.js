@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../actions/provider/create';
+import actions from '../../actions/application/create';
 import store from '../../store';
 import { history } from '../../constants';
 
@@ -12,16 +12,16 @@ const errorMessages = {
 
 const mapStateToProps = state => {
   const data = {
-    provider: state.providerCreate.provider,
-    status: state.providerCreate.status,
+    application: state.applicationCreate.application,
+    status: state.applicationCreate.status,
   };
   return data;
 };
 
 
-const ProviderCreate = React.createClass({
+const ApplicationCreate = React.createClass({
   propTypes: {
-    provider: React.PropTypes.object,
+    application: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
@@ -37,7 +37,7 @@ const ProviderCreate = React.createClass({
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/clusters/${nextProps.params.clusterId}/providers/${nextProps.provider.name}/`
+        `/clusters/${nextProps.params.clusterId}/applications/${nextProps.application.name}/`
       );
       return false;
     }
@@ -53,7 +53,7 @@ const ProviderCreate = React.createClass({
   },
 
   handleTypeChange(event) {
-    this.setState({ type: event.target.value });
+    this.setState({ galaxy_role: event.target.value });
   },
 
   handleSubmit(event) {
@@ -61,7 +61,7 @@ const ProviderCreate = React.createClass({
     store.dispatch(actions.create(
       this.props.params.clusterId,
       this.state.name,
-      this.state.type
+      this.state.galaxy_role
     ));
   },
 
@@ -82,7 +82,7 @@ const ProviderCreate = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Create Provider</h1>
+        <h1 className="form__title">Create Application</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Name</label>
@@ -96,13 +96,13 @@ const ProviderCreate = React.createClass({
             />
           </div>
           <div className="form__item">
-            <label htmlFor="type">Type</label>
+            <label htmlFor="galaxy_role">Type</label>
             <input
               autoFocus
               type="text"
               className="form__field"
-              id="type"
-              placeholder="Type"
+              id="galaxy_role"
+              placeholder="galaxy_role"
               onChange={this.handleTypeChange}
             />
           </div>
@@ -113,4 +113,4 @@ const ProviderCreate = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ProviderCreate);
+export default connect(mapStateToProps, actions)(ApplicationCreate);
