@@ -1,6 +1,6 @@
 import { APPLICATION_DETAIL } from '../../constants/ActionTypes';
 
-export default function application(state = { status: 'initial' }, action) {
+export default function applicationDetail(state = { status: 'initial' }, action) {
   switch (action.type) {
     case APPLICATION_DETAIL:
       return action.payload;

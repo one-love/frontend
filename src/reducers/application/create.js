@@ -1,6 +1,6 @@
 import { APPLICATION_CREATE } from '../../constants/ActionTypes';
 
-export default function clusterCreate(
+export default function applicationCreate(
   state = { status: 'initial' },
   action
 ) {
