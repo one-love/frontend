@@ -12,7 +12,7 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  provider: state.providerDetail.provider,
+  provider: state.providerEdit.provider,
   status: state.providerEdit.status,
   error: state.providerEdit.error,
 });
@@ -42,7 +42,7 @@ const ProviderEdit = React.createClass({
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/clusters/${nextProps.params.clusterId}/providers/${this.state.name}/`
+        `/clusters/${nextProps.params.clusterId}/providers/${nextProps.provider.name}/`
       );
       return false;
     }

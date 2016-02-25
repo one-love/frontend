@@ -30,7 +30,7 @@ const ProviderCreate = React.createClass({
   getInitialState() {
     return {
       name: '',
-      galaxy_role: '',
+      type: '',
     };
   },
 

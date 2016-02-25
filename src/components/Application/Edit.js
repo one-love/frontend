@@ -12,7 +12,7 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  application: state.applicationDetail.application,
+  application: state.applicationEdit.application,
   status: state.applicationEdit.status,
   error: state.applicationEdit.error,
 });
@@ -42,7 +42,7 @@ const ApplicationEdit = React.createClass({
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/clusters/${nextProps.params.clusterId}/applications/${this.state.name}/`
+        `/clusters/${nextProps.params.clusterId}/applications/${nextProps.application.name}/`
       );
       return false;
     }
