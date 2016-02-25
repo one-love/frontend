@@ -1,6 +1,6 @@
 import { APPLICATION_REMOVE } from '../../constants/ActionTypes';
 
-export default function clusterRemove(
+export default function applicationRemove(
   state = { status: 'initial' },
   action
 ) {

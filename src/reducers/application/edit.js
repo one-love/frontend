@@ -1,6 +1,6 @@
 import { APPLICATION_EDIT } from '../../constants/ActionTypes';
 
-export default function clusterEdit(
+export default function applicationEdit(
   state = { status: 'initial' },
   action
 ) {

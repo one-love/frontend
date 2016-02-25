@@ -1,6 +1,6 @@
 import { APPLICATION_LIST } from '../../constants/ActionTypes';
 
-export default function applications(
+export default function applicationList(
   state = { status: 'initial', applications: [] },
   action
 ) {
