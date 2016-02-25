@@ -1,17 +1,17 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
-import { PROVIDER_DETAIL } from '../../constants/ActionTypes';
+import { APPLICATION_DETAIL } from '../../constants/ActionTypes';
 
-export const reset = createAction(PROVIDER_DETAIL, () => ({ status: 'initial' }));
-export const begin = createAction(PROVIDER_DETAIL, () => ({ status: 'pending' }));
+export const reset = createAction(APPLICATION_DETAIL, () => ({ status: 'initial' }));
+export const begin = createAction(APPLICATION_DETAIL, () => ({ status: 'pending' }));
 
-export const success = createAction(PROVIDER_DETAIL, application => ({
+export const success = createAction(APPLICATION_DETAIL, application => ({
   application,
   status: 'success',
 }));
 
-export const fail = createAction(PROVIDER_DETAIL, error => error);
+export const fail = createAction(APPLICATION_DETAIL, error => error);
 
 export const get = (clusterId, applicationName) =>
   dispatch => {

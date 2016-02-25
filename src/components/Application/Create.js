@@ -37,7 +37,7 @@ const ApplicationCreate = React.createClass({
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/clusters/${nextProps.params.clusterId}/applications/${nextProps.application.name}/`
+        `/clusters/${nextProps.params.clusterId}/applications/${this.state.name}/`
       );
       return false;
     }

@@ -1,24 +1,24 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
-import { PROVIDER_LIST } from '../../constants/ActionTypes';
+import { APPLICATION_LIST } from '../../constants/ActionTypes';
 
-export const reset = createAction(PROVIDER_LIST, () => ({
+export const reset = createAction(APPLICATION_LIST, () => ({
   status: 'initial',
   applications: [],
 }));
 
-export const begin = createAction(PROVIDER_LIST, () => ({
+export const begin = createAction(APPLICATION_LIST, () => ({
   status: 'pending',
   applications: [],
 }));
 
-export const success = createAction(PROVIDER_LIST, applications => ({
+export const success = createAction(APPLICATION_LIST, applications => ({
   applications,
   status: 'success',
 }));
 
-export const fail = createAction(PROVIDER_LIST, error => ({
+export const fail = createAction(APPLICATION_LIST, error => ({
   status: 'error',
   error,
 }));

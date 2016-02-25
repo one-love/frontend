@@ -33,13 +33,16 @@ const ApplicationEdit = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(get(this.props.params.applicationId));
+    store.dispatch(get(
+      this.props.params.clusterId,
+      this.props.params.applicationName
+    ));
   },
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/clusters/${nextProps.params.clusterId}/applications/${nextProps.params.applicationName}/`
+        `/clusters/${nextProps.params.clusterId}/applications/${this.state.name}/`
       );
       return false;
     }

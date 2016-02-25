@@ -33,13 +33,16 @@ const ProviderEdit = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(get(this.props.params.providerId));
+    store.dispatch(get(
+      this.props.params.clusterId,
+      this.props.params.providerId
+    ));
   },
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/clusters/${nextProps.params.clusterId}/providers/${nextProps.params.providerName}/`
+        `/clusters/${nextProps.params.clusterId}/providers/${this.state.name}/`
       );
       return false;
     }

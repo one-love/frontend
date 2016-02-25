@@ -1,22 +1,22 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
-import { PROVIDER_REMOVE } from '../../constants/ActionTypes';
+import { APPLICATION_REMOVE } from '../../constants/ActionTypes';
 
-export const reset = createAction(PROVIDER_REMOVE, () => ({
+export const reset = createAction(APPLICATION_REMOVE, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(PROVIDER_REMOVE, () => ({
+export const begin = createAction(APPLICATION_REMOVE, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(PROVIDER_REMOVE, application => ({
+export const success = createAction(APPLICATION_REMOVE, application => ({
   application,
   status: 'success',
 }));
 
-export const fail = createAction(PROVIDER_REMOVE, error => ({
+export const fail = createAction(APPLICATION_REMOVE, error => ({
   status: 'error',
   error,
 }));

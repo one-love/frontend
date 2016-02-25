@@ -3,22 +3,22 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
-import { PROVIDER_EDIT } from '../../constants/ActionTypes';
+import { APPLICATION_EDIT } from '../../constants/ActionTypes';
 
-export const reset = createAction(PROVIDER_EDIT, () => ({
+export const reset = createAction(APPLICATION_EDIT, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(PROVIDER_EDIT, () => ({
+export const begin = createAction(APPLICATION_EDIT, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(PROVIDER_EDIT, application => ({
+export const success = createAction(APPLICATION_EDIT, application => ({
   application,
   status: 'success',
 }));
 
-export const fail = createAction(PROVIDER_EDIT, error => ({
+export const fail = createAction(APPLICATION_EDIT, error => ({
   status: 'error',
   error,
 }));
