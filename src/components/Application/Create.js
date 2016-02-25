@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get } from '../../actions/provider';
-import actions from '../../actions/provider/edit';
+import actions from '../../actions/application/create';
 import store from '../../store';
 import { history } from '../../constants';
 
@@ -11,16 +10,18 @@ const errorMessages = {
 };
 
 
-const mapStateToProps = state => ({
-  provider: state.providerEdit.provider,
-  status: state.providerEdit.status,
-  error: state.providerEdit.error,
-});
+const mapStateToProps = state => {
+  const data = {
+    application: state.applicationCreate.application,
+    status: state.applicationCreate.status,
+  };
+  return data;
+};
 
 
-const ProviderEdit = React.createClass({
+const ApplicationCreate = React.createClass({
   propTypes: {
-    provider: React.PropTypes.object,
+    application: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
@@ -29,20 +30,14 @@ const ProviderEdit = React.createClass({
   getInitialState() {
     return {
       name: '',
+      galaxy_role: '',
     };
-  },
-
-  componentWillMount() {
-    store.dispatch(get(
-      this.props.params.clusterId,
-      this.props.params.providerId
-    ));
   },
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/clusters/${nextProps.params.clusterId}/providers/${nextProps.provider.name}/`
+        `/clusters/${nextProps.params.clusterId}/applications/${this.state.name}/`
       );
       return false;
     }
@@ -58,16 +53,15 @@ const ProviderEdit = React.createClass({
   },
 
   handleTypeChange(event) {
-    this.setState({ type: event.target.value });
+    this.setState({ galaxy_role: event.target.value });
   },
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.edit(
+    store.dispatch(actions.create(
       this.props.params.clusterId,
-      this.props.params.providerName,
       this.state.name,
-      this.state.type
+      this.state.galaxy_role
     ));
   },
 
@@ -88,7 +82,7 @@ const ProviderEdit = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Edit Provider</h1>
+        <h1 className="form__title">Create Application</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Name</label>
@@ -102,21 +96,21 @@ const ProviderEdit = React.createClass({
             />
           </div>
           <div className="form__item">
-            <label htmlFor="type">Type</label>
+            <label htmlFor="galaxy_role">Type</label>
             <input
               autoFocus
               type="text"
               className="form__field"
-              id="type"
-              placeholder="Type"
+              id="galaxy_role"
+              placeholder="galaxy_role"
               onChange={this.handleTypeChange}
             />
           </div>
-          <button className="button button--primary">Edit</button>
+          <button className="button button--primary">Create</button>
         </form>
       </div>
     );
   },
 });
 
-export default connect(mapStateToProps, actions)(ProviderEdit);
+export default connect(mapStateToProps, actions)(ApplicationCreate);

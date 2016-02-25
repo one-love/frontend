@@ -4,7 +4,6 @@ import Layout from '../components/Layout';
 import Login from '../components/Login';
 import Logout from '../components/Logout';
 
-import Applications from '../components/Applications';
 import { Router, IndexRoute, Route } from 'react-router';
 import { history } from '../constants';
 import { requireAuth } from '../utils';
@@ -21,6 +20,12 @@ import ProviderEdit from '../components/Provider/Edit';
 import ProviderList from '../components/Provider/List';
 import ProviderRemove from '../components/Provider/Remove';
 
+import Application from '../components/Application';
+import ApplicationCreate from '../components/Application/Create';
+import ApplicationEdit from '../components/Application/Edit';
+import ApplicationList from '../components/Application/List';
+import ApplicationRemove from '../components/Application/Remove';
+
 
 const Main = React.createClass({
   render() {
@@ -34,9 +39,17 @@ const Main = React.createClass({
             <Route path="create/" component={ClusterCreate} />
             <Route path=":clusterId/" >
               <IndexRoute component={Cluster} />
-              <Route path="applications/" component={Applications} />
               <Route path="edit/" component={ClusterEdit} />
               <Route path="remove/" component={ClusterRemove} />
+              <Route path="applications/">
+                <IndexRoute component={ApplicationList} />
+                <Route path="create/" component={ApplicationCreate} />
+                <Route path=":applicationName/" >
+                  <IndexRoute component={Application} />
+                  <Route path="edit/" component={ApplicationEdit} />
+                  <Route path="remove/" component={ApplicationRemove} />
+                </Route>
+              </Route>
               <Route path="providers/">
                 <IndexRoute component={ProviderList} />
                 <Route path="create/" component={ProviderCreate} />
