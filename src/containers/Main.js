@@ -8,19 +8,19 @@ import { Router, IndexRoute, Route } from 'react-router';
 import { history } from '../constants';
 import { requireAuth } from '../utils';
 
-import Cluster from '../components/Cluster';
+import ClusterDetail from '../components/Cluster/Detail';
 import ClusterCreate from '../components/Cluster/Create';
 import ClusterEdit from '../components/Cluster/Edit';
 import ClusterList from '../components/Cluster/List';
 import ClusterRemove from '../components/Cluster/Remove';
 
-import Provider from '../components/Provider';
+import ProviderDetail from '../components/Provider/Detail';
 import ProviderCreate from '../components/Provider/Create';
 import ProviderEdit from '../components/Provider/Edit';
 import ProviderList from '../components/Provider/List';
 import ProviderRemove from '../components/Provider/Remove';
 
-import Application from '../components/Application';
+import ApplicationDetail from '../components/Application/Detail';
 import ApplicationCreate from '../components/Application/Create';
 import ApplicationEdit from '../components/Application/Edit';
 import ApplicationList from '../components/Application/List';
@@ -38,14 +38,14 @@ const Main = React.createClass({
             <IndexRoute component={ClusterList} />
             <Route path="create/" component={ClusterCreate} />
             <Route path=":clusterId/" >
-              <IndexRoute component={Cluster} />
+              <IndexRoute component={ClusterDetail} />
               <Route path="edit/" component={ClusterEdit} />
               <Route path="remove/" component={ClusterRemove} />
               <Route path="applications/">
                 <IndexRoute component={ApplicationList} />
                 <Route path="create/" component={ApplicationCreate} />
                 <Route path=":applicationName/" >
-                  <IndexRoute component={Application} />
+                  <IndexRoute component={ApplicationDetail} />
                   <Route path="edit/" component={ApplicationEdit} />
                   <Route path="remove/" component={ApplicationRemove} />
                 </Route>
@@ -54,7 +54,7 @@ const Main = React.createClass({
                 <IndexRoute component={ProviderList} />
                 <Route path="create/" component={ProviderCreate} />
                 <Route path=":providerName/" >
-                  <IndexRoute component={Provider} />
+                  <IndexRoute component={ProviderDetail} />
                   <Route path="edit/" component={ProviderEdit} />
                   <Route path="remove/" component={ProviderRemove} />
                 </Route>

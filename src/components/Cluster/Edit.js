@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get } from '../../actions/cluster';
-import actions from '../../actions/cluster/edit';
+import { get } from './actions/detail';
+import actions from './actions/edit';
 import store from '../../store';
 import { history } from '../../constants';
 

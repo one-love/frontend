@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import actions from '../../actions/application/list';
+import actions from './actions/list';
 import store from '../../store';
 
 

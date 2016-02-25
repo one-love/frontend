@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../actions/provider/create';
+import actions from './actions/create';
 import store from '../../store';
 import { history } from '../../constants';
 
