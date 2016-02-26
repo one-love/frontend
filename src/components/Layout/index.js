@@ -1,16 +1,18 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import OneLove from '../OneLove';
 
 const Layout = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
   },
   render() {
+    const children = this.props.children || <OneLove />;
     return (
       <div>
         <Header />
-          {this.props.children}
+          {children}
         <Footer />
       </div>
     );

@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import actions from './actions/detail';
 import store from '../../store';
 import { Link } from 'react-router';
+import edit from './Edit';
+import remove from './Remove';
+import provider from '../Provider';
+import application from '../Application';
 
 
 const mapStateToProps = (state) => {
@@ -17,7 +21,7 @@ const mapStateToProps = (state) => {
 };
 
 
-const Cluster = React.createClass({
+const Component = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     applications: React.PropTypes.array,
@@ -70,4 +74,17 @@ const Cluster = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(Cluster);
+export const Detail = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: ':clusterId',
+  indexRoute: { component: Detail },
+  childRoutes: [
+    edit,
+    remove,
+    provider,
+    application,
+  ],
+};
+
+export default routes;

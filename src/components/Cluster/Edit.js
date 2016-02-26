@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 });
 
 
-const ClusterEdit = React.createClass({
+const Component = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -74,7 +74,7 @@ const ClusterEdit = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Create Cluster</h1>
+        <h1 className="form__title">Edit Cluster</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Name</label>
@@ -94,4 +94,11 @@ const ClusterEdit = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ClusterEdit);
+export const Edit = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'edit',
+  component: Edit,
+};
+
+export default routes;

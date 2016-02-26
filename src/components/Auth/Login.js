@@ -19,7 +19,7 @@ function mapStateToProps(state) {
   };
 }
 
-const LoginForm = React.createClass({
+const Login = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     status: React.PropTypes.string,
@@ -108,4 +108,4 @@ const LoginForm = React.createClass({
 });
 
 
-export default connect(mapStateToProps, actions)(LoginForm);
+export default connect(mapStateToProps, actions)(Login);

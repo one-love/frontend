@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import actions from './actions/detail';
 import store from '../../store';
 import { Link } from 'react-router';
+import edit from './Edit';
+import remove from './Remove';
 
 
 const mapStateToProps = state => ({
@@ -12,7 +14,7 @@ const mapStateToProps = state => ({
 });
 
 
-const Application = React.createClass({
+const Component = React.createClass({
   propTypes: {
     application: React.PropTypes.object,
     applications: React.PropTypes.array,
@@ -52,4 +54,15 @@ const Application = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(Application);
+export const Detail = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: ':applicationName',
+  indexRoute: { component: Detail },
+  childRoutes: [
+    edit,
+    remove,
+  ],
+};
+
+export default routes;

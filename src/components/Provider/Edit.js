@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 });
 
 
-const ProviderEdit = React.createClass({
+const Component = React.createClass({
   propTypes: {
     provider: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -119,4 +119,11 @@ const ProviderEdit = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ProviderEdit);
+export const Edit = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'edit',
+  component: Edit,
+};
+
+export default routes;
