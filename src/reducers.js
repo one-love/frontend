@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import login from './components/Login/reducers';
+import login from './components/Auth/reducers';
 import applicationReducer from './components/Application/reducers';
 import clusterReducer from './components/Cluster/reducers';
 import providerReducer from './components/Provider/reducers';
