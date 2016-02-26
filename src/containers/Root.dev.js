@@ -1,16 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import Main from './Main';
 import DevTools from './DevTools';
+import store from '../store';
 
 
 const Root = React.createClass({
-  propTypes: {
-    store: PropTypes.object,
-  },
-
   render() {
-    const { store } = this.props;
     return (
       <Provider store={store}>
         <div>

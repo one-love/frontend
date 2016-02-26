@@ -48,5 +48,11 @@ const ClusterList = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ClusterList);
+export const ClusterListConnected = connect(mapStateToProps, actions)(ClusterList);
 
+const route = {
+  path: '/',
+  component: ClusterListConnected,
+};
+
+export default route;

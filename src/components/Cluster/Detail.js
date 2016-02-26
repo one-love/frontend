@@ -5,25 +5,19 @@ import store from '../../store';
 import { Link } from 'react-router';
 
 
-const mapStateToProps = (state) => {
-  const data = {
-    cluster: state.clusterDetail.cluster,
-  };
-  if (data.cluster !== undefined) {
-    data.applications = state.clusterDetail.applications;
-    data.roles = state.clusterDetail.roles;
-  }
-  return data;
-};
+const mapStateToProps = (state) => ({
+  cluster: state.clusterDetail.cluster,
+  applications: state.clusterDetail.applications,
+  roles: state.clusterDetail.roles,
+});
 
 
-const Cluster = React.createClass({
+const Detail = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     applications: React.PropTypes.array,
     roles: React.PropTypes.array,
     params: React.PropTypes.object,
-
   },
 
   componentWillMount() {
@@ -63,11 +57,23 @@ const Cluster = React.createClass({
               }</span>
           </li>
         </ul>
-        <Link to={`/clusters/${this.props.params.clusterId}/edit/`}>Edit</Link>
-        <Link to={`/clusters/${this.props.params.clusterId}/remove/`}>Remove</Link>
+        <Link to={`/clusters/${this.props.params.clusterId}/edit/`}>
+          Edit
+        </Link>
+        <Link to={`/clusters/${this.props.params.clusterId}/remove/`}>
+          Remove
+        </Link>
       </div>
     );
   },
 });
 
-export default connect(mapStateToProps, actions)(Cluster);
+export const DetailConnected = connect(mapStateToProps, actions)(Detail);
+
+
+const route = {
+  path: ':id',
+  component: DetailConnected,
+};
+
+export default route;
