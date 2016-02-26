@@ -6,6 +6,7 @@ import Cluster from '../components/Cluster';
 
 import { Router } from 'react-router';
 import { history } from '../constants';
+import { requireAuth } from '../utils';
 
 
 const routes = {
@@ -14,6 +15,7 @@ const routes = {
     {
       path: '/',
       component: Layout,
+      onEnter: requireAuth,
       childRoutes: [
         Logout,
         Cluster,
