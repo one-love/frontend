@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get } from './actions/detail';
 import actions from './actions/edit';
 import store from '../../store';
 import { history } from '../../constants';
@@ -12,15 +11,13 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  cluster: state.clusterDetail.cluster,
   status: state.clusterEdit.status,
   error: state.clusterEdit.error,
 });
 
 
-const ClusterEdit = React.createClass({
+const Edit = React.createClass({
   propTypes: {
-    cluster: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
@@ -30,10 +27,6 @@ const ClusterEdit = React.createClass({
     return {
       name: '',
     };
-  },
-
-  componentWillMount() {
-    store.dispatch(get(this.props.params.clusterId));
   },
 
   shouldComponentUpdate(nextProps) {
@@ -74,7 +67,7 @@ const ClusterEdit = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Create Cluster</h1>
+        <h1 className="form__title">Edit Cluster</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Name</label>
@@ -94,4 +87,11 @@ const ClusterEdit = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ClusterEdit);
+export const Connected = connect(mapStateToProps, actions)(Edit);
+
+const route = {
+  path: 'edit',
+  component: Connected,
+};
+
+export default route;

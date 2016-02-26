@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 };
 
 
-const ClusterCreate = React.createClass({
+const Create = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -91,4 +91,11 @@ const ClusterCreate = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ClusterCreate);
+export const Connected = connect(mapStateToProps, actions)(Create);
+
+const route = {
+  path: 'create',
+  component: Connected,
+};
+
+export default route;

@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions';
 import { fetch } from '../../../utils';
 import { API_URL } from '../../../backend_url';
 import { CLUSTER_EDIT } from '../constants';
+import { get } from './detail';
 
 export const reset = createAction(CLUSTER_EDIT, () => ({
   status: 'initial',
@@ -46,6 +47,7 @@ const actions = {
   success,
   fail,
   edit,
+  get,
 };
 
 export default actions;

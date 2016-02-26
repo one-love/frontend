@@ -3,17 +3,23 @@ import { connect } from 'react-redux';
 import actions from './actions/detail';
 import store from '../../store';
 import { Link } from 'react-router';
+import edit from './Edit';
+import remove from './Remove';
 
 
-const mapStateToProps = (state) => ({
-  cluster: state.clusterDetail.cluster,
-  applications: state.clusterDetail.applications,
-  roles: state.clusterDetail.roles,
-});
+const mapStateToProps = (state) => {
+  const data = {
+    cluster: state.clusterDetail.cluster,
+    applications: state.clusterDetail.applications,
+    roles: state.clusterDetail.roles,
+  };
+  return data;
+};
 
 
 const Detail = React.createClass({
   propTypes: {
+    children: React.PropTypes.node,
     cluster: React.PropTypes.object,
     applications: React.PropTypes.array,
     roles: React.PropTypes.array,
@@ -32,7 +38,12 @@ const Detail = React.createClass({
     if (this.props.cluster === undefined) {
       return <div></div>;
     }
-    return (
+    const children = (
+      <div>
+        {this.props.children}
+      </div>
+    );
+    const index = (
       <div>
         <ul className="item__list">
           <li className="item__heading">Name: {this.props.cluster.name}</li>
@@ -65,15 +76,20 @@ const Detail = React.createClass({
         </Link>
       </div>
     );
+    if (this.props.children) {return children;}
+    return index;
   },
 });
 
-export const DetailConnected = connect(mapStateToProps, actions)(Detail);
-
+export const Connected = connect(mapStateToProps, actions)(Detail);
 
 const route = {
-  path: ':id',
-  component: DetailConnected,
+  path: ':clusterId',
+  component: Connected,
+  childRoutes: [
+    edit,
+    remove,
+  ],
 };
 
 export default route;

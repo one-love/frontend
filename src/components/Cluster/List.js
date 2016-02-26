@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
   status: state.clusterList.status,
 });
 
-const ClusterList = React.createClass({
+const List = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     clusters: React.PropTypes.array,
@@ -26,7 +26,12 @@ const ClusterList = React.createClass({
   },
 
   render() {
-    return (
+    const children = (
+      <div>
+        {this.props.children}
+      </div>
+    );
+    const index = (
       <div>
         <h2>My clusters:</h2>
         <ul>
@@ -45,14 +50,11 @@ const ClusterList = React.createClass({
         <Link to={'/clusters/create/'}>Create</Link>
       </div>
     );
+    if (this.props.children) {return children;}
+    return index;
   },
 });
 
-export const ClusterListConnected = connect(mapStateToProps, actions)(ClusterList);
+const Connected = connect(mapStateToProps, actions)(List);
 
-const route = {
-  path: '/',
-  component: ClusterListConnected,
-};
-
-export default route;
+export default Connected;

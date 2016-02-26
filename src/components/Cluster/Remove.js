@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 });
 
 
-const ClusterRemove = React.createClass({
+const Remove = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -73,4 +73,11 @@ const ClusterRemove = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ClusterRemove);
+export const Connected = connect(mapStateToProps, actions)(Remove);
+
+const route = {
+  path: 'remove',
+  component: Connected,
+};
+
+export default route;
