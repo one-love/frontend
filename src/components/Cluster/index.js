@@ -1,33 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../actions/cluster';
-import store from '../../store';
 import { Link } from 'react-router';
+import actions from './actions/list';
+import store from '../../store';
+import create from './Create';
+import detail from './Detail';
 
 
-const mapStateToProps = (state) => {
-  const data = {
-    cluster: state.clusterDetail.cluster,
-  };
-  if (data.cluster !== undefined) {
-    data.applications = state.clusterDetail.applications;
-    data.roles = state.clusterDetail.roles;
-  }
-  return data;
-};
+const mapStateToProps = state => ({
+  clusters: state.clusterList.clusters,
+  status: state.clusterList.status,
+});
 
-
-const Cluster = React.createClass({
+const Component = React.createClass({
   propTypes: {
-    cluster: React.PropTypes.object,
-    applications: React.PropTypes.array,
-    roles: React.PropTypes.array,
-    params: React.PropTypes.object,
-
+    children: React.PropTypes.node,
+    clusters: React.PropTypes.array,
+    status: React.PropTypes.string,
   },
 
   componentWillMount() {
-    store.dispatch(actions.get(this.props.params.clusterId));
+    store.dispatch(actions.get());
   },
 
   componentWillUnmount() {
@@ -35,39 +28,37 @@ const Cluster = React.createClass({
   },
 
   render() {
-    if (this.props.cluster === undefined) {
-      return <div></div>;
-    }
     return (
       <div>
-        <ul className="item__list">
-          <li className="item__heading">Name: {this.props.cluster.name}</li>
-          <li className="item__child">
-            <Link to={`/clusters/${this.props.params.clusterId}/applications/`}>
-              Applications
-            </Link>
-          </li>
-          <li className="item__child">
-            <Link to={`/clusters/${this.props.params.clusterId}/providers/`}>
-              Providers
-            </Link>
-          </li>
-          <li className="item__child">
-              <b className="item__fragment item__fragment--bold">Roles: </b>
-              <span className="item__value">{
-                  this.props.cluster.roles.length ?
-                  this.props.cluster.roles.map(
-                    (role) => <span key={role.name}>{role.name} </span>
-                  ) :
-                  'No roles right now'
-              }</span>
-          </li>
+        <h2>My clusters:</h2>
+        <ul>
+          {
+            this.props.clusters.map(
+              cluster =>
+              <li key={cluster.id}>
+              <Link
+                key={cluster.id}
+                to={`/clusters/${cluster.id}/`}
+                cluster={cluster}
+              > {cluster.name} </Link> </li>
+            )
+          }
         </ul>
-        <Link to={`/clusters/${this.props.params.clusterId}/edit/`}>Edit</Link>
-        <Link to={`/clusters/${this.props.params.clusterId}/remove/`}>Remove</Link>
+        <Link to={'/clusters/create/'}>Create</Link>
       </div>
     );
   },
 });
 
-export default connect(mapStateToProps, actions)(Cluster);
+export const List = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'clusters',
+  indexRoute: { component: List },
+  childRoutes: [
+    create,
+    detail,
+  ],
+};
+
+export default routes;

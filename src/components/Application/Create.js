@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../actions/application/create';
+import actions from './actions/create';
 import store from '../../store';
 import { history } from '../../constants';
 
@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 };
 
 
-const ApplicationCreate = React.createClass({
+const Component = React.createClass({
   propTypes: {
     application: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -113,4 +113,11 @@ const ApplicationCreate = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ApplicationCreate);
+export const Create = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'create',
+  component: Create,
+};
+
+export default routes;

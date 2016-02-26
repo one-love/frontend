@@ -1,31 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../actions/provider';
-import store from '../../store';
 import { Link } from 'react-router';
+import actions from './actions/list';
+import store from '../../store';
+import create from './Create';
+import detail from './Detail';
 
 
 const mapStateToProps = state => ({
-  provider: state.providerDetail.provider,
-  applications: state.providerDetail.applications,
-  roles: state.providerDetail.roles,
+  providers: state.providerList.providers,
+  status: state.providerList.status,
 });
 
-
-const Provider = React.createClass({
+const Component = React.createClass({
   propTypes: {
-    provider: React.PropTypes.object,
-    applications: React.PropTypes.array,
-    roles: React.PropTypes.array,
+    children: React.PropTypes.node,
     params: React.PropTypes.object,
-
+    providers: React.PropTypes.array,
+    status: React.PropTypes.string,
   },
 
   componentWillMount() {
-    store.dispatch(actions.get(
-      this.props.params.clusterId,
-      this.props.params.providerName
-    ));
+    store.dispatch(actions.get(this.props.params.clusterId));
   },
 
   componentWillUnmount() {
@@ -33,23 +29,37 @@ const Provider = React.createClass({
   },
 
   render() {
-    const clusterId = this.props.params.clusterId;
-    const providerName = this.props.params.providerName;
-    if (this.props.provider === undefined) {
-      return <div></div>;
-    }
     return (
       <div>
-        <h2>Provider {providerName}</h2>
-        <Link to={`/clusters/${clusterId}/providers/${providerName}/edit/`}>
-          Edit
-        </Link>
-        <Link to={`/clusters/${clusterId}/providers/${providerName}/remove/`}>
-          Remove
-        </Link>
+        <h2>My providers:</h2>
+        <ul>
+          {
+            this.props.providers.map(
+              provider =>
+              <li key={provider.name}>
+              <Link
+                key={provider.id}
+                to={`/clusters/${this.props.params.clusterId}/providers/${provider.name}/`}
+                provider={provider}
+              > {provider.name} </Link> </li>
+            )
+          }
+        </ul>
+        <Link to={`/clusters/${this.props.params.clusterId}/providers/create/`}>Create</Link>
       </div>
     );
   },
 });
 
-export default connect(mapStateToProps, actions)(Provider);
+export const List = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'providers',
+  indexRoute: { component: List },
+  childRoutes: [
+    create,
+    detail,
+  ],
+};
+
+export default routes;

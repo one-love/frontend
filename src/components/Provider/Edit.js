@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get } from '../../actions/provider';
-import actions from '../../actions/provider/edit';
+import { get } from './actions/detail';
+import actions from './actions/edit';
 import store from '../../store';
 import { history } from '../../constants';
 
@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 });
 
 
-const ProviderEdit = React.createClass({
+const Component = React.createClass({
   propTypes: {
     provider: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -119,4 +119,11 @@ const ProviderEdit = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ProviderEdit);
+export const Edit = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'edit',
+  component: Edit,
+};
+
+export default routes;

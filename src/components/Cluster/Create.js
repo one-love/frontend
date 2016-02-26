@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../actions/cluster/create';
+import actions from './actions/create';
 import store from '../../store';
 import { history } from '../../constants';
 
@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 };
 
 
-const ClusterCreate = React.createClass({
+const Component = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -91,4 +91,11 @@ const ClusterCreate = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ClusterCreate);
+export const Create = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'create',
+  component: Create,
+};
+
+export default routes;

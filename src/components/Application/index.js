@@ -1,31 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../../actions/application';
-import store from '../../store';
 import { Link } from 'react-router';
+import actions from './actions/list';
+import store from '../../store';
+import create from './Create';
+import detail from './Detail';
 
 
 const mapStateToProps = state => ({
-  application: state.applicationDetail.application,
-  applications: state.applicationDetail.applications,
-  roles: state.applicationDetail.roles,
+  applications: state.applicationList.applications,
+  status: state.applicationList.status,
 });
 
-
-const Application = React.createClass({
+const Component = React.createClass({
   propTypes: {
-    application: React.PropTypes.object,
-    applications: React.PropTypes.array,
-    roles: React.PropTypes.array,
+    children: React.PropTypes.node,
     params: React.PropTypes.object,
-
+    applications: React.PropTypes.array,
+    status: React.PropTypes.string,
   },
 
   componentWillMount() {
-    store.dispatch(actions.get(
-      this.props.params.clusterId,
-      this.props.params.applicationName
-    ));
+    store.dispatch(actions.get(this.props.params.clusterId));
   },
 
   componentWillUnmount() {
@@ -33,23 +29,37 @@ const Application = React.createClass({
   },
 
   render() {
-    const clusterId = this.props.params.clusterId;
-    const applicationName = this.props.params.applicationName;
-    if (this.props.application === undefined) {
-      return <div></div>;
-    }
     return (
       <div>
-        <h2>Application {applicationName}</h2>
-        <Link to={`/clusters/${clusterId}/applications/${applicationName}/edit/`}>
-          Edit
-        </Link>
-        <Link to={`/clusters/${clusterId}/applications/${applicationName}/remove/`}>
-          Remove
-        </Link>
+        <h2>My applications:</h2>
+        <ul>
+          {
+            this.props.applications.map(
+              application =>
+              <li key={application.name}>
+              <Link
+                key={application.id}
+                to={`/clusters/${this.props.params.clusterId}/applications/${application.name}/`}
+                application={application}
+              > {application.name} </Link> </li>
+            )
+          }
+        </ul>
+        <Link to={`/clusters/${this.props.params.clusterId}/applications/create/`}>Create</Link>
       </div>
     );
   },
 });
 
-export default connect(mapStateToProps, actions)(Application);
+export const List = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'applications',
+  indexRoute: { component: List },
+  childRoutes: [
+    create,
+    detail,
+  ],
+};
+
+export default routes;
