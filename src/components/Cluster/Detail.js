@@ -5,6 +5,8 @@ import store from '../../store';
 import { Link } from 'react-router';
 import edit from './Edit';
 import remove from './Remove';
+import provider from '../Provider';
+import application from '../Application';
 
 
 const mapStateToProps = (state) => {
@@ -17,7 +19,7 @@ const mapStateToProps = (state) => {
 };
 
 
-const Detail = React.createClass({
+const Component = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     cluster: React.PropTypes.object,
@@ -81,15 +83,17 @@ const Detail = React.createClass({
   },
 });
 
-export const Connected = connect(mapStateToProps, actions)(Detail);
+export const Detail = connect(mapStateToProps, actions)(Component);
 
-const route = {
+const routes = {
   path: ':clusterId',
-  component: Connected,
+  indexRoute: { component: Detail },
   childRoutes: [
     edit,
     remove,
+    provider,
+    application,
   ],
 };
 
-export default route;
+export default routes;

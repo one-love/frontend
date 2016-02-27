@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 };
 
 
-const Create = React.createClass({
+const Component = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -91,11 +91,11 @@ const Create = React.createClass({
   },
 });
 
-export const Connected = connect(mapStateToProps, actions)(Create);
+export const Create = connect(mapStateToProps, actions)(Component);
 
-const route = {
+const routes = {
   path: 'create',
-  component: Connected,
+  component: Create,
 };
 
-export default route;
+export default routes;

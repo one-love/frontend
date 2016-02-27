@@ -14,6 +14,7 @@ const routes = {
     {
       path: '/',
       component: Layout,
+      onEnter: requireAuth,
       childRoutes: [
         Logout,
         Cluster,

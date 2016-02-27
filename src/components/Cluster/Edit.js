@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 });
 
 
-const Edit = React.createClass({
+const Component = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -87,11 +87,11 @@ const Edit = React.createClass({
   },
 });
 
-export const Connected = connect(mapStateToProps, actions)(Edit);
+export const Edit = connect(mapStateToProps, actions)(Component);
 
-const route = {
+const routes = {
   path: 'edit',
-  component: Connected,
+  component: Edit,
 };
 
-export default route;
+export default routes;

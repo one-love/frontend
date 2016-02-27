@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 });
 
 
-const ProviderRemove = React.createClass({
+const Component = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -76,4 +76,11 @@ const ProviderRemove = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ProviderRemove);
+export const Remove = connect(mapStateToProps, actions)(Component);
+
+const routes = {
+  path: 'remove',
+  component: Remove,
+};
+
+export default routes;
