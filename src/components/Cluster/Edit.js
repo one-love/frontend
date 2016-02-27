@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get } from './actions/detail';
 import actions from './actions/edit';
 import store from '../../store';
 import { history } from '../../constants';
@@ -12,7 +11,6 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  cluster: state.clusterDetail.cluster,
   status: state.clusterEdit.status,
   error: state.clusterEdit.error,
 });
@@ -20,7 +18,6 @@ const mapStateToProps = state => ({
 
 const Component = React.createClass({
   propTypes: {
-    cluster: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
@@ -30,10 +27,6 @@ const Component = React.createClass({
     return {
       name: '',
     };
-  },
-
-  componentWillMount() {
-    store.dispatch(get(this.props.params.clusterId));
   },
 
   shouldComponentUpdate(nextProps) {

@@ -28,7 +28,12 @@ const Component = React.createClass({
   },
 
   render() {
-    return (
+    const children = (
+      <div>
+        {this.props.children}
+      </div>
+    );
+    const index = (
       <div>
         <h2>My clusters:</h2>
         <ul>
@@ -47,6 +52,8 @@ const Component = React.createClass({
         <Link to={'/clusters/create/'}>Create</Link>
       </div>
     );
+    if (this.props.children) {return children;}
+    return index;
   },
 });
 

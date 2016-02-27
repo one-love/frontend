@@ -12,22 +12,20 @@ import application from '../Application';
 const mapStateToProps = (state) => {
   const data = {
     cluster: state.clusterDetail.cluster,
+    applications: state.clusterDetail.applications,
+    roles: state.clusterDetail.roles,
   };
-  if (data.cluster !== undefined) {
-    data.applications = state.clusterDetail.applications;
-    data.roles = state.clusterDetail.roles;
-  }
   return data;
 };
 
 
 const Component = React.createClass({
   propTypes: {
+    children: React.PropTypes.node,
     cluster: React.PropTypes.object,
     applications: React.PropTypes.array,
     roles: React.PropTypes.array,
     params: React.PropTypes.object,
-
   },
 
   componentWillMount() {
@@ -42,7 +40,12 @@ const Component = React.createClass({
     if (this.props.cluster === undefined) {
       return <div></div>;
     }
-    return (
+    const children = (
+      <div>
+        {this.props.children}
+      </div>
+    );
+    const index = (
       <div>
         <ul className="item__list">
           <li className="item__heading">Name: {this.props.cluster.name}</li>
@@ -67,10 +70,16 @@ const Component = React.createClass({
               }</span>
           </li>
         </ul>
-        <Link to={`/clusters/${this.props.params.clusterId}/edit/`}>Edit</Link>
-        <Link to={`/clusters/${this.props.params.clusterId}/remove/`}>Remove</Link>
+        <Link to={`/clusters/${this.props.params.clusterId}/edit/`}>
+          Edit
+        </Link>
+        <Link to={`/clusters/${this.props.params.clusterId}/remove/`}>
+          Remove
+        </Link>
       </div>
     );
+    if (this.props.children) {return children;}
+    return index;
   },
 });
 

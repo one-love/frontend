@@ -4,7 +4,8 @@
   "description": "Counter example for redux",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "NODE_ENV=production mocha --compilers js:babel-register --recursive ./src/test.js"
   },
   "repository": {
     "type": "git",
@@ -29,12 +30,14 @@
     "babel-preset-es2015-loose": "^6.1.3",
     "babel-preset-react": "6.3.13",
     "babel-preset-stage-0": "^6.3.13",
+    "babel-register": "^6.5.2",
     "css-loader": "^0.23.1",
     "es6-promise": "^3.1.2",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.1",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-react": "^4.0.0",
+    "expect": "^1.14.0",
     "history": "^2.0.0",
     "inuit-box-sizing": "^0.2.0",
     "inuit-defaults": "^0.2.3",
@@ -43,6 +46,7 @@
     "inuit-normalize": "^3.0.3",
     "inuit-page": "^0.2.1",
     "isomorphic-fetch": "^2.2.1",
+    "mocha": "^2.4.5",
     "node-libs-browser": "^0.5.2",
     "node-sass": "^3.4.2",
     "react-hot-loader": "^1.3.0",
