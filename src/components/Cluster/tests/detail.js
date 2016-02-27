@@ -1,18 +1,17 @@
 import expect from 'expect';
-import actions from '../actions/list';
+import actions from '../actions/detail';
 import store from '../../../store';
-import { CLUSTER_LIST } from '../constants';
+import { CLUSTER_DETAIL } from '../constants';
 
 
-const clusterListTest = describe('Testing cluster list', () => {
+const clusterDetailTest = describe('Testing detail of cluster', () => {
    it('get initial state', () => {
      expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
-          clusters: [],
         },
-        type: CLUSTER_LIST,
+        type: CLUSTER_DETAIL,
      })
   }),
    it('get pending state', () => {
@@ -20,22 +19,20 @@ const clusterListTest = describe('Testing cluster list', () => {
       .toEqual({
         payload: {
           status: 'pending',
-          clusters: [],
         },
-        type: CLUSTER_LIST,
+        type: CLUSTER_DETAIL,
      })
   }),
-
-   it('get error state', () => {
-     expect(store.dispatch(actions.fail('erroR')))
+   it('get pending state', () => {
+     expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
         payload: {
           status: 'error',
-          error: 'erroR'
+          error: 'ErorR',
         },
-        type: CLUSTER_LIST,
+        type: CLUSTER_DETAIL,
      })
   })
 });
 
-export default clusterListTest;
+export default clusterDetailTest;

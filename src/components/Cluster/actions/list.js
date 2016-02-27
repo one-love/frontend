@@ -20,7 +20,7 @@ export const success = createAction(CLUSTER_LIST, clusters => ({
 
 export const fail = createAction(CLUSTER_LIST, error => ({
   status: 'error',
-  error,
+  error
 }));
 
 export const get = () =>

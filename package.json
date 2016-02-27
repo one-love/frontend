@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "NODE_ENV=production mocha --compilers js:babel-register --recursive"
+    "test": "NODE_ENV=production mocha --compilers js:babel-register --recursive ./src/test.js"
   },
   "repository": {
     "type": "git",
