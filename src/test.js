@@ -1,3 +1,3 @@
-import cluster from './components/Cluster/tests';
+import cluster from './components/cluster/tests';
 
 cluster;
