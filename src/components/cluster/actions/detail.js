@@ -12,7 +12,10 @@ export const success = createAction(CLUSTER_DETAIL, cluster => ({
   roles: cluster.roles,
 }));
 
-export const fail = createAction(CLUSTER_DETAIL, error => error);
+export const fail = createAction(CLUSTER_DETAIL, error => ({
+  status: 'error',
+  error,
+}));
 
 export const get = id =>
   dispatch => {

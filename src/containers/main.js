@@ -6,7 +6,6 @@ import Cluster from '../components/cluster';
 
 import { Router } from 'react-router';
 import { history } from '../constants';
-import { requireAuth } from '../utils';
 
 
 const routes = {
