@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from './actions/create';
-import store from '../../../store';
-import { history } from '../../../constants';
+import { get } from '../actions/detail';
+import actions from '../actions/edit';
+import store from '../../../../../store';
+import { history } from '../../../../../constants';
 
 
 const errorMessages = {
@@ -10,13 +11,11 @@ const errorMessages = {
 };
 
 
-const mapStateToProps = state => {
-  const data = {
-    application: state.applicationCreate.application,
-    status: state.applicationCreate.status,
-  };
-  return data;
-};
+const mapStateToProps = state => ({
+  application: state.applicationEdit.application,
+  status: state.applicationEdit.status,
+  error: state.applicationEdit.error,
+});
 
 
 const Component = React.createClass({
@@ -30,14 +29,20 @@ const Component = React.createClass({
   getInitialState() {
     return {
       name: '',
-      galaxy_role: '',
     };
+  },
+
+  componentWillMount() {
+    store.dispatch(get(
+      this.props.params.clusterId,
+      this.props.params.applicationName
+    ));
   },
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/clusters/${nextProps.params.clusterId}/applications/${this.state.name}/`
+        `/clusters/${nextProps.params.clusterId}/applications/${nextProps.application.name}/`
       );
       return false;
     }
@@ -58,8 +63,9 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.create(
+    store.dispatch(actions.edit(
       this.props.params.clusterId,
+      this.props.params.applicationName,
       this.state.name,
       this.state.galaxy_role
     ));
@@ -82,7 +88,7 @@ const Component = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Create Application</h1>
+        <h1 className="form__title">Edit Application</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Name</label>
@@ -96,7 +102,7 @@ const Component = React.createClass({
             />
           </div>
           <div className="form__item">
-            <label htmlFor="galaxy_role">Type</label>
+            <label htmlFor="type">Type</label>
             <input
               autoFocus
               type="text"
@@ -106,18 +112,18 @@ const Component = React.createClass({
               onChange={this.handleTypeChange}
             />
           </div>
-          <button className="button button--primary">Create</button>
+          <button className="button button--primary">Edit</button>
         </form>
       </div>
     );
   },
 });
 
-export const Create = connect(mapStateToProps, actions)(Component);
+export const Edit = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'create',
-  component: Create,
+  path: 'edit',
+  component: Edit,
 };
 
 export default routes;

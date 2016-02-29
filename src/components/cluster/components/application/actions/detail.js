@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
-import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
+import { fetch } from '../../../../../utils';
+import { API_URL } from '../../../../../backend_url';
 import { APPLICATION_DETAIL } from '../constants';
 
 export const reset = createAction(APPLICATION_DETAIL, () => ({ status: 'initial' }));

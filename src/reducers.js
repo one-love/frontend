@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import login from './components/auth/reducers';
-import applicationReducer from './components/cluster/application/reducers';
+import applicationReducer from './components/cluster/components/application/reducers';
 import clusterReducer from './components/cluster/reducers';
-import providerReducer from './components/cluster/provider/reducers';
+import providerReducer from './components/cluster/components/provider/reducers';
 
 
 const reducers = {

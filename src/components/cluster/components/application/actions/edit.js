@@ -1,8 +1,8 @@
 /* eslint camelcase: 0 */
 
 import { createAction } from 'redux-actions';
-import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
+import { fetch } from '../../../../../utils';
+import { API_URL } from '../../../../../backend_url';
 import { APPLICATION_EDIT } from '../constants';
 
 export const reset = createAction(APPLICATION_EDIT, () => ({

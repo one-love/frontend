@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from './actions/remove';
-import store from '../../../store';
-import { history } from '../../../constants';
+import actions from '../actions/remove';
+import store from '../../../../../store';
+import { history } from '../../../../../constants';
 
 
 const errorMessages = {
@@ -11,8 +11,8 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  status: state.applicationRemove.status,
-  error: state.applicationRemove.error,
+  status: state.providerRemove.status,
+  error: state.providerRemove.error,
 });
 
 
@@ -25,7 +25,7 @@ const Component = React.createClass({
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/clusters/${nextProps.params.clusterId}/applications/`);
+      history.push(`/clusters/${nextProps.params.clusterId}/providers/`);
       return false;
     }
     return true;
@@ -43,7 +43,7 @@ const Component = React.createClass({
     event.preventDefault();
     store.dispatch(actions.remove(
       this.props.params.clusterId,
-      this.props.params.applicationName
+      this.props.params.providerName
     ));
   },
 
@@ -64,7 +64,7 @@ const Component = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Remove Application</h1>
+        <h1 className="form__title">Remove Provider</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Are you sure?</label>

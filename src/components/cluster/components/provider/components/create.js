@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from './actions/create';
-import store from '../../../store';
-import { history } from '../../../constants';
+import actions from '../actions/create';
+import store from '../../../../../store';
+import { history } from '../../../../../constants';
 
 
 const errorMessages = {

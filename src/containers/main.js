@@ -3,6 +3,7 @@ import Layout from '../components/layout';
 import Logout from '../components/auth';
 import Login from '../components/auth/login';
 import Cluster from '../components/cluster';
+import { requireAuth } from '../utils';
 
 import { Router } from 'react-router';
 import { history } from '../constants';

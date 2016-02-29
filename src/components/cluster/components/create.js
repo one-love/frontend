@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from './actions/remove';
-import store from '../../store';
-import { history } from '../../constants';
+import actions from '../actions/create';
+import store from '../../../store';
+import { history } from '../../../constants';
 
 
 const errorMessages = {
@@ -10,22 +10,32 @@ const errorMessages = {
 };
 
 
-const mapStateToProps = state => ({
-  status: state.clusterRemove.status,
-  error: state.clusterRemove.error,
-});
+const mapStateToProps = state => {
+  const data = {
+    cluster: state.clusterCreate.cluster,
+    status: state.clusterCreate.status,
+  };
+  return data;
+};
 
 
 const Component = React.createClass({
   propTypes: {
+    cluster: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
   },
 
+  getInitialState() {
+    return {
+      name: '',
+    };
+  },
+
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push('/clusters/');
+      history.push(`/clusters/${nextProps.cluster.id}/`);
       return false;
     }
     return true;
@@ -41,7 +51,7 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.remove(this.props.params.clusterId));
+    store.dispatch(actions.create(this.state.name));
   },
 
   render() {
@@ -61,23 +71,31 @@ const Component = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Remove Cluster</h1>
+        <h1 className="form__title">Create Cluster</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
-            <label htmlFor="name">Are you sure?</label>
+            <label htmlFor="name">Name</label>
+            <input
+              autoFocus
+              type="text"
+              className="form__field"
+              id="name"
+              placeholder="Name"
+              onChange={this.handleNameChange}
+            />
           </div>
-          <button className="button button--primary">Remove</button>
+          <button className="button button--primary">Create</button>
         </form>
       </div>
     );
   },
 });
 
-export const Remove = connect(mapStateToProps, actions)(Component);
+export const Create = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'remove',
-  component: Remove,
+  path: 'create',
+  component: Create,
 };
 
 export default routes;

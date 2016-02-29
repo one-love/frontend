@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from './actions/create';
-import store from '../../store';
-import { history } from '../../constants';
+import { get } from '../actions/detail';
+import actions from '../actions/edit';
+import store from '../../../../../store';
+import { history } from '../../../../../constants';
 
 
 const errorMessages = {
@@ -10,18 +11,16 @@ const errorMessages = {
 };
 
 
-const mapStateToProps = state => {
-  const data = {
-    cluster: state.clusterCreate.cluster,
-    status: state.clusterCreate.status,
-  };
-  return data;
-};
+const mapStateToProps = state => ({
+  provider: state.providerEdit.provider,
+  status: state.providerEdit.status,
+  error: state.providerEdit.error,
+});
 
 
 const Component = React.createClass({
   propTypes: {
-    cluster: React.PropTypes.object,
+    provider: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
@@ -33,9 +32,18 @@ const Component = React.createClass({
     };
   },
 
+  componentWillMount() {
+    store.dispatch(get(
+      this.props.params.clusterId,
+      this.props.params.providerId
+    ));
+  },
+
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/clusters/${nextProps.cluster.id}/`);
+      history.push(
+        `/clusters/${nextProps.params.clusterId}/providers/${nextProps.provider.name}/`
+      );
       return false;
     }
     return true;
@@ -49,9 +57,18 @@ const Component = React.createClass({
     this.setState({ name: event.target.value });
   },
 
+  handleTypeChange(event) {
+    this.setState({ type: event.target.value });
+  },
+
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.create(this.state.name));
+    store.dispatch(actions.edit(
+      this.props.params.clusterId,
+      this.props.params.providerName,
+      this.state.name,
+      this.state.type
+    ));
   },
 
   render() {
@@ -71,7 +88,7 @@ const Component = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Create Cluster</h1>
+        <h1 className="form__title">Edit Provider</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Name</label>
@@ -84,18 +101,29 @@ const Component = React.createClass({
               onChange={this.handleNameChange}
             />
           </div>
-          <button className="button button--primary">Create</button>
+          <div className="form__item">
+            <label htmlFor="type">Type</label>
+            <input
+              autoFocus
+              type="text"
+              className="form__field"
+              id="type"
+              placeholder="Type"
+              onChange={this.handleTypeChange}
+            />
+          </div>
+          <button className="button button--primary">Edit</button>
         </form>
       </div>
     );
   },
 });
 
-export const Create = connect(mapStateToProps, actions)(Component);
+export const Edit = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'create',
-  component: Create,
+  path: 'edit',
+  component: Edit,
 };
 
 export default routes;

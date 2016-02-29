@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from './actions/list';
-import store from '../../../store';
-import create from './create';
-import detail from './detail';
+import store from '../../../../store';
+import create from './components/create';
+import detail from './components/detail';
 
 
 const mapStateToProps = state => ({

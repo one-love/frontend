@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from './actions/remove';
+import actions from '../actions/edit';
 import store from '../../../store';
 import { history } from '../../../constants';
 
@@ -11,8 +11,8 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  status: state.providerRemove.status,
-  error: state.providerRemove.error,
+  status: state.clusterEdit.status,
+  error: state.clusterEdit.error,
 });
 
 
@@ -23,9 +23,15 @@ const Component = React.createClass({
     error: React.PropTypes.string,
   },
 
+  getInitialState() {
+    return {
+      name: '',
+    };
+  },
+
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/clusters/${nextProps.params.clusterId}/providers/`);
+      history.push(`/clusters/${nextProps.params.clusterId}/`);
       return false;
     }
     return true;
@@ -41,10 +47,7 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.remove(
-      this.props.params.clusterId,
-      this.props.params.providerName
-    ));
+    store.dispatch(actions.edit(this.props.params.clusterId, this.state.name));
   },
 
   render() {
@@ -64,23 +67,31 @@ const Component = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Remove Provider</h1>
+        <h1 className="form__title">Edit Cluster</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
-            <label htmlFor="name">Are you sure?</label>
+            <label htmlFor="name">Name</label>
+            <input
+              autoFocus
+              type="text"
+              className="form__field"
+              id="name"
+              placeholder="Name"
+              onChange={this.handleNameChange}
+            />
           </div>
-          <button className="button button--primary">Remove</button>
+          <button className="button button--primary">Edit</button>
         </form>
       </div>
     );
   },
 });
 
-export const Remove = connect(mapStateToProps, actions)(Component);
+export const Edit = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'remove',
-  component: Remove,
+  path: 'edit',
+  component: Edit,
 };
 
 export default routes;
