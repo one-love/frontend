@@ -11,7 +11,10 @@ export const success = createAction(PROVIDER_DETAIL, provider => ({
   status: 'success',
 }));
 
-export const fail = createAction(PROVIDER_DETAIL, error => error);
+export const fail = createAction(PROVIDER_DETAIL, error => ({
+  status: 'error',
+  error,
+}));
 
 export const get = (clusterId, providerName) =>
   dispatch => {
