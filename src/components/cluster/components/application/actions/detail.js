@@ -11,7 +11,10 @@ export const success = createAction(APPLICATION_DETAIL, application => ({
   status: 'success',
 }));
 
-export const fail = createAction(APPLICATION_DETAIL, error => error);
+export const fail = createAction(APPLICATION_DETAIL, error => ({
+  status: 'error',
+  error,
+}));
 
 export const get = (clusterId, applicationName) =>
   dispatch => {
