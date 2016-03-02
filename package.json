@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "NODE_ENV=production mocha --compilers js:babel-register --recursive ./src/test.js"
+    "test": "NODE_ENV=production istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register --ui=bdd --reporter=xunit-file --recursive ./src/test.js",
+    "coverage": "NODE_ENV=production istanbul report cobertura --dir shippable/codecoverage/"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "inuit-normalize": "^3.0.3",
     "inuit-page": "^0.2.1",
     "isomorphic-fetch": "^2.2.1",
+    "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
     "node-libs-browser": "^0.5.2",
     "node-sass": "^3.4.2",
@@ -60,6 +62,7 @@
     "style-loader": "^0.13.0",
     "trash": "^3.4.1",
     "webpack": "^1.9.11",
-    "webpack-dev-server": "^1.9.0"
+    "webpack-dev-server": "^1.9.0",
+    "xunit-file": "0.0.9"
   }
 }
