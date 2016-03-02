@@ -1,12 +1,20 @@
 language: node_js
+
 node_js:
     - 5.5.0
-
-before_script:
-    - echo "export const API_URL = 'http://localhost:5000/api/v0';" > ./src/backend_url.js
-script:
-    - npm test
 
 install:
     - npm install -g npm
     - npm install
+
+before_script:
+    - echo "export const API_URL = 'http://localhost:5000/api/v0';" > ./src/backend_url.js
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
+
+script:
+    - npm test
+
+after_script:
+    - mv xunit.xml shippable/testresults/
+    - npm run coverage
