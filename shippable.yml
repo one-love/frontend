@@ -16,5 +16,5 @@ script:
     - npm test
 
 after_script:
-    - mv xunit.xml shippable/testresults/
     - npm run coverage
+    - mv xunit.xml shippable/testresults/result.xml
