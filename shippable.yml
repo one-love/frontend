@@ -7,9 +7,6 @@ install:
     - npm install -g npm
     - npm install
 
-env:
-    - XUNIT_FILE=shippable/testresults/result.xml
-
 before_script:
     - echo "export const API_URL = 'http://localhost:5000/api/v0';" > ./src/backend_url.js
     - mkdir -p shippable/testresults
@@ -20,3 +17,4 @@ script:
 
 after_script:
     - npm run coverage
+    - mv xunit.xml shippable/testresults/result.xml
