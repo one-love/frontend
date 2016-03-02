@@ -1,24 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/detail';
-import store from '../../../../../store';
+import store from '../../../../../../../store';
 import { Link } from 'react-router';
 import edit from './edit';
 import remove from './remove';
-import host from './host';
 
 
 const mapStateToProps = state => ({
-  provider: state.providerDetail.provider,
-  applications: state.providerDetail.applications,
-  roles: state.providerDetail.roles,
+  host: state.hostDetail.host,
+  hosts: state.hostDetail.hosts,
+  roles: state.hostDetail.roles,
 });
 
 
 const Component = React.createClass({
   propTypes: {
-    provider: React.PropTypes.object,
-    applications: React.PropTypes.array,
+    host: React.PropTypes.object,
+    hosts: React.PropTypes.array,
     roles: React.PropTypes.array,
     params: React.PropTypes.object,
 
@@ -27,7 +26,8 @@ const Component = React.createClass({
   componentWillMount() {
     store.dispatch(actions.get(
       this.props.params.clusterId,
-      this.props.params.providerName
+      this.props.params.providerName,
+      this.props.params.hostname
     ));
   },
 
@@ -38,27 +38,17 @@ const Component = React.createClass({
   render() {
     const clusterId = this.props.params.clusterId;
     const providerName = this.props.params.providerName;
-    if (this.props.provider === undefined) {
+    const hostName = this.props.params.hostname;
+    if (this.props.host === undefined) {
       return <div></div>;
     }
     return (
       <div>
-        <h2>Provider {providerName}</h2>
-          <ul className="item__list">
-            <li className="item__heading">Name: {this.props.provider.name}</li>
-            <li className="item__child">
-              <Link to={
-                `/clusters/${this.props.params.clusterId}/providers/${providerName}/hosts/`
-                }
-              >
-                Hosts
-              </Link>
-            </li>
-          </ul>
-        <Link to={`/clusters/${clusterId}/providers/${providerName}/edit/`}>
+        <h2>Host {hostName}</h2>
+        <Link to={`/clusters/${clusterId}/providers/${providerName}/hosts/${hostName}/edit/`}>
           Edit
         </Link>
-        <Link to={`/clusters/${clusterId}/providers/${providerName}/remove/`}>
+        <Link to={`/clusters/${clusterId}/providers/${providerName}/hosts/${hostName}/remove/`}>
           Remove
         </Link>
       </div>
@@ -69,11 +59,10 @@ const Component = React.createClass({
 export const Detail = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: ':providerName',
+  path: ':hostname',
   indexRoute: { component: Detail },
   childRoutes: [
     edit,
-    host,
     remove,
   ],
 };

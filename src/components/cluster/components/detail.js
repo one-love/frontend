@@ -40,12 +40,7 @@ const Component = React.createClass({
     if (this.props.cluster === undefined) {
       return <div></div>;
     }
-    const children = (
-      <div>
-        {this.props.children}
-      </div>
-    );
-    const index = (
+    return (
       <div>
         <ul className="item__list">
           <li className="item__heading">Name: {this.props.cluster.name}</li>
@@ -78,8 +73,6 @@ const Component = React.createClass({
         </Link>
       </div>
     );
-    if (this.props.children) {return children;}
-    return index;
   },
 });
 
