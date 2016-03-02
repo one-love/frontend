@@ -20,7 +20,7 @@ export function isLoggedIn() {
 
 export function requireAuth(nextState, replace) {
   if (!isLoggedIn()) {
-    replace(nextState, '/login/', '');
+    replace('/login/');
   }
 }
 
