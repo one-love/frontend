@@ -1,6 +1,8 @@
 One love web client
 ===================
 
+[![Run Status](https://api.shippable.com/projects/5435679e7a7fb11eaa64b69e/badge?branch=master)](https://app.shippable.com/projects/5435679e7a7fb11eaa64b69e)
+
 This is ReactJS based web client for [One Love](https://one-love.github.io) project.
 
 You will most likely need [One Love's backend server](https://github.com/one-love/backend).
