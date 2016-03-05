@@ -3,6 +3,7 @@ import Layout from '../components/layout';
 import Logout from '../components/auth';
 import Login from '../components/auth/login';
 import Cluster from '../components/cluster';
+import Register from '../components/register/register';
 import { requireAuth } from '../utils';
 
 import { Router } from 'react-router';
@@ -24,6 +25,10 @@ const routes = {
     {
       path: '/login/',
       component: Login,
+    },
+    {
+      path: '/register/',
+      component: Register,
     },
   ],
 };
