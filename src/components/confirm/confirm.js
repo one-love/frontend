@@ -53,7 +53,6 @@ const Confirm = React.createClass({
       default:
         break;
     }
-    console.log(this.props.params.uuid);
     return (
       <div className="form-container">
         {spinner}
