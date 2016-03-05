@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { actions } from './actions';
 import store from '../../store';
 import { history } from '../../constants';
-import { isLoggedIn } from '../../utils';
 
 
 const errorMessages = {
@@ -30,14 +29,20 @@ const Register = React.createClass({
     return {
       email: '',
       password: '',
+      firstName: '',
+      lastName: '',
     };
   },
 
   shouldComponentUpdate(nextProps) {
-    if (nextProps.status == 'success') {
+    if (nextProps.status === 'success') {
       history.push('/login/');
     }
     return true;
+  },
+
+  componentWillUnmount() {
+    store.dispatch(actions.reset());
   },
 
   handleFirstNameChange(event) {

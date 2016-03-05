@@ -4,6 +4,7 @@ import Logout from '../components/auth';
 import Login from '../components/auth/login';
 import Cluster from '../components/cluster';
 import Register from '../components/register/register';
+import Confirm from '../components/confirm/confirm';
 import { requireAuth } from '../utils';
 
 import { Router } from 'react-router';
@@ -29,6 +30,10 @@ const routes = {
     {
       path: '/register/',
       component: Register,
+    },
+    {
+      path: '/confirm/:uuid/',
+      component: Confirm,
     },
   ],
 };
