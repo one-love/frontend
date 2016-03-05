@@ -50,3 +50,5 @@ node_modules
 .tern-project
 
 src/backend_url.js
+
+xunit.xml
