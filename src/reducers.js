@@ -4,10 +4,12 @@ import applicationReducer from './components/cluster/components/application/redu
 import clusterReducer from './components/cluster/reducers';
 import hostReducer from './components/cluster/components/provider/components/host/reducers';
 import providerReducer from './components/cluster/components/provider/reducers';
+import register from './components/register/reducers';
 
 
 const reducers = {
   login,
+  register,
 };
 
 applicationReducer.map(reducer => {
