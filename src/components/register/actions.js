@@ -26,7 +26,7 @@ export const register = (email, password, first_name, last_name) =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/users`,
+      url: `${API_URL}/users/register`,
       body: {
         first_name,
         last_name,
