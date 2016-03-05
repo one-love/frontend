@@ -5,7 +5,7 @@ import { CONFIRM } from '../constants.js';
 
 const confirmTest = describe('Testing confirm', () => {
   it('get initial state', () => {
-    exepct(store.dispatch(actions.reset()))
+    expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
@@ -23,7 +23,7 @@ const confirmTest = describe('Testing confirm', () => {
      })
   }),
    it('get error state', () => {
-     expect(store.dispatch(actions.fail('ErorR')))
+     expect(store.dispatch(actions.fail({ message: 'ErorR'})))
       .toEqual({
         payload: {
           status: 'error',
