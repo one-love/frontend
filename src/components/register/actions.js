@@ -50,6 +50,7 @@ export const register = (email, password, first_name, last_name) =>
   };
 
 const actions = {
+  reset,
   begin,
   success,
   fail,
