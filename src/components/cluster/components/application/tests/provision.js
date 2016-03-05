@@ -4,7 +4,7 @@ import store from '../../../../../store';
 import { APPLICATION_PROVISION } from '../constants';
 
 
-const applicationProvisionTest = describe('Testing application list', () => {
+const applicationProvisionTest = describe('Testing provision application', () => {
    it('get initial state', () => {
      expect(store.dispatch(actions.reset()))
       .toEqual({
