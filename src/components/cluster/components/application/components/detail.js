@@ -5,6 +5,7 @@ import store from '../../../../../store';
 import { Link } from 'react-router';
 import edit from './edit';
 import remove from './remove';
+import provision from './provision';
 
 
 const mapStateToProps = state => ({
@@ -49,6 +50,9 @@ const Component = React.createClass({
         <Link to={`/clusters/${clusterId}/applications/${applicationName}/remove/`}>
           Remove
         </Link>
+        <Link to={`/clusters/${clusterId}/applications/${applicationName}/provision/`}>
+          Provision
+        </Link>
       </div>
     );
   },
@@ -62,6 +66,7 @@ const routes = {
   childRoutes: [
     edit,
     remove,
+    provision,
   ],
 };
 
