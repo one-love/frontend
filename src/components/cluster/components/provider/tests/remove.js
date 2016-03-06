@@ -14,6 +14,16 @@ const providerRemoveTest = describe('Testing of provider', () => {
         type: PROVIDER_REMOVE,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          provider: {},
+          status: 'success',
+        },
+        type: PROVIDER_REMOVE,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

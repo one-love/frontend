@@ -15,6 +15,16 @@ const providerListTest = describe('Testing provider list', () => {
         type: PROVIDER_LIST,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          providers: {},
+          status: 'success',
+        },
+        type: PROVIDER_LIST,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

@@ -14,6 +14,16 @@ const providerEditTest = describe('Testing edit of provider', () => {
         type: PROVIDER_EDIT,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          provider: {},
+          status: 'success',
+        },
+        type: PROVIDER_EDIT,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
