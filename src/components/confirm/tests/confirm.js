@@ -13,6 +13,16 @@ const confirmTest = describe('Testing confirm', () => {
         type: CONFIRM,
       })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          user: {},
+          status: 'success',
+        },
+        type: CONFIRM,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
