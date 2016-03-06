@@ -44,9 +44,11 @@ export const login = (email, password) =>
       });
   };
 
-export const actions = {
+const actions = {
   begin,
   success,
   fail,
   login,
 };
+
+export default actions;
