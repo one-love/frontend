@@ -6,3 +6,4 @@ import auth from './components/auth/tests';
 cluster;
 confirm;
 register;
+auth;
