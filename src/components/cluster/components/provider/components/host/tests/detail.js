@@ -14,6 +14,16 @@ const hostDetailTest = describe('Testing detail of host', () => {
         type: HOST_DETAIL,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          host: {},
+          status: 'success',
+        },
+        type: HOST_DETAIL,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

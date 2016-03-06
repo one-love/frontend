@@ -14,6 +14,16 @@ const hostCreateTest = describe('Testing create of host', () => {
         type: HOST_CREATE,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          host: {},
+          status: 'success',
+        },
+        type: HOST_CREATE,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
