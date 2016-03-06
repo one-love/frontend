@@ -3,9 +3,10 @@ import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
 import { LOGIN } from './constants';
 
-// ------------------------------------
-// Actions
-// ------------------------------------
+export const reset = createAction(LOGIN, () => ({
+  status: 'initial',
+}));
+
 export const begin = createAction(LOGIN, () => ({
   status: 'pending',
 }));
