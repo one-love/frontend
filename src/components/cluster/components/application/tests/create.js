@@ -14,6 +14,16 @@ const applicationCreateTest = describe('Testing create of application', () => {
         type: APPLICATION_CREATE,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          application: {},
+          status: 'success',
+        },
+        type: APPLICATION_CREATE,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

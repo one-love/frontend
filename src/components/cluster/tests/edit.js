@@ -14,6 +14,16 @@ const clusterEditTest = describe('Testing edit of cluster', () => {
         type: CLUSTER_EDIT,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          cluster: {},
+          status: 'success',
+        },
+        type: CLUSTER_EDIT,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

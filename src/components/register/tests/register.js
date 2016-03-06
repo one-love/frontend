@@ -13,6 +13,16 @@ const registerTest = describe('Testing register', () => {
         type: REGISTER,
       })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          user: {},
+          status: 'success',
+        },
+        type: REGISTER,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

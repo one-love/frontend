@@ -14,6 +14,16 @@ const hostEditTest = describe('Testing edit of host', () => {
         type: HOST_EDIT,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          host: {},
+          status: 'success',
+        },
+        type: HOST_EDIT,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

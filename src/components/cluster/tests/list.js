@@ -15,6 +15,16 @@ const clusterListTest = describe('Testing cluster list', () => {
         type: CLUSTER_LIST,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          clusters: {},
+          status: 'success',
+        },
+        type: CLUSTER_LIST,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

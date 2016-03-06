@@ -14,6 +14,18 @@ const clusterDetailTest = describe('Testing detail of cluster', () => {
         type: CLUSTER_DETAIL,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({applications: [], roles: []})))
+      .toEqual({
+        payload: {
+          cluster: {applications: [], roles: []},
+          applications: [],
+          roles: [],
+          status: 'success'
+        },
+        type: CLUSTER_DETAIL,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

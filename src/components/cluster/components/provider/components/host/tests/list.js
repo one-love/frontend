@@ -15,6 +15,16 @@ const hostListTest = describe('Testing host list', () => {
         type: HOST_LIST,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          hosts: {},
+          status: 'success',
+        },
+        type: HOST_LIST,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

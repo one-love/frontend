@@ -14,6 +14,16 @@ const applicationEditTest = describe('Testing edit of application', () => {
         type: APPLICATION_EDIT,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          application: {},
+          status: 'success',
+        },
+        type: APPLICATION_EDIT,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

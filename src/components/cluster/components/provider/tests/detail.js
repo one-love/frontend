@@ -14,6 +14,16 @@ const providerDetailTest = describe('Testing detail of provider', () => {
         type: PROVIDER_DETAIL,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          provider: {},
+          status: 'success',
+        },
+        type: PROVIDER_DETAIL,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

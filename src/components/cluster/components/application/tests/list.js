@@ -15,6 +15,16 @@ const applicationListTest = describe('Testing application list', () => {
         type: APPLICATION_LIST,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          applications: {},
+          status: 'success',
+        },
+        type: APPLICATION_LIST,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

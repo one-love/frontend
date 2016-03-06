@@ -14,6 +14,16 @@ const applicationProvisionTest = describe('Testing provision application', () =>
         type: APPLICATION_PROVISION,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          application: {},
+          status: 'success',
+        },
+        type: APPLICATION_PROVISION,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

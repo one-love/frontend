@@ -14,6 +14,16 @@ const providerCreateTest = describe('Testing create of provider', () => {
         type: PROVIDER_CREATE,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          provider: {},
+          status: 'success',
+        },
+        type: PROVIDER_CREATE,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
