@@ -14,6 +14,16 @@ const applicationDetailTest = describe('Testing detail of application', () => {
         type: APPLICATION_DETAIL,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          application: {},
+          status: 'success',
+        },
+        type: APPLICATION_DETAIL,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({

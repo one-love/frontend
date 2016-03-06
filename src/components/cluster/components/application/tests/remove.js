@@ -14,6 +14,16 @@ const applicationRemoveTest = describe('Testing remove of application', () => {
         type: APPLICATION_REMOVE,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          application: {},
+          status: 'success',
+        },
+        type: APPLICATION_REMOVE,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
