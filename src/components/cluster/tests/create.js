@@ -14,6 +14,16 @@ const clusterCreateTest = describe('Testing create of cluster', () => {
         type: CLUSTER_CREATE,
      })
   }),
+   it('get success state', () => {
+     expect(store.dispatch(actions.success({})))
+      .toEqual({
+        payload: {
+          cluster: {},
+          status: 'success',
+        },
+        type: CLUSTER_CREATE,
+     })
+  }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
