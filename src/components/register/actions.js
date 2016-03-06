@@ -8,6 +8,10 @@ import { REGISTER } from './constants';
 // ------------------------------------
 // Actions
 // ------------------------------------
+export const reset = createAction(REGISTER, () => ({
+  status: 'initial',
+}));
+
 export const begin = createAction(REGISTER, () => ({
   status: 'pending',
 }));
@@ -45,9 +49,12 @@ export const register = (email, password, first_name, last_name) =>
       });
   };
 
-export const actions = {
+const actions = {
+  reset,
   begin,
   success,
   fail,
   register,
 };
+
+export default actions;

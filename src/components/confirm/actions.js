@@ -46,3 +46,5 @@ export const actions = {
   fail,
   confirm,
 };
+
+export default actions;
