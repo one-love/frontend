@@ -3,20 +3,19 @@ import Header from './header';
 import Footer from './footer';
 import OneLove from '../one-love';
 
-const Layout = React.createClass({
-  propTypes: {
-    children: React.PropTypes.node,
-  },
-  render() {
-    const children = this.props.children || <OneLove />;
-    return (
-      <div>
-        <Header />
-          {children}
-        <Footer />
-      </div>
-    );
-  },
-});
+function Layout(props) {
+  const children = props.children || <OneLove />;
+  return (
+    <div>
+      <Header />
+        {children}
+      <Footer />
+    </div>
+  );
+}
+
+Layout.propTypes = {
+  children: React.PropTypes.node,
+};
 
 export default Layout;

@@ -38,12 +38,10 @@ const routes = {
   ],
 };
 
-const Main = React.createClass({
-  render() {
-    return (
-      <Router history={history} routes={routes} />
-    );
-  },
-});
+function Main() {
+  return (
+    <Router history={history} routes={routes} />
+  );
+}
 
 export default Main;
