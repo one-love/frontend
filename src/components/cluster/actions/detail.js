@@ -10,7 +10,7 @@ export const success = createAction(CLUSTER_DETAIL, cluster => ({
   cluster,
   applications: cluster.applications,
   roles: cluster.roles,
-  status: 'success'
+  status: 'success',
 }));
 
 export const fail = createAction(CLUSTER_DETAIL, error => ({
