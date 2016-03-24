@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import actions from './actions/list';
 import store from '../../store';
+import create from './components/create';
 
 const mapStateToProps = state => ({
   services: state.serviceList.services,
@@ -42,6 +44,7 @@ const Component = React.createClass({
             )
           }
         </ul>
+        <Link to={'/services/create/'}>Create</Link>
       </div>
     );
     if (this.props.children) {return children;}
@@ -54,6 +57,9 @@ export const List = connect(mapStateToProps, actions)(Component);
 const routes = {
   path: 'services',
   indexRoute: { component: List },
+  childRoutes: [
+    create,
+  ],
 };
 
 export default routes;
