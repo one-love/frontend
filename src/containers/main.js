@@ -3,6 +3,7 @@ import Layout from '../components/layout';
 import Logout from '../components/auth';
 import Login from '../components/auth/login';
 import Cluster from '../components/cluster';
+import Service from '../components/service';
 import Register from '../components/register/register';
 import Confirm from '../components/confirm/confirm';
 import { requireAuth } from '../utils';
@@ -21,6 +22,7 @@ const routes = {
       childRoutes: [
         Logout,
         Cluster,
+        Service,
       ],
     },
     {
