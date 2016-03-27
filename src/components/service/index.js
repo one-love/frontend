@@ -2,26 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from './actions/list';
-import store from '../../../../store';
+import store from '../../store';
 import create from './components/create';
 import detail from './components/detail';
 
-
 const mapStateToProps = state => ({
-  applications: state.applicationList.applications,
-  status: state.applicationList.status,
+  services: state.serviceList.services,
+  status: state.serviceList.status,
 });
 
 const Component = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
-    params: React.PropTypes.object,
-    applications: React.PropTypes.array,
+    services: React.PropTypes.array,
     status: React.PropTypes.string,
   },
 
   componentWillMount() {
-    store.dispatch(actions.get(this.props.params.clusterId));
+    store.dispatch(actions.get());
   },
 
   componentWillUnmount() {
@@ -29,32 +27,39 @@ const Component = React.createClass({
   },
 
   render() {
-    return (
+    const children = (
       <div>
-        <h2>My applications:</h2>
+        {this.props.children}
+      </div>
+    );
+    const index = (
+      <div>
+        <h2>My services:</h2>
         <ul>
           {
-            this.props.applications.map(
-              application =>
-              <li key={application.name}>
+            this.props.services.map(
+              service =>
+              <li key={service.id}>
               <Link
-                key={application.id}
-                to={`/clusters/${this.props.params.clusterId}/applications/${application.name}/`}
-                application={application}
-              > {application.name} </Link> </li>
+                key={service.id}
+                to={`/services/${service.id}/`}
+                cluster={service}
+              > {service.name} </Link> </li>
             )
           }
         </ul>
-        <Link to={`/clusters/${this.props.params.clusterId}/applications/create/`}>Create</Link>
+        <Link to={'/services/create/'}>Create</Link>
       </div>
     );
+    if (this.props.children) {return children;}
+    return index;
   },
 });
 
 export const List = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'applications',
+  path: 'services',
   indexRoute: { component: List },
   childRoutes: [
     create,

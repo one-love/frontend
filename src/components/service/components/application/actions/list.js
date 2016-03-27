@@ -23,11 +23,11 @@ export const fail = createAction(APPLICATION_LIST, error => ({
   error,
 }));
 
-export const get = clusterId =>
+export const get = serviceId =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters/${clusterId}/applications`,
+      url: `${API_URL}/services/${serviceId}/applications`,
       method: 'get',
     })
       .then(applications => {

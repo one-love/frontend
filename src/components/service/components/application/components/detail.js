@@ -5,7 +5,6 @@ import store from '../../../../../store';
 import { Link } from 'react-router';
 import edit from './edit';
 import remove from './remove';
-import provision from './provision';
 
 
 const mapStateToProps = state => ({
@@ -26,7 +25,7 @@ const Component = React.createClass({
 
   componentWillMount() {
     store.dispatch(actions.get(
-      this.props.params.clusterId,
+      this.props.params.serviceId,
       this.props.params.applicationName
     ));
   },
@@ -36,7 +35,7 @@ const Component = React.createClass({
   },
 
   render() {
-    const clusterId = this.props.params.clusterId;
+    const serviceId = this.props.params.serviceId;
     const applicationName = this.props.params.applicationName;
     if (this.props.application === undefined) {
       return <div></div>;
@@ -44,14 +43,11 @@ const Component = React.createClass({
     return (
       <div>
         <h2>Application {applicationName}</h2>
-        <Link to={`/clusters/${clusterId}/applications/${applicationName}/edit/`}>
+        <Link to={`/services/${serviceId}/applications/${applicationName}/edit/`}>
           Edit
         </Link>
-        <Link to={`/clusters/${clusterId}/applications/${applicationName}/remove/`}>
+        <Link to={`/services/${serviceId}/applications/${applicationName}/remove/`}>
           Remove
-        </Link>
-        <Link to={`/clusters/${clusterId}/applications/${applicationName}/provision/`}>
-          Provision
         </Link>
       </div>
     );
@@ -66,7 +62,6 @@ const routes = {
   childRoutes: [
     edit,
     remove,
-    provision,
   ],
 };
 

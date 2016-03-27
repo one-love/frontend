@@ -16,11 +16,11 @@ export const fail = createAction(APPLICATION_DETAIL, error => ({
   error,
 }));
 
-export const get = (clusterId, applicationName) =>
+export const get = (serviceId, applicationName) =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters/${clusterId}/applications/${applicationName}`,
+      url: `${API_URL}/services/${serviceId}/applications/${applicationName}`,
     })
       .then(application => {
         dispatch(success(application));

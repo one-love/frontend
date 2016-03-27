@@ -23,11 +23,11 @@ export const fail = createAction(APPLICATION_EDIT, error => ({
   error,
 }));
 
-export const edit = (clusterId, applicationName, name, galaxy_role) =>
+export const edit = (serviceId, applicationName, name, galaxy_role) =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters/${clusterId}/applications/${applicationName}`,
+      url: `${API_URL}/services/${serviceId}/applications/${applicationName}`,
       method: 'put',
       body: {
         name,

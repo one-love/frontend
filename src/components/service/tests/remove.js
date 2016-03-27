@@ -1,28 +1,27 @@
 import expect from 'expect';
-import actions from '../actions/detail';
+import actions from '../actions/remove';
 import store from '../../../store';
-import { CLUSTER_DETAIL } from '../constants';
+import { SERVICE_REMOVE } from '../constants';
 
 
-const clusterDetailTest = describe('Testing detail of cluster', () => {
+const serviceRemoveTest = describe('Testing remove of service', () => {
    it('get initial state', () => {
      expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_REMOVE,
      })
   }),
    it('get success state', () => {
-     expect(store.dispatch(actions.success({roles: []})))
+     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          cluster: {roles: []},
-          roles: [],
-          status: 'success'
+          service: {},
+          status: 'success',
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_REMOVE,
      })
   }),
    it('get pending state', () => {
@@ -31,19 +30,19 @@ const clusterDetailTest = describe('Testing detail of cluster', () => {
         payload: {
           status: 'pending',
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_REMOVE,
      })
   }),
-   it('get pending state', () => {
+   it('get error state', () => {
      expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
         payload: {
           status: 'error',
           error: 'ErorR',
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_REMOVE,
      })
   })
 });
 
-export default clusterDetailTest;
+export default serviceRemoveTest;

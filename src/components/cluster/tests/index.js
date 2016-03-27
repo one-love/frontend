@@ -4,7 +4,6 @@ import clusterRemoveTest from './remove';
 import clusterEditTest from './edit';
 import clusterCreateTest from './create';
 
-import application from '../components/application/tests';
 import provider from '../components/provider/tests';
 
 const cluster = {
@@ -13,7 +12,6 @@ const cluster = {
   clusterEditTest,
   clusterCreateTest,
   clusterRemoveTest,
-  application,
   provider,
 };
 

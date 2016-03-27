@@ -1,28 +1,27 @@
 import expect from 'expect';
 import actions from '../actions/detail';
 import store from '../../../store';
-import { CLUSTER_DETAIL } from '../constants';
+import { SERVICE_DETAIL } from '../constants';
 
 
-const clusterDetailTest = describe('Testing detail of cluster', () => {
+const serviceDetailTest = describe('Testing detail of service', () => {
    it('get initial state', () => {
      expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_DETAIL,
      })
   }),
    it('get success state', () => {
-     expect(store.dispatch(actions.success({roles: []})))
+     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          cluster: {roles: []},
-          roles: [],
+          service: {},
           status: 'success'
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_DETAIL,
      })
   }),
    it('get pending state', () => {
@@ -31,7 +30,7 @@ const clusterDetailTest = describe('Testing detail of cluster', () => {
         payload: {
           status: 'pending',
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_DETAIL,
      })
   }),
    it('get pending state', () => {
@@ -41,9 +40,9 @@ const clusterDetailTest = describe('Testing detail of cluster', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_DETAIL,
      })
   })
 });
 
-export default clusterDetailTest;
+export default serviceDetailTest;

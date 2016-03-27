@@ -25,7 +25,7 @@ const Component = React.createClass({
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/clusters/${nextProps.params.clusterId}/applications/`);
+      history.push(`/services/${nextProps.params.serviceId}/applications/`);
       return false;
     }
     return true;
@@ -42,7 +42,7 @@ const Component = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
     store.dispatch(actions.remove(
-      this.props.params.clusterId,
+      this.props.params.serviceId,
       this.props.params.applicationName
     ));
   },

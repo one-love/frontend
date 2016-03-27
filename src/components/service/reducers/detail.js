@@ -1,11 +1,11 @@
-import { APPLICATION_PROVISION } from '../constants';
+import { SERVICE_DETAIL } from '../constants';
 
-export default function applicationProvision(
+export default function serviceDetail(
   state = { status: 'initial' },
   action
 ) {
   switch (action.type) {
-    case APPLICATION_PROVISION:
+    case SERVICE_DETAIL:
       return action.payload;
     default:
       return state;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../actions/provision';
-import store from '../../../../../store';
-import { history } from '../../../../../constants';
+import actions from '../actions/remove';
+import store from '../../../store';
+import { history } from '../../../constants';
 
 
 const errorMessages = {
@@ -11,34 +11,21 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  application: state.applicationProvision.application,
-  status: state.applicationProvision.status,
-  error: state.applicationProvision.error,
+  status: state.serviceRemove.status,
+  error: state.serviceRemove.error,
 });
 
 
 const Component = React.createClass({
   propTypes: {
-    application: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
   },
 
-  componentWillMount() {
-    store.dispatch(
-      actions.provision(
-        this.props.params.clusterId,
-        this.props.params.applicationName
-      )
-    );
-  },
-
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(
-        `/clusters/${nextProps.params.clusterId}/applications/${nextProps.application.name}/`
-      );
+      history.push('/services/');
       return false;
     }
     return true;
@@ -46,6 +33,15 @@ const Component = React.createClass({
 
   componentWillUnmount() {
     store.dispatch(actions.reset());
+  },
+
+  handleNameChange(event) {
+    this.setState({ name: event.target.value });
+  },
+
+  handleSubmit(event) {
+    event.preventDefault();
+    store.dispatch(actions.remove(this.props.params.serviceId));
   },
 
   render() {
@@ -65,17 +61,23 @@ const Component = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Provision Application</h1>
+        <h1 className="form__title">Remove Service</h1>
+        <form role="form" onSubmit={this.handleSubmit}>
+          <div className="form__item">
+            <label htmlFor="name">Are you sure?</label>
+          </div>
+          <button className="button button--primary">Remove</button>
+        </form>
       </div>
     );
   },
 });
 
-export const Provision = connect(mapStateToProps, actions)(Component);
+export const Remove = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'provision',
-  component: Provision,
+  path: 'remove',
+  component: Remove,
 };
 
 export default routes;

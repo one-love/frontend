@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../actions/create';
-import store from '../../../../../store';
-import { history } from '../../../../../constants';
+import actions from '../actions/edit';
+import store from '../../../store';
+import { history } from '../../../constants';
 
 
 const errorMessages = {
@@ -10,18 +10,14 @@ const errorMessages = {
 };
 
 
-const mapStateToProps = state => {
-  const data = {
-    application: state.applicationCreate.application,
-    status: state.applicationCreate.status,
-  };
-  return data;
-};
+const mapStateToProps = state => ({
+  status: state.serviceEdit.status,
+  error: state.serviceEdit.error,
+});
 
 
 const Component = React.createClass({
   propTypes: {
-    application: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
@@ -30,15 +26,12 @@ const Component = React.createClass({
   getInitialState() {
     return {
       name: '',
-      galaxy_role: '',
     };
   },
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(
-        `/clusters/${nextProps.params.clusterId}/applications/${this.state.name}/`
-      );
+      history.push(`/services/${nextProps.params.serviceId}/`);
       return false;
     }
     return true;
@@ -52,17 +45,9 @@ const Component = React.createClass({
     this.setState({ name: event.target.value });
   },
 
-  handleTypeChange(event) {
-    this.setState({ galaxy_role: event.target.value });
-  },
-
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.create(
-      this.props.params.clusterId,
-      this.state.name,
-      this.state.galaxy_role
-    ));
+    store.dispatch(actions.edit(this.props.params.serviceId, this.state.name));
   },
 
   render() {
@@ -82,7 +67,7 @@ const Component = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Create Application</h1>
+        <h1 className="form__title">Edit Service</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
             <label htmlFor="name">Name</label>
@@ -95,29 +80,18 @@ const Component = React.createClass({
               onChange={this.handleNameChange}
             />
           </div>
-          <div className="form__item">
-            <label htmlFor="galaxy_role">Type</label>
-            <input
-              autoFocus
-              type="text"
-              className="form__field"
-              id="galaxy_role"
-              placeholder="galaxy_role"
-              onChange={this.handleTypeChange}
-            />
-          </div>
-          <button className="button button--primary">Create</button>
+          <button className="button button--primary">Edit</button>
         </form>
       </div>
     );
   },
 });
 
-export const Create = connect(mapStateToProps, actions)(Component);
+export const Edit = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'create',
-  component: Create,
+  path: 'edit',
+  component: Edit,
 };
 
 export default routes;

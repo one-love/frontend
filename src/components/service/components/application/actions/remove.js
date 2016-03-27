@@ -21,11 +21,11 @@ export const fail = createAction(APPLICATION_REMOVE, error => ({
   error,
 }));
 
-export const remove = (clusterId, applicationName) =>
+export const remove = (serviceId, applicationName) =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters/${clusterId}/applications/${applicationName}`,
+      url: `${API_URL}/services/${serviceId}/applications/${applicationName}`,
       method: 'delete',
     })
       .then(application => {

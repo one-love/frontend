@@ -1,28 +1,28 @@
 import expect from 'expect';
-import actions from '../actions/detail';
+import actions from '../actions/list';
 import store from '../../../store';
-import { CLUSTER_DETAIL } from '../constants';
+import { SERVICE_LIST } from '../constants';
 
 
-const clusterDetailTest = describe('Testing detail of cluster', () => {
+const serviceListTest = describe('Testing service list', () => {
    it('get initial state', () => {
      expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
+          services: [],
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_LIST,
      })
   }),
    it('get success state', () => {
-     expect(store.dispatch(actions.success({roles: []})))
+     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          cluster: {roles: []},
-          roles: [],
-          status: 'success'
+          services: {},
+          status: 'success',
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_LIST,
      })
   }),
    it('get pending state', () => {
@@ -30,20 +30,22 @@ const clusterDetailTest = describe('Testing detail of cluster', () => {
       .toEqual({
         payload: {
           status: 'pending',
+          services: [],
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_LIST,
      })
   }),
-   it('get pending state', () => {
-     expect(store.dispatch(actions.fail('ErorR')))
+
+   it('get error state', () => {
+     expect(store.dispatch(actions.fail('erroR')))
       .toEqual({
         payload: {
           status: 'error',
-          error: 'ErorR',
+          error: 'erroR'
         },
-        type: CLUSTER_DETAIL,
+        type: SERVICE_LIST,
      })
   })
 });
 
-export default clusterDetailTest;
+export default serviceListTest;

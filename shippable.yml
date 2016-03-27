@@ -1,13 +1,14 @@
 language: node_js
 
 node_js:
-    - 5.5.0
+    - 5.9.1
 
 install:
     - npm install -g npm
     - npm install
 
 before_script:
+    - ./root/.nvm/nvm.sh && nvm use 5.9.1
     - echo "export const API_URL = 'http://localhost:5000/api/v0';" > ./src/backend_url.js
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage

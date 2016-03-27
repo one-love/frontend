@@ -1,27 +1,27 @@
 import expect from 'expect';
-import actions from '../actions/provision';
-import store from '../../../../../store';
-import { APPLICATION_PROVISION } from '../constants';
+import actions from '../actions/edit';
+import store from '../../../store';
+import { SERVICE_EDIT } from '../constants';
 
 
-const applicationProvisionTest = describe('Testing provision application', () => {
+const serviceEditTest = describe('Testing edit of service', () => {
    it('get initial state', () => {
      expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: APPLICATION_PROVISION,
+        type: SERVICE_EDIT,
      })
   }),
    it('get success state', () => {
      expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          application: {},
+          service: {},
           status: 'success',
         },
-        type: APPLICATION_PROVISION,
+        type: SERVICE_EDIT,
      })
   }),
    it('get pending state', () => {
@@ -30,20 +30,19 @@ const applicationProvisionTest = describe('Testing provision application', () =>
         payload: {
           status: 'pending',
         },
-        type: APPLICATION_PROVISION,
+        type: SERVICE_EDIT,
      })
   }),
-
    it('get error state', () => {
-     expect(store.dispatch(actions.fail('erroR')))
+     expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
         payload: {
           status: 'error',
-          error: 'erroR'
+          error: 'ErorR',
         },
-        type: APPLICATION_PROVISION,
+        type: SERVICE_EDIT,
      })
   })
 });
 
-export default applicationProvisionTest;
+export default serviceEditTest;
