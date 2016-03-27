@@ -8,7 +8,6 @@ export const begin = createAction(CLUSTER_DETAIL, () => ({ status: 'pending' }))
 
 export const success = createAction(CLUSTER_DETAIL, cluster => ({
   cluster,
-  applications: cluster.applications,
   roles: cluster.roles,
   status: 'success',
 }));

@@ -6,13 +6,11 @@ import { Link } from 'react-router';
 import edit from './edit';
 import remove from './remove';
 import provider from './provider';
-import application from './application';
 
 
 const mapStateToProps = (state) => {
   const data = {
     cluster: state.clusterDetail.cluster,
-    applications: state.clusterDetail.applications,
     roles: state.clusterDetail.roles,
   };
   return data;
@@ -23,7 +21,6 @@ const Component = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     cluster: React.PropTypes.object,
-    applications: React.PropTypes.array,
     roles: React.PropTypes.array,
     params: React.PropTypes.object,
   },
@@ -44,11 +41,6 @@ const Component = React.createClass({
       <div>
         <ul className="item__list">
           <li className="item__heading">Name: {this.props.cluster.name}</li>
-          <li className="item__child">
-            <Link to={`/clusters/${this.props.params.clusterId}/applications/`}>
-              Applications
-            </Link>
-          </li>
           <li className="item__child">
             <Link to={`/clusters/${this.props.params.clusterId}/providers/`}>
               Providers
@@ -85,7 +77,6 @@ const routes = {
     edit,
     remove,
     provider,
-    application,
   ],
 };
 
