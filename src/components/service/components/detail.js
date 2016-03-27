@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/detail';
 import store from '../../../store';
+import remove from '../components/remove';
+import { Link } from 'react-router';
 
 const mapStateToProps = (state) => {
   const data = {
@@ -40,6 +42,9 @@ const Component = React.createClass({
             Author: {this.props.service.user.email}
           </li>
         </ul>
+        <Link to={`/services/${this.props.params.serviceId}/remove/`}>
+          Remove
+        </Link>
       </div>
     );
   },
@@ -50,6 +55,9 @@ export const Detail = connect(mapStateToProps, actions)(Component);
 const routes = {
   path: ':serviceId',
   indexRoute: { component: Detail },
+  childRoutes: [
+    remove,
+  ],
 };
 
 export default routes;
