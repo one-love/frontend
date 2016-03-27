@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import login from './components/auth/reducers';
-import applicationReducer from './components/cluster/components/application/reducers';
+/* import applicationReducer from './components/cluster/components/application/reducers'; */
 import clusterReducer from './components/cluster/reducers';
 import serviceReducer from './components/service/reducers';
 import hostReducer from './components/cluster/components/provider/components/host/reducers';
@@ -15,10 +15,10 @@ const reducers = {
   register,
 };
 
-applicationReducer.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
+/* applicationReducer.map(reducer => {
+   reducers[reducer.name] = reducer;
+   return undefined;
+   }); */
 
 clusterReducer.map(reducer => {
   reducers[reducer.name] = reducer;

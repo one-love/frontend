@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import actions from './actions/list';
 import store from '../../store';
 import create from './components/create';
+import detail from './components/detail';
 
 const mapStateToProps = state => ({
   services: state.serviceList.services,
@@ -39,8 +40,11 @@ const Component = React.createClass({
             this.props.services.map(
               service =>
               <li key={service.id}>
-                <h4>{service.name}</h4>
-              </li>
+              <Link
+                key={service.id}
+                to={`/services/${service.id}/`}
+                cluster={service}
+              > {service.name} </Link> </li>
             )
           }
         </ul>
@@ -59,6 +63,7 @@ const routes = {
   indexRoute: { component: List },
   childRoutes: [
     create,
+    detail,
   ],
 };
 
