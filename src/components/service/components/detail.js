@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/detail';
 import store from '../../../store';
 import remove from '../components/remove';
+import edit from '../components/edit';
 import { Link } from 'react-router';
 
 const mapStateToProps = (state) => {
@@ -45,6 +46,9 @@ const Component = React.createClass({
         <Link to={`/services/${this.props.params.serviceId}/remove/`}>
           Remove
         </Link>
+        <Link to={`/services/${this.props.params.serviceId}/edit/`}>
+          Edit
+        </Link>
       </div>
     );
   },
@@ -57,6 +61,7 @@ const routes = {
   indexRoute: { component: Detail },
   childRoutes: [
     remove,
+    edit,
   ],
 };
 
