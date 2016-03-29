@@ -1,0 +1,1 @@
+export const CLUSTER_SERVICE = 'CLUSTER_SERVICE';
