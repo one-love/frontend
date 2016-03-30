@@ -5,7 +5,7 @@ import store from '../../../../store';
 import { history } from '../../../../constants';
 
 const mapStateToProps = state => ({
-  services: state.clusterService.services,
+  services: state.serviceList.services,
   status: state.clusterService.status,
 });
 
@@ -28,7 +28,7 @@ const Component = React.createClass({
   },
 
   shouldComponentUpdate(nextProps) {
-    if (nextProps.status === 'success_add') {
+    if (nextProps.status === 'success') {
       history.push(`/clusters/${nextProps.params.clusterId}/`);
       return false;
     }

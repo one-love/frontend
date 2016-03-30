@@ -4,6 +4,7 @@ import { createAction } from 'redux-actions';
 import { fetch } from '../../../../../utils';
 import { API_URL } from '../../../../../backend_url';
 import { CLUSTER_SERVICE } from '../constants';
+import get_services from '../../../../service/actions/list';
 
 export const reset = createAction(CLUSTER_SERVICE, () => ({
   status: 'initial',
@@ -13,14 +14,9 @@ export const begin = createAction(CLUSTER_SERVICE, () => ({
   status: 'pending',
 }));
 
-export const success_get = createAction(CLUSTER_SERVICE, services => ({
-  services,
-  status: 'success_get',
-}));
-
 export const success_add = createAction(CLUSTER_SERVICE, service => ({
   service,
-  status: 'success_add',
+  status: 'success',
 }));
 
 export const fail = createAction(CLUSTER_SERVICE, error => ({
@@ -31,15 +27,17 @@ export const fail = createAction(CLUSTER_SERVICE, error => ({
 export const add = (clusterId, service) =>
   dispatch => {
     dispatch(begin());
+    const email = window.localStorage.email;
     fetch({
       url: `${API_URL}/clusters/${clusterId}/services`,
       method: 'post',
       body: {
         service,
+        email,
       },
     })
       .then(srvc => {
-        dispatch(success_add(srvc));
+        dispatch(success(srvc));
         return srvc;
       })
       .catch(error => {
@@ -47,22 +45,7 @@ export const add = (clusterId, service) =>
       });
   };
 
-export const get = () =>
-  dispatch => {
-    dispatch(begin());
-    fetch({
-      url: `${API_URL}/services`,
-      method: 'get',
-    })
-      .then(services => {
-        dispatch(success_get(services));
-        return services;
-      })
-      .catch(error => {
-        dispatch(fail(error.message));
-      });
-  };
-
+export const get = get_services.get;
 
 const actions = {
   reset,
