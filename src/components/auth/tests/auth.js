@@ -11,7 +11,7 @@ const loginTest = describe('Testing login', () => {
           status: 'pending',
         },
         type: LOGIN,
-     })
+      });
   }),
    it('get error state', () => {
      expect(store.dispatch(actions.fail({ message: 'ErorR'})))
@@ -21,8 +21,8 @@ const loginTest = describe('Testing login', () => {
           error: 'ErorR',
         },
         type: LOGIN,
-     })
-  })
+      });
+   });
 });
 
 export default loginTest;
