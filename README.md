@@ -1,8 +1,8 @@
-[![Stories in Ready](https://badge.waffle.io/one-love/web-client.png?label=ready&title=Ready)](https://waffle.io/one-love/web-client)
 One love web client
 ===================
 
 [![Run Status](https://api.shippable.com/projects/5435679e7a7fb11eaa64b69e/badge?branch=master)](https://app.shippable.com/projects/5435679e7a7fb11eaa64b69e)
+[![Stories in Ready](https://badge.waffle.io/one-love/web-client.png?label=ready&title=Ready)](https://waffle.io/one-love/web-client)
 
 This is ReactJS based web client for [One Love](https://one-love.github.io) project.
 
