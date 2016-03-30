@@ -14,7 +14,7 @@ export const begin = createAction(CLUSTER_SERVICE, () => ({
   status: 'pending',
 }));
 
-export const success_add = createAction(CLUSTER_SERVICE, service => ({
+export const success = createAction(CLUSTER_SERVICE, service => ({
   service,
   status: 'success',
 }));
@@ -50,8 +50,7 @@ export const get = get_services.get;
 const actions = {
   reset,
   begin,
-  success_get,
-  success_add,
+  success,
   fail,
   add,
   get,
