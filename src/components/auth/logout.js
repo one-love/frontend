@@ -28,7 +28,6 @@ const Logout = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
     window.localStorage.removeItem('OneLoveAuthToken');
-    window.localStorage.removeItem('email');
     history.push(postLogoutURL);
   },
 

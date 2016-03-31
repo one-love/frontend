@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../actions/remove';
+import actions from '../actions/provision';
 import store from '../../../../../store';
 import { history } from '../../../../../constants';
 
@@ -11,8 +11,8 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  status: state.clusterServiceRemove.status,
-  error: state.clusterServiceRemove.error,
+  status: state.provision.status,
+  error: state.provision.error,
 });
 
 
@@ -25,7 +25,7 @@ const Component = React.createClass({
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/clusters/${this.props.params.clusterId}`);
+      history.push('/');
       return false;
     }
     return true;
@@ -41,7 +41,7 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.remove(
+    store.dispatch(actions.provision(
       this.props.params.clusterId,
       this.props.params.serviceName,
       this.props.params.username
@@ -65,23 +65,23 @@ const Component = React.createClass({
       <div className="form-container">
         {spinner}
         {error}
-        <h1 className="form__title">Remove Service</h1>
+        <h1 className="form__title">Run provision</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
-            <label htmlFor="name">Are you sure?</label>
+            <label htmlFor="name">Are you sure to run provision?</label>
           </div>
-          <button className="button button--primary">Remove</button>
+          <button className="button button--primary">Run</button>
         </form>
       </div>
     );
   },
 });
 
-export const Remove = connect(mapStateToProps, actions)(Component);
+export const Provision = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: ':username/:serviceName/remove',
-  component: Remove,
+  path: ':username/:serviceName/provision',
+  component: Provision,
 };
 
 export default routes;

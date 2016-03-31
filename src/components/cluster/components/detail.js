@@ -8,6 +8,8 @@ import remove from './remove';
 import provider from './provider';
 import service from './service/components/create';
 import ServiceComponent from './service';
+import removeService from '../components/service/components/remove';
+import provision from '../components/service/components/provision';
 
 
 const mapStateToProps = (state) => {
@@ -63,7 +65,14 @@ const Component = React.createClass({
               <span className="item__value">{
                   this.props.cluster.services.length ?
                   this.props.cluster.services.map(
-                    (serv) => <ServiceComponent {...serv} key={serv.id} />
+                    (serv) =>
+                        <ServiceComponent
+                          clusterId={this.props.params.clusterId}
+                          name={serv.name}
+                          serviceId={serv.id}
+                          username={serv.user.email}
+                          key={serv.id}
+                        />
                   ) :
                   'No service right now'
               }</span>
@@ -76,7 +85,7 @@ const Component = React.createClass({
           Remove
         </Link>
         <Link to={`/clusters/${this.props.params.clusterId}/service/`}>
-          Create Service
+          Add Service
         </Link>
       </div>
     );
@@ -93,6 +102,8 @@ const routes = {
     remove,
     provider,
     service,
+    removeService,
+    provision,
   ],
 };
 

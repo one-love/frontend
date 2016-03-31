@@ -9,7 +9,6 @@ import register from './components/register/reducers';
 import confirm from './components/confirm/reducers';
 import clusterServiceReducer from './components/cluster/components/service/reducers/';
 
-
 const reducers = {
   confirm,
   login,

@@ -1,10 +1,7 @@
-/* eslint camelcase: 0 */
-
 import { createAction } from 'redux-actions';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
 import { LOGIN } from './constants';
-import get_me from './me';
 
 export const reset = createAction(LOGIN, () => ({
   status: 'initial',
@@ -41,7 +38,6 @@ export const login = (email, password) =>
     })
       .then(token => {
         dispatch(success(token));
-        dispatch(get_me.get());
         return token;
       })
       .catch(error => {

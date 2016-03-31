@@ -1,11 +1,11 @@
-import { CLUSTER_SERVICE_REMOVE } from '../constants';
+import { PROVISION } from '../constants';
 
-export default function clusterServiceRemove(
+export default function provision(
   state = { status: 'initial' },
   action
 ) {
   switch (action.type) {
-    case CLUSTER_SERVICE_REMOVE:
+    case PROVISION:
       return action.payload;
     default:
       return state;
