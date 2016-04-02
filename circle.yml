@@ -1,0 +1,14 @@
+#
+# CircleCI Configuration
+#
+
+# Machine Settings
+
+machine:
+  node:
+    version: 5.9.1
+
+test:
+  override:
+    - echo "export const API_URL = 'http://localhost:5000/api/v0';" > ./src/backend_url.js
+    - npm test
