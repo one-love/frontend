@@ -7,7 +7,7 @@ import hostReducer from './components/cluster/components/provider/components/hos
 import providerReducer from './components/cluster/components/provider/reducers';
 import register from './components/register/reducers';
 import confirm from './components/confirm/reducers';
-
+import clusterServiceReducer from './components/cluster/components/service/reducers/';
 
 const reducers = {
   confirm,
@@ -36,6 +36,11 @@ hostReducer.map(reducer => {
 });
 
 providerReducer.map(reducer => {
+  reducers[reducer.name] = reducer;
+  return undefined;
+});
+
+clusterServiceReducer.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
 });
