@@ -1,0 +1,13 @@
+#
+# CircleCI Configuration
+#
+
+# Machine Settings
+
+machine:
+  node:
+    version: 5.7
+
+test:
+  override:
+    - npm test
