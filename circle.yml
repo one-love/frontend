@@ -6,7 +6,7 @@
 
 machine:
   node:
-    version: 5.7
+    version: 5.9.1
 
 test:
   override:
