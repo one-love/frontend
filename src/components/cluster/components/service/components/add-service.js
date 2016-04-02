@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../actions/addService';
+import actions from '../actions/add-service';
 import store from '../../../../../store';
 import { history } from '../../../../../constants';
+
+const errorMessages = {
+  CONFLICT: 'CONFLICT, maybe this service alredy exist in cluster',
+};
 
 const mapStateToProps = state => ({
   services: state.serviceList.services,
   status: state.clusterService.status,
+  error: state.clusterService.error,
 });
 
 const Component = React.createClass({
@@ -15,11 +20,13 @@ const Component = React.createClass({
     services: React.PropTypes.array,
     status: React.PropTypes.string,
     params: React.PropTypes.object,
+    error: React.PropTypes.string,
   },
 
   getInitialState() {
     return {
       name: '',
+      username: '',
     };
   },
 
@@ -40,12 +47,17 @@ const Component = React.createClass({
   },
 
   handleNameChange(event) {
-    this.setState({ name: event.target.value });
+    const service = event.target.value;
+    const serviceName = service.substring(0, service.lastIndexOf('/'));
+    const serviceUsername = service.substring(service.lastIndexOf('/') + 1, service.length);
+    this.setState({ name: serviceName, username: serviceUsername });
   },
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.add(this.props.params.clusterId, this.state.name));
+    store.dispatch(
+      actions.add(this.props.params.clusterId, this.state.name, this.state.username)
+    );
   },
 
   render() {
@@ -57,17 +69,32 @@ const Component = React.createClass({
         {this.props.children}
       </div>
     );
+    let spinner = '';
+    let error = '';
+    switch (this.props.status) {
+      case 'pending':
+        spinner = <div>spinner</div>;
+        break;
+      case 'error':
+        error = <div>{errorMessages[this.props.error]}</div>;
+        break;
+      default:
+        break;
+    }
     const index = (
       <div>
+      {spinner}
+      {error}
         <h2>My services:</h2>
-        <select onClick={this.handleNameChange}>
+        <select onClick={this.handleNameChange} >
           {
             this.props.services.map(
               service =>
               <option
                 key={service.id}
-                cluster={service}
-              > {service.name} </option>
+                service={service}
+                username={service.user.username}
+              > {service.name}/{service.user.username} </option>
             )
           }
         </select>

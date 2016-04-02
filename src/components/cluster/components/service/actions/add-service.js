@@ -24,16 +24,15 @@ export const fail = createAction(CLUSTER_SERVICE, error => ({
   error,
 }));
 
-export const add = (clusterId, service) =>
+export const add = (clusterId, service, username) =>
   dispatch => {
     dispatch(begin());
-    const email = window.localStorage.email;
     fetch({
       url: `${API_URL}/clusters/${clusterId}/services`,
       method: 'post',
       body: {
         service,
-        email,
+        username,
       },
     })
       .then(srvc => {

@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import edit from './edit';
 import remove from './remove';
 import provider from './provider';
-import service from './service/components/create';
+import service from './service/components/add-service';
 import ServiceComponent from './service';
 import removeService from '../components/service/components/remove';
 import provision from '../components/service/components/provision';
@@ -70,7 +70,7 @@ const Component = React.createClass({
                           clusterId={this.props.params.clusterId}
                           name={serv.name}
                           serviceId={serv.id}
-                          username={serv.user.email}
+                          username={serv.user.username}
                           key={serv.id}
                         />
                   ) :
