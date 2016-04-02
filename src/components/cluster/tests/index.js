@@ -5,6 +5,7 @@ import clusterEditTest from './edit';
 import clusterCreateTest from './create';
 
 import provider from '../components/provider/tests';
+import clusterService from '../components/service/test';
 
 const cluster = {
   clusterDetailTest,
@@ -13,6 +14,7 @@ const cluster = {
   clusterCreateTest,
   clusterRemoveTest,
   provider,
+  clusterService,
 };
 
 export default cluster;
