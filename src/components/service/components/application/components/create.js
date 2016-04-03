@@ -116,7 +116,7 @@ const Component = React.createClass({
 export const Create = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'create',
+  path: 'applications/create',
   component: Create,
 };
 

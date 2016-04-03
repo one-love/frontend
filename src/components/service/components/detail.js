@@ -4,7 +4,8 @@ import actions from '../actions/detail';
 import store from '../../../store';
 import remove from '../components/remove';
 import edit from '../components/edit';
-import application from './application';
+import create from './application/components/create';
+import ApplicationList from './application';
 import { Link } from 'react-router';
 
 const mapStateToProps = (state) => {
@@ -31,27 +32,33 @@ const Component = React.createClass({
   },
 
   render() {
+    console.log(this.props);
     if (this.props.service === undefined) {
       return <div></div>;
     }
     return (
       <div>
         <ul className="item__list">
-          <Link to={`/services/${this.props.params.serviceId}/applications/`}>
-            Applications
-          </Link>
           <li className="item__heading">
             Name: {this.props.service.name}
           </li>
           <li className="item__child">
             Author: {this.props.service.user.email}
           </li>
+          <ApplicationList
+            applications={this.props.service.applications}
+            serviceId={this.props.service}
+          />
+
         </ul>
         <Link to={`/services/${this.props.params.serviceId}/remove/`}>
           Remove
         </Link>
         <Link to={`/services/${this.props.params.serviceId}/edit/`}>
           Edit
+        </Link>
+        <Link to={`/services/${this.props.params.serviceId}/applications/create/`}>
+          Create Application
         </Link>
       </div>
     );
@@ -66,7 +73,7 @@ const routes = {
   childRoutes: [
     remove,
     edit,
-    application,
+    create,
   ],
 };
 

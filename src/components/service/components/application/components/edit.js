@@ -122,7 +122,7 @@ const Component = React.createClass({
 export const Edit = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'edit',
+  path: ':applicationName/edit',
   component: Edit,
 };
 

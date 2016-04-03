@@ -25,7 +25,7 @@ const Component = React.createClass({
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/services/${nextProps.params.serviceId}/applications/`);
+      history.push(`/services/${nextProps.params.serviceId}`);
       return false;
     }
     return true;
@@ -79,7 +79,7 @@ const Component = React.createClass({
 export const Remove = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'remove',
+  path: ':applicationName/remove',
   component: Remove,
 };
 
