@@ -18,6 +18,7 @@ const ApplicationList = React.createClass({
                 <Application
                   key={application.name}
                   applicationName={application.name}
+                  applicationRole={application.galaxy_role}
                   serviceId={this.props.serviceId}
                 />
             )
