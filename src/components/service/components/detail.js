@@ -4,7 +4,9 @@ import actions from '../actions/detail';
 import store from '../../../store';
 import remove from '../components/remove';
 import edit from '../components/edit';
-import create from './application/components/create';
+import createApp from './application/components/create';
+import removeApp from './application/components/remove';
+import editApp from './application/components/edit';
 import ApplicationList from './application';
 import { Link } from 'react-router';
 
@@ -32,7 +34,6 @@ const Component = React.createClass({
   },
 
   render() {
-    console.log(this.props);
     if (this.props.service === undefined) {
       return <div></div>;
     }
@@ -47,7 +48,7 @@ const Component = React.createClass({
           </li>
           <ApplicationList
             applications={this.props.service.applications}
-            serviceId={this.props.service}
+            serviceId={this.props.service.id}
           />
 
         </ul>
@@ -73,7 +74,9 @@ const routes = {
   childRoutes: [
     remove,
     edit,
-    create,
+    createApp,
+    removeApp,
+    editApp,
   ],
 };
 

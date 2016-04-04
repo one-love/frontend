@@ -37,7 +37,7 @@ const Component = React.createClass({
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/services/${nextProps.params.serviceId}/applications/${this.state.name}/`
+        `/services/${nextProps.params.serviceId}/`
       );
       return false;
     }

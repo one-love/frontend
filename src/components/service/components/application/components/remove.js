@@ -79,7 +79,7 @@ const Component = React.createClass({
 export const Remove = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: ':applicationName/remove',
+  path: 'applications/:applicationName/remove',
   component: Remove,
 };
 
