@@ -4,11 +4,10 @@ import Application from './components/detail';
 const ApplicationList = React.createClass({
   propTypes: {
     applications: React.PropTypes.array,
-    serviceId: React.propTypes.object,
+    serviceId: React.PropTypes.string,
   },
 
   render() {
-    console.log(this.props.applications);
     const index = (
       <div>
         <h2>My applications:</h2>
@@ -17,7 +16,7 @@ const ApplicationList = React.createClass({
             this.props.applications.map(
               (application) =>
                 <Application
-                  key={application.id}
+                  key={application.name}
                   applicationName={application.name}
                   serviceId={this.props.serviceId}
                 />
