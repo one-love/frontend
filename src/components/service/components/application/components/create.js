@@ -37,7 +37,7 @@ const Component = React.createClass({
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/services/${nextProps.params.serviceId}/applications/${this.state.name}/`
+        `/services/${nextProps.params.serviceId}/`
       );
       return false;
     }
@@ -116,7 +116,7 @@ const Component = React.createClass({
 export const Create = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'create',
+  path: 'applications/create',
   component: Create,
 };
 

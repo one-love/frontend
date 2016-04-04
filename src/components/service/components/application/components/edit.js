@@ -42,7 +42,7 @@ const Component = React.createClass({
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
       history.push(
-        `/services/${nextProps.params.serviceId}/applications/${nextProps.application.name}/`
+        `/services/${nextProps.params.serviceId}/`
       );
       return false;
     }
@@ -122,7 +122,7 @@ const Component = React.createClass({
 export const Edit = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'edit',
+  path: 'applications/:applicationName/edit',
   component: Edit,
 };
 
