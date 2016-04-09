@@ -43,8 +43,7 @@ const Component = React.createClass({
     event.preventDefault();
     store.dispatch(actions.remove(
       this.props.params.clusterId,
-      this.props.params.serviceName,
-      this.props.params.username
+      this.props.params.serviceId
     ));
   },
 
@@ -80,7 +79,7 @@ const Component = React.createClass({
 export const Remove = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: ':username/:serviceName/remove',
+  path: 'remove/:serviceId',
   component: Remove,
 };
 

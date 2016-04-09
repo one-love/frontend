@@ -21,11 +21,11 @@ export const fail = createAction(PROVISION, error => ({
   error,
 }));
 
-export const provision = (id, name, user) =>
+export const provision = (clusterId, id) =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters/${id}/services/${user}/${name}/provision`,
+      url: `${API_URL}/clusters/${clusterId}/services/${id}/provision`,
       method: 'get',
     })
       .then(task => {
