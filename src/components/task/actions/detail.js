@@ -1,10 +1,10 @@
-import { createAction } from 'redux-react';
+import { createAction } from 'redux-actions';
 import { fetch } from '../../../utils';
 import { API_URL } from '../../../backend_url';
 import { TASK_DETAIL } from '../constants';
 
-export const reset = createAction(TASK_DETAIL, () => ({status: 'initial'}));
-export const begin = createAction(TASK_DETAIL, () => ({status: 'pending'}));
+export const reset = createAction(TASK_DETAIL, () => ({ status: 'initial' }));
+export const begin = createAction(TASK_DETAIL, () => ({ status: 'pending' }));
 
 export const success = createAction(TASK_DETAIL, task => ({
   task,
