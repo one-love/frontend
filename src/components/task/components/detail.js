@@ -11,13 +11,18 @@ const mapStateToProps = (state) => {
 };
 
 const Component = React.createClass({
+
   propTypes: {
     params: React.PropTypes.object,
     task: React.PropTypes.object,
+    status: React.PropTypes.string,
   },
-
   componentWillMount() {
-    store.dispatch(actions.get(this.props.params.taskId));
+    const self = this;
+    store.dispatch(actions.get(self.props.params.taskId));
+    this.setState({ interval: setInterval(() => {
+      store.dispatch(actions.get(self.props.params.taskId));
+    }, 5000) });
   },
 
   shouldComponentUpdate(nextProps) {
@@ -29,6 +34,7 @@ const Component = React.createClass({
 
   componentWillUnmount() {
     store.dispatch(actions.reset());
+    clearInterval(this.state.interval);
   },
   render() {
     if (this.props.task === undefined) {
