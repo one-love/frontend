@@ -25,8 +25,7 @@ const Component = React.createClass({
 
   getInitialState() {
     return {
-      name: '',
-      username: '',
+      service_id: '',
     };
   },
 
@@ -47,16 +46,14 @@ const Component = React.createClass({
   },
 
   handleNameChange(event) {
-    const service = event.target.value;
-    const serviceName = service.substring(0, service.lastIndexOf('/'));
-    const serviceUsername = service.substring(service.lastIndexOf('/') + 1, service.length);
-    this.setState({ name: serviceName, username: serviceUsername });
+    const serviceId = event.target.children[event.target.selectedIndex].id;
+    this.setState({ service_id: serviceId });
   },
 
   handleSubmit(event) {
     event.preventDefault();
     store.dispatch(
-      actions.add(this.props.params.clusterId, this.state.name, this.state.username)
+      actions.add(this.props.params.clusterId, this.state.service_id)
     );
   },
 
@@ -92,8 +89,7 @@ const Component = React.createClass({
               service =>
               <option
                 key={service.id}
-                service={service}
-                username={service.user.username}
+                id={service.id}
               > {service.name}/{service.user.username} </option>
             )
           }
@@ -102,7 +98,7 @@ const Component = React.createClass({
           <button className="button button--primary" onClick={this.handleSubmit}>
             Create
           </button>
-          {this.state.name}
+          {this.state.service_id}
         </div>
       </div>
     );

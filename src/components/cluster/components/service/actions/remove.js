@@ -21,11 +21,11 @@ export const fail = createAction(CLUSTER_SERVICE_REMOVE, error => ({
   error,
 }));
 
-export const remove = (id, name, user) =>
+export const remove = (clusterId, id) =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters/${id}/services/${user}/${name}`,
+      url: `${API_URL}/clusters/${clusterId}/services/${id}`,
       method: 'delete',
     })
       .then(service => {

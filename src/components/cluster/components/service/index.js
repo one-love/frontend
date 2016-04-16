@@ -16,14 +16,14 @@ const ServiceComponent = React.createClass({
         {this.props.name}
         </Link>
         <Link to={
-          `/clusters/${this.props.clusterId}/${this.props.username}/${this.props.name}/provision`
+          `/clusters/${this.props.clusterId}/provision/${this.props.serviceId}`
                  }
         >
           Provision
          </Link>
 
         <Link to={
-          `/clusters/${this.props.clusterId}/${this.props.username}/${this.props.name}/remove`
+          `/clusters/${this.props.clusterId}/remove/${this.props.serviceId}`
                  }
         >
           Remove
