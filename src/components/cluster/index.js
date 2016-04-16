@@ -5,6 +5,7 @@ import actions from './actions/list';
 import store from '../../store';
 import create from './components/create';
 import detail from './components/detail';
+import { socketio } from '../../constants';
 
 
 const mapStateToProps = state => ({
@@ -21,6 +22,13 @@ const Component = React.createClass({
 
   componentWillMount() {
     store.dispatch(actions.get());
+    socketio.emit('cluster', 'something');
+  },
+
+  componentDidMount() {
+    socketio.on('response', message => {
+      console.log(message);
+    });
   },
 
   componentWillUnmount() {
