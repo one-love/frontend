@@ -26,7 +26,6 @@ const Component = React.createClass({
   },
 
   render() {
-    console.log(this.props);
     const children = (
       <div>
         {this.props.children}

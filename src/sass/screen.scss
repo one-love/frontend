@@ -134,9 +134,9 @@ $o-layout--auto:     false !default;
 @import "~aleut.utilities.print";
 $u-p: true;
 @import "~aleut.utilities.spacing";
-@import "~aleut.utilities.responsive-spacing";
+@import "~aleut.utilities.spacing-responsive";
 @import "~aleut.utilities.widths";
-@import "~aleut.utilities.responsive-widths";
+@import "~aleut.utilities.widths-responsive";
 
 body {
   background: #eaeaea;

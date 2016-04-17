@@ -2,6 +2,7 @@ import React from 'react';
 import actions from '../actions/detail';
 import store from '../../../store';
 import { connect } from 'react-redux';
+import { socketio } from '../../../constants';
 
 const mapStateToProps = (state) => {
   const data = {
@@ -20,22 +21,31 @@ const Component = React.createClass({
   componentWillMount() {
     const self = this;
     store.dispatch(actions.get(self.props.params.taskId));
-    this.setState({ interval: setInterval(() => {
-      store.dispatch(actions.get(self.props.params.taskId));
-    }, 5000) });
   },
 
-  shouldComponentUpdate(nextProps) {
-    if (this.props.task !== nextProps.task) {
-      return true;
-    }
-    return false;
+  componentDidMount() {
+    socketio.on('task', message => {
+      const task = this.props.task;
+      if (task && task.id === message.id) {
+        switch (message.status) {
+          case 'SUCCESS':
+            store.dispatch(actions.success(message));
+            break;
+          case 'FAILED':
+            store.dispatch(actions.fail(message));
+            break;
+          default:
+            store.dispatch(actions.fail('unexpected error on task'));
+            break;
+        }
+      }
+    });
   },
 
   componentWillUnmount() {
     store.dispatch(actions.reset());
-    clearInterval(this.state.interval);
   },
+
   render() {
     if (this.props.task === undefined) {
       return <div></div>;
