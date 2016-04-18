@@ -41,10 +41,12 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.remove(
-      this.props.params.clusterId,
-      this.props.params.serviceId
-    ));
+    store.dispatch(
+      actions.remove(
+        this.props.params.clusterId,
+        this.props.params.serviceId
+      )
+    );
   },
 
   render() {

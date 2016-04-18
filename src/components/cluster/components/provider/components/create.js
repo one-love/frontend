@@ -98,7 +98,6 @@ const Component = React.createClass({
           <div className="form__item">
             <label htmlFor="type">Type</label>
             <input
-              autoFocus
               type="text"
               className="form__field"
               id="type"
