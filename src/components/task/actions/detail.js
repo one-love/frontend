@@ -11,9 +11,12 @@ export const success = createAction(TASK_DETAIL, task => ({
   status: 'success',
 }));
 
-export const fail = createAction(TASK_DETAIL, error => ({
+export const fail = createAction(TASK_DETAIL, (id, error) => ({
   error,
-  status: 'error',
+  task: {
+    id,
+    status: 'FAILURE',
+  },
 }));
 
 export const get = id =>
@@ -27,7 +30,7 @@ export const get = id =>
         return task;
       })
       .catch(error => {
-        dispatch(fail(error.message));
+        dispatch(fail(id, error.message));
       });
   };
 

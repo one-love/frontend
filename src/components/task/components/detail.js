@@ -31,7 +31,7 @@ const Component = React.createClass({
           case 'SUCCESS':
             store.dispatch(actions.success(message));
             break;
-          case 'FAILED':
+          case 'FAILURE':
             store.dispatch(actions.fail(message));
             break;
           default:
