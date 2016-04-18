@@ -52,9 +52,9 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(
-      actions.add(this.props.params.clusterId, this.state.service_id)
-    );
+    let serviceId = this.state.service_id;
+    if (!serviceId) {serviceId = this.props.services[0].id;}
+    store.dispatch(actions.add(this.props.params.clusterId, serviceId));
   },
 
   render() {
@@ -95,10 +95,12 @@ const Component = React.createClass({
           }
         </select>
         <div>
-          <button className="button button--primary" onClick={this.handleSubmit}>
+          <button
+            className="button button--primary"
+            onClick={this.handleSubmit}
+          >
             Create
           </button>
-          {this.state.service_id}
         </div>
       </div>
     );

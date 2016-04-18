@@ -100,7 +100,6 @@ const Component = React.createClass({
           <div className="form__item">
             <label htmlFor="IP">IP</label>
             <input
-              autoFocus
               type="text"
               className="form__field"
               id="ip"

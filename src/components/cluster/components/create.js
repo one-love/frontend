@@ -30,6 +30,8 @@ const Component = React.createClass({
   getInitialState() {
     return {
       name: '',
+      username: '',
+      sshkey: '',
     };
   },
 
@@ -49,9 +51,23 @@ const Component = React.createClass({
     this.setState({ name: event.target.value });
   },
 
+  handleUsernameChange(event) {
+    this.setState({ username: event.target.value });
+  },
+
+  handleSSHKeyChange(event) {
+    this.setState({ sshkey: event.target.value });
+  },
+
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.create(this.state.name));
+    store.dispatch(
+      actions.create(
+        this.state.name,
+        this.state.username,
+        this.state.sshkey
+      )
+    );
   },
 
   render() {
@@ -82,6 +98,26 @@ const Component = React.createClass({
               id="name"
               placeholder="Name"
               onChange={this.handleNameChange}
+            />
+          </div>
+          <div className="form__item">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              className="form__field"
+              id="username"
+              placeholder="Username"
+              onChange={this.handleUsernameChange}
+            />
+          </div>
+          <div className="form__item">
+            <label htmlFor="sshkey">SSH Key</label>
+            <input
+              type="text"
+              className="form__field"
+              id="sshkey"
+              placeholder="SSH Key"
+              onChange={this.handleSSHKeyChange}
             />
           </div>
           <button className="button button--primary">Create</button>
