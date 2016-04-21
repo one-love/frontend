@@ -21,7 +21,7 @@ export const fail = createAction(CLUSTER_CREATE, error => ({
   error,
 }));
 
-export const create = (name, username, sshkey) =>
+export const create = (name, username, sshKey) =>
   dispatch => {
     dispatch(begin());
     fetch({
@@ -30,7 +30,7 @@ export const create = (name, username, sshkey) =>
       body: {
         name,
         username,
-        sshkey,
+        sshKey,
       },
     })
       .then(cluster => {
