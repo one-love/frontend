@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/create';
+import pluginActions from '../actions/get_plugins';
 import store from '../../../../../store';
 import { history } from '../../../../../constants';
 
@@ -12,6 +13,7 @@ const errorMessages = {
 
 const mapStateToProps = state => {
   const data = {
+    plugins: state.pluginList.plugins,
     provider: state.providerCreate.provider,
     status: state.providerCreate.status,
   };
@@ -21,6 +23,7 @@ const mapStateToProps = state => {
 
 const Component = React.createClass({
   propTypes: {
+    plugins: React.PropTypes.array,
     provider: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -32,6 +35,10 @@ const Component = React.createClass({
       name: '',
       type: '',
     };
+  },
+
+  componentWillMount() {
+    store.dispatch(pluginActions.get());
   },
 
   shouldComponentUpdate(nextProps) {
@@ -66,6 +73,7 @@ const Component = React.createClass({
   },
 
   render() {
+    console.log(this.props.plugins);
     let spinner = '';
     let error = '';
     switch (this.props.status) {
