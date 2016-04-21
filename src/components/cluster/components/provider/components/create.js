@@ -73,7 +73,7 @@ const Component = React.createClass({
   },
 
   render() {
-    console.log(this.props.plugins);
+    console.log(this.state.type);
     let spinner = '';
     let error = '';
     switch (this.props.status) {
@@ -103,15 +103,18 @@ const Component = React.createClass({
               onChange={this.handleNameChange}
             />
           </div>
-          <div className="form__item">
-            <label htmlFor="type">Type</label>
-            <input
-              type="text"
-              className="form__field"
-              id="type"
-              placeholder="Type"
-              onChange={this.handleTypeChange}
-            />
+          <div>
+            <select onClick={this.handleTypeChange} defaultValue="-1" >
+              <option id="-1" disabled> Choice One</option>
+              {
+                this.props.plugins.map(
+                  plugin =>
+                  <option
+                    key={plugin.type}
+                  > {plugin.type}</option>
+                )
+              }
+            </select>
           </div>
           <button className="button button--primary">Create</button>
         </form>
