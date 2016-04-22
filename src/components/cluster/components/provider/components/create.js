@@ -34,6 +34,7 @@ const Component = React.createClass({
     return {
       name: '',
       type: '',
+      properties: {},
     };
   },
 
@@ -60,6 +61,10 @@ const Component = React.createClass({
   },
 
   handleTypeChange(event) {
+    const plugin = this.props.plugins.find((pl) =>
+      pl.type === event.target.value
+    );
+    this.setState({ properties: plugin.properties });
     this.setState({ type: event.target.value });
   },
 
@@ -73,7 +78,6 @@ const Component = React.createClass({
   },
 
   render() {
-    console.log(this.state.type);
     let spinner = '';
     let error = '';
     switch (this.props.status) {
@@ -111,6 +115,7 @@ const Component = React.createClass({
                   plugin =>
                   <option
                     key={plugin.type}
+                    value={plugin.type}
                   > {plugin.type}</option>
                 )
               }
