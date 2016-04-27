@@ -32,8 +32,8 @@ const Component = React.createClass({
 
   getInitialState() {
     return {
-      name: '',
       type: '',
+      pluginProps: {},
       properties: {},
     };
   },
@@ -56,15 +56,17 @@ const Component = React.createClass({
     store.dispatch(actions.reset());
   },
 
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
+  handlePropsChange(props, event) {
+    const prop = this.state.properties;
+    prop[props] = event.target.value;
+    this.setState({ properties: prop });
   },
 
   handleTypeChange(event) {
     const plugin = this.props.plugins.find((pl) =>
       pl.type === event.target.value
     );
-    this.setState({ properties: plugin.properties });
+    this.setState({ pluginProps: plugin.properties });
     this.setState({ type: event.target.value });
   },
 
@@ -72,8 +74,8 @@ const Component = React.createClass({
     event.preventDefault();
     store.dispatch(actions.create(
       this.props.params.clusterId,
-      this.state.name,
-      this.state.type
+      this.state.type,
+      this.state.properties
     ));
   },
 
@@ -96,16 +98,22 @@ const Component = React.createClass({
         {error}
         <h1 className="form__title">Create Provider</h1>
         <form role="form" onSubmit={this.handleSubmit}>
-          <div className="form__item">
-            <label htmlFor="name">Name</label>
-            <input
-              autoFocus
-              type="text"
-              className="form__field"
-              id="name"
-              placeholder="Name"
-              onChange={this.handleNameChange}
-            />
+          <div>
+            {
+              this.state.type !== '' ?
+                this.state.pluginProps.map(
+                  props =>
+                    <div key={props.name}>
+                      <label>{props.name}
+                        <input
+                          type="text"
+                          placeholder={props.name}
+                          onChange={this.handlePropsChange.bind(this, props.name)}
+                        />
+                      </label>
+                    </div>
+                ) : <div></div>
+            }
           </div>
           <div>
             <select onClick={this.handleTypeChange} defaultValue="-1" >
