@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/create';
+import pluginActions from '../actions/get_plugins';
 import store from '../../../../../store';
 import { history } from '../../../../../constants';
 
@@ -12,6 +13,7 @@ const errorMessages = {
 
 const mapStateToProps = state => {
   const data = {
+    plugins: state.pluginList.plugins,
     provider: state.providerCreate.provider,
     status: state.providerCreate.status,
   };
@@ -21,6 +23,7 @@ const mapStateToProps = state => {
 
 const Component = React.createClass({
   propTypes: {
+    plugins: React.PropTypes.array,
     provider: React.PropTypes.object,
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -29,9 +32,14 @@ const Component = React.createClass({
 
   getInitialState() {
     return {
-      name: '',
       type: '',
+      pluginProps: {},
+      properties: {},
     };
+  },
+
+  componentWillMount() {
+    store.dispatch(pluginActions.get());
   },
 
   shouldComponentUpdate(nextProps) {
@@ -48,11 +56,17 @@ const Component = React.createClass({
     store.dispatch(actions.reset());
   },
 
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
+  handlePropsChange(props, event) {
+    const prop = this.state.properties;
+    prop[props] = event.target.value;
+    this.setState({ properties: prop });
   },
 
   handleTypeChange(event) {
+    const plugin = this.props.plugins.find((pl) =>
+      pl.type === event.target.value
+    );
+    this.setState({ pluginProps: plugin.properties });
     this.setState({ type: event.target.value });
   },
 
@@ -60,8 +74,8 @@ const Component = React.createClass({
     event.preventDefault();
     store.dispatch(actions.create(
       this.props.params.clusterId,
-      this.state.name,
-      this.state.type
+      this.state.type,
+      this.state.properties
     ));
   },
 
@@ -84,26 +98,36 @@ const Component = React.createClass({
         {error}
         <h1 className="form__title">Create Provider</h1>
         <form role="form" onSubmit={this.handleSubmit}>
-          <div className="form__item">
-            <label htmlFor="name">Name</label>
-            <input
-              autoFocus
-              type="text"
-              className="form__field"
-              id="name"
-              placeholder="Name"
-              onChange={this.handleNameChange}
-            />
+          <div>
+            {
+              this.state.type !== '' ?
+                this.state.pluginProps.map(
+                  props =>
+                    <div key={props.name}>
+                      <label>{props.name}
+                        <input
+                          type="text"
+                          placeholder={props.name}
+                          onChange={this.handlePropsChange.bind(this, props.name)}
+                        />
+                      </label>
+                    </div>
+                ) : <div></div>
+            }
           </div>
-          <div className="form__item">
-            <label htmlFor="type">Type</label>
-            <input
-              type="text"
-              className="form__field"
-              id="type"
-              placeholder="Type"
-              onChange={this.handleTypeChange}
-            />
+          <div>
+            <select onClick={this.handleTypeChange} defaultValue="-1" >
+              <option id="-1" disabled> Choice One</option>
+              {
+                this.props.plugins.map(
+                  plugin =>
+                  <option
+                    key={plugin.type}
+                    value={plugin.type}
+                  > {plugin.type}</option>
+                )
+              }
+            </select>
           </div>
           <button className="button button--primary">Create</button>
         </form>

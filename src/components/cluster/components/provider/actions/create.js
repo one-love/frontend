@@ -21,15 +21,16 @@ export const fail = createAction(PROVIDER_CREATE, error => ({
   error,
 }));
 
-export const create = (clusterId, name, type) =>
+export const create = (clusterId, type, properties) =>
   dispatch => {
+    console.log(properties);
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/providers`,
       method: 'post',
       body: {
-        name,
         type,
+        ...properties,
       },
     })
       .then(provider => {

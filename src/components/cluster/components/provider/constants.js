@@ -1,3 +1,4 @@
+export const GET_PLUGINS = 'GET_PLUGINS';
 export const PROVIDER_CREATE = 'PROVIDER_CREATE';
 export const PROVIDER_DETAIL = 'PROVIDER_DETAIL';
 export const PROVIDER_EDIT = 'PROVIDER_EDIT';
