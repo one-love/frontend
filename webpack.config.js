@@ -26,19 +26,18 @@ module.exports = {
       loader: 'eslint-loader',
       exclude: /node_modules/,
     }],
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
-      exclude: /node_modules/,
-      include: path.join(__dirname, 'src')
-    }, {
-      test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, '..', '..', 'src')
-    }, {
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'sass'],
-      include: path.join(__dirname, 'src/sass'),
-    }]
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        exclude: /node_modules/,
+        include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass'],
+        include: path.join(__dirname, 'src/sass'),
+      }
+    ]
   }
 };
