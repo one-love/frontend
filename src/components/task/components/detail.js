@@ -2,7 +2,7 @@ import React from 'react';
 import actions from '../actions/detail';
 import store from '../../../store';
 import { connect } from 'react-redux';
-import { socketio } from '../../../constants';
+import { socket } from '../../../constants';
 
 const mapStateToProps = (state) => {
   const data = {
@@ -24,7 +24,7 @@ const Component = React.createClass({
   },
 
   componentDidMount() {
-    socketio.on('task', message => {
+    socket.io.on('task', message => {
       const task = this.props.task;
       if (task && task.id === message.id) {
         switch (message.status) {
