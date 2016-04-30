@@ -34,7 +34,7 @@ const Component = React.createClass({
     return {
       type: '',
       pluginProps: {},
-      properties: {},
+      fields: {},
     };
   },
 
@@ -56,10 +56,11 @@ const Component = React.createClass({
     store.dispatch(actions.reset());
   },
 
-  handlePropsChange(props, event) {
-    const prop = this.state.properties;
-    prop[props] = event.target.value;
-    this.setState({ properties: prop });
+  handleFieldChange(event) {
+    const fieldName = event.target.getAttribute('placeholder');
+    const fields = { ...this.state.fields };
+    fields[fieldName] = event.target.value;
+    this.setState({ fields });
   },
 
   handleTypeChange(event) {
@@ -75,7 +76,7 @@ const Component = React.createClass({
     store.dispatch(actions.create(
       this.props.params.clusterId,
       this.state.type,
-      this.state.properties
+      this.state.fields,
     ));
   },
 
@@ -108,7 +109,7 @@ const Component = React.createClass({
                         <input
                           type="text"
                           placeholder={props.name}
-                          onChange={this.handlePropsChange.bind(this, props.name)}
+                          onChange={this.handleFieldChange}
                         />
                       </label>
                     </div>
