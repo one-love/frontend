@@ -21,15 +21,14 @@ export const fail = createAction(PROVIDER_EDIT, error => ({
   error,
 }));
 
-export const edit = (clusterId, providerName, name, type) =>
+export const edit = (clusterId, providerName, properties) =>
   dispatch => {
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/providers/${providerName}`,
       method: 'put',
       body: {
-        name,
-        type,
+        ...properties,
       },
     })
       .then(provider => {
