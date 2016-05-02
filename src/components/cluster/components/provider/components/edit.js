@@ -12,7 +12,7 @@ const errorMessages = {
 
 
 const mapStateToProps = state => ({
-  provider: state.providerEdit.provider,
+  provider: state.providerDetail.provider,
   status: state.providerEdit.status,
   error: state.providerEdit.error,
 });
@@ -28,14 +28,15 @@ const Component = React.createClass({
 
   getInitialState() {
     return {
-      name: '',
+      fields: {},
+      pluginFields: {},
     };
   },
 
   componentWillMount() {
     store.dispatch(get(
       this.props.params.clusterId,
-      this.props.params.providerId
+      this.props.params.providerName
     ));
   },
 
@@ -53,12 +54,11 @@ const Component = React.createClass({
     store.dispatch(actions.reset());
   },
 
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
-  },
-
-  handleTypeChange(event) {
-    this.setState({ type: event.target.value });
+  handleFieldChange(event) {
+    const fieldName = event.target.getAttribute('placeholder');
+    const fields = { ...this.state.fields };
+    fields[fieldName] = event.target.value;
+    this.setState({ fields });
   },
 
   handleSubmit(event) {
@@ -66,8 +66,7 @@ const Component = React.createClass({
     store.dispatch(actions.edit(
       this.props.params.clusterId,
       this.props.params.providerName,
-      this.state.name,
-      this.state.type
+      this.state.fields,
     ));
   },
 
@@ -84,35 +83,31 @@ const Component = React.createClass({
       default:
         break;
     }
+    if (!this.props.provider) {
+      return (<div></div>);
+    }
     return (
       <div className="form-container">
         {spinner}
         {error}
         <h1 className="form__title">Edit Provider</h1>
         <form role="form" onSubmit={this.handleSubmit}>
-          <div className="form__item">
-            <label htmlFor="name">Name</label>
-            <input
-              autoFocus
-              type="text"
-              className="form__field"
-              id="name"
-              placeholder="Name"
-              onChange={this.handleNameChange}
-            />
+          <div>
+            {
+              this.state.providerFields.map(field =>
+                <div key={field.name}>
+                  <label>{field.name}
+                    <input
+                      type="text"
+                      placeholder={field.name}
+                      onChange={this.handleFieldChange}
+                    />
+                  </label>
+                </div>
+              )
+            }
           </div>
-          <div className="form__item">
-            <label htmlFor="type">Type</label>
-            <input
-              autoFocus
-              type="text"
-              className="form__field"
-              id="type"
-              placeholder="Type"
-              onChange={this.handleTypeChange}
-            />
-          </div>
-          <button className="button button--primary">Edit</button>
+          <button className="button button--primary">Create</button>
         </form>
       </div>
     );

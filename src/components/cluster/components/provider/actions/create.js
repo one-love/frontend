@@ -28,8 +28,8 @@ export const create = (clusterId, type, properties) =>
       url: `${API_URL}/clusters/${clusterId}/providers`,
       method: 'post',
       body: {
-        type,
         ...properties,
+        type,
       },
     })
       .then(provider => {

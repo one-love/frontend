@@ -32,9 +32,9 @@ const Component = React.createClass({
 
   getInitialState() {
     return {
-      type: '',
-      pluginProps: {},
       fields: {},
+      pluginProps: {},
+      type: '',
     };
   },
 
@@ -100,6 +100,20 @@ const Component = React.createClass({
         <h1 className="form__title">Create Provider</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div>
+            <select onClick={this.handleTypeChange} defaultValue="-1" >
+              <option id="-1" disabled> Choice One</option>
+              {
+                this.props.plugins.map(
+                  plugin =>
+                  <option
+                    key={plugin.type}
+                    value={plugin.type}
+                  > {plugin.type}</option>
+                )
+              }
+            </select>
+          </div>
+          <div>
             {
               this.state.type !== '' ?
                 this.state.pluginProps.map(
@@ -115,20 +129,6 @@ const Component = React.createClass({
                     </div>
                 ) : <div></div>
             }
-          </div>
-          <div>
-            <select onClick={this.handleTypeChange} defaultValue="-1" >
-              <option id="-1" disabled> Choice One</option>
-              {
-                this.props.plugins.map(
-                  plugin =>
-                  <option
-                    key={plugin.type}
-                    value={plugin.type}
-                  > {plugin.type}</option>
-                )
-              }
-            </select>
           </div>
           <button className="button button--primary">Create</button>
         </form>

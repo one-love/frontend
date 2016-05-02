@@ -2,10 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
     './src/sass/screen.scss',
     './src/index'
   ],
@@ -14,22 +11,11 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  resolveLoader: {
-    'fallback': path.join(__dirname, 'node_modules')
-  },
   module: {
-    preLoaders: [{
-      test: /\.js$/,
-      loader: 'eslint-loader',
-      exclude: /node_modules/,
-    }],
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: ['babel'],
         exclude: /node_modules/,
         include: path.join(__dirname, 'src')
       },
