@@ -1,6 +1,8 @@
 import React from 'react';
+import InlineEdit from 'react-edit-inline';
 import { connect } from 'react-redux';
 import actions from '../actions/detail';
+import editActions from '../actions/edit';
 import store from '../../../../../store';
 import { Link } from 'react-router';
 import edit from './edit';
@@ -8,11 +10,17 @@ import remove from './remove';
 import host from './host';
 
 
-const mapStateToProps = state => ({
-  provider: state.providerDetail.provider,
-  applications: state.providerDetail.applications,
-  roles: state.providerDetail.roles,
-});
+const mapStateToProps = state => {
+  const data = {
+    provider: state.providerDetail.provider,
+    applications: state.providerDetail.applications,
+    roles: state.providerDetail.roles,
+  };
+  if (state.providerEdit.provider) {
+    data.provider = state.providerEdit.provider;
+  }
+  return data;
+};
 
 
 const Component = React.createClass({
@@ -35,30 +43,46 @@ const Component = React.createClass({
     store.dispatch(actions.reset());
   },
 
+  dataChanged(data) {
+    store.dispatch(
+      editActions.edit(
+        this.props.params.clusterId,
+        this.props.params.providerName,
+        data
+      ),
+    );
+  },
+
   render() {
     const clusterId = this.props.params.clusterId;
-    const providerName = this.props.params.providerName;
     if (this.props.provider === undefined) {
       return <div></div>;
     }
     return (
       <div>
-        <h2>Provider {providerName}</h2>
+        <h2>Provider {this.props.provider.name}</h2>
           <ul className="item__list">
-            <li className="item__heading">Name: {this.props.provider.name}</li>
+            <li className="item__heading">
+              Name:
+              <InlineEdit
+                text={this.props.provider.name}
+                change={this.dataChanged}
+                paramName="name"
+              />
+            </li>
             <li className="item__child">
               <Link to={
-                `/clusters/${this.props.params.clusterId}/providers/${providerName}/hosts/`
+                `/clusters/${clusterId}/providers/${this.props.provider.name}/hosts/`
                 }
               >
                 Hosts
               </Link>
             </li>
           </ul>
-        <Link to={`/clusters/${clusterId}/providers/${providerName}/edit/`}>
+        <Link to={`/clusters/${clusterId}/providers/${this.props.provider.name}/edit/`}>
           Edit
         </Link>
-        <Link to={`/clusters/${clusterId}/providers/${providerName}/remove/`}>
+        <Link to={`/clusters/${clusterId}/providers/${this.props.provider.name}/remove/`}>
           Remove
         </Link>
       </div>

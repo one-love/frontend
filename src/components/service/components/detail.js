@@ -1,9 +1,10 @@
 import React from 'react';
+import InlineEdit from 'react-edit-inline';
 import { connect } from 'react-redux';
 import actions from '../actions/detail';
+import editActions from '../actions/edit';
 import store from '../../../store';
 import remove from '../components/remove';
-import edit from '../components/edit';
 import createApp from './application/components/create';
 import removeApp from './application/components/remove';
 import editApp from './application/components/edit';
@@ -14,6 +15,9 @@ const mapStateToProps = (state) => {
   const data = {
     service: state.serviceDetail.service,
   };
+  if (state.serviceEdit.service) {
+    data.service = state.serviceEdit.service;
+  }
   return data;
 };
 
@@ -33,6 +37,15 @@ const Component = React.createClass({
     store.dispatch(actions.reset());
   },
 
+  dataChanged(data) {
+    store.dispatch(
+      editActions.edit(
+        this.props.params.serviceId,
+        data,
+      ),
+    );
+  },
+
   render() {
     if (this.props.service === undefined) {
       return <div></div>;
@@ -41,7 +54,12 @@ const Component = React.createClass({
       <div>
         <ul className="item__list">
           <li className="item__heading">
-            Name: {this.props.service.name}
+            Name:
+            <InlineEdit
+              paramName="name"
+              text={this.props.service.name}
+              change={this.dataChanged}
+            />
           </li>
           <li className="item__child">
             Author: {this.props.service.user.email}
@@ -54,9 +72,6 @@ const Component = React.createClass({
         </ul>
         <Link to={`/services/${this.props.params.serviceId}/remove/`}>
           Remove
-        </Link>
-        <Link to={`/services/${this.props.params.serviceId}/edit/`}>
-          Edit
         </Link>
         <Link to={`/services/${this.props.params.serviceId}/applications/create/`}>
           Create Application
@@ -73,7 +88,6 @@ const routes = {
   indexRoute: { component: Detail },
   childRoutes: [
     remove,
-    edit,
     createApp,
     removeApp,
     editApp,

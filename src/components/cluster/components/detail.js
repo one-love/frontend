@@ -5,7 +5,6 @@ import actions from '../actions/detail';
 import editActions from '../actions/edit';
 import store from '../../../store';
 import { Link } from 'react-router';
-import edit from './edit';
 import remove from './remove';
 import provider from './provider';
 import service from './service/components/add-service';
@@ -19,6 +18,9 @@ const mapStateToProps = (state) => {
     cluster: state.clusterDetail.cluster,
     roles: state.clusterDetail.roles,
   };
+  if (state.clusterEdit.cluster) {
+    data.cluster = state.clusterEdit.cluster;
+  }
   return data;
 };
 
@@ -71,7 +73,7 @@ const Component = React.createClass({
           <li className="item__child">
               <b className="item__fragment item__fragment--bold">Roles: </b>
               <span className="item__value">{
-                  this.props.cluster.roles.length ?
+                  this.props.cluster.roles ?
                   this.props.cluster.roles.map(
                     (role) => <span key={role.name}>{role.name} </span>
                   ) :
@@ -81,7 +83,7 @@ const Component = React.createClass({
           <li className="item__child">
               <b className="item__fragment item__fragment--bold">Services: </b>
               <span className="item__value">{
-                  this.props.cluster.services.length ?
+                  this.props.cluster.services ?
                   this.props.cluster.services.map(
                     (serv) =>
                         <ServiceComponent
@@ -96,9 +98,6 @@ const Component = React.createClass({
               }</span>
           </li>
         </ul>
-        <Link to={`/clusters/${this.props.params.clusterId}/edit/`}>
-          Edit
-        </Link>
         <Link to={`/clusters/${this.props.params.clusterId}/remove/`}>
           Remove
         </Link>
@@ -116,7 +115,6 @@ const routes = {
   path: ':clusterId',
   indexRoute: { component: Detail },
   childRoutes: [
-    edit,
     remove,
     provider,
     service,
