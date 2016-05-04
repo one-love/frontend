@@ -33,7 +33,7 @@ export function fetch(args) {
   const newbody = JSON.stringify(body);
   const newargs = {
     body: newbody,
-    method: method || 'get',
+    method: method || 'GET',
     headers: {
       Accept: 'application/json',
       Authorization: `JWT ${getAuthToken()}`,
@@ -42,7 +42,7 @@ export function fetch(args) {
   if (!isLoggedIn()) {
     delete newargs.headers.Authorization;
   }
-  if (method === 'post' || method === 'put') {
+  if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
     newargs.headers['Content-Type'] = 'application/json';
   }
   return isomorphicFetch(url, newargs)

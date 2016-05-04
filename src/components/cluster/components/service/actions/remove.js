@@ -26,7 +26,7 @@ export const remove = (clusterId, id) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/services/${id}`,
-      method: 'delete',
+      method: 'DELETE',
     })
       .then(service => {
         dispatch(success(service));

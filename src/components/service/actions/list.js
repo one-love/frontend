@@ -28,7 +28,7 @@ export const get = () =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/services`,
-      method: 'get',
+      method: 'GET',
     })
       .then(services => {
         dispatch(success(services));

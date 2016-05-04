@@ -38,7 +38,7 @@ export const register = (email, password, first_name, last_name) =>
         password,
       },
       contentType: 'application/json',
-      method: 'post',
+      method: 'POST',
     })
       .then(user => {
         dispatch(success(user));

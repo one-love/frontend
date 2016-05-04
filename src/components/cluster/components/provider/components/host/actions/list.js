@@ -28,7 +28,7 @@ export const get = (clusterId, providerName) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/providers/${providerName}/hosts`,
-      method: 'get',
+      method: 'GET',
     })
       .then(hosts => {
         dispatch(success(hosts));

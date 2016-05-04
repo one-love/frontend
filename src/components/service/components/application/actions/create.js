@@ -28,7 +28,7 @@ export const create = (serviceId, name, galaxy_role) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/services/${serviceId}/applications`,
-      method: 'post',
+      method: 'POST',
       body: {
         name,
         galaxy_role,

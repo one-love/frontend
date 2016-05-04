@@ -1,6 +1,8 @@
 import React from 'react';
+import InlineEdit from 'react-edit-inline';
 import { connect } from 'react-redux';
 import actions from '../actions/detail';
+import editActions from '../actions/edit';
 import store from '../../../store';
 import { Link } from 'react-router';
 import edit from './edit';
@@ -37,6 +39,15 @@ const Component = React.createClass({
     store.dispatch(actions.reset());
   },
 
+  dataChanged(data) {
+    store.dispatch(
+      editActions.edit(
+        this.props.params.clusterId,
+        data
+      )
+    );
+  },
+
   render() {
     if (this.props.cluster === undefined) {
       return <div></div>;
@@ -44,7 +55,14 @@ const Component = React.createClass({
     return (
       <div>
         <ul className="item__list">
-          <li className="item__heading">Name: {this.props.cluster.name}</li>
+          <li className="item__heading">
+            Name:
+            <InlineEdit
+              paramName="name"
+              text={this.props.cluster.name}
+              change={this.dataChanged}
+            />
+          </li>
           <li className="item__child">
             <Link to={`/clusters/${this.props.params.clusterId}/providers/`}>
               Providers

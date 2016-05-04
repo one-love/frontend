@@ -28,7 +28,7 @@ export const get = serviceId =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/services/${serviceId}/applications`,
-      method: 'get',
+      method: 'GET',
     })
       .then(applications => {
         dispatch(success(applications));

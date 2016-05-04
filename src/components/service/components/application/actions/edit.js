@@ -28,7 +28,7 @@ export const edit = (serviceId, applicationName, name, galaxy_role) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/services/${serviceId}/applications/${applicationName}`,
-      method: 'put',
+      method: 'PUT',
       body: {
         name,
         galaxy_role,

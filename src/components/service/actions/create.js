@@ -26,7 +26,7 @@ export const create = name =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/services`,
-      method: 'post',
+      method: 'POST',
       body: {
         name,
       },
