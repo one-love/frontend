@@ -29,7 +29,7 @@ export const add = (clusterId, service_id) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/services`,
-      method: 'post',
+      method: 'POST',
       body: {
         service_id,
       },

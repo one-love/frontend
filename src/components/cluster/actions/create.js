@@ -26,7 +26,7 @@ export const create = (name, username, sshKey) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters`,
-      method: 'post',
+      method: 'POST',
       body: {
         name,
         username,

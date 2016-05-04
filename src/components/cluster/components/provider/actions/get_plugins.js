@@ -28,7 +28,7 @@ export const get = () =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/plugins/providers`,
-      method: 'get',
+      method: 'GET',
     })
       .then(plugins => {
         dispatch(success(plugins));

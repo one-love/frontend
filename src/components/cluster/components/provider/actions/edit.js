@@ -26,7 +26,7 @@ export const edit = (clusterId, providerName, properties) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/providers/${providerName}`,
-      method: 'put',
+      method: 'PUT',
       body: {
         ...properties,
       },

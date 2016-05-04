@@ -27,7 +27,7 @@ export const edit = (id, name) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/services/${id}`,
-      method: 'put',
+      method: 'PUT',
       body: {
         name,
       },

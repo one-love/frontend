@@ -28,7 +28,7 @@ export const confirm = (uuid) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/users/confirm/${uuid}`,
-      method: 'get',
+      method: 'GET',
     })
       .then(user => {
         dispatch(success(user));

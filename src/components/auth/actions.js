@@ -45,7 +45,7 @@ export const login = (email, password) =>
         password,
       },
       contentType: 'application/json',
-      method: 'post',
+      method: 'POST',
     })
       .then(token => {
         dispatch(success(token));

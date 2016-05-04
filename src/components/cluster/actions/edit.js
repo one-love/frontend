@@ -22,15 +22,13 @@ export const fail = createAction(CLUSTER_EDIT, error => ({
   error,
 }));
 
-export const edit = (id, name) =>
+export const edit = (id, fields) =>
   dispatch => {
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${id}`,
-      method: 'put',
-      body: {
-        name,
-      },
+      method: 'PATCH',
+      body: fields,
     })
       .then(cluster => {
         dispatch(success(cluster));

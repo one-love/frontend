@@ -26,7 +26,7 @@ export const provision = (clusterId, id) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/services/${id}/provision`,
-      method: 'get',
+      method: 'GET',
     })
       .then(task => {
         dispatch(success(task));

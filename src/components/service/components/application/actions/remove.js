@@ -26,7 +26,7 @@ export const remove = (serviceId, applicationName) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/services/${serviceId}/applications/${applicationName}`,
-      method: 'delete',
+      method: 'DELETE',
     })
       .then(application => {
         dispatch(success(application));

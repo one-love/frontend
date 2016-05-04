@@ -26,7 +26,7 @@ export const create = (clusterId, type, properties) =>
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/providers`,
-      method: 'post',
+      method: 'POST',
       body: {
         ...properties,
         type,
