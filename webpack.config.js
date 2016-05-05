@@ -15,7 +15,8 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({'process.env.NODE_ENV': "'dev'"})
   ],
   resolveLoader: {
     'fallback': path.join(__dirname, 'node_modules')
