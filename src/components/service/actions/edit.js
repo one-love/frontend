@@ -22,15 +22,13 @@ export const fail = createAction(SERVICE_EDIT, error => ({
   error,
 }));
 
-export const edit = (id, name) =>
+export const edit = (id, fields) =>
   dispatch => {
     dispatch(begin());
     fetch({
       url: `${API_URL}/services/${id}`,
-      method: 'PUT',
-      body: {
-        name,
-      },
+      method: 'PATCH',
+      body: fields,
     })
       .then(service => {
         dispatch(success(service));
