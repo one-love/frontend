@@ -1,18 +1,13 @@
 import isomorphicFetch from 'isomorphic-fetch';
-/**
- * Return authentication token for One Love
- *
- * @return {String} || undefined
- */
+import io from 'socket.io-client';
+import { SOCKETIO_URL } from './backend_url';
+import { socket } from './constants';
+
 export function getAuthToken() {
   return window.localStorage.OneLoveAuthToken;
 }
 
-/**
- * Check if user is logged in or not
- *
- * @return {Boolean}
- */
+
 export function isLoggedIn() {
   return Boolean(getAuthToken());
 }
@@ -23,6 +18,7 @@ export function requireAuth(nextState, replace) {
     replace('/login/');
   }
 }
+
 
 export function fetch(args) {
   const {
@@ -55,4 +51,19 @@ export function fetch(args) {
       }
       return json;
     });
+}
+
+
+export function socketio() {
+  if (socket.io) {return socket.io;}
+  if (window.localStorage.OneLoveAuthToken) {
+    socket.io = io(
+      SOCKETIO_URL,
+      {
+        transports: ['websocket'],
+        query: `token=${window.localStorage.OneLoveAuthToken}`,
+      },
+    );
+  }
+  return socket.io;
 }
