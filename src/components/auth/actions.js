@@ -1,10 +1,7 @@
 import { createAction } from 'redux-actions';
-import io from 'socket.io-client';
 import { fetch } from '../../utils';
 import { API_URL } from '../../backend_url';
 import { LOGIN } from './constants';
-import { SOCKETIO_URL } from '../../backend_url';
-import { socket } from '../../constants';
 
 
 export const reset = createAction(LOGIN, () => ({
@@ -17,13 +14,6 @@ export const begin = createAction(LOGIN, () => ({
 
 export const success = createAction(LOGIN, json => {
   window.localStorage.OneLoveAuthToken = json.token;
-  socket.io = io(
-    SOCKETIO_URL,
-    {
-      transports: ['websocket'],
-      query: `token=${json.token}`,
-    },
-  );
   return {
     token: json.token,
     status: 'success',
