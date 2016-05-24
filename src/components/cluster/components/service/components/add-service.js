@@ -52,7 +52,7 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.add(this.props.params.clusterId, serviceId));
+    store.dispatch(actions.add(this.props.params.clusterId, this.state.service_id));
   },
 
   render() {
