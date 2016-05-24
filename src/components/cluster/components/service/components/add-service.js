@@ -52,8 +52,6 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    let serviceId = this.state.service_id;
-    if (!serviceId) {serviceId = this.props.services[0].id;}
     store.dispatch(actions.add(this.props.params.clusterId, serviceId));
   },
 
@@ -83,7 +81,8 @@ const Component = React.createClass({
       {spinner}
       {error}
         <h2>My services:</h2>
-        <select onClick={this.handleNameChange} >
+        <select onClick={this.handleNameChange} defaultValue="-1" >
+          <option id="-1" disabled> Choice One</option>
           {
             this.props.services.map(
               service =>
