@@ -12,12 +12,18 @@ const mapStateToProps = (state) => {
 };
 
 const Component = React.createClass({
-
   propTypes: {
     params: React.PropTypes.object,
     task: React.PropTypes.object,
     status: React.PropTypes.string,
   },
+
+  getInitialState() {
+    return {
+      tasks: [],
+    };
+  },
+
   componentWillMount() {
     const self = this;
     store.dispatch(actions.get(self.props.params.taskId));
@@ -40,6 +46,12 @@ const Component = React.createClass({
         }
       }
     });
+    socketio().on('log', message => {
+      const task = this.props.task;
+      if (task && task.id === message.id) {
+        this.state.tasks.push(message);
+      }
+    });
   },
 
   componentWillUnmount() {
@@ -50,9 +62,26 @@ const Component = React.createClass({
     if (this.props.task === undefined) {
       return <div></div>;
     }
+    const tasks = (
+      <div className="tasks">{
+        this.state.tasks.map(task => {
+          let logItem = '';
+          if (task.status === 'failed' || task.status === 'unreachable') {
+            logItem = `: ${task.log}`;
+          }
+          const taskList = (
+            <div key={task.timestamp} className="{task.status}">
+              [{task.host}] {task.task}{logItem}
+            </div>
+          );
+          return taskList;
+        })
+      }</div>
+    );
     const index = (
       <div>
         <h4>{this.props.task.status}</h4>
+        {tasks}
       </div>
     );
     return index;
