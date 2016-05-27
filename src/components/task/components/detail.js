@@ -51,7 +51,7 @@ const Component = React.createClass({
       if (task && task.id === message.id) {
         const tmp = this.state.tasks;
         tmp.push(message);
-        this.setState({tasks: tmp});
+        this.setState({ tasks: tmp });
       }
     });
   },
