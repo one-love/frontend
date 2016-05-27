@@ -49,7 +49,9 @@ const Component = React.createClass({
     socketio().on('log', message => {
       const task = this.props.task;
       if (task && task.id === message.id) {
-        this.state.tasks.push(message);
+        const tmp = this.state.tasks;
+        tmp.push(message);
+        this.setState({ tasks: tmp });
       }
     });
   },
