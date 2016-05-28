@@ -1,5 +1,6 @@
 .header {
   background-color: #716E71;
+  height: $header_height;
 }
 
 .header li a {
@@ -8,6 +9,7 @@
   padding: 14px 16px;
   text-decoration: none;
 }
+
 .u-fr {
   float: right;
 }

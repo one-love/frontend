@@ -141,8 +141,14 @@ $u-p: true;
 @import "~aleut.utilities.widths-responsive";
 
 
+$footer_height: 25px;
+$header_height: 25px;
+
+
 body {
   background: #eaeaea;
 }
 
-@import "menu";
+@import "header";
+@import "content";
+@import "footer";
