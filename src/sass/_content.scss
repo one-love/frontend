@@ -1,0 +1,5 @@
+$content_height: calc(100vh - #{$header_height} - #{$footer_height});
+
+.content {
+  height: $content_height;
+}
