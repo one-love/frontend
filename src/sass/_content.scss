@@ -1,5 +1,6 @@
-$content_height: calc(100vh - #{$header_height} - #{$footer_height});
+$content_height: calc(100vh - #{$header_height} - #{$footer_height} - #{$header_margin_top});
 
 .content {
   height: $content_height;
+  padding: 10px;
 }

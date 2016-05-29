@@ -8,10 +8,10 @@ function Layout(props) {
   return (
     <div>
       <Header />
-        <div className="content">
-          {children}
-        </div>
-      <Footer />
+      <div className="content">
+        {children}
+      </div>
+      <center><Footer /></center>
     </div>
   );
 }

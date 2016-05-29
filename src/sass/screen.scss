@@ -142,10 +142,15 @@ $u-p: true;
 
 
 $header_height: 40px;
+$header_margin_top: 10px;
+$header_margin_sides: 20px;
+$header_width: calc(100vw - 2 * #{$header_margin_sides});
+
+
 $footer_height: 25px;
+$footer_width: 100vw;
 
-
-body {
+html {
   background: #eaeaea;
 }
 
