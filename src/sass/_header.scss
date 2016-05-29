@@ -23,11 +23,13 @@
   border-left-style: solid;
   border-left-color: #bbbbbb;
   border-left-width: 1px;
+  border-right-width: 0px;
 }
 
 .header li a {
   color: white;
   text-align: center;
+  text-shadow: 1px 1px #555555;
   padding: 14px 16px;
   text-decoration: none;
 }
