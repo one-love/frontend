@@ -6,7 +6,7 @@ import { socketio } from '../../../utils';
 
 const mapStateToProps = (state) => {
   const data = {
-    task: state.taskDetail.task,
+    provision: state.provisionDetail.provision,
   };
   return data;
 };
@@ -14,25 +14,25 @@ const mapStateToProps = (state) => {
 const Component = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
-    task: React.PropTypes.object,
+    provision: React.PropTypes.object,
     status: React.PropTypes.string,
   },
 
   getInitialState() {
     return {
-      tasks: [],
+      provisions: [],
     };
   },
 
   componentWillMount() {
     const self = this;
-    store.dispatch(actions.get(self.props.params.taskId));
+    store.dispatch(actions.get(self.props.params.provisionId));
   },
 
   componentDidMount() {
-    socketio().on('task', message => {
-      const task = this.props.task;
-      if (task && task.id === message.id) {
+    socketio().on('provision', message => {
+      const provision = this.props.provision;
+      if (provision && provision.id === message.id) {
         switch (message.status) {
           case 'SUCCESS':
             store.dispatch(actions.success(message));
@@ -41,17 +41,17 @@ const Component = React.createClass({
             store.dispatch(actions.fail(message));
             break;
           default:
-            store.dispatch(actions.fail('unexpected error on task'));
+            store.dispatch(actions.fail('unexpected error on provision'));
             break;
         }
       }
     });
     socketio().on('log', message => {
-      const task = this.props.task;
-      if (task && task.id === message.id) {
-        const tmp = this.state.tasks;
+      const provision = this.props.provision;
+      if (provision && provision.id === message.id) {
+        const tmp = this.state.provisions;
         tmp.push(message);
-        this.setState({ tasks: tmp });
+        this.setState({ provisions: tmp });
       }
     });
   },
@@ -61,29 +61,29 @@ const Component = React.createClass({
   },
 
   render() {
-    if (this.props.task === undefined) {
+    if (this.props.provision === undefined) {
       return <div></div>;
     }
-    const tasks = (
-      <div className="tasks">{
-        this.state.tasks.map(task => {
+    const provisions = (
+      <div className="provisions">{
+        this.state.provisions.map(provision => {
           let logItem = '';
-          if (task.status === 'failed' || task.status === 'unreachable') {
-            logItem = `: ${task.log}`;
+          if (provision.status === 'failed' || provision.status === 'unreachable') {
+            logItem = `: ${provision.log}`;
           }
-          const taskList = (
-            <div key={task.timestamp} className="{task.status}">
-              [{task.host}] {task.task}{logItem}
+          const provisionList = (
+            <div key={provision.timestamp} className={provision.status}>
+              [{provision.host}] {provision.task}{logItem}
             </div>
           );
-          return taskList;
+          return provisionList;
         })
       }</div>
     );
     const index = (
       <div>
-        <h4>{this.props.task.status}</h4>
-        {tasks}
+        <h4>{this.props.provision.status}</h4>
+        {provisions}
       </div>
     );
     return index;
@@ -94,7 +94,7 @@ export const Detail = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   indexRoute: { component: Detail },
-  path: ':taskId',
+  path: ':provisionId',
 };
 
 export default routes;

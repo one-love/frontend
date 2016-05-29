@@ -3,7 +3,7 @@ import login from './components/auth/reducers';
 import applicationReducer from './components/service/components/application/reducers';
 import clusterReducer from './components/cluster/reducers';
 import serviceReducer from './components/service/reducers';
-import taskReducer from './components/provision/reducers';
+import provisionReducer from './components/provision/reducers';
 import hostReducer from './components/cluster/components/provider/components/host/reducers';
 import providerReducer from './components/cluster/components/provider/reducers';
 import register from './components/register/reducers';
@@ -21,7 +21,7 @@ applicationReducer.map(reducer => {
   return undefined;
 });
 
-taskReducer.map(reducer => {
+provisionReducer.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
 });
