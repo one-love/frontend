@@ -11,8 +11,8 @@ export const begin = createAction(PROVISION, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(PROVISION, task => ({
-  task,
+export const success = createAction(PROVISION, provision => ({
+  provision,
   status: 'success',
 }));
 
@@ -21,16 +21,16 @@ export const fail = createAction(PROVISION, error => ({
   error,
 }));
 
-export const provision = (clusterId, id) =>
+export const provisionService = (clusterId, id) =>
   dispatch => {
     dispatch(begin());
     fetch({
       url: `${API_URL}/clusters/${clusterId}/services/${id}/provision`,
       method: 'GET',
     })
-      .then(task => {
-        dispatch(success(task));
-        return task;
+      .then(provision => {
+        dispatch(success(provision));
+        return provision;
       })
       .catch(error => {
         dispatch(fail(error.message));
@@ -42,7 +42,7 @@ const actions = {
   begin,
   success,
   fail,
-  provision,
+  provisionService,
 };
 
 export default actions;

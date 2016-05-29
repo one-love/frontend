@@ -19,18 +19,18 @@ export const fail = createAction(PROVISION_DETAIL, (id, error) => ({
   },
 }));
 
-export const get = id =>
+export const get = provisionId =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/provisions/${id}`,
+      url: `${API_URL}/provisions/${provisionId}`,
     })
       .then(provision => {
         dispatch(success(provision));
         return provision;
       })
       .catch(error => {
-        dispatch(fail(id, error.message));
+        dispatch(fail(provisionId, error.message));
       });
   };
 

@@ -10,11 +10,14 @@ const errorMessages = {
 };
 
 
-const mapStateToProps = state => ({
-  status: state.provision.status,
-  error: state.provision.error,
-  task: state.provision.task,
-});
+const mapStateToProps = state => {
+  const data = {
+    status: state.provision.status,
+    error: state.provision.error,
+    provision: state.provision.provision,
+  };
+  return data;
+};
 
 
 const Component = React.createClass({
@@ -22,12 +25,12 @@ const Component = React.createClass({
     params: React.PropTypes.object,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
-    task: React.PropTypes.object,
+    provision: React.PropTypes.object,
   },
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/provisions/${nextProps.task.id}`);
+      history.push(`/provisions/${nextProps.provision.id}`);
       return false;
     }
     return true;
@@ -43,7 +46,7 @@ const Component = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.provision(
+    store.dispatch(actions.provisionService(
       this.props.params.clusterId,
       this.props.params.serviceId
     ));

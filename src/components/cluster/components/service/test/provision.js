@@ -18,7 +18,7 @@ const provisionTest = describe('Testing provision', () => {
      expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          task: {},
+          provision: {},
           status: 'success',
         },
         type: PROVISION,
