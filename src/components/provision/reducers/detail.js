@@ -1,11 +1,11 @@
-import { TASK_DETAIL } from '../constants';
+import { PROVISION_DETAIL } from '../constants';
 
-export default function taskDetail(
+export default function provisionDetail(
   state = { status: 'initial' },
   action
 ) {
   switch (action.type) {
-    case TASK_DETAIL:
+    case PROVISION_DETAIL:
       return action.payload;
     default:
       return state;
