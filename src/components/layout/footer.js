@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
   return (
     <div className="footer">
-      Made by: Tilda Center
+      Made by: <a href="http://tilda.center/" target="_blank">Tilda Center</a>
     </div>
   );
 }
