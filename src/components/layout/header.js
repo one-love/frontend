@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 function Header() {
   return (
-    <ul className="o-layout o-list-inline o-list-inline--delimited header">
+    <ul className="o-layout o-list-inline header">
       <li><Link to="/clusters/">Clusters</Link></li>
       <li><Link to="/services/">Services</Link></li>
       <li><Link to="/tasks/">Tasks</Link></li>

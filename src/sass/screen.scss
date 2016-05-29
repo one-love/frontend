@@ -141,12 +141,16 @@ $u-p: true;
 @import "~aleut.utilities.widths-responsive";
 
 
+$header_height: 40px;
 $footer_height: 25px;
-$header_height: 25px;
 
 
 body {
   background: #eaeaea;
+}
+
+a {
+  color: #555555;
 }
 
 @import "header";

@@ -1,6 +1,21 @@
 .header {
-  background-color: #716E71;
+  background-color: #aaaaaa;
   height: $header_height;
+  line-height: $header_height;
+  box-shadow: 1px 1px 3px #888888;
+}
+
+.header li {
+  border-right-style: solid;
+  border-right-color: #bbbbbb;
+  border-right-width: 1px;
+}
+
+.header li:last-child
+{
+  border-left-style: solid;
+  border-left-color: #bbbbbb;
+  border-left-width: 1px;
 }
 
 .header li a {
