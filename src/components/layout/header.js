@@ -7,7 +7,7 @@ function Header() {
       <li><Link to="/clusters/">Clusters</Link></li>
       <li><Link to="/services/">Services</Link></li>
       <li><Link to="/tasks/">Tasks</Link></li>
-      <li className="u-fr"><Link to="/logout/">Log Out</Link></li>
+      <li className="u-fr"><Link to="/logout/">Logout</Link></li>
     </ul>
   );
 }
