@@ -27,7 +27,7 @@ const Component = React.createClass({
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/tasks/${nextProps.task.id}`);
+      history.push(`/provisions/${nextProps.task.id}`);
       return false;
     }
     return true;
