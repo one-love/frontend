@@ -146,9 +146,9 @@ $header_margin_top: 10px;
 $header_margin_sides: 20px;
 $header_width: calc(100vw - 2 * #{$header_margin_sides});
 
-
 $footer_height: 25px;
-$footer_width: 100vw;
+
+$content_height: calc(100vh - #{$header_height} - #{$header_margin_top} - #{$footer_height});
 
 html {
   background: #eaeaea;

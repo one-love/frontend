@@ -36,7 +36,7 @@ const Component = React.createClass({
     }
     const index = (
       <div>
-        <h2>My Task:</h2>
+        <h2>My provisions:</h2>
         <ul>
           {
             this.props.tasks.map(
@@ -59,7 +59,7 @@ const Component = React.createClass({
 export const List = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  path: 'tasks',
+  path: 'provisions',
   indexRoute: { component: List },
   childRoutes: [
     detail,

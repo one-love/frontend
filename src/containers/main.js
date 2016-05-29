@@ -6,7 +6,7 @@ import Cluster from '../components/cluster';
 import Service from '../components/service';
 import Register from '../components/register/register';
 import Confirm from '../components/confirm/confirm';
-import Task from '../components/task';
+import Provision from '../components/provision';
 import { requireAuth } from '../utils';
 
 import { Router } from 'react-router';
@@ -24,7 +24,7 @@ const routes = {
         Logout,
         Cluster,
         Service,
-        Task,
+        Provision,
       ],
     },
     {
