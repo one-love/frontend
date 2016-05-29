@@ -1,2 +1,2 @@
-export const TASK_DETAIL = 'TASK_DETAIL';
-export const TASK_LIST = 'TASK_LIST';
+export const PROVISION_DETAIL = 'PROVISION_DETAIL';
+export const PROVISION_LIST = 'PROVISION_LIST';

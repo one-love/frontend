@@ -1,17 +1,17 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../utils';
 import { API_URL } from '../../../backend_url';
-import { TASK_LIST } from '../constants';
+import { PROVISION_LIST } from '../constants';
 
-export const reset = createAction(TASK_LIST, () => ({ status: 'initial', tasks: [] }));
-export const begin = createAction(TASK_LIST, () => ({ status: 'pending', tasks: [] }));
+export const reset = createAction(PROVISION_LIST, () => ({ status: 'initial', provisions: [] }));
+export const begin = createAction(PROVISION_LIST, () => ({ status: 'pending', provisions: [] }));
 
-export const success = createAction(TASK_LIST, tasks => ({
-  tasks,
+export const success = createAction(PROVISION_LIST, provisions => ({
+  provisions,
   status: 'success',
 }));
 
-export const fail = createAction(TASK_LIST, error => ({
+export const fail = createAction(PROVISION_LIST, error => ({
   error,
   status: 'error',
 }));
@@ -20,11 +20,11 @@ export const get = () =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/tasks`,
+      url: `${API_URL}/provisions`,
     })
-      .then(tasks => {
-        dispatch(success(tasks));
-        return tasks;
+      .then(provisions => {
+        dispatch(success(provisions));
+        return provisions;
       })
       .catch(error => {
         dispatch(fail(error.message));

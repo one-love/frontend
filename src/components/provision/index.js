@@ -6,14 +6,14 @@ import store from '../../store';
 import detail from './components/detail';
 
 const mapStateToProps = state => ({
-  tasks: state.taskList.tasks,
-  status: state.taskList.status,
+  provisions: state.provisionList.provisions,
+  status: state.provisionList.status,
 });
 
 const Component = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
-    tasks: React.PropTypes.array,
+    provisions: React.PropTypes.array,
     status: React.PropTypes.string,
   },
 
@@ -31,7 +31,7 @@ const Component = React.createClass({
         {this.props.children}
       </div>
     );
-    if (this.props.tasks === undefined) {
+    if (this.props.provisions === undefined) {
       return <div></div>;
     }
     const index = (
@@ -39,13 +39,13 @@ const Component = React.createClass({
         <h2>My provisions:</h2>
         <ul>
           {
-            this.props.tasks.map(
-              task =>
-              <li key={task.id}>
+            this.props.provisions.map(
+              provision =>
+              <li key={provision.id}>
               <Link
-                key={task.id}
-                to={`/tasks/${task.id}/`}
-              > {task.id} </Link> </li>
+                key={provision.id}
+                to={`/provisions/${provision.id}/`}
+              > {provision.id} </Link> </li>
             )
           }
         </ul>

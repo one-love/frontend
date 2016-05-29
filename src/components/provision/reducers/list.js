@@ -1,14 +1,14 @@
-import { TASK_LIST } from '../constants';
+import { PROVISION_LIST } from '../constants';
 
-export default function taskList(
+export default function provisionList(
   state = {
     status: 'initial',
-    tasks: [],
+    provisions: [],
   },
   action
 ) {
   switch (action.type) {
-    case TASK_LIST:
+    case PROVISION_LIST:
       return action.payload;
     default:
       return state;

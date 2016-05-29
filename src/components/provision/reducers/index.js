@@ -1,9 +1,9 @@
-import taskDetail from './detail';
-import taskList from './list';
+import provisionDetail from './detail';
+import provisionList from './list';
 
 const reducers = [
-  taskDetail,
-  taskList,
+  provisionDetail,
+  provisionList,
 ];
 
 export default reducers;
