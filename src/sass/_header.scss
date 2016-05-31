@@ -34,6 +34,10 @@
   text-decoration: none;
 }
 
+.header li[class=active] {
+  background-color: #555555;
+}
+
 .u-fr {
   float: right;
 }
