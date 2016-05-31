@@ -5,5 +5,7 @@ import '../style.scss';
 
 storiesOf('Layout', module)
   .add('layout', () => (
-    <Layout />
+    <Layout>
+      <div>Hello World</div>
+    </Layout>
   ));
