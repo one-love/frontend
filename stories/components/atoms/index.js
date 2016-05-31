@@ -1,13 +1,11 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
-import Header from '../../../src/components/layout/header';
-import Footer from '../../../src/components/layout/footer';
+import { Link } from 'react-router';
+import { storiesOf } from '@kadira/storybook';
+import Header from './header';
+import Footer from './footer';
+/* import Footer from './footer';*/
 import '../style.scss';
 
 storiesOf('Atoms', module)
-  .add('header', () => (
-    <Header />
-  ))
-  .add('footer', () => (
-    <Footer />
-  ));
+  .add('header', Header)
+  .add('footer', Footer);
