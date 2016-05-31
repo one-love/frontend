@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import OneLove from '../one-love';
+import './index.scss';
 
 function Layout(props) {
   const children = props.children || <OneLove />;

@@ -2,20 +2,14 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './src/sass/screen.scss',
-    './src/index'
-  ],
+  devtool: 'eval',
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({'process.env.NODE_ENV': "'dev'"})
   ],
   resolveLoader: {
@@ -36,9 +30,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
-        include: path.join(__dirname, 'src/sass'),
+        loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
       }
     ]
+  },
+  sassLoader: {
+    includePaths: [path.resolve(__dirname, "./src/sass")]
   }
 };
