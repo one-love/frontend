@@ -2,15 +2,27 @@ import React from 'react';
 import { Link } from 'react-router';
 
 
-function Header() {
-  return (
-    <ul className="o-layout o-list-inline header">
-      <li className="active"><Link to="/clusters/">Clusters</Link></li>
-      <li><Link to="/services/">Services</Link></li>
-      <li><Link to="/provisions/">Provisions</Link></li>
-      <li className="u-fr"><Link to="/logout/">Logout</Link></li>
-    </ul>
-  );
-}
+const Header = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
+  },
+
+  render() {
+    return (
+      <ul className="o-layout o-list-inline header">
+        <li className={this.context.router.isActive('clusters') ? 'active' : ''}>
+          <Link to="/clusters/">Clusters</Link>
+        </li>
+        <li className={this.context.router.isActive('services') ? 'active' : ''}>
+          <Link to="/services/">Services</Link>
+        </li>
+        <li className={this.context.router.isActive('provisions') ? 'active' : ''}>
+          <Link to="/provisions/">Provisions</Link>
+        </li>
+        <li className="u-fr"><Link to="/logout/">Logout</Link></li>
+      </ul>
+    );
+  },
+});
 
 export default Header;
