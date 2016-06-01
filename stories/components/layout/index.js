@@ -8,6 +8,6 @@ import '../style.scss';
 
 storiesOf('Layout', module)
   .add('cluster', Cluster)
+  .add('settings', Settings)
   .add('service', Service)
-  .add('provision', Provision)
-  .add('settings', Settings);
+  .add('provision', Provision);

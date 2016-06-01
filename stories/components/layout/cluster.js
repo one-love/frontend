@@ -31,8 +31,8 @@ export default () => (
           </div>
           <div className="cluster_data_item">
             <select>
-              <option velue="cluster name">cicvara popara</option>
-              <option velue="something">gurabija</option>
+              <option value="cluster name">cicvara popara</option>
+              <option value="something">gurabija</option>
             </select>
           </div>
         </div>
@@ -42,8 +42,8 @@ export default () => (
           </div>
           <div className="cluster_data_item">
             <select>
-              <option velue="some">op čop</option>
-              <option velue="thing">antilop</option>
+              <option value="some">op čop</option>
+              <option value="thing">antilop</option>
             </select>
           </div>
         </div>
@@ -53,8 +53,8 @@ export default () => (
           </div>
           <div className="cluster_data_item">
             <select>
-              <option velue="some">bandaranaik</option>
-              <option velue="thing">trokraka udica</option>
+              <option value="some">bandaranaik</option>
+              <option value="thing">trokraka udica</option>
             </select>
           </div>
         </div>
