@@ -22,8 +22,8 @@ export default () => (
           </div>
           <div className="service_data_item">
             <select>
-              <option velue="some">op čop</option>
-              <option velue="thing">antilop</option>
+              <option value="some">op čop</option>
+              <option value="thing">antilop</option>
             </select>
           </div>
         </div>
