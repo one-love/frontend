@@ -1,0 +1,22 @@
+.settings {
+  height: calc(100vh - #{$header_margin_top});
+  width: 200px;
+  background-color: gray;
+  position: absolute;
+  right: 0;
+}
+
+
+.settings .disable {
+  position: absolute;
+  right: 10px;
+}
+
+.settings .items {
+  padding-top: $header_height;
+  padding-left: 5px;
+}
+
+.settings .items a {
+  display: block;
+}
