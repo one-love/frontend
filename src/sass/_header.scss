@@ -20,9 +20,6 @@
 
 .header li:last-child
 {
-  border-left-style: solid;
-  border-left-color: #bbbbbb;
-  border-left-width: 1px;
   border-right-width: 0px;
 }
 
@@ -40,4 +37,9 @@
 
 .u-fr {
   float: right;
+}
+
+.u-fr div {
+  margin-top: 10px;
+  height: calc(100% - 10px);
 }
