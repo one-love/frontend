@@ -124,6 +124,15 @@ $o-list-inline-delimit-character:   "|" !default;
 //@import "scss/components/_components.footer.scss";
 //++
 
+@import "vars";
+
+@import "header";
+@import "content";
+@import "footer";
+@import "cluster";
+@import "service";
+@import "provision";
+@import "settings";
 
 /*------------------------------------*\
     #Utilities (u-prefix)
@@ -139,22 +148,3 @@ $u-p: true;
 @import "~aleut.utilities.spacing-responsive";
 @import "~aleut.utilities.widths";
 @import "~aleut.utilities.widths-responsive";
-
-
-@import "vars";
-
-html {
-  background: #eaeaea;
-}
-
-a {
-  color: #555555;
-}
-
-@import "header";
-@import "content";
-@import "footer";
-@import "cluster";
-@import "service";
-@import "provision";
-@import "settings";

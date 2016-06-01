@@ -1,9 +1,14 @@
 .settings {
-  height: calc(100vh - #{$header_margin_top});
-  width: 200px;
-  background-color: gray;
+  height: $settings_height;
+  width: $settings_width;
+  background-color: $settings_background_color;
+  box-shadow: 0px 2px 3px #eeeeee;
+  border-style: none none none solid;
+  border-width: 1px;
+  border-color: $settings_border_color;
   position: absolute;
   right: 0;
+  color: $settings_color;
 }
 
 

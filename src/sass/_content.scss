@@ -1,4 +1,15 @@
 .content {
   height: $content_height;
   padding: 10px;
+  color: $color;
+}
+
+.content a {
+  color: $color;
+}
+
+select {
+  background-color: $select_background_color;
+  border-color: $select_border_color;
+  color: $color;
 }

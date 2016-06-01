@@ -73,7 +73,7 @@ const Login = React.createClass({
         break;
     }
     return (
-      <div className="form-container">
+      <div className="content">
         {spinner}
         {error}
         <h1 className="form__title">Login</h1>

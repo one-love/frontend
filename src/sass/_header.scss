@@ -1,38 +1,28 @@
 .header {
-  margin-top: $header_margin_top;
-  margin-left: calc(#{$header_margin_sides} / 2);
-  background-color: #aaaaaa;
+  background-color: $header_background_color;
   height: $header_height;
   line-height: $header_height;
-  box-shadow: 0px 2px 3px #888888;
-  width: $header_width;
+  box-shadow: 0px 2px 3px #eeeeee;
   border-radius: 2px;
-  border-style: solid;
   border-width: 1px;
   border-color: #999999;
 }
 
-.header li {
-  border-right-style: solid;
-  border-right-color: #bbbbbb;
-  border-right-width: 1px;
-}
-
-.header li:last-child
-{
-  border-right-width: 0px;
-}
-
 .header li a {
-  color: white;
+  color: #bbbbbb;
   text-align: center;
-  text-shadow: 1px 1px #555555;
-  padding: 14px 16px;
+  text-shadow: 1px 1px #eeeeee;
+  padding: 16px 16px;
   text-decoration: none;
 }
 
 .header li.active {
-  background-color: #555555;
+  background-color: #ebebeb;
+}
+
+.header li.active a {
+  color: #757575;
+  text-shadow: none;
 }
 
 .u-fr {
@@ -42,5 +32,5 @@
 .u-fr div {
   margin-top: 9px;
   margin-right: 5px;
-  height: calc(100% - 10px);
+  height: calc(100% - 9px);
 }
