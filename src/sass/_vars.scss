@@ -18,3 +18,8 @@ $settings_color: #a0a0a0;
 
 $select_background_color: white;
 $select_border_color: #eeeeee;
+
+$login_height: 200px;
+$login_width: 400px;
+$login_margin: calc((#{$content_height} - #{$login_height}) / 2);
+$login_background_color: #fafafa;
