@@ -40,7 +40,7 @@ const Layout = React.createClass({
         <div className="settings">
           <div className="disable" onClick={this.handleOnClick}>x</div>
           <div className="items">
-            <Link to={'/'}>Profile</Link>
+            <Link to={'/profile/'}>Profile</Link>
             <a href="" onClick={this.handleLogout}>Logout</a>
           </div>
         </div>
