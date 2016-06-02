@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   status: state.providerList.status,
 });
 
-const Component = React.createClass({
+const ProviderList = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     params: React.PropTypes.object,
@@ -51,11 +51,10 @@ const Component = React.createClass({
   },
 });
 
-export const List = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'providers',
-  indexRoute: { component: List },
+  indexRoute: { component: connect(mapStateToProps, actions)(ProviderList) },
   childRoutes: [
     create,
     detail,

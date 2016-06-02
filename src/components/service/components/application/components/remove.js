@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 });
 
 
-const Component = React.createClass({
+const ApplicationRemove = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -76,11 +76,10 @@ const Component = React.createClass({
   },
 });
 
-export const Remove = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'applications/:applicationName/remove',
-  component: Remove,
+  component: connect(mapStateToProps, actions)(ApplicationRemove),
 };
 
 export default routes;

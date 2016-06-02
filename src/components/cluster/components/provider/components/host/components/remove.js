@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 });
 
 
-const Component = React.createClass({
+const HostRemove = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -79,11 +79,10 @@ const Component = React.createClass({
   },
 });
 
-export const Remove = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'remove',
-  component: Remove,
+  component: connect(mapStateToProps, actions)(HostRemove),
 };
 
 export default routes;

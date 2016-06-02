@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 };
 
 
-const Component = React.createClass({
+const HostCreate = React.createClass({
   propTypes: {
     host: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -114,11 +114,10 @@ const Component = React.createClass({
   },
 });
 
-export const Create = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'create',
-  component: Create,
+  component: connect(mapStateToProps, actions)(HostCreate),
 };
 
 export default routes;

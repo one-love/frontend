@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
   error: state.clusterService.error,
 });
 
-const Component = React.createClass({
+const ClusterService = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     services: React.PropTypes.array,
@@ -108,11 +108,10 @@ const Component = React.createClass({
   },
 });
 
-export const List = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'service',
-  indexRoute: { component: List },
+  indexRoute: { component: connect(mapStateToProps, actions)(ClusterService) },
 };
 
 export default routes;

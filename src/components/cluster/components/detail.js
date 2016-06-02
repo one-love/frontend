@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 };
 
 
-const Component = React.createClass({
+const ClusterDetail = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     cluster: React.PropTypes.object,
@@ -71,31 +71,35 @@ const Component = React.createClass({
             </Link>
           </li>
           <li className="item__child">
-              <b className="item__fragment item__fragment--bold">Roles: </b>
-              <span className="item__value">{
-                  this.props.cluster.roles ?
-                  this.props.cluster.roles.map(
-                    (role) => <span key={role.name}>{role.name} </span>
-                  ) :
-                  'No roles right now'
-              }</span>
+            <b className="item__fragment item__fragment--bold">Roles: </b>
+            <span className="item__value">
+              {
+                this.props.cluster.roles ?
+                this.props.cluster.roles.map(
+                  (role) => <span key={role.name}>{role.name} </span>
+                ) :
+                'No roles right now'
+              }
+            </span>
           </li>
           <li className="item__child">
-              <b className="item__fragment item__fragment--bold">Services: </b>
-              <span className="item__value">{
-                  this.props.cluster.services ?
-                  this.props.cluster.services.map(
-                    (serv) =>
-                        <ServiceComponent
-                          clusterId={this.props.params.clusterId}
-                          name={serv.name}
-                          serviceId={serv.id}
-                          username={serv.user.username}
-                          key={serv.id}
-                        />
-                  ) :
-                  'No service right now'
-              }</span>
+            <b className="item__fragment item__fragment--bold">Services: </b>
+            <span className="item__value">
+              {
+                this.props.cluster.services ?
+                this.props.cluster.services.map(
+                  (serv) =>
+                    <ServiceComponent
+                      clusterId={this.props.params.clusterId}
+                      name={serv.name}
+                      serviceId={serv.id}
+                      username={serv.user.username}
+                      key={serv.id}
+                    />
+                ) :
+                'No service right now'
+              }
+            </span>
           </li>
         </ul>
         <Link to={`/clusters/${this.props.params.clusterId}/remove/`}>
@@ -109,11 +113,10 @@ const Component = React.createClass({
   },
 });
 
-export const Detail = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: ':clusterId',
-  indexRoute: { component: Detail },
+  indexRoute: { component: connect(mapStateToProps, actions)(ClusterDetail) },
   childRoutes: [
     remove,
     provider,

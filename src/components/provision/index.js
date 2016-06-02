@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
   status: state.provisionList.status,
 });
 
-const Component = React.createClass({
+const ProvisionList = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     provisions: React.PropTypes.array,
@@ -56,11 +56,10 @@ const Component = React.createClass({
   },
 });
 
-export const List = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'provisions',
-  indexRoute: { component: List },
+  indexRoute: { component: connect(mapStateToProps, actions)(ProvisionList) },
   childRoutes: [
     detail,
   ],

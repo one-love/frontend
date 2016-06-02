@@ -20,7 +20,7 @@ const mapStateToProps = state => {
 };
 
 
-const Component = React.createClass({
+const ServiceProvision = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     status: React.PropTypes.string,
@@ -81,11 +81,10 @@ const Component = React.createClass({
   },
 });
 
-export const Provision = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'provision/:serviceId',
-  component: Provision,
+  component: connect(mapStateToProps, actions)(ServiceProvision),
 };
 
 export default routes;
