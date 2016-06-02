@@ -6,6 +6,7 @@ import Service from '../components/service';
 import Register from '../components/register/register';
 import Confirm from '../components/confirm/confirm';
 import Provision from '../components/provision';
+import Profile from '../components/profile';
 import { requireAuth } from '../utils';
 import { Router } from 'react-router';
 import { history } from '../constants';
@@ -22,6 +23,7 @@ const routes = {
         Cluster,
         Service,
         Provision,
+        Profile,
       ],
     },
     {

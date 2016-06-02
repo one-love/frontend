@@ -18,3 +18,7 @@ button, .button {
   border-style: none;
   border-radius: 4px;
 }
+
+.content.no_header {
+  height: calc(#{$content_height} + #{$header_height})
+}

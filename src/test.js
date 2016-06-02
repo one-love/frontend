@@ -3,6 +3,7 @@ import confirm from './components/confirm/tests';
 import register from './components/register/tests';
 import auth from './components/auth/tests';
 import service from './components/service/tests';
+import profile from './components/profile/tests';
 
 cluster;
 confirm;
