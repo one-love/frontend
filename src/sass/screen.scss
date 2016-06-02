@@ -126,6 +126,10 @@ $o-list-inline-delimit-character:   "|" !default;
 
 @import "vars";
 
+a {
+  outline: 0;
+}
+
 @import "header";
 @import "content";
 @import "footer";
