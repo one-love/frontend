@@ -18,3 +18,12 @@ $settings_color: #a0a0a0;
 
 $select_background_color: white;
 $select_border_color: #eeeeee;
+
+$login_height: 300px;
+$login_width: 400px;
+$login_margin_top: calc((#{$content_height} - #{$login_height}) / 2);
+$login_background_color: white;
+$login_element_spacing: 12px;
+$login_padding_top: 10px;
+
+$inverse_background_color: #fafafa;
