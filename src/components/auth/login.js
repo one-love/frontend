@@ -4,6 +4,7 @@ import { login, actions } from './actions';
 import store from '../../store';
 import { history } from '../../constants';
 import { isLoggedIn } from '../../utils';
+import Footer from '../layout/footer';
 
 
 const errorMessages = {
@@ -73,35 +74,38 @@ const Login = React.createClass({
         break;
     }
     return (
-      <div className="content">
-        {spinner}
-        {error}
-        <h1 className="form__title">Login</h1>
-        <form role="form" onSubmit={this.handleSubmit}>
-          <div className="form__item">
-            <label htmlFor="email">Email</label>
-            <input
-              autoFocus
-              type="text"
-              className="form__field"
-              id="email"
-              placeholder="Email"
-              onChange={this.handleEmailChange}
-            />
+      <div>
+        <div className="content inverse no_header">
+          <div className="login">
+            {spinner}
+            {error}
+            <h1 className="form__title">Login</h1>
+            <form role="form" onSubmit={this.handleSubmit}>
+              <div className="form__item">
+                <input
+                  autoFocus
+                  type="text"
+                  className="form__field"
+                  id="email"
+                  placeholder="Email"
+                  onChange={this.handleEmailChange}
+                />
+              </div>
+              <div className="form__item">
+                <input
+                  type="password"
+                  className="form__field"
+                  id="password"
+                  ref="password"
+                  placeholder="Password"
+                  onChange={this.handlePasswordChange}
+                />
+              </div>
+              <button className="button button--primary">Submit</button>
+            </form>
           </div>
-          <div className="form__item">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form__field"
-              id="password"
-              ref="password"
-              placeholder="Password"
-              onChange={this.handlePasswordChange}
-            />
-          </div>
-          <button className="button button--primary">Submit</button>
-        </form>
+        </div>
+        <Footer />
       </div>
     );
   },
