@@ -23,7 +23,7 @@ const mapStateToProps = state => {
 };
 
 
-const Component = React.createClass({
+const ProviderDetail = React.createClass({
   propTypes: {
     provider: React.PropTypes.object,
     applications: React.PropTypes.array,
@@ -90,11 +90,10 @@ const Component = React.createClass({
   },
 });
 
-export const Detail = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: ':providerName',
-  indexRoute: { component: Detail },
+  indexRoute: { component: connect(mapStateToProps, actions)(ProviderDetail) },
   childRoutes: [
     edit,
     host,

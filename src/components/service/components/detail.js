@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 };
 
 
-const Component = React.createClass({
+const ServiceDetail = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     service: React.PropTypes.object,
@@ -81,11 +81,10 @@ const Component = React.createClass({
   },
 });
 
-export const Detail = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: ':serviceId',
-  indexRoute: { component: Detail },
+  indexRoute: { component: connect(mapStateToProps, actions)(ServiceDetail) },
   childRoutes: [
     remove,
     createApp,

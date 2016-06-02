@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 });
 
 
-const Component = React.createClass({
+const ApplicationEdit = React.createClass({
   propTypes: {
     application: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -119,11 +119,10 @@ const Component = React.createClass({
   },
 });
 
-export const Edit = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'applications/:applicationName/edit',
-  component: Edit,
+  component: connect(mapStateToProps, actions)(ApplicationEdit),
 };
 
 export default routes;

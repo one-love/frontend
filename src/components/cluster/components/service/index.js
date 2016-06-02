@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const ServiceComponent = React.createClass({
+const ClusterServiceList = React.createClass({
   propTypes: {
     name: React.PropTypes.string,
     clusterId: React.PropTypes.string,
@@ -38,4 +38,4 @@ const ServiceComponent = React.createClass({
   },
 });
 
-export default ServiceComponent;
+export default ClusterServiceList;

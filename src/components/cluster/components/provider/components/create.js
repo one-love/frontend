@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 };
 
 
-const Component = React.createClass({
+const ProviderCreate = React.createClass({
   propTypes: {
     plugins: React.PropTypes.array,
     provider: React.PropTypes.object,
@@ -137,11 +137,10 @@ const Component = React.createClass({
   },
 });
 
-export const Create = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'create',
-  component: Create,
+  component: connect(mapStateToProps, actions)(ProviderCreate),
 };
 
 export default routes;

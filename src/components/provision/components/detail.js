@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
   return data;
 };
 
-const Component = React.createClass({
+const ProvisionDetail = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     provision: React.PropTypes.object,
@@ -90,10 +90,9 @@ const Component = React.createClass({
   },
 });
 
-export const Detail = connect(mapStateToProps, actions)(Component);
 
 const routes = {
-  indexRoute: { component: Detail },
+  indexRoute: { component: connect(mapStateToProps, actions)(ProvisionDetail) },
   path: ':provisionId',
 };
 

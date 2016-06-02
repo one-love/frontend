@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 });
 
 
-const Component = React.createClass({
+const HostDetail = React.createClass({
   propTypes: {
     host: React.PropTypes.object,
     hosts: React.PropTypes.array,
@@ -56,11 +56,10 @@ const Component = React.createClass({
   },
 });
 
-export const Detail = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: ':hostname',
-  indexRoute: { component: Detail },
+  indexRoute: { component: connect(mapStateToProps, actions)(HostDetail) },
   childRoutes: [
     edit,
     remove,

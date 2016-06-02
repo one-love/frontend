@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 };
 
 
-const Component = React.createClass({
+const ServiceCreate = React.createClass({
   propTypes: {
     service: React.PropTypes.object,
     params: React.PropTypes.object,
@@ -91,11 +91,10 @@ const Component = React.createClass({
   },
 });
 
-export const Create = connect(mapStateToProps, actions)(Component);
 
 const routes = {
   path: 'create',
-  component: Create,
+  component: connect(mapStateToProps, actions)(ServiceCreate),
 };
 
 export default routes;
