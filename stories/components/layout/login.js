@@ -6,12 +6,11 @@ import Footer from '../atoms/footer';
 export default () => (
   <div>
     <Header />
-    <div className="content">
+    <div className="content inverse">
       <div className="login">
         <h1 className="form__title">Login</h1>
         <form role="form">
           <div className="form__item">
-            <label htmlFor="email">Email</label>
             <input
               autoFocus
               type="text"
@@ -21,7 +20,6 @@ export default () => (
             />
           </div>
           <div className="form__item">
-            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form__field"

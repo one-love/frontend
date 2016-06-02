@@ -4,6 +4,17 @@
   color: $color;
   margin-left: auto;
   margin-right: auto;
-  margin-top: $login_margin;
+  margin-top: $login_margin_top;
   background-color: $login_background_color;
+  padding-top: $login_padding_top;
+}
+
+.login * {
+  display: table;
+  margin: $login_element_spacing auto;
+}
+
+.inverse {
+  background-color: $inverse_background_color;
+  height: $content_height;
 }
