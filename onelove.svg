@@ -11,12 +11,12 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="744.09448819"
    height="1052.3622047"
-   id="svg2"
+   id="svg3012"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="onelove.svg">
+   sodipodi:docname="New document 3">
   <defs
-     id="defs4" />
+     id="defs3014" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -24,26 +24,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="297.21315"
-     inkscape:cy="409.9683"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     showguides="true"
-     inkscape:guide-bbox="true"
      inkscape:window-width="1676"
      inkscape:window-height="1011"
      inkscape:window-x="0"
      inkscape:window-y="18"
-     inkscape:window-maximized="0">
-    <sodipodi:guide
-       orientation="1,0"
-       position="377.14286,894.28571"
-       id="guide2985" />
-  </sodipodi:namedview>
+     inkscape:window-maximized="0" />
   <metadata
-     id="metadata7">
+     id="metadata3017">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -62,7 +55,7 @@
        id="g3811"
        inkscape:export-xdpi="2.4548991"
        inkscape:export-ydpi="2.4548991"
-       transform="matrix(1,0,0,0.93483763,0,5.7215481)"
+       transform="matrix(1,0,0,0.93483763,-19.998586,243.32116)"
        inkscape:export-filename="/home/meka/Files/onelove.ico.png">
       <path
          id="path2991"
@@ -82,15 +75,5 @@
            id="tspan3033"
            sodipodi:role="line">1</tspan></text>
     </g>
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot3035"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
-         id="flowRegion3037"><rect
-           id="rect3039"
-           width="127.27922"
-           height="137.38075"
-           x="248.49753"
-           y="363.43814" /></flowRegion><flowPara
-         id="flowPara3041"></flowPara></flowRoot>  </g>
+  </g>
 </svg>
