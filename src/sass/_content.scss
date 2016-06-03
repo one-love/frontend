@@ -22,3 +22,21 @@ button, .button {
 .content.no_header {
   height: calc(#{$content_height} + #{$header_height})
 }
+
+.center * {
+  display: table;
+  margin: 0 auto;
+}
+
+.icon {
+  height: 120px;
+  width: 120px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 3px;
+  color: $color;
+}
+
+.inline {
+  display: inline-block;
+}

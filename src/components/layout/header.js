@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import store from '../../store';
 import actions from './actions';
-import gear from './gear.svg';
+import gear from '../../../media/img/gear.svg';
 
 
 const Header = React.createClass({
