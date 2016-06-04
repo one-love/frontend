@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../atoms/header';
+import Header from '../molecules/header';
 import Footer from '../atoms/footer';
-import Cluster from '../atoms/cluster-icon';
+import Cluster from '../molecules/cluster';
 import '../style.scss';
 
 export default () => (

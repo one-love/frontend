@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../atoms/header';
+import Header from '../molecules/header';
 import Footer from '../atoms/footer';
-import Service from '../atoms/service-icon';
+import Service from '../molecules/service';
 import '../style.scss';
 
 export default () => (
