@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Header from '../atoms/header';
-import Footer from '../atoms/footer';
 
 export default () => (
   <div>
@@ -30,6 +28,5 @@ export default () => (
         </form>
       </div>
     </div>
-    <Footer />
   </div>
 );
