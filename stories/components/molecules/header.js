@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import MenuItem from '../atoms/menu-item';
-import gear from '../../../media/img/gear.svg';
+import MenuSettings from '../atoms/menu-settings';
 
 export default (props) => {
   const myProps = props || {cluster: true};
@@ -10,11 +10,7 @@ export default (props) => {
       <MenuItem className="active" link="/clusters" name="Clusters" />
       <MenuItem link="/services" name="Services" />
       <MenuItem link="/provisions" name="Provisions" />
-      <li className="u-fr">
-        <div>
-          <img src={gear} />
-        </div>
-      </li>
+      <MenuSettings />
     </ul>
   );
 };

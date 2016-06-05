@@ -19,8 +19,9 @@ button, .button {
   border-radius: 4px;
 }
 
-.content.no_header {
-  height: calc(#{$content_height} + #{$header_height})
+.full {
+  height: 100vh !important;
+  weight: 100vw !important;
 }
 
 .center * {
