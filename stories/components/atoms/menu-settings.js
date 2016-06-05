@@ -10,8 +10,10 @@ export default (props) => {
     }
   }
   return (
-    <li className={props.className}>
-      <Link to={props.link}>{props.name}</Link>
+    <li className="u-fr">
+      <div>
+        <img src={gear} />
+      </div>
     </li>
   )
 };

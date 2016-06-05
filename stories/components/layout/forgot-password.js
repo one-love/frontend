@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 export default () => (
   <div>
-    <div className="content inverse no_header">
+    <div className="content inverse full">
       <div className="login">
         <h1 className="form__title">Forgot Password</h1>
         <form role="form">
