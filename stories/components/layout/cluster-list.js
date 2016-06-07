@@ -6,7 +6,7 @@ import '../style.scss';
 
 export default () => (
   <div>
-    <Header cluster="true"/>
+    <Header cluster="active"/>
     <div className="content">
       <h1>Clusters</h1>
       <Cluster name="Tilda Center" />

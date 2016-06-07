@@ -5,7 +5,7 @@ import '../style.scss';
 
 export default () => (
   <div>
-    <Header cluster="true"/>
+    <Header cluster="active"/>
     <div className="content">
       <h1>Cluster</h1>
       <div className="cluster">
