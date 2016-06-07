@@ -6,7 +6,7 @@ import '../style.scss';
 
 export default () => (
   <div>
-    <Header service="true"/>
+    <Header service="active"/>
     <div className="content">
       <h1>Services</h1>
       <Service name="One Love" />

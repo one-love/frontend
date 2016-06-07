@@ -4,7 +4,7 @@ import Footer from '../atoms/footer';
 
 export default () => (
   <div>
-    <Header service="true" />
+    <Header service="active" />
     <div className="content">
       <h1>Service</h1>
       <div className="service">
