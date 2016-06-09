@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/one-love/",
   "devDependencies": {
-    "@kadira/storybook": "^1.28.1",
+    "@kadira/storybook": "^1.29.4",
     "aleut.base.images": "^1.0.1",
     "aleut.base.lists": "^1.0.1",
     "aleut.base.page": "^1.0.1",
