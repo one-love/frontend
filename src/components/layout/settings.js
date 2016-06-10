@@ -1,13 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from './header';
-import Footer from './footer';
-import OneLove from '../one-love';
+import { Link } from 'react-router';
 import store from '../../store';
 import actions from './actions';
 import { history, postLogoutURL } from '../../constants';
 import './index.scss';
-import Settings from './settings';
 
 
 const mapStateToProps = state => ({
@@ -15,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 
-const Layout = React.createClass({
+const Settings = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     status: React.PropTypes.string,
@@ -33,19 +30,17 @@ const Layout = React.createClass({
   },
 
   render() {
-    const children = this.props.children || <OneLove />;
     return (
-      <div>
-        <Settings />
-        <Header />
-        <div className="content">
-          {children}
+      <div className={this.props.status === 'shown' ? 'settings--shown' : 'settings--hiden' }>
+        <div className="disable" onClick={this.handleOnClick}>x</div>
+        <div className="items">
+          <Link to={'/profile/'}>Profile</Link>
+          <a href="" onClick={this.handleLogout}>Logout</a>
         </div>
-        <center><Footer /></center>
       </div>
     );
   },
 });
 
 
-export default connect(mapStateToProps, actions)(Layout);
+export default connect(mapStateToProps, actions)(Settings);
