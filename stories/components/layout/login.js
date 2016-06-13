@@ -10,7 +10,7 @@ export default () => (
           <div className="position--relative">
             <input
               name="email"
-              type="email"
+              type="input"
               id="email"
               required
             />
