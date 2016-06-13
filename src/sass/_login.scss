@@ -46,7 +46,8 @@
     transition: all 0.15s ease-out 0s;
   }
 
-   input:focus + label {
+   input:focus + label,
+   input:valid + label {
      top: -10px;
      font-size: 12px;
      color: #aaaaaa;

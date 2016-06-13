@@ -12,6 +12,7 @@ export default () => (
               name="email"
               type="email"
               id="email"
+              required
             />
             <label htmlFor="email">Email</label>
           </div>
@@ -20,7 +21,8 @@ export default () => (
               type="password"
               name="password"
               id="password"
-            />
+              required
+             />
             <label htmlFor="password">Password</label>
           </div>
           <button className="button button--primary">Submit</button>
