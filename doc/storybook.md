@@ -17,4 +17,4 @@ have:
 
 ### Stories
 All stories are in the [stories](../stories/) directory. Inside `components` you'll find directories which follow described 
-atomic design structure. Storybook itself reads config from [.stories](../.stories/).
+atomic design structure. Storybook itself reads config from [.storybook](../.storybook/).
