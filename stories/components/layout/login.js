@@ -6,23 +6,22 @@ export default () => (
     <div className="content inverse full">
       <div className="login">
         <h1 className="form__title">Login</h1>
-        <form role="form">
-          <div className="form__item">
+        <form role="form" className="form">
+          <div className="position--relative">
             <input
-              autoFocus
-              type="text"
-              className="form__field"
+              name="email"
+              type="email"
               id="email"
-              placeholder="Email"
             />
+            <label htmlFor="email">Email</label>
           </div>
-          <div className="form__item">
+          <div className="position--relative">
             <input
               type="password"
-              className="form__field"
+              name="password"
               id="password"
-              placeholder="Password"
             />
+            <label htmlFor="password">Password</label>
           </div>
           <button className="button button--primary">Submit</button>
         </form>
