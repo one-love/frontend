@@ -79,7 +79,9 @@ const Login = React.createClass({
             {spinner}
             {error}
           <div className="login">
-            <h1 className="form__title">Login</h1>
+            <div className="o-layout o-layout--center">
+              <h1 className="form__title">Login</h1>
+            </div>
             <form className="form" onSubmit={this.handleSubmit}>
               <div className="position--relative">
                 <input

@@ -5,7 +5,9 @@ export default () => (
   <div>
     <div className="content inverse full">
       <div className="login">
-        <h1 className="form__title">Login</h1>
+        <div className="o-layout o-layout--center">
+          <h1 className="form__title">Login</h1>
+        </div>
         <form role="form" className="form">
           <div className="position--relative">
             <input

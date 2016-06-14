@@ -89,12 +89,10 @@ $o-layout--rev:      false !default;
 $o-layout--middle:   false !default;
 $o-layout--bottom:   false !default;
 $o-layout--right:    false !default;
-$o-layout--center:   false !default;
+$o-layout--center:   true !default;
 $o-layout--auto:     false !default;
-$o-list-inline--delimited:   true !default;
-$o-list-inline-delimit-character:   "|" !default;
 
-//@import "~aleut.objects.layout";
+@import "~aleut.objects.layout";
 //@import "~aleut.objects.list-bare";
 //@import "~aleut.objects.list-block";
 @import "~aleut.objects.list-inline";
