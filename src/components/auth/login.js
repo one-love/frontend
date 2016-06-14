@@ -65,7 +65,10 @@ const Login = React.createClass({
     let error = '';
     switch (this.props.status) {
       case 'pending':
-        spinner = <div>spinner</div>;
+        spinner =   (<div id="faceoff">
+        <div id="preloader"></div>
+        <div className="preloader-section"></div>
+        </div>);
         break;
       case 'error':
         error = <div>{errorMessages[this.props.error]}</div>;
