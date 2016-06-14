@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/remove';
 import store from '../../../../../store';
 import { history } from '../../../../../constants';
-
+import Spinner from '../../../../layout/spinner';
 
 const errorMessages = {
   UNAUTHORIZED: 'Wrong user/password',
@@ -54,7 +54,7 @@ const ClusterServiceRemove = React.createClass({
     let error = '';
     switch (this.props.status) {
       case 'pending':
-        spinner = <div>spinner</div>;
+        spinner = <Spinner />;
         break;
       case 'error':
         error = <div>{errorMessages[this.props.error]}</div>;

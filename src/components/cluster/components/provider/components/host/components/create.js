@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/create';
 import store from '../../../../../../../store';
 import { history } from '../../../../../../../constants';
+import Spinner from '../../../.../../../../../layout/spinner';
 
 
 const errorMessages = {
@@ -72,7 +73,7 @@ const HostCreate = React.createClass({
     let error = '';
     switch (this.props.status) {
       case 'pending':
-        spinner = <div>spinner</div>;
+        spinner = <Spinner />;
         break;
       case 'error':
         error = <div>{errorMessages[this.props.error]}</div>;
