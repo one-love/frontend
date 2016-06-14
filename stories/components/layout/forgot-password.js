@@ -7,14 +7,16 @@ export default () => (
       <div className="login">
         <h1 className="form__title">Forgot Password</h1>
         <form role="form">
-          <div className="form__item">
+          <div className="position--relative">
             <input
               autoFocus
-              type="text"
+              type="input"
+              name="email"
               className="form__field"
               id="email"
-              placeholder="Email"
+              required
             />
+            <label htmlFor="email">Email</label>
           </div>
           <button className="button button--primary">Submit</button>
         </form>
