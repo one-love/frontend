@@ -76,30 +76,30 @@ const Login = React.createClass({
     return (
       <div>
         <div className="content inverse no_header">
-          <div className="login">
             {spinner}
             {error}
+          <div className="login">
             <h1 className="form__title">Login</h1>
-            <form role="form" onSubmit={this.handleSubmit}>
-              <div className="form__item">
+            <form className="form" onSubmit={this.handleSubmit}>
+              <div className="position--relative">
                 <input
-                  autoFocus
-                  type="text"
-                  className="form__field"
+                  name="email"
+                  type="input"
                   id="email"
-                  placeholder="Email"
                   onChange={this.handleEmailChange}
+                  required
                 />
+                <label htmlFor="email">Email</label>
               </div>
-              <div className="form__item">
+              <div className="position--relative">
                 <input
                   type="password"
-                  className="form__field"
+                  name="password"
                   id="password"
-                  ref="password"
-                  placeholder="Password"
                   onChange={this.handlePasswordChange}
+                  required
                 />
+                <label htmlFor="password">Password</label>
               </div>
               <button className="button button--primary">Submit</button>
             </form>
