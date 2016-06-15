@@ -1,6 +1,8 @@
 import React from 'react';
 import InlineEdit from 'react-edit-inline';
 import { connect } from 'react-redux';
+import FileInput from 'react-file-reader-input';
+import base64 from 'base-64';
 import actions from '../actions/detail';
 import editActions from '../actions/edit';
 import store from '../../../store';
@@ -51,6 +53,20 @@ const ClusterDetail = React.createClass({
     );
   },
 
+  handleSSHSelect(event, results) {
+    if (results.length > 0) {
+      const e = results[0][0];
+      const content = e.target.result;
+      const encodedContent = base64.encode(content);
+      store.dispatch(editActions.edit(
+        this.props.params.clusterId,
+        {
+          sshKey: encodedContent,
+        },
+      ));
+    }
+  },
+
   render() {
     if (this.props.cluster === undefined) {
       return <div></div>;
@@ -70,6 +86,11 @@ const ClusterDetail = React.createClass({
             <Link to={`/clusters/${this.props.params.clusterId}/providers/`}>
               Providers
             </Link>
+          </li>
+          <li>
+            <FileInput id="ssh" as="text" onChange={this.handleSSHSelect}>
+              cvrc
+            </FileInput>
           </li>
           <li className="item__child">
             <b className="item__fragment item__fragment--bold">Roles: </b>
