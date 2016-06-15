@@ -5,7 +5,6 @@ import actions from '../actions/detail';
 import editActions from '../actions/edit';
 import store from '../../../../../store';
 import { Link } from 'react-router';
-import edit from './edit';
 import remove from './remove';
 import host from './host';
 
@@ -80,9 +79,6 @@ const ProviderDetail = React.createClass({
               </Link>
             </li>
           </ul>
-        <Link to={`/clusters/${clusterId}/providers/${this.props.provider.name}/edit/`}>
-          Edit
-        </Link>
         <Link to={`/clusters/${clusterId}/providers/${this.props.provider.name}/remove/`}>
           Remove
         </Link>
@@ -96,7 +92,6 @@ const routes = {
   path: ':providerName',
   indexRoute: { component: connect(mapStateToProps, actions)(ProviderDetail) },
   childRoutes: [
-    edit,
     host,
     remove,
   ],
