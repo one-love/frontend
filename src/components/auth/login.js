@@ -108,7 +108,6 @@ const Login = React.createClass({
             </form>
           </div>
         </div>
-        <Footer />
       </div>
     );
   },
