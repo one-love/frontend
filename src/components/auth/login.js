@@ -4,7 +4,6 @@ import { login, actions } from './actions';
 import store from '../../store';
 import { history } from '../../constants';
 import { isLoggedIn } from '../../utils';
-import Footer from '../layout/footer';
 import Spinner from '../layout/spinner';
 
 
