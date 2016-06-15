@@ -39,6 +39,7 @@ const ClusterDetail = React.createClass({
 
   componentWillUnmount() {
     store.dispatch(actions.reset());
+    store.dispatch(editActions.reset());
   },
 
   dataChanged(data) {
