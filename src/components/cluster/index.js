@@ -41,11 +41,14 @@ const ClusterList = React.createClass({
             this.props.clusters.map(
               cluster =>
               <li key={cluster.id}>
-              <Link
-                key={cluster.id}
-                to={`/clusters/${cluster.id}/`}
-                cluster={cluster}
-              > {cluster.name} </Link> </li>
+                <Link
+                  key={cluster.id}
+                  to={`/clusters/${cluster.id}/`}
+                  cluster={cluster}
+                >
+                  {cluster.name}
+                </Link>
+              </li>
             )
           }
         </ul>
