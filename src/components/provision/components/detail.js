@@ -82,7 +82,7 @@ const ProvisionDetail = React.createClass({
     );
     const index = (
       <div>
-        <h4>{this.props.provision.status}</h4>
+        <h4 className={this.props.provision.status}>{this.props.provision.status}</h4>
         {provisions}
       </div>
     );
