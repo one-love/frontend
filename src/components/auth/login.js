@@ -5,6 +5,7 @@ import store from '../../store';
 import { history } from '../../constants';
 import { isLoggedIn } from '../../utils';
 import Footer from '../layout/footer';
+import Spinner from '../layout/spinner';
 
 
 const errorMessages = {
@@ -65,10 +66,7 @@ const Login = React.createClass({
     let error = '';
     switch (this.props.status) {
       case 'pending':
-        spinner =   (<div id="faceoff">
-        <div id="preloader"></div>
-        <div className="preloader-section"></div>
-        </div>);
+        spinner = <Spinner />;
         break;
       case 'error':
         error = <div>{errorMessages[this.props.error]}</div>;
