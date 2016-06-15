@@ -9,3 +9,20 @@
 .provision_data_item {
   display: inline;
 }
+
+.provisions {
+  font-family:Courier;
+  color: #CCCCCC;
+  background: #101010;
+  border: 3px solid #CCCCCC;
+  padding: 10px;
+  height: calc(100% - 1rem);
+}
+
+.ok {
+  color: #3D9A4E;
+}
+
+.failed, .unreachable {
+  color: #C14949;
+}
