@@ -9,7 +9,6 @@ import Settings from './settings';
 import Login from './login';
 import ForgotPassword from './forgot-password';
 import Profile from './profile';
-import '../style.scss';
 
 storiesOf('Layout', module)
   .add('login', Login)

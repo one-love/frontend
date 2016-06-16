@@ -5,7 +5,13 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
-        loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'resolve-url',
+          'sass?sourceMap',
+          'sass-resources'
+        ]
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
@@ -18,5 +24,9 @@ module.exports = {
   },
   sassLoader: {
     includePaths: [path.resolve(__dirname, "../src/sass")]
-  }
+  },
+  sassResources: [
+    './stories/vars.scss',
+    './stories/screen.scss',
+  ]
 };
