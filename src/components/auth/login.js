@@ -89,6 +89,7 @@ const Login = React.createClass({
                   type="input"
                   id="email"
                   onChange={this.handleEmailChange}
+                  autoFocus
                   required
                 />
                 <label htmlFor="email">Email</label>

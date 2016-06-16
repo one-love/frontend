@@ -14,6 +14,7 @@ export default () => (
               name="email"
               type="input"
               id="email"
+              autoFocus
               required
             />
             <label htmlFor="email">Email</label>
