@@ -1,26 +1,34 @@
 import React from 'react';
+import CSSModules from 'react-css-modules';
 import { Link } from 'react-router';
+import styles from './forgot-password.scss';
 
-export default () => (
-  <div>
-    <div className="content inverse full">
-      <div className="login">
-        <h1 className="form__title">Forgot Password</h1>
-        <form role="form">
-          <div className="position--relative">
-            <input
-              autoFocus
-              type="input"
-              name="email"
-              className="form__field"
-              id="email"
-              required
-            />
-            <label htmlFor="email">Email</label>
+function ForgotPassword() {
+  return (
+    <div>
+      <div>
+        <div styleName="forgot-password">
+          <div className="o-layout o-layout--center">
+            <h1>Forgot Password</h1>
           </div>
-          <button className="button button--primary">Submit</button>
-        </form>
+          <form role="form">
+            <div styleName="position--relative">
+              <input
+                name="email"
+                type="input"
+                id="email"
+                autoFocus
+                required
+              />
+              <label htmlFor="email">Email</label>
+            </div>
+            <button styleName="button">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+}
+
+
+export default CSSModules(ForgotPassword, styles);
