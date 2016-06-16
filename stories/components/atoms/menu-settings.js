@@ -1,19 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router';
+import CSSModules from 'react-css-modules';
 import gear from '../../../media/img/gear.svg';
+import styles from './menu-settings.scss';
 
-export default (props) => {
-  if (props === undefined) {
-    props = {
-      link: '/',
-      name: 'Item',
-    }
-  }
+function MenuSettings() {
   return (
-    <li className="u-fr">
+    <li styleName="menu-settings">
       <div>
         <img src={gear} />
       </div>
     </li>
-  )
+  );
 };
+
+
+export default CSSModules(MenuSettings, styles);

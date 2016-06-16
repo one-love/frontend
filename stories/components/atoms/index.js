@@ -5,7 +5,6 @@ import Footer from './footer';
 import MenuItem from './menu-item';
 import MenuSettings from './menu-settings';
 import Spinner from './spinner.js';
-import '../style.scss';
 
 storiesOf('Atoms', module)
   .add('footer', Footer)

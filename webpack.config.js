@@ -43,5 +43,31 @@ module.exports = {
   },
   sassLoader: {
     includePaths: [path.resolve(__dirname, "./src/sass")]
-  }
+  },
+  sassResources: [
+    './src/sass/vars',
+    '~aleut.settings.defaults',
+    '~aleut.settings.responsive',
+    '~aleut.tools.functions',
+    '~aleut.tools.mixins',
+    '~aleut.tools.responsive',
+    '~aleut.tools.widths',
+    '~aleut.tools.clearfix',
+    '~aleut.generic.normalize',
+    '~aleut.generic.reset',
+    '~aleut.generic.box-sizing',
+    '~aleut.base.page',
+    '~aleut.base.images',
+    '~aleut.base.lists',
+    '~aleut.base.headings',
+    '~aleut.objects.layout',
+    '~aleut.objects.list-inline',
+    '~aleut.utilities.clearfix',
+    '~aleut.utilities.headings',
+    '~aleut.utilities.print',
+    '~aleut.utilities.spacing',
+    '~aleut.utilities.spacing-responsive',
+    '~aleut.utilities.widths',
+    '~aleut.utilities.widths-responsive',
+  ]
 };

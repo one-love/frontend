@@ -1,0 +1,11 @@
+.footer {
+  height: $footer_height;
+  text-align: center;
+  color: $footer_color;
+  background-color: $footer_background_color;
+  box-shadow: 0px -1px 3px #eeeeee;
+}
+
+.footer a {
+  color: $footer_color_link;
+}
