@@ -10,13 +10,13 @@ function MenuItem(props) {
     props = {
       link: '/',
       name: 'Item',
-    }
+    };
   }
   return (
     <li className={props.className} styleName="inline">
       <Link to={props.link}>{props.name}</Link>
     </li>
-  )
+  );
 };
 
 
