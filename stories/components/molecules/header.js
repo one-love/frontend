@@ -10,9 +10,9 @@ function Header(props) {
   const myProps = props || {cluster: "active"};
   return (
     <ul className="o-layout o-list-inline" styleName="header">
-      <MenuItem className={myProps.cluster} link="/clusters" name="Clusters" />
-      <MenuItem className={myProps.service} link="/services" name="Services" />
-      <MenuItem className={myProps.provision} link="/provisions" name="Provisions" />
+      <MenuItem styleName={myProps.cluster} link="/clusters" name="Clusters" />
+      <MenuItem styleName={myProps.service} link="/services" name="Services" />
+      <MenuItem styleName={myProps.provision} link="/provisions" name="Provisions" />
       <MenuSettings />
     </ul>
   );

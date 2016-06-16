@@ -1,0 +1,31 @@
+.settings {
+  height: $settings_height;
+  background-color: $settings_background_color;
+  transition: width 0.3s ease-in-out;
+  box-shadow: 0px 2px 3px #eeeeee;
+  border-style: none none none solid;
+  border-width: 1px;
+  border-color: $settings_border_color;
+  position: fixed;
+  right: 0;
+  color: $settings_color;
+  width: $settings_width;
+}
+
+
+.disable {
+  position: relative;
+  left: 10px;
+  cursor: pointer;
+}
+
+.items {
+  padding-top: $header_height;
+  padding-left: 5px;
+}
+
+.items a {
+  display: block;
+  color: $color;
+
+}

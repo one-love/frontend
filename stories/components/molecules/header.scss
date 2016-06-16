@@ -20,11 +20,13 @@
   text-decoration: none;
 }
 
-.header li.active {
+.active {
   background-color: #ebebeb;
+  height: $header_height;
 }
 
-.header li.active a {
+.active a {
   color: #757575;
   text-shadow: none;
+  height: $header_height;
 }
