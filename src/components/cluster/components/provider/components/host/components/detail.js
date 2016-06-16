@@ -9,18 +9,13 @@ import remove from './remove';
 
 const mapStateToProps = state => ({
   host: state.hostDetail.host,
-  hosts: state.hostDetail.hosts,
-  roles: state.hostDetail.roles,
 });
 
 
 const HostDetail = React.createClass({
   propTypes: {
     host: React.PropTypes.object,
-    hosts: React.PropTypes.array,
-    roles: React.PropTypes.array,
     params: React.PropTypes.object,
-
   },
 
   componentWillMount() {
@@ -44,7 +39,8 @@ const HostDetail = React.createClass({
     }
     return (
       <div>
-        <h2>Host {hostName}</h2>
+        <h2>Host: {this.props.host.hostname}</h2>
+        <h2>IP: {this.props.host.ip} </h2>
         <Link to={`/clusters/${clusterId}/providers/${providerName}/hosts/${hostName}/edit/`}>
           Edit
         </Link>

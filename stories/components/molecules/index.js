@@ -5,9 +5,12 @@ import Header from './header';
 import Cluster from './cluster';
 import Service from './service';
 import Log from './log';
+import Host from './host';
+
 
 storiesOf('Molecules', module)
-  .add('header', Header)
   .add('cluster', Cluster)
   .add('service', Service)
-  .add('log', Log);
+  .add('log', Log)
+  .add('header', Header)
+  .add('host', Host);

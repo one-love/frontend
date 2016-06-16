@@ -89,7 +89,7 @@ const ClusterDetail = React.createClass({
           </li>
           <li>
             <FileInput id="ssh" as="text" onChange={this.handleSSHSelect}>
-              cvrc
+              Select ssh Key
             </FileInput>
           </li>
           <li className="item__child">

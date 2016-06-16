@@ -56,6 +56,12 @@ const ProvisionDetail = React.createClass({
     });
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.provision.logs) {
+      this.setState({ provisions: nextProps.provision.logs });
+    }
+  },
+
   componentWillUnmount() {
     store.dispatch(actions.reset());
   },
