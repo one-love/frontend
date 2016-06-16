@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FileInput from 'react-file-reader-input';
+import base64 from 'base-64';
 import actions from '../actions/create';
 import store from '../../../store';
 import { history } from '../../../constants';
@@ -56,8 +58,13 @@ const ClusterCreate = React.createClass({
     this.setState({ username: event.target.value });
   },
 
-  handleSSHKeyChange(event) {
-    this.setState({ sshkey: event.target.value });
+  handleSSHKeyChange(event, results) {
+    if (results.length > 0) {
+      const e = results[0][0];
+      const content = e.target.result;
+      const encodedContent = base64.encode(content);
+      this.setState({ sshkey: encodedContent });
+    }
   },
 
   handleSubmit(event) {
@@ -112,14 +119,9 @@ const ClusterCreate = React.createClass({
             />
           </div>
           <div className="form__item">
-            <label htmlFor="sshkey">SSH Key</label>
-            <input
-              type="text"
-              className="form__field"
-              id="sshkey"
-              placeholder="SSH Key"
-              onChange={this.handleSSHKeyChange}
-            />
+            <FileInput id="ssh" as="text" onChange={this.handleSSHKeyChange}>
+              Select ssh key
+            </FileInput>
           </div>
           <button className="button button--primary">Create</button>
         </form>
