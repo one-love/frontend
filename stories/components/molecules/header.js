@@ -16,7 +16,7 @@ function Header(props) {
       <MenuSettings />
     </ul>
   );
-};
+}
 
 
 export default CSSModules(Header, styles);
