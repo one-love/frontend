@@ -106,10 +106,10 @@ const ProviderCreate = React.createClass({
               {
                 this.props.plugins.map(
                   plugin =>
-                  <option
-                    key={plugin.type}
-                    value={plugin.type}
-                  > {plugin.type}</option>
+                    <option
+                      key={plugin.type}
+                      value={plugin.type}
+                    > {plugin.type}</option>
                 )
               }
             </select>

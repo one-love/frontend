@@ -87,10 +87,10 @@ const ClusterService = React.createClass({
           {
             this.props.services.map(
               service =>
-              <option
-                key={service.id}
-                id={service.id}
-              > {service.name}/{service.user.username} </option>
+                <option
+                  key={service.id}
+                  id={service.id}
+                > {service.name}/{service.user.username} </option>
             )
           }
         </select>
@@ -104,7 +104,7 @@ const ClusterService = React.createClass({
         </div>
       </div>
     );
-    if (this.props.children) {return children;}
+    if (this.props.children) { return children; }
     return index;
   },
 });

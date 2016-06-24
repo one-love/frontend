@@ -1,3 +1,6 @@
+/* eslint no-undef: 0 */
+/* eslint no-unused-expressions: 0 */
+/* eslint no-sequences: 0 */
 import expect from 'expect';
 import actions from '../actions/edit';
 import store from '../../../../../store';
@@ -5,14 +8,14 @@ import { APPLICATION_EDIT } from '../constants';
 
 
 const applicationEditTest = describe('Testing edit of application', () => {
-   it('get initial state', () => {
-     expect(store.dispatch(actions.reset()))
+  it('get initial state', () => {
+    expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
         type: APPLICATION_EDIT,
-     })
+      });
   }),
    it('get success state', () => {
      expect(store.dispatch(actions.success({})))
@@ -22,8 +25,8 @@ const applicationEditTest = describe('Testing edit of application', () => {
           status: 'success',
         },
         type: APPLICATION_EDIT,
-     })
-  }),
+      });
+   }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
@@ -31,8 +34,8 @@ const applicationEditTest = describe('Testing edit of application', () => {
           status: 'pending',
         },
         type: APPLICATION_EDIT,
-     })
-  }),
+      });
+   }),
    it('get error state', () => {
      expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
@@ -41,8 +44,8 @@ const applicationEditTest = describe('Testing edit of application', () => {
           error: 'ErorR',
         },
         type: APPLICATION_EDIT,
-     })
-  })
+      });
+   });
 });
 
 export default applicationEditTest;

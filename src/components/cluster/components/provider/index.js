@@ -36,12 +36,13 @@ const ProviderList = React.createClass({
           {
             this.props.providers.map(
               provider =>
-              <li key={provider.name}>
-              <Link
-                key={provider.id}
-                to={`/clusters/${this.props.params.clusterId}/providers/${provider.name}/`}
-                provider={provider}
-              > {provider.name} </Link> </li>
+                <li key={provider.name}>
+                  <Link
+                    key={provider.id}
+                    to={`/clusters/${this.props.params.clusterId}/providers/${provider.name}/`}
+                    provider={provider}
+                  > {provider.name} </Link>
+                </li>
             )
           }
         </ul>

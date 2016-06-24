@@ -17,24 +17,24 @@ const Header = React.createClass({
   render() {
     return (
       <ul className="o-layout o-list-inline header">
-        <li className=
-          {this.context.router.isActive('clusters') ? 'active' : ''}
+        <li
+          className={this.context.router.isActive('clusters') ? 'active' : ''}
         >
           <Link to="/clusters/">Clusters</Link>
         </li>
-        <li className=
-          {this.context.router.isActive('services') ? 'active' : ''}
+        <li
+          className={this.context.router.isActive('services') ? 'active' : ''}
         >
           <Link to="/services/">Services</Link>
         </li>
-        <li className=
-          {this.context.router.isActive('provisions') ? 'active' : ''}
+        <li
+          className={this.context.router.isActive('provisions') ? 'active' : ''}
         >
           <Link to="/provisions/">Provisions</Link>
         </li>
         <li className="u-fr" onClick={this.handleOnClick}>
           <div>
-            <img src={gear} />
+            <img src={gear} alt="gear" />
           </div>
         </li>
       </ul>

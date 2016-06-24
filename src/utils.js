@@ -55,7 +55,7 @@ export function fetch(args) {
 
 
 export function socketio() {
-  if (socket.io) {return socket.io;}
+  if (socket.io) { return socket.io; }
   if (window.localStorage.OneLoveAuthToken) {
     socket.io = io(
       SOCKETIO_URL,

@@ -1,3 +1,6 @@
+/* eslint no-undef: 0 */
+/* eslint no-unused-expressions: 0 */
+/* eslint no-sequences: 0 */
 import expect from 'expect';
 import actions from '../actions/edit';
 import store from '../../../store';
@@ -5,14 +8,14 @@ import { CLUSTER_EDIT } from '../constants';
 
 
 const clusterEditTest = describe('Testing edit of cluster', () => {
-   it('get initial state', () => {
-     expect(store.dispatch(actions.reset()))
+  it('get initial state', () => {
+    expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
         type: CLUSTER_EDIT,
-     })
+      });
   }),
    it('get success state', () => {
      expect(store.dispatch(actions.success({})))
@@ -22,8 +25,8 @@ const clusterEditTest = describe('Testing edit of cluster', () => {
           status: 'success',
         },
         type: CLUSTER_EDIT,
-     })
-  }),
+      });
+   }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
@@ -31,8 +34,8 @@ const clusterEditTest = describe('Testing edit of cluster', () => {
           status: 'pending',
         },
         type: CLUSTER_EDIT,
-     })
-  }),
+      });
+   }),
    it('get error state', () => {
      expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
@@ -41,8 +44,8 @@ const clusterEditTest = describe('Testing edit of cluster', () => {
           error: 'ErorR',
         },
         type: CLUSTER_EDIT,
-     })
-  })
+      });
+   });
 });
 
 export default clusterEditTest;

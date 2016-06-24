@@ -1,3 +1,5 @@
+/* eslint global-require: 0 */
+
 let configureStore;
 
 if (process.env.NODE_ENV === 'production') {

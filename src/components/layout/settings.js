@@ -31,7 +31,7 @@ const Settings = React.createClass({
 
   render() {
     return (
-      <div className={this.props.status === 'shown' ? 'settings--shown' : 'settings--hiden' }>
+      <div className={this.props.status === 'shown' ? 'settings--shown' : 'settings--hiden'} >
         <div className="disable" onClick={this.handleOnClick}>x</div>
         <div className="items">
           <Link to={'/profile/'}>Profile</Link>

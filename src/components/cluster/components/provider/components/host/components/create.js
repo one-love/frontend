@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/create';
 import store from '../../../../../../../store';
 import { history } from '../../../../../../../constants';
-import Spinner from '../../../.../../../../../layout/spinner';
+import Spinner from '../../../../../../layout/spinner';
 
 
 const errorMessages = {

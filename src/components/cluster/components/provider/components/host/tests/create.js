@@ -1,3 +1,6 @@
+/* eslint no-undef: 0 */
+/* eslint no-unused-expressions: 0 */
+/* eslint no-sequences: 0 */
 import expect from 'expect';
 import actions from '../actions/create';
 import store from '../../../../../../../store';
@@ -5,14 +8,14 @@ import { HOST_CREATE } from '../constants';
 
 
 const hostCreateTest = describe('Testing create of host', () => {
-   it('get initial state', () => {
-     expect(store.dispatch(actions.reset()))
+  it('get initial state', () => {
+    expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
         type: HOST_CREATE,
-     })
+      });
   }),
    it('get success state', () => {
      expect(store.dispatch(actions.success({})))
@@ -22,8 +25,8 @@ const hostCreateTest = describe('Testing create of host', () => {
           status: 'success',
         },
         type: HOST_CREATE,
-     })
-  }),
+      });
+   }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
@@ -31,8 +34,8 @@ const hostCreateTest = describe('Testing create of host', () => {
           status: 'pending',
         },
         type: HOST_CREATE,
-     })
-  }),
+      });
+   }),
    it('get error state', () => {
      expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
@@ -41,8 +44,8 @@ const hostCreateTest = describe('Testing create of host', () => {
           error: 'ErorR',
         },
         type: HOST_CREATE,
-     })
-  })
+      });
+   });
 });
 
 export default hostCreateTest;

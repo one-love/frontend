@@ -1,3 +1,6 @@
+/* eslint no-undef: 0 */
+/* eslint no-unused-expressions: 0 */
+/* eslint no-sequences: 0 */
 import expect from 'expect';
 import actions from '../actions/detail';
 import store from '../../../store';
@@ -5,26 +8,26 @@ import { CLUSTER_DETAIL } from '../constants';
 
 
 const clusterDetailTest = describe('Testing detail of cluster', () => {
-   it('get initial state', () => {
-     expect(store.dispatch(actions.reset()))
+  it('get initial state', () => {
+    expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
         type: CLUSTER_DETAIL,
-     })
+      });
   }),
    it('get success state', () => {
-     expect(store.dispatch(actions.success({roles: []})))
+     expect(store.dispatch(actions.success({ roles: [] })))
       .toEqual({
         payload: {
-          cluster: {roles: []},
+          cluster: { roles: [] },
           roles: [],
-          status: 'success'
+          status: 'success',
         },
         type: CLUSTER_DETAIL,
-     })
-  }),
+      });
+   }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
@@ -32,8 +35,8 @@ const clusterDetailTest = describe('Testing detail of cluster', () => {
           status: 'pending',
         },
         type: CLUSTER_DETAIL,
-     })
-  }),
+      });
+   }),
    it('get pending state', () => {
      expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
@@ -42,8 +45,8 @@ const clusterDetailTest = describe('Testing detail of cluster', () => {
           error: 'ErorR',
         },
         type: CLUSTER_DETAIL,
-     })
-  })
+      });
+   });
 });
 
 export default clusterDetailTest;

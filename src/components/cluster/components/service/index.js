@@ -16,19 +16,13 @@ const ClusterServiceList = React.createClass({
         {this.props.name}
         </Link>
         <Link
-          to=
-          {
-            `/clusters/${this.props.clusterId}/provision/${this.props.serviceId}`
-          }
+          to={`/clusters/${this.props.clusterId}/provision/${this.props.serviceId}`}
         >
           Provision
         </Link>
 
         <Link
-          to=
-          {
-            `/clusters/${this.props.clusterId}/remove/${this.props.serviceId}`
-          }
+          to={`/clusters/${this.props.clusterId}/remove/${this.props.serviceId}`}
         >
           Remove
         </Link>
