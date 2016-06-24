@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --host 0.0.0.0 --color",
+    "pretest": "eslint src/",
     "test": "NODE_ENV=production node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- -R xunit-file src/test.js",
     "coverage": "NODE_ENV=production istanbul report cobertura --dir shippable/codecoverage/",
     "build": "webpack -p --config webpack.config.prod.js src/index.js",

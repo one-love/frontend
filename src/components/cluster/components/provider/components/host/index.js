@@ -48,11 +48,12 @@ const HostList = React.createClass({
                 detailLink += `/hosts/${host.hostname}/`;
                 return (
                   <li key={host.hostname}>
-                  <Link
-                    key={host.hostname}
-                    to={detailLink}
-                    host={host}
-                  > {host.hostname} </Link> </li>
+                    <Link
+                      key={host.hostname}
+                      to={detailLink}
+                      host={host}
+                    > {host.hostname} </Link>
+                  </li>
                 );
               }
             )

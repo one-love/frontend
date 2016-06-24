@@ -39,19 +39,20 @@ const ServiceList = React.createClass({
           {
             this.props.services.map(
               service =>
-              <li key={service.id}>
-              <Link
-                key={service.id}
-                to={`/services/${service.id}/`}
-                cluster={service}
-              > {service.name} </Link> </li>
+                <li key={service.id}>
+                  <Link
+                    key={service.id}
+                    to={`/services/${service.id}/`}
+                    cluster={service}
+                  > {service.name} </Link>
+                </li>
             )
           }
         </ul>
         <Link to={'/services/create/'}>Create</Link>
       </div>
     );
-    if (this.props.children) {return children;}
+    if (this.props.children) { return children; }
     return index;
   },
 });

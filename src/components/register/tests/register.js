@@ -1,3 +1,6 @@
+/* eslint no-undef: 0 */
+/* eslint no-unused-expressions: 0 */
+/* eslint no-sequences: 0 */
 import expect from 'expect';
 import actions from '../actions';
 import store from '../../../store';
@@ -11,7 +14,7 @@ const registerTest = describe('Testing register', () => {
           status: 'initial',
         },
         type: REGISTER,
-      })
+      });
   }),
    it('get success state', () => {
      expect(store.dispatch(actions.success({})))
@@ -21,8 +24,8 @@ const registerTest = describe('Testing register', () => {
           status: 'success',
         },
         type: REGISTER,
-     })
-  }),
+      });
+   }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
@@ -30,18 +33,18 @@ const registerTest = describe('Testing register', () => {
           status: 'pending',
         },
         type: REGISTER,
-     })
-  }),
+      });
+   }),
    it('get error state', () => {
-     expect(store.dispatch(actions.fail({ message: 'ErorR'})))
+     expect(store.dispatch(actions.fail({ message: 'ErorR' })))
       .toEqual({
         payload: {
           status: 'error',
           error: 'ErorR',
         },
         type: REGISTER,
-     })
-  })
-})
+      });
+   });
+});
 
 export default registerTest;

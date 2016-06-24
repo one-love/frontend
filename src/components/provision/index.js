@@ -41,17 +41,18 @@ const ProvisionList = React.createClass({
           {
             this.props.provisions.map(
               provision =>
-              <li key={provision.id}>
-              <Link
-                key={provision.id}
-                to={`/provisions/${provision.id}/`}
-              > {provision.id} </Link> </li>
+                <li key={provision.id}>
+                  <Link
+                    key={provision.id}
+                    to={`/provisions/${provision.id}/`}
+                  > {provision.id} </Link>
+                </li>
             )
           }
         </ul>
       </div>
     );
-    if (this.props.children) {return children;}
+    if (this.props.children) { return children; }
     return index;
   },
 });

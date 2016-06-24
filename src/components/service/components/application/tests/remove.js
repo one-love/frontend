@@ -1,3 +1,6 @@
+/* eslint no-undef: 0 */
+/* eslint no-unused-expressions: 0 */
+/* eslint no-sequences: 0 */
 import expect from 'expect';
 import actions from '../actions/remove';
 import store from '../../../../../store';
@@ -5,14 +8,14 @@ import { APPLICATION_REMOVE } from '../constants';
 
 
 const applicationRemoveTest = describe('Testing remove of application', () => {
-   it('get initial state', () => {
-     expect(store.dispatch(actions.reset()))
+  it('get initial state', () => {
+    expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
         type: APPLICATION_REMOVE,
-     })
+      });
   }),
    it('get success state', () => {
      expect(store.dispatch(actions.success({})))
@@ -22,8 +25,8 @@ const applicationRemoveTest = describe('Testing remove of application', () => {
           status: 'success',
         },
         type: APPLICATION_REMOVE,
-     })
-  }),
+      });
+   }),
    it('get pending state', () => {
      expect(store.dispatch(actions.begin()))
       .toEqual({
@@ -31,8 +34,8 @@ const applicationRemoveTest = describe('Testing remove of application', () => {
           status: 'pending',
         },
         type: APPLICATION_REMOVE,
-     })
-  }),
+      });
+   }),
    it('get error state', () => {
      expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
@@ -41,8 +44,8 @@ const applicationRemoveTest = describe('Testing remove of application', () => {
           error: 'ErorR',
         },
         type: APPLICATION_REMOVE,
-     })
-  })
+      });
+   });
 });
 
 export default applicationRemoveTest;

@@ -60,25 +60,28 @@ const ProviderDetail = React.createClass({
     }
     return (
       <div>
-        <h2>Provider {this.props.provider.name}</h2>
-          <ul className="item__list">
-            <li className="item__heading">
-              Name:
-              <InlineEdit
-                text={this.props.provider.name}
-                change={this.dataChanged}
-                paramName="name"
-              />
-            </li>
-            <li className="item__child">
-              <Link to={
-                `/clusters/${clusterId}/providers/${this.props.provider.name}/hosts/`
-                }
-              >
-                Hosts
-              </Link>
-            </li>
-          </ul>
+        <h2>
+          Provider {this.props.provider.name}
+        </h2>
+        <ul className="item__list">
+          <li className="item__heading">
+            Name:
+            <InlineEdit
+              text={this.props.provider.name}
+              change={this.dataChanged}
+              paramName="name"
+            />
+          </li>
+          <li className="item__child">
+            <Link
+              to={
+              `/clusters/${clusterId}/providers/${this.props.provider.name}/hosts/`
+              }
+            >
+              Hosts
+            </Link>
+          </li>
+        </ul>
         <Link to={`/clusters/${clusterId}/providers/${this.props.provider.name}/remove/`}>
           Remove
         </Link>
