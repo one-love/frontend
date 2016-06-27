@@ -60,7 +60,6 @@
     "redux-devtools-diff-monitor": "^5.0.5",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-thunk": "^1.0.3",
-    "resolve-url-loader": "^1.4.4",
     "sass-loader": "^3.2.2",
     "sass-resources-loader": "^1.0.2",
     "socket.io-client": "^1.4.8",
