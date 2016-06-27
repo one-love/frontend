@@ -7,7 +7,7 @@ import MenuItem from './menu-item';
 import MenuSettings from './menu-settings';
 import Spinner from './spinner';
 import Log from './log';
-import Popup from './popup';
+import Sidebar from './sidebar';
 import Add from './add';
 import Notification from './notification';
 
@@ -21,6 +21,6 @@ storiesOf('Atoms', module)
   .add('menu-item', () => (<MenuItem />))
   .add('menu-settings', () => (<MenuSettings />))
   .add('notification', () => (<Notification />))
-  .add('popup', () => (<Popup />))
+  .add('sidebar', () => (<Sidebar />))
   .add('spinner', () => (<Spinner />))
 ;
