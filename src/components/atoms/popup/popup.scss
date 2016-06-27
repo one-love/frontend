@@ -1,0 +1,31 @@
+.popup {
+  height: $settings_height;
+  background-color: $settings_background_color;
+  box-shadow: 0px 2px 3px #eeeeee;
+  border-style: none none none solid;
+  border-width: 1px;
+  border-color: $settings_border_color;
+  position: fixed;
+  right: 0;
+  color: $settings_color;
+  width: $settings_width;
+  padding: $popup_padding;
+  overflow: auto;
+
+  .disable {
+    text-align: right;
+    cursor: pointer;
+  }
+}
+
+.popup__full {
+  @extend .popup;
+  width: calc(100vw - #{$popup_padding} * 2);
+}
+
+:global .popup-appear {
+  width: 0;
+  overflow: hidden;
+  padding: 0;
+  border-style: none;
+}

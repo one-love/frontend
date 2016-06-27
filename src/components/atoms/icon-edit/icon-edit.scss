@@ -1,0 +1,32 @@
+.icon {
+  height: $icon-edit-height;
+  width: $icon-edit-width;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 3px;
+  color: $color;
+  display: inline-block;
+  padding: 3px;
+}
+
+.icon-close {
+  position: absolute;
+  display: block;
+  margin-left: calc(#{$icon-edit-width} - 13px);
+}
+
+.input-group {
+  margin-top: 30px;
+}
+
+.input {
+  border: none;
+  border-bottom: solid 2px $color;
+  margin-bottom: 2px;
+}
+
+.button {
+  border-style: none;
+  border-radius: 4px;
+  margin-right: 4px;
+}

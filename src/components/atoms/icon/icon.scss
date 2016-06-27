@@ -1,0 +1,26 @@
+.icon {
+  height: $icon-height;
+  width: $icon-width;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 3px;
+  color: $color;
+  display: inline-block;
+}
+
+.icon * {
+  display: table;
+  margin: 0 auto;
+}
+
+.icon-img {
+  margin-top: 10px;
+  height: 90px;
+  width: 90px;
+}
+
+.icon-close {
+  position: absolute;
+  display: block;
+  margin-left: calc(#{$icon-width} - 13px);
+}
