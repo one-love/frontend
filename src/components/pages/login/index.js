@@ -86,6 +86,7 @@ const Login = React.createClass({
               type="input"
               id="email"
               onChange={this.handleEmailChange}
+              styleName="input"
               autoFocus
               required
             />
@@ -97,6 +98,7 @@ const Login = React.createClass({
               name="password"
               id="password"
               onChange={this.handlePasswordChange}
+              styleName="input"
               required
             />
             <label styleName="label" htmlFor="password">Password</label>
