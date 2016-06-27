@@ -11,7 +11,7 @@ function Header(props) {
       <MenuItem active={props.cluster ? 'yes' : 'no'} link="/clusters" name="Clusters" />
       <MenuItem active={props.service ? 'yes' : 'no'} link="/services" name="Services" />
       <MenuItem active={props.provision ? 'yes' : 'no'} link="/provisions" name="Provisions" />
-      <MenuSettings notification={props.notification}/>
+      <MenuSettings notification={props.notification} />
     </ul>
   );
 }
