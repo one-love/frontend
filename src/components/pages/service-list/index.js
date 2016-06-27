@@ -31,14 +31,19 @@ const ServiceList = React.createClass({
         {this.props.children}
       </div>
     );
-    const index = (
-      <List title="Services" service="active">
+    const services = (
+      <div>
         {
           this.props.services.map(
             service =>
               <Service key={service.id} name={service.name} />
           )
         }
+      </div>
+    );
+    const index = (
+      <List title="Services" service="active">
+        {services}
       </List>
     );
     if (this.props.children) {

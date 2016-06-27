@@ -2,7 +2,8 @@ import React from 'react';
 import { Router } from 'react-router';
 import { history } from '../constants';
 import { requireAuth } from '../utils';
-import Service from '../components/pages/service-list';
+import Services from '../components/pages/service-list';
+import Clusters from '../components/pages/cluster-list';
 import Login from '../components/pages/login';
 import Layout from '../components/layouts/layout';
 import '../sass/reset.scss';
@@ -18,7 +19,12 @@ const routes = {
     },
     {
       path: '/services',
-      component: Service,
+      component: Services,
+      onEnter: requireAuth,
+    },
+    {
+      path: '/clusters',
+      component: Clusters,
       onEnter: requireAuth,
     },
     {
