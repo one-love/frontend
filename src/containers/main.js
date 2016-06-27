@@ -1,35 +1,24 @@
 import React from 'react';
-import Login from '../components/pages/login';
 import { Router } from 'react-router';
 import { history } from '../constants';
+import { requireAuth } from '../utils';
+import Login from '../components/pages/login';
+import Layout from '../components/layouts/layout';
+import '../sass/reset.scss';
 
 
 const routes = {
   component: 'div',
   childRoutes: [
-    /* {
-     *   path: '/',
-     *   component: Layout,
-     *   onEnter: requireAuth,
-     *   childRoutes: [
-     *     Cluster,
-     *     Service,
-     *     Provision,
-     *     Profile,
-     *   ],
-     * },*/
+    {
+      path: '/',
+      component: Layout,
+      onEnter: requireAuth,
+    },
     {
       path: '/login/',
       component: Login,
     },
-    /* {
-     *   path: '/register/',
-     *   component: Register,
-     * },
-     * {
-     *   path: '/confirm/:uuid/',
-     *   component: Confirm,
-     * },*/
   ],
 };
 
