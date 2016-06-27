@@ -1,4 +1,4 @@
-.popup {
+.sidebar {
   height: $settings_height;
   background-color: $settings_background_color;
   box-shadow: 0px 2px 3px #eeeeee;
@@ -18,12 +18,15 @@
   }
 }
 
-.popup__full {
-  @extend .popup;
+.sidebar__full {
+  @extend .sidebar;
   width: calc(100vw - #{$popup_padding} * 2);
 }
 
-:global .popup-appear {
+:global .sidebar-appear,
+:global .sidebar-leave,
+:global .sidebar-enter
+{
   width: 0;
   overflow: hidden;
   padding: 0;
