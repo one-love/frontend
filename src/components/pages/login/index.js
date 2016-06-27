@@ -41,7 +41,7 @@ const Login = React.createClass({
 
   shouldComponentUpdate() {
     if (isLoggedIn()) {
-      history.push('/clusters/');
+      history.push('/');
     }
     return true;
   },
