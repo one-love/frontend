@@ -44,3 +44,4 @@ xunit.xml
 src/backend_url.js
 
 .tern-port
+*.old

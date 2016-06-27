@@ -1,0 +1,46 @@
+$color: #777777;
+
+$header_height: 40px;
+$header_background_color: white;
+
+$footer_height: 25px;
+$footer_color: #bbbbbb;
+$footer_color_link: gray;
+$footer_background_color: white;
+
+$content_padding: 10px;
+$content_height: calc(100vh - #{$header_height} - #{$footer_height} - #{$content_padding} * 2);
+
+$settings_height: 100vh;
+$settings_width: 200px;
+$settings_background_color: #fafafa;
+$settings_border_color: #e0e0e0;
+$settings_color: #a0a0a0;
+
+$select_background_color: white;
+$select_border_color: #eeeeee;
+
+$login_height: 300px;
+$login_width: 400px;
+$login_margin_top: calc((#{$content_height} - #{$login_height}) / 2);
+$login_background_color: white;
+$login_element_spacing: 12px;
+$login_padding_top: 10px;
+
+$inverse_background_color: #fafafa;
+
+$icon-height: 120px;
+$icon-width: 120px;
+
+$add_height: 40px;
+$add_width: 40px;
+
+$popup_padding: 10px;
+
+$notification_height: 30px;
+$notification_color: white;
+$notification_background_color: #6dab1a;
+$notification_width: calc(100vw / 2);
+
+$icon-edit-height: 240px;
+$icon-edit-width: 240px;
