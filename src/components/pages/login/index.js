@@ -62,16 +62,16 @@ const Login = React.createClass({
   render() {
     let spinner = '';
     let error = '';
-    switch (this.props.status) {
-      case 'pending':
-        spinner = <Spinner />;
-        break;
-      case 'error':
-        error = <div>{errorMessages[this.props.error]}</div>;
-        break;
-      default:
-        break;
-    }
+    /* switch (this.props.status) {
+     *   case 'pending':
+     *     spinner = <Spinner />;
+     *     break;
+     *   case 'error':
+     *     error = <div>{errorMessages[this.props.error]}</div>;
+     *     break;
+     *   default:
+     *     break;
+     * }*/
     return (
       <div styleName="login">
         {spinner}
