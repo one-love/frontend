@@ -33,16 +33,17 @@ const ClusterList = React.createClass({
     );
     const clusters = (
       <div>
-          {
-            this.props.clusters.map(
-              cluster =>
-                <Cluster key={cluster.id} name={cluster.name} />
-            )
-          }
+        <h1>Clusters</h1>
+        {
+          this.props.clusters.map(
+            cluster =>
+              <Cluster key={cluster.id} name={cluster.name} />
+          )
+        }
       </div>
     );
     const index = (
-      <List title="Clusters" cluster="active">
+      <List>
         {clusters}
       </List>
     );

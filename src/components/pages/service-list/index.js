@@ -33,6 +33,7 @@ const ServiceList = React.createClass({
     );
     const services = (
       <div>
+        <h1>Services</h1>
         {
           this.props.services.map(
             service =>
@@ -42,7 +43,7 @@ const ServiceList = React.createClass({
       </div>
     );
     const index = (
-      <List title="Services" service="active">
+      <List>
         {services}
       </List>
     );
