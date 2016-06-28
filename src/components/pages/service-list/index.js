@@ -37,7 +37,7 @@ const ServiceList = React.createClass({
         {
           this.props.services.map(
             service =>
-              <Service key={service.id} name={service.name} />
+              <Service key={service.id} name={service.name} id={service.id} />
           )
         }
       </div>

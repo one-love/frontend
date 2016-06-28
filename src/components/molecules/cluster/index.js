@@ -8,12 +8,17 @@ export default function Cluster(props) {
   if (props && props.name) {
     name = props.name;
   }
+  let path = 'clusters/';
+  if (props && props.id) {
+    path = path + props.id;
+  }
   return (
-    <Icon alt="cluster" img={svg} name={name} />
+    <Icon alt="cluster" img={svg} name={name} path={path} />
   );
 }
 
 
 Cluster.propTypes = {
   name: React.PropTypes.string,
+  id: React.PropTypes.string,
 };

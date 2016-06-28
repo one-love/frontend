@@ -37,7 +37,7 @@ const ClusterList = React.createClass({
         {
           this.props.clusters.map(
             cluster =>
-              <Cluster key={cluster.id} name={cluster.name} />
+              <Cluster key={cluster.id} name={cluster.name} id={cluster.id} />
           )
         }
       </div>
