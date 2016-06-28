@@ -10,9 +10,8 @@ function Layout(props) {
   return (
     <div>
       <Sidebar className="sidebar" />
-      <Header cluster={props.cluster} service={props.service} provision={props.provision} />
+      <Header />
       <div styleName="content">
-        <h1>{props.title ? props.title : 'Title'}</h1>
         {props.children}
       </div>
       <Footer />

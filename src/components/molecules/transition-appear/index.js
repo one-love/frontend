@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Layout from '../../layouts/layout';
 import Add from '../../atoms/add';
 import './list.scss';
 
@@ -8,12 +7,7 @@ import './list.scss';
 export default function List(props) {
   const transitionTime = 300;
   return (
-    <Layout
-      title={props.title}
-      cluster={props.cluster}
-      service={props.service}
-      provision={props.provision}
-    >
+    <div>
       <ReactCSSTransitionGroup
         transitionName="list"
         transitionAppear
@@ -24,7 +18,7 @@ export default function List(props) {
         {props.children}
       </ReactCSSTransitionGroup>
       <Add />
-    </Layout>
+    </div>
   );
 }
 

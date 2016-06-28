@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Service from '../../molecules/service';
-import List from '../../layouts/list';
+import List from '../../molecules/transition-appear';
 import actions from './actions';
 import store from '../../../store';
 
@@ -33,6 +33,7 @@ const ServiceList = React.createClass({
     );
     const services = (
       <div>
+        <h1>Services</h1>
         {
           this.props.services.map(
             service =>
@@ -42,7 +43,7 @@ const ServiceList = React.createClass({
       </div>
     );
     const index = (
-      <List title="Services" service="active">
+      <List>
         {services}
       </List>
     );
@@ -53,4 +54,9 @@ const ServiceList = React.createClass({
   },
 });
 
-export default connect(mapStateToProps, actions)(ServiceList);
+const routes = {
+  path: 'services',
+  indexRoute: { component: connect(mapStateToProps, actions)(ServiceList) },
+};
+
+export default routes;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Cluster from '../../molecules/cluster';
-import List from '../../layouts/list';
+import List from '../../molecules/transition-appear';
 import { connect } from 'react-redux';
 import actions from './actions';
 import store from '../../../store';
@@ -33,16 +33,17 @@ const ClusterList = React.createClass({
     );
     const clusters = (
       <div>
-          {
-            this.props.clusters.map(
-              cluster =>
-                <Cluster key={cluster.id} name={cluster.name} />
-            )
-          }
+        <h1>Clusters</h1>
+        {
+          this.props.clusters.map(
+            cluster =>
+              <Cluster key={cluster.id} name={cluster.name} />
+          )
+        }
       </div>
     );
     const index = (
-      <List title="Clusters" cluster="active">
+      <List>
         {clusters}
       </List>
     );
@@ -51,5 +52,9 @@ const ClusterList = React.createClass({
   },
 });
 
+const routes = {
+  path: 'clusters',
+  indexRoute: { component: connect(mapStateToProps, actions)(ClusterList) },
+};
 
-export default connect(mapStateToProps, actions)(ClusterList);
+export default routes;
