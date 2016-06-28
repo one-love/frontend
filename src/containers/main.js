@@ -16,16 +16,10 @@ const routes = {
       path: '/',
       component: Layout,
       onEnter: requireAuth,
-    },
-    {
-      path: '/services',
-      component: Services,
-      onEnter: requireAuth,
-    },
-    {
-      path: '/clusters',
-      component: Clusters,
-      onEnter: requireAuth,
+      childRoutes: [
+        Services,
+        Clusters,
+      ],
     },
     {
       path: '/login/',

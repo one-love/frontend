@@ -1,6 +1,6 @@
 import React from 'react';
 import Cluster from '../../molecules/cluster';
-import List from '../../layouts/list';
+import List from '../../molecules/transition-appear';
 import { connect } from 'react-redux';
 import actions from './actions';
 import store from '../../../store';
@@ -51,5 +51,9 @@ const ClusterList = React.createClass({
   },
 });
 
+const routes = {
+  path: 'clusters',
+  indexRoute: { component: connect(mapStateToProps, actions)(ClusterList) },
+};
 
-export default connect(mapStateToProps, actions)(ClusterList);
+export default routes;
