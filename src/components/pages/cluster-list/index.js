@@ -4,6 +4,7 @@ import List from '../../molecules/transition-appear';
 import { connect } from 'react-redux';
 import actions from './actions';
 import store from '../../../store';
+import clusterDetail from '../cluster';
 
 const mapStateToProps = state => ({
   clusters: state.clusterList.clusters,
@@ -55,6 +56,9 @@ const ClusterList = React.createClass({
 const routes = {
   path: 'clusters',
   indexRoute: { component: connect(mapStateToProps, actions)(ClusterList) },
+  childRoutes: [
+    clusterDetail,
+  ],
 };
 
 export default routes;
