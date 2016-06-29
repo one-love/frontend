@@ -1,0 +1,1 @@
+export const CLUSTER_DETAIL = 'CLUSTER_DETAIL';
