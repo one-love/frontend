@@ -36,29 +36,19 @@ const ClusterDetail = React.createClass({
         <h2>{this.props.cluster.name}</h2>
         <div>
           <div styleName="label">
-            username:
-          </div>
-          <div styleName="item">
-            admin@example.com
-          </div>
-        </div>
-        <div>
-          <div styleName="label">
-            ssh key:
-          </div>
-          <div styleName="item">
-            tandara mandara
-          </div>
-        </div>
-        <div>
-          <div styleName="label">
             providers:
           </div>
           <div styleName="item">
-            <select>
-              <option value="cluster name">cicvara popara</option>
-              <option value="something">gurabija</option>
-            </select>
+            {
+              this.props.cluster.providers ?
+              this.props.cluster.providers.map(
+                (prov) =>
+                  <span key={prov.name}>
+                    {prov.name}
+                  </span>
+              ) :
+              'No roles right now'
+            }
           </div>
         </div>
         <div>
@@ -66,10 +56,16 @@ const ClusterDetail = React.createClass({
             roles:
           </div>
           <div styleName="item">
-            <select>
-              <option value="some">op čop</option>
-              <option value="thing">antilop</option>
-            </select>
+            {
+              this.props.cluster.roles ?
+              this.props.cluster.roles.map(
+                (role) =>
+                  <span key={role.name}>
+                    {role.name}
+                  </span>
+              ) :
+              'No roles right now'
+            }
           </div>
         </div>
         <div>
@@ -77,10 +73,16 @@ const ClusterDetail = React.createClass({
             services:
           </div>
           <div styleName="item">
-            <select>
-              <option value="some">bandaranaik</option>
-              <option value="thing">trokraka udica</option>
-            </select>
+            {
+              this.props.cluster.services ?
+              this.props.cluster.services.map(
+                (serv) =>
+                  <div key={serv.id}>
+                    {serv.name}
+                  </div>
+              ) :
+              'No service right now'
+            }
           </div>
         </div>
       </div>
