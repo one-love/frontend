@@ -36,8 +36,10 @@ const ServiceList = React.createClass({
         <h1>Services</h1>
         {
           this.props.services.map(
-            service =>
-              <Service key={service.id} name={service.name} id={service.id} />
+            service => {
+              const path = `services/${service.id}`;
+              return <Service key={service.id} name={service.name} path={path} />;
+            }
           )
         }
       </div>

@@ -4,6 +4,8 @@ import styles from './cluster.scss';
 import actions from './actions';
 import { connect } from 'react-redux';
 import store from '../../../store';
+import List from '../../molecules/transition-appear';
+import Service from '../../molecules/service';
 
 const mapStateToProps = (state) => ({
   cluster: state.clusterDetail.cluster,
@@ -31,6 +33,18 @@ const ClusterDetail = React.createClass({
     if (this.props.cluster === undefined) {
       return <div></div>;
     }
+    const services = (
+      <div>
+        {
+          this.props.cluster.services.map(
+            service => {
+              const path = `clusters/${this.props.params.clusterId}/provision`;
+              return <Service key={service.id} name={service.name} path={path} />;
+            }
+          )
+        }
+      </div>
+    );
     return (
       <div>
         <h2>{this.props.cluster.name}</h2>
@@ -73,16 +87,9 @@ const ClusterDetail = React.createClass({
             services:
           </div>
           <div styleName="item">
-            {
-              this.props.cluster.services ?
-              this.props.cluster.services.map(
-                (serv) =>
-                  <div key={serv.id}>
-                    {serv.name}
-                  </div>
-              ) :
-              'No service right now'
-            }
+            <List>
+              {services}
+            </List>
           </div>
         </div>
       </div>

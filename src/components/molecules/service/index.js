@@ -8,9 +8,9 @@ export default function Service(props) {
   if (props && props.name) {
     name = props.name;
   }
-  let path = 'services/';
-  if (props && props.id) {
-    path = path + props.id;
+  let path = '';
+  if (props && props.path) {
+    path = props.path;
   }
   return (
     <Icon alt="cluster" img={svg} name={name} path={path} />
@@ -20,5 +20,5 @@ export default function Service(props) {
 
 Service.propTypes = {
   name: React.PropTypes.string,
-  id: React.PropTypes.string,
+  path: React.PropTypes.string,
 };
