@@ -1,16 +1,24 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './cluster.scss';
-import actions from './actions';
+import InlineEdit from 'react-edit-inline';
+import actions from './actions/detail';
+import editActions from './actions/edit';
 import { connect } from 'react-redux';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Service from '../../molecules/service';
 
-const mapStateToProps = (state) => ({
-  cluster: state.clusterDetail.cluster,
-  roles: state.clusterDetail.roles,
-});
+const mapStateToProps = (state) => {
+  const data = {
+    cluster: state.clusterDetail.cluster,
+    roles: state.clusterDetail.roles,
+  };
+  if (state.clusterEdit.cluster) {
+    data.cluster = state.clusterEdit.cluster;
+  }
+  return data;
+};
 
 
 const ClusterDetail = React.createClass({
@@ -27,6 +35,16 @@ const ClusterDetail = React.createClass({
 
   componentWillUnmount() {
     store.dispatch(actions.reset());
+    store.dispatch(editActions.reset());
+  },
+
+  dataChanged(data) {
+    store.dispatch(
+      editActions.edit(
+        this.props.params.clusterId,
+        data
+      )
+    );
   },
 
   render() {
@@ -47,7 +65,14 @@ const ClusterDetail = React.createClass({
     );
     return (
       <div>
-        <h2>{this.props.cluster.name}</h2>
+        <h2>
+          Name:
+          <InlineEdit
+            paramName="name"
+            text={this.props.cluster.name}
+            change={this.dataChanged}
+          />
+        </h2>
         <div>
           <div styleName="label">
             providers:

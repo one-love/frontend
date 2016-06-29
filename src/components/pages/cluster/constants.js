@@ -1,1 +1,2 @@
 export const CLUSTER_DETAIL = 'CLUSTER_DETAIL';
+export const CLUSTER_EDIT = 'CLUSTER_EDIT';
