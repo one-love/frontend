@@ -1,36 +1,74 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './service.scss';
-import Layout from '../../layouts/layout';
+import { connect } from 'react-redux';
+import actions from './actions/detail';
+import store from '../../../store';
+
+const mapStateToProps = (state) => {
+  const data = {
+    service: state.serviceDetail.service,
+  };
+  return data;
+};
 
 
-function Service() {
-  return (
-    <Layout title="Service" service="active">
+const ServiceDetail = React.createClass({
+  propTypes: {
+    children: React.PropTypes.node,
+    service: React.PropTypes.object,
+    params: React.PropTypes.object,
+  },
+
+  componentWillMount() {
+    store.dispatch(actions.get(this.props.params.serviceId));
+  },
+
+  componentWillUnmount() {
+    store.dispatch(actions.reset());
+  },
+
+  render() {
+    if (this.props.service === undefined) {
+      return <div></div>;
+    }
+    return (
       <div styleName="item">
         <div>
+          <h2>Service: {this.props.service.name}</h2>
           <div styleName="label">
-            user:
+            email:
           </div>
           <div styleName="item">
-            admin@example.com
+            {this.props.service.user.email}
           </div>
         </div>
         <div>
           <div styleName="label">
-            roles:
+            Applications:
           </div>
           <div styleName="item">
-            <select>
-              <option value="some">op čop</option>
-              <option value="thing">antilop</option>
-            </select>
+            {
+              this.props.service.applications ?
+              this.props.service.applications.map(
+                (app) =>
+                  <span key={app.name}>
+                    {app.name}
+                  </span>
+              ) :
+              'No application right now'
+            }
           </div>
         </div>
       </div>
-    </Layout>
-  );
-}
+    );
+  },
+});
 
 
-export default cssModules(Service, styles);
+const routes = {
+  path: ':serviceId',
+  indexRoute: { component: connect(mapStateToProps, actions)(cssModules(ServiceDetail, styles)) },
+};
+
+export default routes;

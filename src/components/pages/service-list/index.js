@@ -4,6 +4,7 @@ import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
 import actions from './actions';
 import store from '../../../store';
+import serviceDetail from '../service';
 
 const mapStateToProps = state => ({
   services: state.serviceList.services,
@@ -59,6 +60,9 @@ const ServiceList = React.createClass({
 const routes = {
   path: 'services',
   indexRoute: { component: connect(mapStateToProps, actions)(ServiceList) },
+  childRoutes: [
+    serviceDetail,
+  ],
 };
 
 export default routes;
