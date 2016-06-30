@@ -4,6 +4,7 @@ import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
 import actions from './actions';
 import store from '../../../store';
+import serviceDetail from '../service';
 
 const mapStateToProps = state => ({
   services: state.serviceList.services,
@@ -36,8 +37,10 @@ const ServiceList = React.createClass({
         <h1>Services</h1>
         {
           this.props.services.map(
-            service =>
-              <Service key={service.id} name={service.name} id={service.id} />
+            service => {
+              const path = `services/${service.id}`;
+              return <Service key={service.id} name={service.name} path={path} />;
+            }
           )
         }
       </div>
@@ -57,6 +60,9 @@ const ServiceList = React.createClass({
 const routes = {
   path: 'services',
   indexRoute: { component: connect(mapStateToProps, actions)(ServiceList) },
+  childRoutes: [
+    serviceDetail,
+  ],
 };
 
 export default routes;

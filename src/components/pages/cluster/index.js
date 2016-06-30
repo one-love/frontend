@@ -1,14 +1,24 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './cluster.scss';
-import actions from './actions';
+import InlineEdit from 'react-edit-inline';
+import actions from './actions/detail';
+import editActions from './actions/edit';
 import { connect } from 'react-redux';
 import store from '../../../store';
+import List from '../../molecules/transition-appear';
+import Service from '../../molecules/service';
 
-const mapStateToProps = (state) => ({
-  cluster: state.clusterDetail.cluster,
-  roles: state.clusterDetail.roles,
-});
+const mapStateToProps = (state) => {
+  const data = {
+    cluster: state.clusterDetail.cluster,
+    roles: state.clusterDetail.roles,
+  };
+  if (state.clusterEdit.cluster) {
+    data.cluster = state.clusterEdit.cluster;
+  }
+  return data;
+};
 
 
 const ClusterDetail = React.createClass({
@@ -25,15 +35,44 @@ const ClusterDetail = React.createClass({
 
   componentWillUnmount() {
     store.dispatch(actions.reset());
+    store.dispatch(editActions.reset());
+  },
+
+  dataChanged(data) {
+    store.dispatch(
+      editActions.edit(
+        this.props.params.clusterId,
+        data
+      )
+    );
   },
 
   render() {
     if (this.props.cluster === undefined) {
       return <div></div>;
     }
+    const services = (
+      <div>
+        {
+          this.props.cluster.services.map(
+            service => {
+              const path = `clusters/${this.props.params.clusterId}/provision`;
+              return <Service key={service.id} name={service.name} path={path} />;
+            }
+          )
+        }
+      </div>
+    );
     return (
       <div>
-        <h2>{this.props.cluster.name}</h2>
+        <h2>
+          Name:
+          <InlineEdit
+            paramName="name"
+            text={this.props.cluster.name}
+            change={this.dataChanged}
+          />
+        </h2>
         <div>
           <div styleName="label">
             providers:
@@ -73,16 +112,9 @@ const ClusterDetail = React.createClass({
             services:
           </div>
           <div styleName="item">
-            {
-              this.props.cluster.services ?
-              this.props.cluster.services.map(
-                (serv) =>
-                  <div key={serv.id}>
-                    {serv.name}
-                  </div>
-              ) :
-              'No service right now'
-            }
+            <List>
+              {services}
+            </List>
           </div>
         </div>
       </div>

@@ -1,0 +1,1 @@
+export const SERVICE_DETAIL = 'SERVICE_DETAIL';

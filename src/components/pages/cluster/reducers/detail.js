@@ -1,4 +1,4 @@
-import { CLUSTER_DETAIL } from './constants';
+import { CLUSTER_DETAIL } from '../constants';
 
 export default function clusterDetail(state = { status: 'initial' }, action) {
   switch (action.type) {
