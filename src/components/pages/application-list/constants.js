@@ -1,0 +1,1 @@
+export const APPLICATION_LIST = 'APPLICATION_LIST';
