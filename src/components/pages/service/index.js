@@ -4,6 +4,7 @@ import styles from './service.scss';
 import { connect } from 'react-redux';
 import actions from './actions/detail';
 import store from '../../../store';
+import ApplicationList from '../application-list';
 
 const mapStateToProps = (state) => {
   const data = {
@@ -44,21 +45,7 @@ const ServiceDetail = React.createClass({
           </div>
         </div>
         <div>
-          <div styleName="label">
-            Applications:
-          </div>
-          <div styleName="item">
-            {
-              this.props.service.applications ?
-              this.props.service.applications.map(
-                (app) =>
-                  <span key={app.name}>
-                    {app.name}
-                  </span>
-              ) :
-              'No application right now'
-            }
-          </div>
+          <ApplicationList serviceId={this.props.service.id} />
         </div>
       </div>
     );
