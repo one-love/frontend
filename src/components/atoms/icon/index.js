@@ -9,9 +9,22 @@ function Icon(props) {
   if (props && props.name) {
     name = props.name;
   }
-  return (
-    <div styleName="icon">
-      <div styleName="icon-close">x</div>
+  let content = '';
+  if (props.path === undefined) {
+    content = (
+      <div>
+        <img
+          src={props.img}
+          alt={props.alt ? props.alt : 'icon'}
+          styleName="icon-img"
+        />
+        <div>
+          {name}
+        </div>
+      </div>
+      );
+  } else {
+    content = (
       <Link to={props.path} >
         <img
           src={props.img}
@@ -22,6 +35,12 @@ function Icon(props) {
           {name}
         </div>
       </Link>
+    );
+  }
+  return (
+    <div styleName="icon">
+      <div styleName="icon-close">x</div>
+      {content}
     </div>
   );
 }
