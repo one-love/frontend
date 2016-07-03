@@ -37,11 +37,8 @@ const ServiceDetail = React.createClass({
       <div styleName="item">
         <div>
           <h2>Service: {this.props.service.name}</h2>
-          <div styleName="label">
-            email:
-          </div>
           <div styleName="item">
-            {this.props.service.user.email}
+            <h3>email:{this.props.service.user.email}</h3>
           </div>
         </div>
         <div>

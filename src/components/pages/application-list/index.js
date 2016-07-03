@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
   status: state.applicationList.status,
 });
 
-const ApplicationList = React.createClass({
+const Component = React.createClass({
   propTypes: {
     applications: React.PropTypes.array,
     status: React.PropTypes.string,
@@ -53,4 +53,6 @@ const ApplicationList = React.createClass({
 
 });
 
-export default connect(mapStateToProps, actions)(ApplicationList);
+const ApplicationList = connect(mapStateToProps, actions)(Component);
+
+export default ApplicationList;
