@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Add from '../../atoms/add';
 import './list.scss';
 
 
@@ -17,7 +16,6 @@ export default function List(props) {
       >
         {props.children}
       </ReactCSSTransitionGroup>
-      <Add />
     </div>
   );
 }
