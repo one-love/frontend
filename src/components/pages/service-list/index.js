@@ -5,6 +5,7 @@ import List from '../../molecules/transition-appear';
 import actions from './actions';
 import store from '../../../store';
 import serviceDetail from '../service';
+import Add from '../../atoms/add';
 
 const mapStateToProps = state => ({
   services: state.serviceList.services,
@@ -18,6 +19,14 @@ const ServiceList = React.createClass({
     status: React.PropTypes.string,
   },
 
+  getInitialState() {
+    return {
+      showCreate: '0',
+      visibility: 'hidden',
+      name: '',
+    };
+  },
+
   componentWillMount() {
     store.dispatch(actions.get());
   },
@@ -26,10 +35,40 @@ const ServiceList = React.createClass({
     store.dispatch(actions.reset());
   },
 
+  showCreate() {
+    this.setState({ showCreate: '5rem', visibility: 'visible' });
+  },
+  handleNameChange(event) {
+    this.setState({ name: event.target.value });
+  },
+
+  /* handleSumbit(event){
+   *   store.dispatch(actions.create(this.state.name));
+   * },*/
+
   render() {
     const children = (
       <div>
         {this.props.children}
+      </div>
+    );
+    const createService = (
+      <div style={{ height: this.state.showCreate, visibility: this.state.visibility }}>
+        <h1>Create Service</h1>
+        <form role="form">
+          <div className="form__item">
+            <label htmlFor="name">Name</label>
+            <input
+              autoFocus
+              type="text"
+              className="form__field"
+              id="name"
+              placeholder="Name"
+              onChange={this.handleNameChange}
+            />
+          </div>
+          <button className="button button--primary">Create</button>
+        </form>
       </div>
     );
     const services = (
@@ -46,9 +85,15 @@ const ServiceList = React.createClass({
       </div>
     );
     const index = (
-      <List>
-        {services}
-      </List>
+      <div>
+        {createService}
+        <List>
+          {services}
+        </List>
+        <div onClick={this.showCreate}>
+          <Add />
+        </div>
+      </div>
     );
     if (this.props.children) {
       return children;
