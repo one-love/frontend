@@ -40,7 +40,9 @@ const ClusterList = React.createClass({
             cluster => {
               let path = 'clusters/';
               path = path + cluster.id;
-              return <Cluster key={cluster.id} name={cluster.name} path={path} />;
+              return (
+                <Cluster key={cluster.id} name={cluster.name} path={path} />
+              );
             }
           )
         }
@@ -58,7 +60,9 @@ const ClusterList = React.createClass({
 
 const routes = {
   path: 'clusters',
-  indexRoute: { component: connect(mapStateToProps, actions)(ClusterList) },
+  indexRoute: {
+    component: connect(mapStateToProps, actions)(ClusterList),
+  },
   childRoutes: [
     clusterDetail,
   ],
