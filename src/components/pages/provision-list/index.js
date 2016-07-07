@@ -1,17 +1,67 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import store from '../../../store';
 import styles from './provision-list.scss';
-import Layout from '../../layouts/layout';
+import actions from './actions';
 
 
-function ProvisionList() {
-  return (
-    <Layout title="Provisions" provision="active">
-      <div styleName="provision__ok">1341324fb134f134</div>
-      <div styleName="provision__failed">56a3b4fb134f87ec</div>
-    </Layout>
-  );
-}
+const mapStateToProps = state => ({
+  provisions: state.provisionList.provisions,
+  status: state.provisionList.status,
+});
 
 
-export default cssModules(ProvisionList, styles);
+const ProvisionList = React.createClass({
+  propTypes: {
+    children: React.PropTypes.node,
+    provisions: React.PropTypes.array,
+    status: React.PropTypes.string,
+  },
+
+  getDefaultProps() {
+    return {
+      provisions: [],
+    };
+  },
+
+  componentWillMount() {
+    store.dispatch(actions.get());
+  },
+
+  componentWillUnmount() {
+    store.dispatch(actions.reset());
+  },
+
+  render() {
+    return (
+      <div styleName="provision">
+        <h1>Provisions</h1>
+        {
+          this.props.provisions.map(
+            provision =>
+              <dev key={provision.id} styleName={provision.status}>
+                <Link
+                  key={provision.id}
+                  to={`/provisions/${provision.id}/`}
+                > {provision.id} </Link>
+              </dev>
+          )
+        }
+      </div>
+    );
+  },
+});
+
+
+const routes = {
+  path: 'provisions',
+  indexRoute: {
+    component: connect(mapStateToProps, actions)(
+      cssModules(ProvisionList, styles)
+    ),
+  },
+};
+
+export default routes;

@@ -3,6 +3,7 @@ import login from './components/pages/login/reducers';
 import sidebar from './components/atoms/sidebar/reducers';
 import serviceList from './components/pages/service-list/reducers';
 import clusterList from './components/pages/cluster-list/reducers';
+import provisionList from './components/pages/provision-list/reducers';
 import applicationList from './components/pages/application-list/reducers';
 import clusterReducers from './components/pages/cluster/reducers';
 import serviceReducers from './components/pages/service/reducers';
@@ -14,6 +15,7 @@ const reducers = {
   serviceList,
   clusterList,
   applicationList,
+  provisionList,
 };
 
 clusterReducers.map(reducer => {
