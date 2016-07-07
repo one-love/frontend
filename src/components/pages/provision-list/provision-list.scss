@@ -1,9 +1,19 @@
-.provision__ok {
-  color: green;
-  font-weight: bold;
-}
+.provision {
+  .OK {
+    color: $ok_color;
+    font-weight: bold;
 
-.provision__failed {
-  color: red;
-  font-weight: bold;
+    a {
+      color: $ok_color;
+    }
+  }
+
+  .FAILED {
+    color: $failed_color;
+    font-weight: bold;
+
+    a {
+      color: $failed_color;
+    }
+  }
 }
