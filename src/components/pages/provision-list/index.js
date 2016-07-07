@@ -3,6 +3,7 @@ import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import store from '../../../store';
+import provisionDetail from '../provision';
 import styles from './provision-list.scss';
 import actions from './actions';
 
@@ -62,6 +63,9 @@ const routes = {
       cssModules(ProvisionList, styles)
     ),
   },
+  childRoutes: [
+    provisionDetail,
+  ],
 };
 
 export default routes;
