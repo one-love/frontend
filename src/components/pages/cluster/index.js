@@ -23,7 +23,6 @@ const mapStateToProps = (state) => {
 
 const ClusterDetail = React.createClass({
   propTypes: {
-    children: React.PropTypes.node,
     cluster: React.PropTypes.object,
     roles: React.PropTypes.array,
     params: React.PropTypes.object,
@@ -125,7 +124,11 @@ const ClusterDetail = React.createClass({
 
 const routes = {
   path: ':clusterId',
-  indexRoute: { component: connect(mapStateToProps, actions)(cssModules(ClusterDetail, styles)) },
+  indexRoute: {
+    component: connect(mapStateToProps, actions)(
+      cssModules(ClusterDetail, styles)
+    ),
+  },
 };
 
 export default routes;
