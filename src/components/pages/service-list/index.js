@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
-import actions from './actions';
+import actions from './actions/list';
 import store from '../../../store';
 import serviceDetail from '../service';
 import Add from '../../atoms/add';

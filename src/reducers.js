@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import login from './components/pages/login/reducers';
 import sidebar from './components/atoms/sidebar/reducers';
-import serviceList from './components/pages/service-list/reducers';
+import servicesReducers from './components/pages/service-list/reducers';
 import clusterList from './components/pages/cluster-list/reducers';
 import provisionList from './components/pages/provision-list/reducers';
 import applicationList from './components/pages/application-list/reducers';
@@ -12,7 +12,6 @@ import serviceReducers from './components/pages/service/reducers';
 const reducers = {
   login,
   sidebar,
-  serviceList,
   clusterList,
   applicationList,
   provisionList,
@@ -24,6 +23,11 @@ clusterReducers.map(reducer => {
 });
 
 serviceReducers.map(reducer => {
+  reducers[reducer.name] = reducer;
+  return undefined;
+});
+
+servicesReducers.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
 });

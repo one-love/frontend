@@ -1,4 +1,4 @@
-import { SERVICE_LIST } from './constants';
+import { SERVICE_LIST } from '../constants';
 
 export default function serviceList(
   state = { status: 'initial', services: [] },
