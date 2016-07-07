@@ -1,49 +1,40 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
-import { Link } from 'react-router';
 import Log from '../../atoms/log';
 import styles from './provision.scss';
 
 
-function Provision() {
-  return (
-    <div>
+const Provision = React.createClass({
+  propTypes: {
+    provision: React.PropTypes.object,
+  },
+
+  getDefaultProps() {
+    return {
+      provision: {
+        logs: [],
+      },
+    };
+  },
+
+  render() {
+    const status = this.props.provision.status ? this.props.provision.status.toLowerCase() : '';
+    return (
       <div>
-        <div styleName="label">
-          status:
-        </div>
-        <div styleName="item">
-          RUNNING
-        </div>
+        <h1 styleName={status}>Provision</h1>
+        <Log>
+          {
+            this.props.provision.logs.map((log) => (
+              <div key={log.timestamp} styleName={log.status}>
+                [{log.host}] {log.task}{log.log ? `: ${log.log}` : ''}
+              </div>
+            ))
+          }
+        </Log>
       </div>
-      <div>
-        <div styleName="label">
-          user:
-        </div>
-        <div styleName="item">
-          admin@example.com
-        </div>
-      </div>
-      <div>
-        <div styleName="label">
-          cluster:
-        </div>
-        <div styleName="item">
-          <Link to="/cluster/id">cluster</Link>
-        </div>
-      </div>
-      <div>
-        <div styleName="label">
-          service:
-        </div>
-        <div styleName="item">
-          <Link to="/service/id">service</Link>
-        </div>
-      </div>
-      <Log />
-    </div>
-  );
-}
+    );
+  },
+});
 
 
 export default cssModules(Provision, styles);

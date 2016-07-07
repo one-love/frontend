@@ -3,19 +3,18 @@ import cssModules from 'react-css-modules';
 import styles from './log.scss';
 
 
-function Log() {
+function Log(props) {
   return (
     <div styleName="provisions">
-      <div styleName="ok">[192.168.33.34] setup </div>
-      <div styleName="ok">[192.168.33.34] onelove-roles.common : dummy task </div>
-      <div styleName="ok">[192.168.33.34] onelove-roles.common : pause </div>
-      <div styleName="ok">[192.168.33.34] onelove-roles.common : dump task </div>
-      <div styleName="failed">[192.168.33.34] onelove-roles.common : pause </div>
-      <div styleName="failed">[192.168.33.34] onelove-roles.common : date </div>
-      <div styleName="failed">[192.168.33.34] onelove-roles.common : pause </div>
+      {props.children}
     </div>
   );
 }
+
+
+Log.propTypes = {
+  children: React.PropTypes.node,
+};
 
 
 export default cssModules(Log, styles);
