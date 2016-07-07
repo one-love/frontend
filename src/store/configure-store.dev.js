@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import DevTools from '../containers/dev-tools';
 
+
 const enhancer = compose(
   applyMiddleware(thunk),
   DevTools.instrument(),
@@ -15,6 +16,7 @@ const enhancer = compose(
     )
   )
 );
+
 
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, enhancer);

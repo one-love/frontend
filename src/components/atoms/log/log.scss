@@ -1,0 +1,23 @@
+.provision_data_label {
+  display: inline;
+  margin-right: 5px;
+}
+
+.provision_data_item {
+  display: inline;
+}
+
+.provision {
+  height: calc(100% - 1rem);
+}
+
+.provisions {
+  font-family:Courier;
+  color: #CCCCCC;
+  background: #101010;
+  border: 3px solid #CCCCCC;
+  padding: 10px;
+  height: calc(100% - 7rem);
+  overflow: auto;
+  font-family: "Monospace";
+}

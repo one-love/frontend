@@ -1,0 +1,12 @@
+.label, .item {
+  display: inline;
+  color: $color;
+}
+
+.ok {
+  color: #3D9A4E;
+}
+
+.failed, .unreachable {
+  color: #C14949;
+}
