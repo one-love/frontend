@@ -8,6 +8,7 @@ import applicationList from './components/pages/application-list/reducers';
 import clusterReducers from './components/pages/cluster/reducers';
 import serviceReducers from './components/pages/service/reducers';
 import provisionReducers from './components/pages/provision/reducers';
+import providerReducers from './components/pages/provider/reducers';
 
 
 const reducers = {
@@ -34,6 +35,11 @@ servicesReducers.map(reducer => {
 });
 
 provisionReducers.map(reducer => {
+  reducers[reducer.name] = reducer;
+  return undefined;
+});
+
+providerReducers.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
 });
