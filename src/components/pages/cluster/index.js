@@ -9,6 +9,7 @@ import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Service from '../../molecules/service';
 import Provider from '../../molecules/provider';
+import ProviderDetail from '../provider';
 
 
 const mapStateToProps = (state) => {
@@ -69,8 +70,8 @@ const ClusterDetail = React.createClass({
         {
           this.props.cluster.providers.map(
             provider => {
-              const path = `clusters/${this.props.params.clusterId}/provision`;
-              return <Provider key={provider.id} name={provider.name} path={path} />;
+              const path = `/clusters/${this.props.params.clusterId}/providers/${provider.name}`;
+              return <Provider key={provider.name} name={provider.name} path={path} />;
             }
           )
         }
@@ -139,6 +140,9 @@ const routes = {
       cssModules(ClusterDetail, styles)
     ),
   },
+  childRoutes: [
+    ProviderDetail,
+  ],
 };
 
 export default routes;

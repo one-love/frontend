@@ -10,8 +10,21 @@ import Layout from '../components/layouts/layout';
 import '../sass/reset.scss';
 
 
+function Component(props) {
+  return (
+    <div>
+      {props.children}
+    </div>
+  );
+}
+
+Component.propTypes = {
+  children: React.PropTypes.node,
+};
+
+
 const routes = {
-  component: 'div',
+  component: Component,
   childRoutes: [
     {
       path: '/',
@@ -29,6 +42,7 @@ const routes = {
     },
   ],
 };
+
 
 function Main() {
   return (
