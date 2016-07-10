@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/one-love/",
   "devDependencies": {
-    "@kadira/storybook": "^1.35.0",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.0",

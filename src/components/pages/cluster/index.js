@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Service from '../../molecules/service';
+import Provider from '../../molecules/provider';
+
 
 const mapStateToProps = (state) => {
   const data = {
@@ -62,6 +64,37 @@ const ClusterDetail = React.createClass({
         }
       </div>
     );
+    const providers = (
+      <div>
+        {
+          this.props.cluster.providers.map(
+            provider => {
+              const path = `clusters/${this.props.params.clusterId}/provision`;
+              return <Provider key={provider.id} name={provider.name} path={path} />;
+            }
+          )
+        }
+      </div>
+    );
+    const roles = (
+      <div>
+        <div styleName="label">
+          roles:
+        </div>
+        <div styleName="item">
+          {
+            this.props.cluster.roles ?
+            this.props.cluster.roles.map(
+              (role) =>
+                <span key={role.name}>
+                  {role.name}
+                </span>
+            ) :
+            'No roles right now'
+          }
+        </div>
+      </div>
+    );
     return (
       <div>
         <h2>
@@ -72,38 +105,15 @@ const ClusterDetail = React.createClass({
             change={this.dataChanged}
           />
         </h2>
+        {roles}
         <div>
           <div styleName="label">
             providers:
           </div>
           <div styleName="item">
-            {
-              this.props.cluster.providers ?
-              this.props.cluster.providers.map(
-                (prov) =>
-                  <span key={prov.name}>
-                    {prov.name}
-                  </span>
-              ) :
-              'No roles right now'
-            }
-          </div>
-        </div>
-        <div>
-          <div styleName="label">
-            roles:
-          </div>
-          <div styleName="item">
-            {
-              this.props.cluster.roles ?
-              this.props.cluster.roles.map(
-                (role) =>
-                  <span key={role.name}>
-                    {role.name}
-                  </span>
-              ) :
-              'No roles right now'
-            }
+            <List>
+              {providers}
+            </List>
           </div>
         </div>
         <div>

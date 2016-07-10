@@ -64,7 +64,6 @@ const ServiceList = React.createClass({
   },
 
   render() {
-    console.log(this.props.createStatus);
     const children = (
       <div>
         {this.props.children}
