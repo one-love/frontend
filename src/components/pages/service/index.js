@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import actions from './actions/detail';
 import store from '../../../store';
 import ApplicationList from '../application-list';
+import ApplicationDetail from '../application';
+
 
 const mapStateToProps = (state) => {
   const data = {
@@ -52,7 +54,14 @@ const ServiceDetail = React.createClass({
 
 const routes = {
   path: ':serviceId',
-  indexRoute: { component: connect(mapStateToProps, actions)(cssModules(ServiceDetail, styles)) },
+  indexRoute: {
+    component: connect(mapStateToProps, actions)(
+      cssModules(ServiceDetail, styles)
+    ),
+  },
+  childRoutes: [
+    ApplicationDetail,
+  ],
 };
 
 export default routes;

@@ -1,4 +1,10 @@
+.item select {
+  background-color: $select_background_color;
+  border-color: $select_border_color;
+  color: $color;
+  display: inline;
+}
+
 .label, .item {
   display: inline;
-  color: $color;
 }
