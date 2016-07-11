@@ -10,6 +10,7 @@ import serviceReducers from './components/pages/service/reducers';
 import provisionReducers from './components/pages/provision/reducers';
 import providerReducers from './components/pages/provider/reducers';
 import hostReducers from './components/pages/host/reducers';
+import applicationReducers from './components/pages/application/reducers';
 
 
 const reducers = {
@@ -46,6 +47,11 @@ providerReducers.map(reducer => {
 });
 
 hostReducers.map(reducer => {
+  reducers[reducer.name] = reducer;
+  return undefined;
+});
+
+applicationReducers.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
 });
