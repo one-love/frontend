@@ -1,45 +1,48 @@
 import React from 'react';
-import Layout from '../components/layout';
-import Login from '../components/auth/login';
-import Cluster from '../components/cluster';
-import Service from '../components/service';
-import Register from '../components/register/register';
-import Confirm from '../components/confirm/confirm';
-import Provision from '../components/provision';
-import Profile from '../components/profile';
-import { requireAuth } from '../utils';
 import { Router } from 'react-router';
 import { history } from '../constants';
+import { requireAuth } from '../utils';
+import Services from '../components/pages/service-list';
+import Clusters from '../components/pages/cluster-list';
+import Provisions from '../components/pages/provision-list';
+import Login from '../components/pages/login';
+import Layout from '../components/layouts/layout';
+import '../sass/reset.scss';
+
+
+function Component(props) {
+  return (
+    <div>
+      {props.children}
+    </div>
+  );
+}
+
+Component.propTypes = {
+  children: React.PropTypes.node,
+};
 
 
 const routes = {
-  component: 'div',
+  component: Component,
   childRoutes: [
     {
       path: '/',
       component: Layout,
       onEnter: requireAuth,
       childRoutes: [
-        Cluster,
-        Service,
-        Provision,
-        Profile,
+        Services,
+        Clusters,
+        Provisions,
       ],
     },
     {
       path: '/login/',
       component: Login,
     },
-    {
-      path: '/register/',
-      component: Register,
-    },
-    {
-      path: '/confirm/:uuid/',
-      component: Confirm,
-    },
   ],
 };
+
 
 function Main() {
   return (

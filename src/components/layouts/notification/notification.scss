@@ -1,0 +1,18 @@
+.content {
+  height: $content_height;
+  padding: $content_padding;
+  color: $color;
+}
+
+.content a {
+  color: $color;
+}
+
+:global .notification-appear {
+  top: -$notification_height;
+}
+
+:global .notification-appear.notification-appear-active {
+  top: 0;
+  transition: top 0.2s ease-out;
+}

@@ -1,0 +1,19 @@
+.provision {
+  .OK {
+    color: $ok_color;
+    font-weight: bold;
+
+    a {
+      color: $ok_color;
+    }
+  }
+
+  .FAILED {
+    color: $failed_color;
+    font-weight: bold;
+
+    a {
+      color: $failed_color;
+    }
+  }
+}
