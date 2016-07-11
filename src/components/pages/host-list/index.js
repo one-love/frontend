@@ -1,6 +1,6 @@
 import React from 'react';
 import Host from '../../molecules/host';
-import List from '../../layouts/list';
+import List from '../../molecules/transition-appear';
 
 
 export default function HostList() {
