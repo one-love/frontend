@@ -4,6 +4,7 @@ import List from '../../molecules/transition-appear';
 import store from '../../../store';
 import actions from './actions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 
 const mapStateToProps = state => ({
@@ -34,8 +35,14 @@ const ApplicationList = React.createClass({
       <div>
         {
           this.props.applications.map(
-            application =>
-              <Application key={application.id} name={application.name} path="" />
+            application => {
+              const appUrl = `/services/${this.props.serviceId}/applications/${application.name}`;
+              return (
+                <Link to={appUrl} key={application.name}>
+                  <Application name={application.name} path="" />
+                </Link>
+              );
+            }
           )
         }
       </div>
