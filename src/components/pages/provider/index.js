@@ -1,11 +1,13 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
+import { Link } from 'react-router';
 import styles from './provider.scss';
 import { connect } from 'react-redux';
 import actions from './actions/detail';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Host from '../../molecules/host';
+import HostDetail from '../host';
 
 
 const mapStateToProps = (state) => {
@@ -36,21 +38,33 @@ const ProviderDetail = React.createClass({
   },
 
   render() {
-    if (this.props.provider === undefined) {
+    if (!this.props.provider) {
       return <div></div>;
     }
+    const clusterId = this.props.params.clusterId;
+    const providerName = this.props.params.providerName;
+    const providerUrl = `/clusters/${clusterId}/providers/${providerName}`;
+    const hosts = (
+      <List title="Hosts" cluster="active">
+        {
+          this.props.provider.hosts.map(host => {
+            const link = `${providerUrl}/hosts/${host.hostname}`;
+            return (
+              <Link key={host.hostname} to={link}>
+                <Host name={host.hostname} />
+              </Link>
+            );
+          })
+        }
+      </List>
+    );
     return (
       <div styleName="item">
         <div>
           <h2>Provider</h2>
           Name: {this.props.provider.name}
-          <List title="Hosts" cluster="active">
-            {
-              this.props.provider.hosts.map(host => (
-                <Host key={host.ip} name={host.hostname} />
-              ))
-            }
-          </List>
+          <h3>Hosts</h3>
+          {hosts}
         </div>
       </div>
     );
@@ -65,6 +79,9 @@ const routes = {
       cssModules(ProviderDetail, styles)
     ),
   },
+  childRoutes: [
+    HostDetail,
+  ],
 };
 
 export default routes;
