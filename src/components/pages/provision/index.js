@@ -13,9 +13,6 @@ const mapStateToProps = (state) => {
     provision: state.provisionDetail.provision,
     error: state.provisionDetail.error,
   };
-  if (data.error) {
-    data.provision.status = data.error;
-  }
   return data;
 };
 
@@ -43,16 +40,19 @@ const ProvisionDetail = React.createClass({
       if (this.props.provision.id === message.id) {
         switch (message.status) {
           case 'SUCCESS':
-            store.dispatch(actions.success(message.status));
+            store.dispatch(actions.successProvision(this.props.provision));
             break;
           case 'FAILED':
             store.dispatch(
-              actions.failProvision(this.props.provision, message.status)
+              actions.failProvision(this.props.provision, message)
             );
             break;
           default:
             store.dispatch(
-              actions.failProvision(this.props.provision, 'unexpected error on provision')
+              actions.failProvision(
+                this.props.provision,
+                'unexpected error on provision',
+              )
             );
             break;
         }

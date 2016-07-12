@@ -5,11 +5,20 @@ import { PROVISION_DETAIL } from '../constants';
 
 
 export const reset = createAction(PROVISION_DETAIL, () => ({ status: 'initial' }));
+
 export const begin = createAction(PROVISION_DETAIL, () => ({ status: 'pending' }));
 
 export const success = createAction(PROVISION_DETAIL, provision => ({
-  provision,
   status: 'success',
+  provision,
+}));
+
+export const successProvision = createAction(PROVISION_DETAIL, provision => ({
+  status: 'success',
+  provision: {
+    ...provision,
+    status: 'SUCCESS',
+  },
 }));
 
 export const fail = createAction(PROVISION_DETAIL, error => ({
@@ -44,6 +53,7 @@ const actions = {
   success,
   fail,
   failProvision,
+  successProvision,
   get,
 };
 
