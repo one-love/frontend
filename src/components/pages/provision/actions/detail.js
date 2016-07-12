@@ -17,6 +17,12 @@ export const fail = createAction(PROVISION_DETAIL, error => ({
   error,
 }));
 
+export const failProvision = createAction(PROVISION_DETAIL, (provision, error) => ({
+  status: 'error',
+  error,
+  provision,
+}));
+
 export const get = id =>
   dispatch => {
     dispatch(begin());
@@ -37,6 +43,7 @@ const actions = {
   begin,
   success,
   fail,
+  failProvision,
   get,
 };
 
