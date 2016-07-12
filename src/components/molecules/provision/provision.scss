@@ -4,9 +4,13 @@
 }
 
 .ok {
-  color: #3D9A4E;
+  color: $ok_color;
 }
 
 .failed, .unreachable {
-  color: #C14949;
+  color: $failed_color;
+}
+
+.running {
+  color: $running_color;
 }
