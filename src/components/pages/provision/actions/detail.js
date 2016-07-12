@@ -29,7 +29,10 @@ export const fail = createAction(PROVISION_DETAIL, error => ({
 export const failProvision = createAction(PROVISION_DETAIL, (provision, error) => ({
   status: 'error',
   error,
-  provision,
+  provision: {
+    ...provision,
+    status: 'FAILED',
+  },
 }));
 
 export const get = id =>

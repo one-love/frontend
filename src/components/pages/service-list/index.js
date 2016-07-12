@@ -58,7 +58,8 @@ const ServiceList = React.createClass({
     this.setState({ name: event.target.value });
   },
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     store.dispatch(createActions.create(this.state.name));
     this.setState({ name: '' });
   },
