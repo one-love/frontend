@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Cluster from '../../molecules/cluster';
 import List from '../../molecules/transition-appear';
 import { connect } from 'react-redux';
@@ -38,9 +39,11 @@ const ClusterList = React.createClass({
         {
           this.props.clusters.map(
             cluster => {
-              const path = `clusters/${cluster.id}`;
+              const url = `clusters/${cluster.id}`;
               return (
-                <Cluster key={cluster.id} name={cluster.name} path={path} />
+                <Link to={url} key={cluster.id}>
+                  <Cluster name={cluster.name} />
+                </Link>
               );
             }
           )
