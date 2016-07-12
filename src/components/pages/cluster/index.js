@@ -1,5 +1,6 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
+import { Link } from 'react-router';
 import styles from './cluster.scss';
 import InlineEdit from 'react-edit-inline';
 import actions from './actions/detail';
@@ -10,6 +11,7 @@ import List from '../../molecules/transition-appear';
 import Service from '../../molecules/service';
 import Provider from '../../molecules/provider';
 import ProviderDetail from '../provider';
+import ServiceProvision from '../service-provision';
 
 
 const mapStateToProps = (state) => {
@@ -50,32 +52,33 @@ const ClusterDetail = React.createClass({
   },
 
   render() {
-    if (this.props.cluster === undefined) {
-      return <div></div>;
+    if (!this.props.cluster) {
+      return '';
     }
+    const clusterUrl = `/clusters/${this.props.params.clusterId}`;
     const services = (
-      <div>
-        {
-          this.props.cluster.services.map(
-            service => {
-              const path = `clusters/${this.props.params.clusterId}/provision`;
-              return <Service key={service.id} name={service.name} path={path} />;
-            }
-          )
+      this.props.cluster.services.map(
+        service => {
+          const url = `${clusterUrl}/services/${service.id}/provision`;
+          return (
+            <Link to={url} key={service.id}>
+              <Service name={service.name} />;
+            </Link>
+          );
         }
-      </div>
+      )
     );
     const providers = (
-      <div>
-        {
-          this.props.cluster.providers.map(
-            provider => {
-              const path = `/clusters/${this.props.params.clusterId}/providers/${provider.name}`;
-              return <Provider key={provider.name} name={provider.name} path={path} />;
-            }
-          )
+      this.props.cluster.providers.map(
+        provider => {
+          const url = `${clusterUrl}/providers/${provider.name}`;
+          return (
+            <Link to={url} key={provider.name}>
+              <Provider name={provider.name} />
+            </Link>
+          );
         }
-      </div>
+      )
     );
     const roles = (
       <div>
@@ -142,6 +145,7 @@ const routes = {
   },
   childRoutes: [
     ProviderDetail,
+    ServiceProvision,
   ],
 };
 

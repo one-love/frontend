@@ -42,12 +42,12 @@ const ProvisionList = React.createClass({
         {
           this.props.provisions.map(
             provision =>
-              <dev key={provision.id} styleName={provision.status}>
+              <div key={provision.id} styleName={provision.status}>
                 <Link
                   key={provision.id}
                   to={`/provisions/${provision.id}/`}
                 > {provision.id} </Link>
-              </dev>
+              </div>
           )
         }
       </div>

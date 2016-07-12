@@ -1,7 +1,6 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './icon.scss';
-import { Link } from 'react-router';
 
 
 function Icon(props) {
@@ -9,34 +8,18 @@ function Icon(props) {
   if (props && props.name) {
     name = props.name;
   }
-  let content = '';
-  if (props.path === undefined) {
-    content = (
+  let content = (
+    <div>
+      <img
+        src={props.img}
+        alt={props.alt ? props.alt : 'icon'}
+        styleName="icon-img"
+      />
       <div>
-        <img
-          src={props.img}
-          alt={props.alt ? props.alt : 'icon'}
-          styleName="icon-img"
-        />
-        <div>
-          {name}
-        </div>
+        {name}
       </div>
-      );
-  } else {
-    content = (
-      <Link to={props.path} >
-        <img
-          src={props.img}
-          alt={props.alt ? props.alt : 'icon'}
-          styleName="icon-img"
-        />
-        <div>
-          {name}
-        </div>
-      </Link>
-    );
-  }
+    </div>
+  );
   return (
     <div styleName="icon">
       <div styleName="icon-close">x</div>

@@ -8,6 +8,15 @@
     }
   }
 
+  .RUNNING {
+    color: $running_color;
+    font-weight: bold;
+
+    a {
+      color: $running_color;
+    }
+  }
+
   .FAILED {
     color: $failed_color;
     font-weight: bold;
