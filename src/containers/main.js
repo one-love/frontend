@@ -6,6 +6,7 @@ import Services from '../components/pages/service-list';
 import Clusters from '../components/pages/cluster-list';
 import Provisions from '../components/pages/provision-list';
 import Login from '../components/pages/login';
+import NotFound from '../components/pages/not-found';
 import Layout from '../components/layouts/layout';
 import '../sass/reset.scss';
 
@@ -39,6 +40,10 @@ const routes = {
     {
       path: '/login/',
       component: Login,
+    },
+    {
+      path: '*',
+      component: NotFound,
     },
   ],
 };
