@@ -39,8 +39,9 @@ const ServiceList = React.createClass({
     store.dispatch(actions.get());
   },
 
-  shouldComponentUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.createStatus === 'success') {
+      store.dispatch(createActions.reset());
       store.dispatch(actions.get());
       return false;
     }
