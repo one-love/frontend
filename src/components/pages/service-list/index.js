@@ -43,6 +43,7 @@ const ServiceList = React.createClass({
     if (nextProps.createStatus === 'success') {
       store.dispatch(createActions.reset());
       store.dispatch(actions.get());
+      this.setState({ showCreate: '0', visibility: 'hidden' });
       return false;
     }
     return true;
