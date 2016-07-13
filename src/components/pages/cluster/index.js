@@ -62,7 +62,7 @@ const ClusterDetail = React.createClass({
           const url = `${clusterUrl}/services/${service.id}/provision`;
           return (
             <Link to={url} key={service.id}>
-              <Service name={service.name} />;
+              <Service name={service.name} />
             </Link>
           );
         }

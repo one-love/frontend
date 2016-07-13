@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import cssModules from 'react-css-modules';
 import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
 import actions from './actions/list';
@@ -7,6 +9,7 @@ import createActions from './actions/create';
 import store from '../../../store';
 import serviceDetail from '../service';
 import Add from '../../atoms/add';
+import styles from './styles.scss';
 
 const mapStateToProps = state => {
   const data = {
@@ -29,8 +32,7 @@ const ServiceList = React.createClass({
 
   getInitialState() {
     return {
-      showCreate: '0',
-      visibility: 'hidden',
+      display: 'none',
       name: '',
     };
   },
@@ -43,7 +45,7 @@ const ServiceList = React.createClass({
     if (nextProps.createStatus === 'success') {
       store.dispatch(createActions.reset());
       store.dispatch(actions.get());
-      this.setState({ showCreate: '0', visibility: 'hidden' });
+      this.setState({ display: 'none' });
       return false;
     }
     return true;
@@ -54,8 +56,9 @@ const ServiceList = React.createClass({
   },
 
   showCreate() {
-    this.setState({ showCreate: '5rem', visibility: 'visible' });
+    this.setState({ display: 'initial' });
   },
+
   handleNameChange(event) {
     this.setState({ name: event.target.value });
   },
@@ -73,7 +76,7 @@ const ServiceList = React.createClass({
       </div>
     );
     const createService = (
-      <div style={{ height: this.state.showCreate, visibility: this.state.visibility }}>
+      <div style={{ display: this.state.display }}>
         <h1>Create Service</h1>
         <form role="form" onSubmit={this.handleSubmit}>
           <div className="form__item">
@@ -87,7 +90,7 @@ const ServiceList = React.createClass({
               onChange={this.handleNameChange}
             />
           </div>
-          <button className="button button--primary">Create</button>
+          <button styleName="button">Create</button>
         </form>
       </div>
     );
@@ -97,8 +100,12 @@ const ServiceList = React.createClass({
         {
           this.props.services.map(
             service => {
-              const path = `services/${service.id}`;
-              return <Service key={service.id} name={service.name} path={path} />;
+              const url = `services/${service.id}`;
+              return (
+                <Link to={url}>
+                  <Service key={service.id} name={service.name} />
+                </Link>
+              );
             }
           )
         }
@@ -124,7 +131,11 @@ const ServiceList = React.createClass({
 
 const routes = {
   path: 'services',
-  indexRoute: { component: connect(mapStateToProps, actions)(ServiceList) },
+  indexRoute: {
+    component: connect(mapStateToProps, actions)(
+      cssModules(ServiceList, styles)
+    ),
+  },
   childRoutes: [
     serviceDetail,
   ],
