@@ -1,4 +1,4 @@
-import { CLUSTER_LIST } from './constants';
+import { CLUSTER_LIST } from '../constants';
 
 export default function clusterList(
   state = { status: 'initial', clusters: [] },

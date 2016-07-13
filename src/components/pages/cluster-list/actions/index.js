@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
-import { fetch } from '../../../utils';
-import { API_URL } from '../../../backend_url';
-import { CLUSTER_LIST } from './constants';
+import { fetch } from '../../../../utils';
+import { API_URL } from '../../../../backend_url';
+import { CLUSTER_LIST } from '../constants';
 
 export const reset = createAction(CLUSTER_LIST, () => ({
   status: 'initial',
