@@ -14,13 +14,11 @@
 }
 
 .icon-img {
-  margin-top: 10px;
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
 }
 
 .icon-close {
-  position: absolute;
   display: block;
   margin-left: calc(#{$icon-width} - 13px);
 }
