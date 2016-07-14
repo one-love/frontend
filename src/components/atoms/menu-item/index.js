@@ -6,12 +6,23 @@ import styles from './menu-item.scss';
 
 function MenuItem(props) {
   let styleName = 'item';
-  if (props && props.active === 'yes') {
-    styleName += '-active';
+  let linkContent = 'Item';
+  if (props) {
+    if (props.active === 'yes') {
+      styleName += '-active';
+    }
+    if (props.name) {
+      linkContent = props.name;
+    }
+    if (props.icon) {
+      linkContent = (
+        <img alt="icon" src={props.icon} className={styles.icon} />
+      );
+    }
   }
   return (
     <li styleName={styleName}>
-      <Link to={props.link ? props.link : ''}>{props.name ? props.name : 'Item'}</Link>
+      <Link to={props.link ? props.link : ''}>{linkContent}</Link>
     </li>
   );
 }
@@ -21,6 +32,7 @@ MenuItem.propTypes = {
   active: React.PropTypes.string,
   link: React.PropTypes.string,
   name: React.PropTypes.string,
+  icon: React.PropTypes.string,
 };
 
 

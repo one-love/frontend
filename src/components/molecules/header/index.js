@@ -4,6 +4,8 @@ import cssModules from 'react-css-modules';
 import MenuItem from '../../atoms/menu-item';
 import MenuSettings from '../../atoms/menu-settings';
 import styles from './header.scss';
+import onelove from './onelove.svg';
+
 
 const Header = React.createClass({
   contextTypes: {
@@ -13,6 +15,10 @@ const Header = React.createClass({
   render() {
     return (
       <ul styleName="header">
+        <MenuItem
+          link="/"
+          icon={onelove}
+        />
         <MenuItem
           active={this.context.router.isActive('clusters') ? 'yes' : 'no'}
           link="/clusters"

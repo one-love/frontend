@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448819"
-   height="1052.3622047"
+   width="585.95483"
+   height="585.98254"
    id="svg3012"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="New document 3">
+   sodipodi:docname="onelove.svg">
   <defs
      id="defs3014" />
   <sodipodi:namedview
@@ -25,16 +25,20 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="375"
-     inkscape:cy="520"
+     inkscape:cx="310.83457"
+     inkscape:cy="367.27699"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1676"
-     inkscape:window-height="1011"
-     inkscape:window-x="0"
-     inkscape:window-y="18"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="679"
+     inkscape:window-height="711"
+     inkscape:window-x="683"
+     inkscape:window-y="36"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata3017">
     <rdf:RDF>
@@ -43,14 +47,15 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-64.165433,-313.65662)">
     <g
        id="g3811"
        inkscape:export-xdpi="2.4548991"
