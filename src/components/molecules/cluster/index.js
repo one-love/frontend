@@ -9,11 +9,13 @@ export default function Cluster(props) {
     name = props.name;
   }
   return (
-    <Icon alt="cluster" img={svg} name={name} />
+    <Icon alt="cluster" img={svg} name={name} iconId={props.iconId} close={props.close} />
   );
 }
 
 
 Cluster.propTypes = {
   name: React.PropTypes.string,
+  iconId: React.PropTypes.string,
+  close: React.PropTypes.func,
 };
