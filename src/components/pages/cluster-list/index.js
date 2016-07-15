@@ -9,6 +9,7 @@ import clusterDetail from '../cluster';
 import Add from '../../atoms/add';
 import actions from './actions';
 import createActions from './actions/create';
+import removeActions from './actions/remove';
 import styles from './styles.scss';
 
 
@@ -19,6 +20,9 @@ const mapStateToProps = state => {
   };
   if (state.clusterCreate) {
     data.createStatus = state.clusterCreate.status;
+  }
+  if (state.clusterRemove) {
+    data.removeStatus = state.clusterRemove.status;
   }
   return data;
 };
@@ -55,6 +59,10 @@ const ClusterList = React.createClass({
       store.dispatch(createActions.reset());
       store.dispatch(actions.get());
       this.setState({ display: 'none' });
+    }
+    if (nextProps.removeStatus === 'success') {
+      store.dispatch(removeActions.reset());
+      store.dispatch(actions.get());
     }
     return true;
   },
@@ -139,7 +147,7 @@ const ClusterList = React.createClass({
               const url = `clusters/${cluster.id}`;
               return (
                 <Link to={url} key={cluster.id}>
-                  <Cluster name={cluster.name} />
+                  <Cluster name={cluster.name} iconId={cluster.id} close={removeActions.remove} />
                 </Link>
               );
             }

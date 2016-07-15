@@ -1,2 +1,3 @@
 export const CLUSTER_LIST = 'CLUSTER_LIST';
 export const CLUSTER_CREATE = 'CLUSTER_CREATE';
+export const CLUSTER_REMOVE = 'CLUSTER_REMOVE';
