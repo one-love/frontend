@@ -2,7 +2,6 @@ import React from 'react';
 import cssModules from 'react-css-modules';
 import Header from '../../molecules/header';
 import Footer from '../../atoms/footer';
-import Sidebar from '../../atoms/sidebar';
 import Landing from '../../pages/landing';
 import styles from './layout.scss';
 
@@ -11,7 +10,6 @@ function Layout(props) {
   const content = props.children ? props.children : <Landing />;
   return (
     <div>
-      <Sidebar className="sidebar" />
       <Header />
       <div styleName="content">
         {content}

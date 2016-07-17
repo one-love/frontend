@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import cssModules from 'react-css-modules';
 import store from '../../../store';
@@ -7,18 +6,10 @@ import styles from './sidebar.scss';
 import actions from './actions';
 
 
-function mapStateToProps(state) {
-  return {
-    content: state.sidebar.content,
-    show: state.sidebar.show,
-  };
-}
-
-
-const Popup = React.createClass({
+const Sidebar = React.createClass({
   propTypes: {
     className: React.PropTypes.string,
-    content: React.PropTypes.node,
+    children: React.PropTypes.node,
     show: React.PropTypes.bool,
   },
 
@@ -37,17 +28,7 @@ const Popup = React.createClass({
     const style = {
       transition: `width ${timeoutSeconds}s ${animationType}`,
     };
-    let content;
-    if (this.props.show) {
-      content = (
-        <div styleName={this.props.className} style={style}>
-          <div styleName="disable" onClick={this.hideSettings}>x</div>
-          <div>
-            {this.props.content}
-          </div>
-        </div>
-      );
-    }
+    const styleName = this.props.show ? 'sidebar' : 'sidebar__closed';
     return (
       <ReactCSSTransitionGroup
         transitionName="sidebar"
@@ -56,11 +37,13 @@ const Popup = React.createClass({
         transitionEnterTimeout={timeout}
         transitionLeaveTimeout={timeout}
       >
-        {content}
+        <div styleName={styleName} style={style}>
+          {this.props.children}
+        </div>
       </ReactCSSTransitionGroup>
     );
   },
 });
 
 
-export default connect(mapStateToProps, actions)(cssModules(Popup, styles));
+export default cssModules(Sidebar, styles);

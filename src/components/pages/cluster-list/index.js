@@ -8,6 +8,7 @@ import Cluster from '../../molecules/cluster';
 import List from '../../molecules/transition-appear';
 import store from '../../../store';
 import clusterDetail from '../cluster';
+import Sidebar from '../../atoms/sidebar';
 import Add from '../../atoms/add';
 import actions from './actions';
 import createActions from './actions/create';
@@ -48,7 +49,7 @@ const ClusterList = React.createClass({
 
   getInitialState() {
     return {
-      display: 'none',
+      create: false,
       name: '',
       sshKey: '',
       username: '',
@@ -63,7 +64,7 @@ const ClusterList = React.createClass({
     if (nextProps.createStatus === 'success') {
       store.dispatch(createActions.reset());
       store.dispatch(actions.get());
-      this.setState({ display: 'none' });
+      this.setState({ create: false });
     }
     if (nextProps.removeStatus === 'success') {
       store.dispatch(removeActions.reset());
@@ -78,12 +79,12 @@ const ClusterList = React.createClass({
   },
 
   showCreate() {
-    this.setState({ display: 'initial' });
+    this.setState({ create: true });
   },
 
   hideCreate() {
     this.setState({
-      display: 'none',
+      create: false,
       name: '',
       sshKey: '',
       sshKeyName: undefined,
@@ -136,42 +137,44 @@ const ClusterList = React.createClass({
   },
 
   render() {
-    const createCluster = (
-      <div style={{ display: this.state.display }}>
-        <h1>Create Cluster</h1>
-        <form role="form" onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              autoFocus
-              type="text"
-              id="name"
-              placeholder="Name"
-              onChange={this.handleNameChange}
-              value={this.state.name}
-            />
-          </div>
-          <div>
-            <FileInput id="ssh" onChange={this.handleSSHKeyChange}>
-              {this.state.sshKeyName ? this.state.sshKeyName : 'Select ssh key'}
-            </FileInput>
-          </div>
-          <div>
-            <label htmlFor="username">Username</label>
-            <input
-              autoFocus
-              type="text"
-              id="username"
-              placeholder="Username"
-              onChange={this.handleUsernameChange}
-              value={this.state.username}
-            />
-          </div>
-          <button styleName="button">Create</button>
-          <button styleName="button" onClick={this.hideCreate}>Cancel</button>
-        </form>
-      </div>
-    );
+    let createCluster = '';
+    if (this.state.create) {
+      createCluster = (
+        <div>
+          <div className="disable" onClick={this.hideCreate}>x</div>
+          <h1>Create Cluster</h1>
+          <form role="form" onSubmit={this.handleSubmit}>
+            <div>
+              <label htmlFor="name">Name</label>
+              <input
+                autoFocus
+                type="text"
+                id="name"
+                placeholder="Name"
+                onChange={this.handleNameChange}
+                value={this.state.name}
+              />
+            </div>
+            <div>
+              <FileInput id="ssh" onChange={this.handleSSHKeyChange}>
+                {this.state.sshKeyName ? this.state.sshKeyName : 'Select ssh key'}
+              </FileInput>
+            </div>
+            <div>
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                onChange={this.handleUsernameChange}
+                value={this.state.username}
+              />
+            </div>
+            <button styleName="button">Create</button>
+          </form>
+        </div>
+      );
+    }
     const clusters = (
       <div>
         <h1>Clusters</h1>
@@ -204,7 +207,9 @@ const ClusterList = React.createClass({
     }
     return (
       <div>
-        {createCluster}
+        <Sidebar show={this.state.create}>
+          {createCluster}
+        </Sidebar>
         <List>
           {clusters}
         </List>
