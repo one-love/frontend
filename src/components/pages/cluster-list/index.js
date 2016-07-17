@@ -49,7 +49,6 @@ const ClusterList = React.createClass({
 
   getInitialState() {
     return {
-      create: false,
       name: '',
       sshKey: '',
       username: '',
