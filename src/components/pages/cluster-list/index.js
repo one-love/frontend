@@ -23,6 +23,7 @@ const mapStateToProps = state => {
   }
   if (state.clusterRemove) {
     data.removeStatus = state.clusterRemove.status;
+    data.removeCluster = state.clusterRemove.cluster;
   }
   return data;
 };
@@ -33,6 +34,8 @@ const ClusterList = React.createClass({
     children: React.PropTypes.node,
     clusters: React.PropTypes.array,
     status: React.PropTypes.string,
+    removeStatus: React.PropTypes.string,
+    removeCluster: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -69,6 +72,7 @@ const ClusterList = React.createClass({
 
   componentWillUnmount() {
     store.dispatch(actions.reset());
+    store.dispatch(removeActions.reset());
   },
 
   showCreate() {
@@ -96,7 +100,21 @@ const ClusterList = React.createClass({
         this.state.username,
       )
     );
-    this.setState({ name: '' });
+    this.setState({
+      name: '',
+      sshKey: '',
+      username: '',
+    });
+  },
+
+  handleRemove(event) {
+    event.preventDefault();
+    store.dispatch(removeActions.remove(this.props.removeCluster.id));
+  },
+
+  handleCancel(event) {
+    event.preventDefault();
+    store.dispatch(removeActions.reset());
   },
 
   render() {
@@ -112,6 +130,7 @@ const ClusterList = React.createClass({
               id="name"
               placeholder="Name"
               onChange={this.handleNameChange}
+              value={this.state.name}
             />
           </div>
           <div>
@@ -122,6 +141,7 @@ const ClusterList = React.createClass({
               id="sshKey"
               placeholder="SSH Key"
               onChange={this.handleSSHKeyChange}
+              value={this.state.sshKey}
             />
           </div>
           <div>
@@ -132,6 +152,7 @@ const ClusterList = React.createClass({
               id="username"
               placeholder="Username"
               onChange={this.handleUsernameChange}
+              value={this.state.username}
             />
           </div>
           <button styleName="button">Create</button>
@@ -147,7 +168,7 @@ const ClusterList = React.createClass({
               const url = `clusters/${cluster.id}`;
               return (
                 <Link to={url} key={cluster.id}>
-                  <Cluster name={cluster.name} iconId={cluster.id} close={removeActions.remove} />
+                  <Cluster name={cluster.name} iconId={cluster.id} close={removeActions.confirm} />
                 </Link>
               );
             }
@@ -155,7 +176,7 @@ const ClusterList = React.createClass({
         }
       </div>
     );
-    return (
+    const index = (
       <div>
         {createCluster}
         <List>
@@ -166,6 +187,16 @@ const ClusterList = React.createClass({
         </div>
       </div>
     );
+    if (this.props.removeStatus === 'confirm') {
+      return (
+        <div>
+          <h1>Remove cluster {this.props.removeCluster.id}?</h1>
+          <button styleName="button" onClick={this.handleRemove}>yes</button>
+          <button styleName="button" onClick={this.handleCancel}>no</button>
+        </div>
+      );
+    }
+    return index;
   },
 });
 

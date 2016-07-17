@@ -21,6 +21,13 @@ export const fail = createAction(CLUSTER_REMOVE, error => ({
   error,
 }));
 
+export const confirm = createAction(CLUSTER_REMOVE, id => ({
+  status: 'confirm',
+  cluster: {
+    id,
+  },
+}));
+
 export const remove = id =>
   dispatch => {
     dispatch(begin());
@@ -45,6 +52,7 @@ const actions = {
   begin,
   success,
   fail,
+  confirm,
   remove,
 };
 
