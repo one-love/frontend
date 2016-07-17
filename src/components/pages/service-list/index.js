@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import cssModules from 'react-css-modules';
 import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
+import Sidebar from '../../atoms/sidebar';
 import actions from './actions';
 import createActions from './actions/create';
 import removeActions from './actions/remove';
@@ -40,7 +41,6 @@ const ServiceList = React.createClass({
 
   getInitialState() {
     return {
-      display: 'none',
       name: '',
     };
   },
@@ -53,7 +53,7 @@ const ServiceList = React.createClass({
     if (nextProps.createStatus === 'success') {
       store.dispatch(createActions.reset());
       store.dispatch(actions.get());
-      this.setState({ display: 'none' });
+      this.setState({ create: false });
     }
     if (nextProps.removeStatus === 'success') {
       store.dispatch(removeActions.reset());
@@ -67,7 +67,14 @@ const ServiceList = React.createClass({
   },
 
   showCreate() {
-    this.setState({ display: 'initial' });
+    this.setState({ create: true });
+  },
+
+  hideCreate() {
+    this.setState({
+      create: false,
+      name: '',
+    });
   },
 
   handleNameChange(event) {
@@ -96,25 +103,29 @@ const ServiceList = React.createClass({
   },
 
   render() {
-    const createService = (
-      <div style={{ display: this.state.display }}>
-        <h1>Create Service</h1>
-        <form role="form" onSubmit={this.handleSubmit}>
-          <div className="form__item">
-            <label htmlFor="name">Name</label>
-            <input
-              autoFocus
-              type="text"
-              className="form__field"
-              id="name"
-              placeholder="Name"
-              onChange={this.handleNameChange}
-            />
-          </div>
-          <button styleName="button">Create</button>
-        </form>
-      </div>
-    );
+    let createService = '';
+    if (this.state.create) {
+      createService = (
+        <div>
+          <div className="disable" onClick={this.hideCreate}>x</div>
+          <h1>Create Service</h1>
+          <form role="form" onSubmit={this.handleSubmit}>
+            <div className="form__item">
+              <label htmlFor="name">Name</label>
+              <input
+                autoFocus
+                type="text"
+                className="form__field"
+                id="name"
+                placeholder="Name"
+                onChange={this.handleNameChange}
+              />
+            </div>
+            <button styleName="button">Create</button>
+          </form>
+        </div>
+      );
+    }
     const services = (
       <div>
         <h1>Services</h1>
@@ -147,7 +158,9 @@ const ServiceList = React.createClass({
     }
     return (
       <div>
-        {createService}
+        <Sidebar show={this.state.create}>
+          {createService}
+        </Sidebar>
         <List>
           {services}
         </List>
