@@ -103,7 +103,7 @@ const Login = React.createClass({
             />
             <label styleName="label" htmlFor="password">Password</label>
           </div>
-          <button styleName="button">Login</button>
+          <button className="button">Login</button>
         </form>
       </div>
     );

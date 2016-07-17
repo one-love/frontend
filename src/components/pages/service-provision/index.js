@@ -1,9 +1,7 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { history } from '../../../constants';
 import store from '../../../store';
-import styles from './service-provision.scss';
 import actions from './actions';
 
 
@@ -43,8 +41,8 @@ const ServiceProvision = React.createClass({
     return (
       <div>
         <h2>Are you sure?</h2>
-        <button styleName="button" onClick={this.handleProvision}>Yes</button>
-        <button styleName="button" onClick={this.handleCancel}>No</button>
+        <button className="button" onClick={this.handleProvision}>Yes</button>
+        <button className="button" onClick={this.handleCancel}>No</button>
       </div>
     );
   },
@@ -55,9 +53,7 @@ const ServiceProvision = React.createClass({
 const routes = {
   path: 'services/:serviceId/provision',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(
-      cssModules(ServiceProvision, styles)
-    ),
+    component: connect(mapStateToProps, actions)(ServiceProvision),
   },
 };
 

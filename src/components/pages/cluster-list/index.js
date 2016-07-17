@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import cssModules from 'react-css-modules';
 import FileInput from 'react-file-reader-input';
 import base64 from 'base-64';
 import Cluster from '../../molecules/cluster';
@@ -13,7 +12,6 @@ import Add from '../../atoms/add';
 import actions from './actions';
 import createActions from './actions/create';
 import removeActions from './actions/remove';
-import styles from './styles.scss';
 
 
 const mapStateToProps = state => {
@@ -169,7 +167,7 @@ const ClusterList = React.createClass({
                 value={this.state.username}
               />
             </div>
-            <button styleName="button">Create</button>
+            <button className="button">Create</button>
           </form>
         </div>
       );
@@ -199,8 +197,8 @@ const ClusterList = React.createClass({
       return (
         <div>
           <h1>Remove cluster {this.props.removeCluster.id}?</h1>
-          <button styleName="button" onClick={this.handleRemove}>yes</button>
-          <button styleName="button" onClick={this.handleCancel}>no</button>
+          <button className="button" onClick={this.handleRemove}>yes</button>
+          <button className="button" onClick={this.handleCancel}>no</button>
         </div>
       );
     }
@@ -223,9 +221,7 @@ const ClusterList = React.createClass({
 const routes = {
   path: 'clusters',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(
-      cssModules(ClusterList, styles)
-    ),
+    component: connect(mapStateToProps, actions)(ClusterList),
   },
   childRoutes: [
     clusterDetail,

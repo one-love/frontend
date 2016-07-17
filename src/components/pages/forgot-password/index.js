@@ -20,7 +20,7 @@ function ForgotPassword() {
           />
           <label htmlFor="email">Email</label>
         </div>
-        <button styleName="button">Send</button>
+        <button className="button">Send</button>
       </form>
     </div>
   );

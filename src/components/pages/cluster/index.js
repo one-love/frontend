@@ -1,17 +1,19 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import { Link } from 'react-router';
-import styles from './cluster.scss';
+import { connect } from 'react-redux';
 import InlineEdit from 'react-edit-inline';
+import styles from './cluster.scss';
 import actions from './actions/detail';
 import editActions from './actions/edit';
-import { connect } from 'react-redux';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Service from '../../molecules/service';
 import Provider from '../../molecules/provider';
 import ProviderDetail from '../provider';
 import ServiceProvision from '../service-provision';
+import Add from '../../atoms/add';
+import Sidebar from '../../atoms/sidebar';
 
 
 const mapStateToProps = (state) => {
@@ -33,6 +35,10 @@ const ClusterDetail = React.createClass({
     params: React.PropTypes.object,
   },
 
+  getInitialState() {
+    return {};
+  },
+
   componentWillMount() {
     store.dispatch(actions.get(this.props.params.clusterId));
   },
@@ -49,6 +55,16 @@ const ClusterDetail = React.createClass({
         data
       )
     );
+  },
+
+  showCreate() {
+    this.setState({ create: true });
+  },
+
+  hideCreate() {
+    this.setState({
+      create: false,
+    });
   },
 
   render() {
@@ -99,8 +115,35 @@ const ClusterDetail = React.createClass({
         </div>
       </div>
     );
+    let clusterAdd = '';
+    if (this.state.create) {
+      clusterAdd = (
+        <div>
+          <div className="disable" onClick={this.hideCreate}>x</div>
+          <h1>Create Provider</h1>
+          <form role="form" onSubmit={this.handleSubmit}>
+            <div>
+              <label htmlFor="name">Name</label>
+              <input
+                autoFocus
+                type="text"
+                id="name"
+                placeholder="Name"
+                onChange={this.handleNameChange}
+                value={this.state.name}
+              />
+            </div>
+            <button className="button">Create</button>
+          </form>
+          <hr />
+        </div>
+      );
+    }
     return (
       <div>
+        <Sidebar show={this.state.create}>
+          {clusterAdd}
+        </Sidebar>
         <h2>
           Name:
           <InlineEdit
@@ -129,6 +172,9 @@ const ClusterDetail = React.createClass({
               {services}
             </List>
           </div>
+        </div>
+        <div onClick={this.showCreate}>
+          <Add />
         </div>
       </div>
     );
