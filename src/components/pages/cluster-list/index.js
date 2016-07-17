@@ -79,6 +79,15 @@ const ClusterList = React.createClass({
     this.setState({ display: 'initial' });
   },
 
+  hideCreate() {
+    this.setState({
+      display: 'none',
+      name: '',
+      sshKey: '',
+      username: '',
+    });
+  },
+
   handleNameChange(event) {
     this.setState({ name: event.target.value });
   },
@@ -156,6 +165,7 @@ const ClusterList = React.createClass({
             />
           </div>
           <button styleName="button">Create</button>
+          <button styleName="button" onClick={this.hideCreate}>Cancel</button>
         </form>
       </div>
     );
@@ -176,7 +186,16 @@ const ClusterList = React.createClass({
         }
       </div>
     );
-    const index = (
+    if (this.props.removeStatus === 'confirm') {
+      return (
+        <div>
+          <h1>Remove cluster {this.props.removeCluster.id}?</h1>
+          <button styleName="button" onClick={this.handleRemove}>yes</button>
+          <button styleName="button" onClick={this.handleCancel}>no</button>
+        </div>
+      );
+    }
+    return (
       <div>
         {createCluster}
         <List>
@@ -187,16 +206,6 @@ const ClusterList = React.createClass({
         </div>
       </div>
     );
-    if (this.props.removeStatus === 'confirm') {
-      return (
-        <div>
-          <h1>Remove cluster {this.props.removeCluster.id}?</h1>
-          <button styleName="button" onClick={this.handleRemove}>yes</button>
-          <button styleName="button" onClick={this.handleCancel}>no</button>
-        </div>
-      );
-    }
-    return index;
   },
 });
 
