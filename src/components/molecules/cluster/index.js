@@ -9,7 +9,13 @@ export default function Cluster(props) {
     name = props.name;
   }
   return (
-    <Icon alt="cluster" img={svg} name={name} iconId={props.iconId} close={props.close} />
+    <Icon
+      alt="cluster"
+      img={svg}
+      name={name}
+      iconId={props.iconId}
+      close={props.close}
+    />
   );
 }
 

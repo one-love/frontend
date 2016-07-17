@@ -4,8 +4,9 @@ import { Link } from 'react-router';
 import cssModules from 'react-css-modules';
 import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
-import actions from './actions/list';
+import actions from './actions';
 import createActions from './actions/create';
+import removeActions from './actions/remove';
 import store from '../../../store';
 import serviceDetail from '../service';
 import Add from '../../atoms/add';
@@ -19,15 +20,22 @@ const mapStateToProps = state => {
   if (state.serviceCreate) {
     data.createStatus = state.serviceCreate.status;
   }
+  if (state.serviceRemove) {
+    data.removeStatus = state.serviceRemove.status;
+    data.removeService = state.serviceRemove.service;
+  }
   return data;
 };
 
 const ServiceList = React.createClass({
   propTypes: {
-    children: React.PropTypes.node,
     services: React.PropTypes.array,
     status: React.PropTypes.string,
     createStatus: React.PropTypes.string,
+    iconId: React.PropTypes.string,
+    close: React.PropTypes.func,
+    removeStatus: React.PropTypes.string,
+    removeService: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -46,7 +54,10 @@ const ServiceList = React.createClass({
       store.dispatch(createActions.reset());
       store.dispatch(actions.get());
       this.setState({ display: 'none' });
-      return false;
+    }
+    if (nextProps.removeStatus === 'success') {
+      store.dispatch(removeActions.reset());
+      store.dispatch(actions.get());
     }
     return true;
   },
@@ -69,12 +80,22 @@ const ServiceList = React.createClass({
     this.setState({ name: '' });
   },
 
+  handleClose(event) {
+    event.preventDefault();
+    store.dispatch(this.props.close(this.props.iconId));
+  },
+
+  handleRemove(event) {
+    event.preventDefault();
+    store.dispatch(removeActions.remove(this.props.removeService.id));
+  },
+
+  handleCancel(event) {
+    event.preventDefault();
+    store.dispatch(removeActions.reset());
+  },
+
   render() {
-    const children = (
-      <div>
-        {this.props.children}
-      </div>
-    );
     const createService = (
       <div style={{ display: this.state.display }}>
         <h1>Create Service</h1>
@@ -102,8 +123,12 @@ const ServiceList = React.createClass({
             service => {
               const url = `services/${service.id}`;
               return (
-                <Link to={url}>
-                  <Service key={service.id} name={service.name} />
+                <Link to={url} key={service.id}>
+                  <Service
+                    name={service.name}
+                    iconId={service.id}
+                    close={removeActions.confirm}
+                  />
                 </Link>
               );
             }
@@ -111,7 +136,16 @@ const ServiceList = React.createClass({
         }
       </div>
     );
-    const index = (
+    if (this.props.removeStatus === 'confirm') {
+      return (
+        <div>
+          <h1>Remove service {this.props.removeService.id}?</h1>
+          <button styleName="button" onClick={this.handleRemove}>yes</button>
+          <button styleName="button" onClick={this.handleCancel}>no</button>
+        </div>
+      );
+    }
+    return (
       <div>
         {createService}
         <List>
@@ -122,10 +156,6 @@ const ServiceList = React.createClass({
         </div>
       </div>
     );
-    if (this.props.children) {
-      return children;
-    }
-    return index;
   },
 });
 
