@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import cssModules from 'react-css-modules';
+import FileInput from 'react-file-reader-input';
+import base64 from 'base-64';
 import Cluster from '../../molecules/cluster';
 import List from '../../molecules/transition-appear';
 import store from '../../../store';
@@ -84,6 +86,7 @@ const ClusterList = React.createClass({
       display: 'none',
       name: '',
       sshKey: '',
+      sshKeyName: undefined,
       username: '',
     });
   },
@@ -92,8 +95,14 @@ const ClusterList = React.createClass({
     this.setState({ name: event.target.value });
   },
 
-  handleSSHKeyChange(event) {
-    this.setState({ sshKey: event.target.value });
+  handleSSHKeyChange(event, results) {
+    if (results.length > 0) {
+      const e = results[0][0];
+      const content = e.target.result;
+      const encodedContent = base64.encode(content);
+      this.setState({ sshKey: encodedContent });
+      this.setState({ sshKeyName: results[0][1].name });
+    }
   },
 
   handleUsernameChange(event) {
@@ -143,15 +152,9 @@ const ClusterList = React.createClass({
             />
           </div>
           <div>
-            <label htmlFor="sshKey">SSH Key</label>
-            <input
-              autoFocus
-              type="text"
-              id="sshKey"
-              placeholder="SSH Key"
-              onChange={this.handleSSHKeyChange}
-              value={this.state.sshKey}
-            />
+            <FileInput id="ssh" onChange={this.handleSSHKeyChange}>
+              {this.state.sshKeyName ? this.state.sshKeyName : 'Select ssh key'}
+            </FileInput>
           </div>
           <div>
             <label htmlFor="username">Username</label>
