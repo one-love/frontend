@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../../store';
 import clusterActions from '../cluster-list/actions';
-import serviceActions from '../service-list/actions/list';
+import serviceActions from '../service-list/actions';
 
 
 const mapStateToProps = (state) => ({
