@@ -9,6 +9,7 @@ import Login from '../components/pages/login';
 import NotFound from '../components/pages/not-found';
 import Layout from '../components/layouts/layout';
 import '../sass/reset.scss';
+import '../sass/global.scss';
 
 
 function Component(props) {
