@@ -6,6 +6,8 @@ import InlineEdit from 'react-edit-inline';
 import styles from './cluster.scss';
 import actions from './actions/detail';
 import editActions from './actions/edit';
+import pluginActions from './actions/plugin';
+import providerActions from '../provider/actions/create';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Service from '../../molecules/service';
@@ -20,6 +22,9 @@ const mapStateToProps = (state) => {
   const data = {
     cluster: state.clusterDetail.cluster,
     roles: state.clusterDetail.roles,
+    plugins: state.clusterPlugins.plugins,
+    provider: state.providerCreate.provider,
+    providerStatus: state.providerCreate.status,
   };
   if (state.clusterEdit.cluster) {
     data.cluster = state.clusterEdit.cluster;
@@ -33,14 +38,35 @@ const ClusterDetail = React.createClass({
     cluster: React.PropTypes.object,
     roles: React.PropTypes.array,
     params: React.PropTypes.object,
+    plugins: React.PropTypes.array,
+    provider: React.PropTypes.object,
+    providerStatus: React.PropTypes.string,
+  },
+
+  getDefaultProps() {
+    return {
+      plugins: [],
+    };
   },
 
   getInitialState() {
-    return {};
+    return {
+      fields: {},
+      pluginProps: [],
+    };
   },
 
   componentWillMount() {
     store.dispatch(actions.get(this.props.params.clusterId));
+    store.dispatch(pluginActions.get());
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.providerStatus === 'success') {
+      store.dispatch(actions.get(this.props.params.clusterId));
+      store.dispatch(providerActions.reset());
+      this.setState({ create: false });
+    }
   },
 
   componentWillUnmount() {
@@ -53,6 +79,32 @@ const ClusterDetail = React.createClass({
       editActions.edit(
         this.props.params.clusterId,
         data
+      )
+    );
+  },
+
+  handleTypeChange(event) {
+    const plugin = this.props.plugins.find((pl) =>
+      pl.type === event.target.value
+    );
+    this.setState({ pluginProps: plugin.properties });
+    this.setState({ type: event.target.value });
+  },
+
+  handleFieldChange(event) {
+    const fieldName = event.target.getAttribute('placeholder');
+    const fields = { ...this.state.fields };
+    fields[fieldName] = event.target.value;
+    this.setState({ fields });
+  },
+
+  handleSubmit(event) {
+    event.preventDefault();
+    store.dispatch(
+      providerActions.create(
+        this.props.params.clusterId,
+        this.state.type,
+        this.state.fields,
       )
     );
   },
@@ -123,15 +175,35 @@ const ClusterDetail = React.createClass({
           <h1>Create Provider</h1>
           <form role="form" onSubmit={this.handleSubmit}>
             <div>
-              <label htmlFor="name">Name</label>
-              <input
-                autoFocus
-                type="text"
-                id="name"
-                placeholder="Name"
-                onChange={this.handleNameChange}
-                value={this.state.name}
-              />
+              <select onClick={this.handleTypeChange} defaultValue="-1" >
+                <option id="-1" disabled>Select type</option>
+                {
+                  this.props.plugins.map(
+                    plugin =>
+                      <option
+                        key={plugin.type}
+                        value={plugin.type}
+                      > {plugin.type}</option>
+                  )
+                }
+              </select>
+            </div>
+            <div>
+              {
+                this.state.type ?
+                this.state.pluginProps.map(
+                  props =>
+                    <div key={props.name}>
+                      <label>{props.name}
+                        <input
+                          type="text"
+                          placeholder={props.name}
+                          onChange={this.handleFieldChange}
+                        />
+                      </label>
+                    </div>
+                ) : ''
+              }
             </div>
             <button className="button">Create</button>
           </form>
