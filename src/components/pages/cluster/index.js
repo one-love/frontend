@@ -8,6 +8,7 @@ import actions from './actions/detail';
 import editActions from './actions/edit';
 import pluginActions from './actions/plugin';
 import providerActions from '../provider/actions/create';
+import providerActionsRemove from '../provider/actions/remove';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Service from '../../molecules/service';
@@ -25,6 +26,7 @@ const mapStateToProps = (state) => {
     plugins: state.clusterPlugins.plugins,
     provider: state.providerCreate.provider,
     providerStatus: state.providerCreate.status,
+    providerRemoveStatus: state.providerRemove.status,
   };
   if (state.clusterEdit.cluster) {
     data.cluster = state.clusterEdit.cluster;
@@ -41,6 +43,7 @@ const ClusterDetail = React.createClass({
     plugins: React.PropTypes.array,
     provider: React.PropTypes.object,
     providerStatus: React.PropTypes.string,
+    providerRemoveStatus: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -66,6 +69,9 @@ const ClusterDetail = React.createClass({
       store.dispatch(actions.get(this.props.params.clusterId));
       store.dispatch(providerActions.reset());
       this.setState({ create: false });
+    } else if (nextProps.providerRemoveStatus === 'success') {
+      store.dispatch(actions.get(this.props.params.clusterId));
+      store.dispatch(providerActionsRemove.reset());
     }
   },
 
@@ -140,9 +146,17 @@ const ClusterDetail = React.createClass({
       this.props.cluster.providers.map(
         provider => {
           const url = `${clusterUrl}/providers/${provider.name}`;
+          const identifier = {
+            clusterId: this.props.params.clusterId,
+            name: provider.name,
+          };
           return (
             <Link to={url} key={provider.name}>
-              <Provider name={provider.name} />
+              <Provider
+                name={provider.name}
+                iconId={identifier}
+                close={providerActionsRemove.remove}
+              />
             </Link>
           );
         }
