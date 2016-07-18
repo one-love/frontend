@@ -109,12 +109,11 @@ const ServiceList = React.createClass({
           <div className="disable" onClick={this.hideCreate}>x</div>
           <h1>Create Service</h1>
           <form role="form" onSubmit={this.handleSubmit}>
-            <div className="form__item">
+            <div>
               <label htmlFor="name">Name</label>
               <input
                 autoFocus
                 type="text"
-                className="form__field"
                 id="name"
                 placeholder="Name"
                 onChange={this.handleNameChange}
