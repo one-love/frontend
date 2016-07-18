@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import cssModules from 'react-css-modules';
 import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
 import Sidebar from '../../atoms/sidebar';
@@ -11,7 +10,7 @@ import removeActions from './actions/remove';
 import store from '../../../store';
 import serviceDetail from '../service';
 import Add from '../../atoms/add';
-import styles from './styles.scss';
+
 
 const mapStateToProps = state => {
   const data = {
@@ -121,7 +120,7 @@ const ServiceList = React.createClass({
                 onChange={this.handleNameChange}
               />
             </div>
-            <button styleName="button">Create</button>
+            <button className="button">Create</button>
           </form>
         </div>
       );
@@ -151,8 +150,8 @@ const ServiceList = React.createClass({
       return (
         <div>
           <h1>Remove service {this.props.removeService.id}?</h1>
-          <button styleName="button" onClick={this.handleRemove}>yes</button>
-          <button styleName="button" onClick={this.handleCancel}>no</button>
+          <button className="button" onClick={this.handleRemove}>yes</button>
+          <button className="button" onClick={this.handleCancel}>no</button>
         </div>
       );
     }
@@ -175,9 +174,7 @@ const ServiceList = React.createClass({
 const routes = {
   path: 'services',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(
-      cssModules(ServiceList, styles)
-    ),
+    component: connect(mapStateToProps, actions)(ServiceList),
   },
   childRoutes: [
     serviceDetail,
