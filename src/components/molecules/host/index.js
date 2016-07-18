@@ -8,7 +8,10 @@ export default function Host(props) {
   if (props && props.name) {
     name = props.name;
   }
-  const iconId = `clusters/${props.iconId.clusterId}/providers/${props.iconId.providerName}/hosts/${props.iconId.hostname}`;
+  const clusterId = props.iconId.clusterId;
+  const providerName = props.iconId.providerName;
+  const hostname = props.iconId.hostname;
+  const iconId = `clusters/${clusterId}/providers/${providerName}/hosts/${hostname}`;
   return (
     <Icon
       alt="host"
