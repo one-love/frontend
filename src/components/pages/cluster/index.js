@@ -26,6 +26,7 @@ const mapStateToProps = (state) => {
     plugins: state.clusterPlugins.plugins,
     provider: state.providerCreate.provider,
     providerStatus: state.providerCreate.status,
+    providerRemove: state.providerRemove.provider,
     providerRemoveStatus: state.providerRemove.status,
   };
   if (state.clusterEdit.cluster) {
@@ -43,12 +44,18 @@ const ClusterDetail = React.createClass({
     plugins: React.PropTypes.array,
     provider: React.PropTypes.object,
     providerStatus: React.PropTypes.string,
+    providerRemove: React.PropTypes.object,
     providerRemoveStatus: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
       plugins: [],
+      cluster: {
+        services: [],
+        providers: [],
+        name: '',
+      },
     };
   },
 
@@ -115,6 +122,18 @@ const ClusterDetail = React.createClass({
     );
   },
 
+  handleRemove(event) {
+    event.preventDefault();
+    store.dispatch(providerActionsRemove.remove(
+      this.props.providerRemove.id,
+    ));
+  },
+
+  handleCancel(event) {
+    event.preventDefault();
+    store.dispatch(providerActionsRemove.reset());
+  },
+
   showCreate() {
     this.setState({ create: true });
   },
@@ -126,9 +145,6 @@ const ClusterDetail = React.createClass({
   },
 
   render() {
-    if (!this.props.cluster) {
-      return '';
-    }
     const clusterUrl = `/clusters/${this.props.params.clusterId}`;
     const services = (
       this.props.cluster.services.map(
@@ -155,7 +171,7 @@ const ClusterDetail = React.createClass({
               <Provider
                 name={provider.name}
                 iconId={identifier}
-                close={providerActionsRemove.remove}
+                close={providerActionsRemove.confirm}
               />
             </Link>
           );
@@ -222,6 +238,15 @@ const ClusterDetail = React.createClass({
             <button className="button">Create</button>
           </form>
           <hr />
+        </div>
+      );
+    }
+    if (this.props.providerRemoveStatus === 'confirm') {
+      return (
+        <div>
+          <h1>Remove provider {this.props.providerRemove.id}?</h1>
+          <button className="button" onClick={this.handleRemove}>yes</button>
+          <button className="button" onClick={this.handleCancel}>no</button>
         </div>
       );
     }

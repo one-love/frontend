@@ -22,6 +22,15 @@ export const fail = createAction(PROVIDER_REMOVE, error => ({
   error,
 }));
 
+
+export const confirm = createAction(PROVIDER_REMOVE, id => ({
+  status: 'confirm',
+  provider: {
+    id,
+  },
+}));
+
+
 export const remove = id =>
   dispatch => {
     dispatch(begin());
@@ -45,6 +54,7 @@ const actions = {
   success,
   fail,
   remove,
+  confirm,
 };
 
 
