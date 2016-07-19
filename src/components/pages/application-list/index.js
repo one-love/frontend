@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import Application from '../../molecules/application';
 import List from '../../molecules/transition-appear';
 import store from '../../../store';
 import actions from './actions';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import removeActions from './actions/remove';
 
 
 const mapStateToProps = state => ({
@@ -19,6 +20,12 @@ const ApplicationList = React.createClass({
     serviceId: React.PropTypes.string,
   },
 
+  getDefaultProps() {
+    return {
+      applications: [],
+    };
+  },
+
   componentWillMount() {
     store.dispatch(actions.get(this.props.serviceId));
   },
@@ -28,18 +35,23 @@ const ApplicationList = React.createClass({
   },
 
   render() {
-    if (this.props.applications === undefined) {
-      return <div></div>;
-    }
     const applications = (
       <div>
         {
           this.props.applications.map(
             application => {
-              const appUrl = `/services/${this.props.serviceId}/applications/${application.name}`;
+              const url = `/services/${this.props.serviceId}/applications/${application.name}`;
+              const identifier = {
+                serviceId: this.props.serviceId,
+                applicationName: application.name,
+              };
               return (
-                <Link to={appUrl} key={application.name}>
-                  <Application name={application.name} path="" />
+                <Link to={url} key={application.name}>
+                  <Application
+                    name={application.name}
+                    iconId={identifier}
+                    close={removeActions.confirm}
+                  />
                 </Link>
               );
             }

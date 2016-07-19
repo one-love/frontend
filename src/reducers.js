@@ -18,10 +18,14 @@ const reducers = {
   login,
   sidebar,
   clusterList,
-  applicationList,
   provisionList,
   serviceProvision,
 };
+
+applicationList.map(reducer => {
+  reducers[reducer.name] = reducer;
+  return undefined;
+});
 
 cluster.map(reducer => {
   reducers[reducer.name] = reducer;
