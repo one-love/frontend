@@ -8,12 +8,21 @@ export default function Application(props) {
   if (props && props.name) {
     name = props.name;
   }
+  const iconId = `services/${props.iconId.serviceId}/applications/${props.iconId.applicationName}`;
   return (
-    <Icon alt="application" img={svg} name={name} />
+    <Icon
+      alt="application"
+      img={svg}
+      name={name}
+      iconId={iconId}
+      close={props.close}
+    />
   );
 }
 
 
 Application.propTypes = {
   name: React.PropTypes.string,
+  iconId: React.PropTypes.object,
+  close: React.PropTypes.func,
 };

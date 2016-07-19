@@ -1,7 +1,8 @@
 import { createAction } from 'redux-actions';
-import { fetch } from '../../../utils';
-import { API_URL } from '../../../backend_url';
-import { APPLICATION_LIST } from './constants';
+import { fetch } from '../../../../utils';
+import { API_URL } from '../../../../backend_url';
+import { APPLICATION_LIST } from '../constants';
+
 
 export const reset = createAction(APPLICATION_LIST, () => ({
   status: 'initial',

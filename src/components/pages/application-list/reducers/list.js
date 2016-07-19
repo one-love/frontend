@@ -1,4 +1,4 @@
-import { APPLICATION_LIST } from './constants';
+import { APPLICATION_LIST } from '../constants';
 
 export default function applicationList(
   state = { status: 'initial', applications: [] },

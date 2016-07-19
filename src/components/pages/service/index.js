@@ -9,13 +9,16 @@ import ApplicationDetail from '../application';
 import Add from '../../atoms/add';
 import actions from './actions/detail';
 import createActions from '../application/actions/create';
-import applicationActions from '../application-list/actions';
+import listActions from '../application-list/actions';
+import removeActions from '../application-list/actions/remove';
 
 
 const mapStateToProps = (state) => {
   const data = {
     service: state.serviceDetail.service,
     createStatus: state.applicationCreate.status,
+    remove: state.applicationRemove.application,
+    removeStatus: state.applicationRemove.status,
   };
   return data;
 };
@@ -26,6 +29,9 @@ const ServiceDetail = React.createClass({
     children: React.PropTypes.node,
     service: React.PropTypes.object,
     params: React.PropTypes.object,
+    createStatus: React.PropTypes.string,
+    remove: React.PropTypes.object,
+    removeStatus: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -37,7 +43,10 @@ const ServiceDetail = React.createClass({
   },
 
   getInitialState() {
-    return {};
+    return {
+      name: '',
+      galaxyRole: '',
+    };
   },
 
   componentWillMount() {
@@ -47,7 +56,11 @@ const ServiceDetail = React.createClass({
   componentWillReceiveProps(nextProps) {
     if (nextProps.createStatus === 'success') {
       store.dispatch(createActions.reset());
-      store.dispatch(applicationActions.get(this.props.params.serviceId));
+      store.dispatch(listActions.get(this.props.params.serviceId));
+      this.setState({ create: false });
+    } else if (nextProps.removeStatus === 'success') {
+      store.dispatch(removeActions.reset());
+      store.dispatch(listActions.get(this.props.params.serviceId));
       this.setState({ create: false });
     }
   },
@@ -88,7 +101,28 @@ const ServiceDetail = React.createClass({
     });
   },
 
+  handleRemove(event) {
+    event.preventDefault();
+    store.dispatch(removeActions.remove(
+      this.props.remove.id,
+    ));
+  },
+
+  handleCancel(event) {
+    event.preventDefault();
+    store.dispatch(removeActions.reset());
+  },
+
   render() {
+    if (this.props.removeStatus === 'confirm') {
+      return (
+        <div>
+          <h1>Remove application {this.props.remove.id}?</h1>
+          <button className="button" onClick={this.handleRemove}>yes</button>
+          <button className="button" onClick={this.handleCancel}>no</button>
+        </div>
+      );
+    }
     let createApplication = '';
     if (this.state.create) {
       createApplication = (
