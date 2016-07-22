@@ -1,5 +1,9 @@
+/* eslint max-len: 0 */
+
 const path = require('path');
 const webpack = require('webpack');
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -33,6 +37,7 @@ module.exports = {
         loaders: [
           'style?sourceMap',
           'css?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'postcss',
           'sass?sourceMap',
           'sass-resources',
         ],
@@ -52,4 +57,7 @@ module.exports = {
   sassResources: [
     './src/sass/vars.scss',
   ],
+  postcss() {
+    return [precss, autoprefixer];
+  },
 };
