@@ -1,6 +1,6 @@
 import React from 'react';
-import svg from './service.svg';
 import Icon from '../../atoms/icon';
+import svg from './service.svg';
 
 
 export default function Service(props) {
@@ -10,7 +10,7 @@ export default function Service(props) {
   }
   return (
     <Icon
-      alt="cluster"
+      alt="service"
       img={svg}
       name={name}
       iconId={props.iconId}

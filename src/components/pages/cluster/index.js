@@ -1,22 +1,28 @@
+/* eslint new-cap: 0 */
+
 import React from 'react';
 import cssModules from 'react-css-modules';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import InlineEdit from 'react-edit-inline';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import styles from './cluster.scss';
 import actions from './actions/detail';
 import editActions from './actions/edit';
 import pluginActions from './actions/plugin';
 import providerActions from '../provider/actions/create';
 import providerActionsRemove from '../provider/actions/remove';
+import serviceActionsRemove from '../../organisms/cluster-service-list/actions/remove';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
-import Service from '../../molecules/service';
+import ClusterServiceList from '../../organisms/cluster-service-list';
 import Provider from '../../molecules/provider';
 import ProviderDetail from '../provider';
 import ServiceProvision from '../service-provision';
 import Add from '../../atoms/add';
 import Sidebar from '../../atoms/sidebar';
+import AllServices from '../../organisms/service-list';
 
 
 const mapStateToProps = (state) => {
@@ -28,6 +34,8 @@ const mapStateToProps = (state) => {
     providerStatus: state.providerCreate.status,
     providerRemove: state.providerRemove.provider,
     providerRemoveStatus: state.providerRemove.status,
+    serviceRemove: state.clusterServiceRemove.service,
+    serviceRemoveStatus: state.clusterServiceRemove.status,
   };
   if (state.clusterEdit.cluster) {
     data.cluster = state.clusterEdit.cluster;
@@ -46,6 +54,8 @@ const ClusterDetail = React.createClass({
     providerStatus: React.PropTypes.string,
     providerRemove: React.PropTypes.object,
     providerRemoveStatus: React.PropTypes.string,
+    serviceRemove: React.PropTypes.object,
+    serviceRemoveStatus: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -79,6 +89,9 @@ const ClusterDetail = React.createClass({
     } else if (nextProps.providerRemoveStatus === 'success') {
       store.dispatch(actions.get(this.props.params.clusterId));
       store.dispatch(providerActionsRemove.reset());
+    } else if (nextProps.serviceRemoveStatus === 'success') {
+      store.dispatch(actions.get(this.props.params.clusterId));
+      store.dispatch(serviceActionsRemove.reset());
     }
   },
 
@@ -134,6 +147,18 @@ const ClusterDetail = React.createClass({
     store.dispatch(providerActionsRemove.reset());
   },
 
+  handleRemoveService(event) {
+    event.preventDefault();
+    store.dispatch(serviceActionsRemove.remove(
+      this.props.serviceRemove.id,
+    ));
+  },
+
+  handleCancelService(event) {
+    event.preventDefault();
+    store.dispatch(serviceActionsRemove.reset());
+  },
+
   showCreate() {
     this.setState({ create: true });
   },
@@ -146,18 +171,6 @@ const ClusterDetail = React.createClass({
 
   render() {
     const clusterUrl = `/clusters/${this.props.params.clusterId}`;
-    const services = (
-      this.props.cluster.services.map(
-        service => {
-          const url = `${clusterUrl}/services/${service.id}/provision`;
-          return (
-            <Link to={url} key={service.id}>
-              <Service name={service.name} />
-            </Link>
-          );
-        }
-      )
-    );
     const providers = (
       this.props.cluster.providers.map(
         provider => {
@@ -238,6 +251,7 @@ const ClusterDetail = React.createClass({
             <button className="button">Create</button>
           </form>
           <hr />
+          <AllServices />
         </div>
       );
     }
@@ -247,6 +261,15 @@ const ClusterDetail = React.createClass({
           <h1>Remove provider {this.props.providerRemove.id}?</h1>
           <button className="button" onClick={this.handleRemove}>yes</button>
           <button className="button" onClick={this.handleCancel}>no</button>
+        </div>
+      );
+    }
+    if (this.props.serviceRemoveStatus === 'confirm') {
+      return (
+        <div>
+          <h1>Remove service {this.props.serviceRemove.id}?</h1>
+          <button className="button" onClick={this.handleRemoveService}>yes</button>
+          <button className="button" onClick={this.handleCancelService}>no</button>
         </div>
       );
     }
@@ -265,25 +288,15 @@ const ClusterDetail = React.createClass({
         </h2>
         {roles}
         <div>
-          <div styleName="label">
-            providers:
-          </div>
-          <div styleName="item">
-            <List>
-              {providers}
-            </List>
-          </div>
+          <h3>Providers</h3>
+          <List>
+            {providers}
+          </List>
         </div>
-        <div>
-          <div styleName="label">
-            services:
-          </div>
-          <div styleName="item">
-            <List>
-              {services}
-            </List>
-          </div>
-        </div>
+        <ClusterServiceList
+          services={this.props.cluster.services}
+          clusterId={this.props.params.clusterId}
+        />
         <div onClick={this.showCreate}>
           <Add />
         </div>
@@ -293,12 +306,14 @@ const ClusterDetail = React.createClass({
 });
 
 
+const ClusterDetailCss = cssModules(ClusterDetail, styles);
+const ClusterDetailDND = DragDropContext(HTML5Backend)(ClusterDetailCss);
+const ClusterDetailConnect = connect(mapStateToProps, actions)(ClusterDetailDND);
+
 const routes = {
   path: ':clusterId',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(
-      cssModules(ClusterDetail, styles)
-    ),
+    component: ClusterDetailConnect,
   },
   childRoutes: [
     ProviderDetail,

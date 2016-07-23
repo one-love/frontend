@@ -4,13 +4,13 @@ import styles from './service.scss';
 import { connect } from 'react-redux';
 import Sidebar from '../../atoms/sidebar';
 import store from '../../../store';
-import ApplicationList from '../application-list';
+import ApplicationList from '../../organisms/application-list';
 import ApplicationDetail from '../application';
 import Add from '../../atoms/add';
 import actions from './actions/detail';
 import createActions from '../application/actions/create';
-import listActions from '../application-list/actions';
-import removeActions from '../application-list/actions/remove';
+import listActions from '../../organisms/application-list/actions';
+import removeActions from '../../organisms/application-list/actions/remove';
 
 
 const mapStateToProps = (state) => {
