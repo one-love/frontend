@@ -18,7 +18,6 @@ const serviceSource = {
     const cluster = store.getState().clusterDetail.cluster;
     if (dropResult) {
       store.dispatch(actions.add(cluster.id, item.id));
-      console.log(`You dropped ${item.id} into ${dropResult.name} with id ${cluster.id}!`);
     }
   },
 };
