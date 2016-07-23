@@ -10,7 +10,7 @@ export default function Service(props) {
   }
   return (
     <Icon
-      alt="cluster"
+      alt="service"
       img={svg}
       name={name}
       iconId={props.iconId}

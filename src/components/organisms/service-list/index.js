@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import DragableService from '../../molecules/dragable-service';
 import actions from '../../pages/service-list/actions';
 import store from '../../../store';
 
@@ -31,11 +32,10 @@ const ServiceList = React.createClass({
   render() {
     return (
       <div>
+        <h1>Services</h1>
         {
           this.props.services.map(service => (
-            <div key={service.id}>
-              {service.name}
-            </div>
+            <DragableService key={service.id} id={service.id} name={service.name} />
           ))
         }
       </div>
