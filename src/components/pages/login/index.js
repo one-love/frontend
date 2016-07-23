@@ -88,7 +88,7 @@ const Login = React.createClass({
             />
             <label styleName="label" htmlFor="password">Password</label>
           </div>
-          <RaisedButton label="something" type="submit" />
+          <RaisedButton label="login" type="submit" />
         </form>
       </div>
     );
