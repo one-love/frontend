@@ -2,6 +2,7 @@ import React from 'react';
 import { DragSource } from 'react-dnd';
 import ItemTypes from './item-types';
 import store from '../../../store';
+import actions from './actions/add';
 
 
 const serviceSource = {
@@ -16,7 +17,7 @@ const serviceSource = {
     const dropResult = monitor.getDropResult();
     const cluster = store.getState().clusterDetail.cluster;
     if (dropResult) {
-      console.log(`You dropped ${item.id} into ${dropResult.name} with id ${cluster.id}!`);
+      store.dispatch(actions.add(cluster.id, item.id));
     }
   },
 };

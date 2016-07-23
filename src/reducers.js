@@ -13,6 +13,7 @@ import service from './components/pages/service/reducers';
 import serviceList from './components/pages/service-list/reducers';
 import serviceProvision from './components/pages/service-provision/reducers';
 import clusterServiceRemove from './components/organisms/cluster-service-list/reducers';
+import addService from './components/molecules/dragable-service/reducers';
 
 
 const reducers = {
@@ -69,6 +70,11 @@ host.map(reducer => {
 });
 
 application.map(reducer => {
+  reducers[reducer.name] = reducer;
+  return undefined;
+});
+
+addService.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
 });
