@@ -23,6 +23,7 @@ import ServiceProvision from '../service-provision';
 import Add from '../../atoms/add';
 import Sidebar from '../../atoms/sidebar';
 import AllServices from '../../organisms/service-list';
+import addService from '../../molecules/dragable-service/actions/add';
 
 
 const mapStateToProps = (state) => {
@@ -36,6 +37,7 @@ const mapStateToProps = (state) => {
     providerRemoveStatus: state.providerRemove.status,
     serviceRemove: state.clusterServiceRemove.service,
     serviceRemoveStatus: state.clusterServiceRemove.status,
+    /* addServiceStatus: state.addService.status,*/
   };
   if (state.clusterEdit.cluster) {
     data.cluster = state.clusterEdit.cluster;
@@ -56,6 +58,7 @@ const ClusterDetail = React.createClass({
     providerRemoveStatus: React.PropTypes.string,
     serviceRemove: React.PropTypes.object,
     serviceRemoveStatus: React.PropTypes.string,
+    addServiceStatus: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -92,6 +95,9 @@ const ClusterDetail = React.createClass({
     } else if (nextProps.serviceRemoveStatus === 'success') {
       store.dispatch(actions.get(this.props.params.clusterId));
       store.dispatch(serviceActionsRemove.reset());
+    } else if (nextProps.addServiceStatus === 'success') {
+      store.dispatch(actions.get(this.props.params.clusterId));
+      store.dispatch(addService.reset());
     }
   },
 
