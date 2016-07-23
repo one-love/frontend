@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import cssModules from 'react-css-modules';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 import store from '../../../store';
 import { history } from '../../../constants';
 import { isLoggedIn } from '../../../utils';
@@ -65,28 +66,18 @@ const Login = React.createClass({
           <h1 styleName="center">Login</h1>
         </div>
         <form role="form" onSubmit={this.handleSubmit}>
-          <div styleName="position--relative">
-            <input
-              name="email"
-              type="input"
-              id="email"
+          <div>
+            <TextField
+              floatingLabelText="Email"
               onChange={this.handleEmailChange}
-              styleName="input"
-              autoFocus
-              required
             />
-            <label styleName="label" htmlFor="email">Email</label>
           </div>
-          <div styleName="position--relative">
-            <input
+          <div>
+            <TextField
+              floatingLabelText="Password"
               type="password"
-              name="password"
-              id="password"
               onChange={this.handlePasswordChange}
-              styleName="input"
-              required
             />
-            <label styleName="label" htmlFor="password">Password</label>
           </div>
           <RaisedButton label="login" type="submit" />
         </form>
