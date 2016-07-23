@@ -1,6 +1,7 @@
 import React from 'react';
 import { DragSource } from 'react-dnd';
 import ItemTypes from './item-types';
+import store from '../../../store';
 
 
 const serviceSource = {
@@ -13,8 +14,9 @@ const serviceSource = {
   endDrag(props, monitor) {
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
+    const cluster = store.getState().clusterDetail.cluster;
     if (dropResult) {
-      window.alert(`You dropped ${item.id} into ${dropResult.name}!`);
+      console.log(`You dropped ${item.id} into ${dropResult.name} with id ${cluster.id}!`);
     }
   },
 };
