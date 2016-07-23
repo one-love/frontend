@@ -22,6 +22,7 @@ import ProviderDetail from '../provider';
 import ServiceProvision from '../service-provision';
 import Add from '../../atoms/add';
 import Sidebar from '../../atoms/sidebar';
+import AllServices from '../../organisms/service-list';
 
 
 const mapStateToProps = (state) => {
@@ -250,6 +251,7 @@ const ClusterDetail = React.createClass({
             <button className="button">Create</button>
           </form>
           <hr />
+          <AllServices />
         </div>
       );
     }
