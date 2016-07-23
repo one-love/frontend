@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import cssModules from 'react-css-modules';
-
+import RaisedButton from 'material-ui/RaisedButton';
 import store from '../../../store';
 import { history } from '../../../constants';
 import { isLoggedIn } from '../../../utils';
-
 import { login, actions } from './actions';
 import styles from './login.scss';
 
@@ -60,22 +59,8 @@ const Login = React.createClass({
   },
 
   render() {
-    let spinner = '';
-    let error = '';
-    /* switch (this.props.status) {
-     *   case 'pending':
-     *     spinner = <Spinner />;
-     *     break;
-     *   case 'error':
-     *     error = <div>{errorMessages[this.props.error]}</div>;
-     *     break;
-     *   default:
-     *     break;
-     * }*/
     return (
       <div styleName="login">
-        {spinner}
-        {error}
         <div>
           <h1 styleName="center">Login</h1>
         </div>
@@ -103,7 +88,7 @@ const Login = React.createClass({
             />
             <label styleName="label" htmlFor="password">Password</label>
           </div>
-          <button className="button">Login</button>
+          <RaisedButton label="something" type="submit" />
         </form>
       </div>
     );

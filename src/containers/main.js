@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router } from 'react-router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { history } from '../constants';
 import { requireAuth } from '../utils';
 import Services from '../components/pages/service-list';
@@ -52,7 +53,9 @@ const routes = {
 
 function Main() {
   return (
-    <Router history={history} routes={routes} />
+    <MuiThemeProvider>
+      <Router history={history} routes={routes} />
+    </MuiThemeProvider>
   );
 }
 
