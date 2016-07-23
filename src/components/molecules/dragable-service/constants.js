@@ -1,1 +1,1 @@
-export const ADD_SERVICE = 'ADD_SERVICE';
+export const CLUSTER_SERVICE_ADD = 'CLUSTER_SERVICE_ADD';
