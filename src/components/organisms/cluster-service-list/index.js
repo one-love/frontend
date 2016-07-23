@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
+import removeActions from './actions/remove';
 
 
 const ClusterServiceList = React.createClass({
@@ -18,14 +19,16 @@ const ClusterServiceList = React.createClass({
   },
 
   render() {
-    const clusterUrl = `/clusters/${this.props.clusterId}`;
+    const clusterUrl = `clusters/${this.props.clusterId}`;
     const serviceContent = this.props.services.map(service => {
       const url = `${clusterUrl}/services/${service.id}/provision`;
+      const iconId = `${clusterUrl}/services/${service.id}`;
       return (
         <Link to={url} key={service.id}>
           <Service
-            service={service}
-            clusterId={this.props.clusterId}
+            name={service.name}
+            iconId={iconId}
+            close={removeActions.confirm}
           />
         </Link>
       );

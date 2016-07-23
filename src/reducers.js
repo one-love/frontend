@@ -12,6 +12,7 @@ import provisionList from './components/pages/provision-list/reducers';
 import service from './components/pages/service/reducers';
 import serviceList from './components/pages/service-list/reducers';
 import serviceProvision from './components/pages/service-provision/reducers';
+import clusterServiceRemove from './components/organisms/cluster-service-list/reducers';
 
 
 const reducers = {
@@ -33,6 +34,11 @@ cluster.map(reducer => {
 });
 
 clusterList.map(reducer => {
+  reducers[reducer.name] = reducer;
+  return undefined;
+});
+
+clusterServiceRemove.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
 });

@@ -38,6 +38,12 @@ const ServiceList = React.createClass({
     removeService: React.PropTypes.object,
   },
 
+  getDefaultProps() {
+    return {
+      services: [],
+    };
+  },
+
   getInitialState() {
     return {
       name: '',

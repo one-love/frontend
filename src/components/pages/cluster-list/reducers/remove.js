@@ -1,5 +1,6 @@
 import { CLUSTER_REMOVE } from '../constants';
 
+
 export default function clusterRemove(
   state = { status: 'initial', cluster: {} },
   action

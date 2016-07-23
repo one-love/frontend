@@ -1,6 +1,6 @@
 import React from 'react';
-import svg from './service.svg';
 import Icon from '../../atoms/icon';
+import svg from './service.svg';
 
 
 export default function Service(props) {
@@ -8,13 +8,13 @@ export default function Service(props) {
   if (props && props.name) {
     name = props.name;
   }
-  const iconId = `clusters/${props.clusterId}/services/${props.service.id}`;
   return (
     <Icon
       alt="cluster"
       img={svg}
       name={name}
-      iconId={iconId}
+      iconId={props.iconId}
+      close={props.close}
     />
   );
 }
@@ -22,6 +22,6 @@ export default function Service(props) {
 
 Service.propTypes = {
   name: React.PropTypes.string,
-  clusterId: React.PropTypes.string,
-  service: React.PropTypes.object,
+  iconId: React.PropTypes.string,
+  close: React.PropTypes.func,
 };

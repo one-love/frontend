@@ -13,6 +13,7 @@ import editActions from './actions/edit';
 import pluginActions from './actions/plugin';
 import providerActions from '../provider/actions/create';
 import providerActionsRemove from '../provider/actions/remove';
+import serviceActionsRemove from '../../organisms/cluster-service-list/actions/remove';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import ClusterServiceList from '../../organisms/cluster-service-list';
@@ -32,6 +33,8 @@ const mapStateToProps = (state) => {
     providerStatus: state.providerCreate.status,
     providerRemove: state.providerRemove.provider,
     providerRemoveStatus: state.providerRemove.status,
+    serviceRemove: state.clusterServiceRemove.service,
+    serviceRemoveStatus: state.clusterServiceRemove.status,
   };
   if (state.clusterEdit.cluster) {
     data.cluster = state.clusterEdit.cluster;
@@ -50,6 +53,8 @@ const ClusterDetail = React.createClass({
     providerStatus: React.PropTypes.string,
     providerRemove: React.PropTypes.object,
     providerRemoveStatus: React.PropTypes.string,
+    serviceRemove: React.PropTypes.object,
+    serviceRemoveStatus: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -83,6 +88,9 @@ const ClusterDetail = React.createClass({
     } else if (nextProps.providerRemoveStatus === 'success') {
       store.dispatch(actions.get(this.props.params.clusterId));
       store.dispatch(providerActionsRemove.reset());
+    } else if (nextProps.serviceRemoveStatus === 'success') {
+      store.dispatch(actions.get(this.props.params.clusterId));
+      store.dispatch(serviceActionsRemove.reset());
     }
   },
 
@@ -136,6 +144,18 @@ const ClusterDetail = React.createClass({
   handleCancel(event) {
     event.preventDefault();
     store.dispatch(providerActionsRemove.reset());
+  },
+
+  handleRemoveService(event) {
+    event.preventDefault();
+    store.dispatch(serviceActionsRemove.remove(
+      this.props.serviceRemove.id,
+    ));
+  },
+
+  handleCancelService(event) {
+    event.preventDefault();
+    store.dispatch(serviceActionsRemove.reset());
   },
 
   showCreate() {
@@ -239,6 +259,15 @@ const ClusterDetail = React.createClass({
           <h1>Remove provider {this.props.providerRemove.id}?</h1>
           <button className="button" onClick={this.handleRemove}>yes</button>
           <button className="button" onClick={this.handleCancel}>no</button>
+        </div>
+      );
+    }
+    if (this.props.serviceRemoveStatus === 'confirm') {
+      return (
+        <div>
+          <h1>Remove service {this.props.serviceRemove.id}?</h1>
+          <button className="button" onClick={this.handleRemoveService}>yes</button>
+          <button className="button" onClick={this.handleCancelService}>no</button>
         </div>
       );
     }
