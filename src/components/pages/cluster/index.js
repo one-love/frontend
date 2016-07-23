@@ -80,7 +80,6 @@ const ClusterDetail = React.createClass({
   },
 
   componentWillMount() {
-    console.log(store.getState());
     store.dispatch(actions.get(this.props.params.clusterId));
     store.dispatch(pluginActions.get());
   },
@@ -99,7 +98,6 @@ const ClusterDetail = React.createClass({
     } else if (nextProps.addServiceStatus === 'success') {
       store.dispatch(actions.get(this.props.params.clusterId));
       store.dispatch(addService.reset());
-      console.log('here');
     }
   },
 

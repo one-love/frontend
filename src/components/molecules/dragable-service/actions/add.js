@@ -1,22 +1,22 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
-import { ADD_SERVICE } from '../constants';
+import { CLUSTER_SERVICE_ADD } from '../constants';
 
-export const reset = createAction(ADD_SERVICE, () => ({
+export const reset = createAction(CLUSTER_SERVICE_ADD, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(ADD_SERVICE, () => ({
+export const begin = createAction(CLUSTER_SERVICE_ADD, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(ADD_SERVICE, service => ({
+export const success = createAction(CLUSTER_SERVICE_ADD, service => ({
   service,
   status: 'success',
 }));
 
-export const fail = createAction(ADD_SERVICE, error => ({
+export const fail = createAction(CLUSTER_SERVICE_ADD, error => ({
   status: 'error',
   error,
 }));
