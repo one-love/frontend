@@ -3,6 +3,7 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { SERVICE_REMOVE } from '../constants';
 
+
 export const reset = createAction(SERVICE_REMOVE, () => ({
   status: 'initial',
 }));
@@ -28,6 +29,7 @@ export const confirm = createAction(SERVICE_REMOVE, id => ({
   },
 }));
 
+
 export const remove = id =>
   dispatch => {
     dispatch(begin());
@@ -46,6 +48,7 @@ export const remove = id =>
         dispatch(fail(error.message));
       });
   };
+
 
 const actions = {
   reset,

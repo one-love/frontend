@@ -8,13 +8,13 @@ export default function Service(props) {
   if (props && props.name) {
     name = props.name;
   }
+  const iconId = `clusters/${props.clusterId}/services/${props.service.id}`;
   return (
     <Icon
       alt="cluster"
       img={svg}
       name={name}
-      iconId={props.iconId}
-      close={props.close}
+      iconId={iconId}
     />
   );
 }
@@ -22,6 +22,6 @@ export default function Service(props) {
 
 Service.propTypes = {
   name: React.PropTypes.string,
-  iconId: React.PropTypes.string,
-  close: React.PropTypes.func,
+  clusterId: React.PropTypes.string,
+  service: React.PropTypes.object,
 };

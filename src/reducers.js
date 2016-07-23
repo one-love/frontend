@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import login from './components/pages/login/reducers';
 import sidebar from './components/atoms/sidebar/reducers';
 import application from './components/pages/application/reducers';
-import applicationList from './components/pages/application-list/reducers';
+import applicationList from './components/organisms/application-list/reducers';
 import cluster from './components/pages/cluster/reducers';
 import clusterList from './components/pages/cluster-list/reducers';
 import host from './components/pages/host/reducers';
