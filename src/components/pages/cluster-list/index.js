@@ -60,7 +60,6 @@ const ClusterList = React.createClass({
     if (nextProps.createStatus === 'success') {
       store.dispatch(createActions.reset());
       store.dispatch(actions.get());
-      this.setState({ create: false });
     }
     if (nextProps.removeStatus === 'success') {
       store.dispatch(removeActions.reset());
@@ -76,40 +75,6 @@ const ClusterList = React.createClass({
 
   showCreate() {
     store.dispatch(settingsActions.open(<CreateClusterForm />));
-  },
-
-  hideCreate() {
-    this.setState({
-      create: false,
-      name: '',
-      sshKey: '',
-      sshKeyName: undefined,
-      username: '',
-    });
-  },
-
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
-  },
-
-  handleUsernameChange(event) {
-    this.setState({ username: event.target.value });
-  },
-
-  handleSubmit(event) {
-    event.preventDefault();
-    store.dispatch(
-      createActions.create(
-        this.state.name,
-        this.state.sshKey,
-        this.state.username,
-      )
-    );
-    this.setState({
-      name: '',
-      sshKey: '',
-      username: '',
-    });
   },
 
   handleRemove(event) {
