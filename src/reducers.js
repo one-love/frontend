@@ -16,6 +16,7 @@ import clusterServiceRemove from './components/organisms/cluster-service-list/re
 import addClusterService from './components/molecules/dragable-service/reducers';
 import addCluster from './components/molecules/cluster/reducers';
 import addService from './components/molecules/service/reducers';
+import addServiceApplication from './components/molecules/application/reducers';
 import settings from './components/layouts/layout/reducers';
 
 
@@ -90,6 +91,10 @@ addCluster.map(reducer => {
 addClusterService.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
+});
+
+addServiceApplication.forEach(reducer => {
+  reducers[reducer.name] = reducer;
 });
 
 settings.map(reducer => {

@@ -1,14 +1,16 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import FileInput from 'react-file-reader-input';
-import base64 from 'base-64';
 import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 
 
-const CreateClusterForm = React.createClass({
+const CreateApplicationForm = React.createClass({
+  propTypes: {
+    serviceId: React.PropTypes.string.isRequired,
+  },
+
   contextTypes: {
     muiTheme: React.PropTypes.object.isRequired,
   },
@@ -20,9 +22,9 @@ const CreateClusterForm = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
     store.dispatch(actions.create(
+      this.props.serviceId,
       this.state.name,
-      this.state.sshKey,
-      this.state.username,
+      this.state.galaxyRole,
     ));
     store.dispatch(settingsActions.close());
   },
@@ -31,22 +33,11 @@ const CreateClusterForm = React.createClass({
     this.setState({ name: event.target.value });
   },
 
-  handleUsernameChange(event) {
-    this.setState({ username: event.target.value });
-  },
-
-  handleSSHKeyChange(event, results) {
-    if (results.length > 0) {
-      const e = results[0][0];
-      const content = e.target.result;
-      const encodedContent = base64.encode(content);
-      this.setState({ sshKey: encodedContent });
-      this.setState({ sshKeyName: results[0][1].name });
-    }
+  handleGalaxyRoleChange(event) {
+    this.setState({ galaxyRole: event.target.value });
   },
 
   render() {
-    const height = `${this.context.muiTheme.menuItem.height}px`;
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
@@ -58,15 +49,10 @@ const CreateClusterForm = React.createClass({
         </div>
         <div>
           <TextField
-            floatingLabelText="Username"
-            onChange={this.handleUsernameChange}
+            floatingLabelText="Galaxy Role"
+            onChange={this.handleGalaxyRoleChange}
             required
           />
-        </div>
-        <div style={{ height, lineHeight: height }}>
-          <FileInput id="ssh" onChange={this.handleSSHKeyChange}>
-            {this.state.sshKeyName ? this.state.sshKeyName : 'Select ssh key'}
-          </FileInput>
         </div>
         <div>
           <RaisedButton label="Create" type="submit" />
@@ -77,4 +63,4 @@ const CreateClusterForm = React.createClass({
 });
 
 
-export default CreateClusterForm;
+export default CreateApplicationForm;

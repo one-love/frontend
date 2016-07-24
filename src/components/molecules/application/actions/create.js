@@ -3,8 +3,14 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { APPLICATION_CREATE } from '../constants';
 
-export const reset = createAction(APPLICATION_CREATE, () => ({ status: 'initial' }));
-export const begin = createAction(APPLICATION_CREATE, () => ({ status: 'pending' }));
+
+export const reset = createAction(APPLICATION_CREATE, () => ({
+  status: 'initial',
+}));
+
+export const begin = createAction(APPLICATION_CREATE, () => ({
+  status: 'pending',
+}));
 
 export const success = createAction(APPLICATION_CREATE, application => ({
   application,
@@ -15,6 +21,7 @@ export const fail = createAction(APPLICATION_CREATE, error => ({
   status: 'error',
   error,
 }));
+
 
 export const create = (serviceId, name, galaxyRole) =>
   dispatch => {
@@ -36,6 +43,7 @@ export const create = (serviceId, name, galaxyRole) =>
       });
   };
 
+
 const actions = {
   reset,
   begin,
@@ -43,5 +51,6 @@ const actions = {
   fail,
   create,
 };
+
 
 export default actions;
