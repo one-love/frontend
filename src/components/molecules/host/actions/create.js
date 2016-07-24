@@ -3,8 +3,14 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { HOST_CREATE } from '../constants';
 
-export const reset = createAction(HOST_CREATE, () => ({ status: 'initial' }));
-export const begin = createAction(HOST_CREATE, () => ({ status: 'pending' }));
+
+export const reset = createAction(HOST_CREATE, () => ({
+  status: 'initial',
+}));
+
+export const begin = createAction(HOST_CREATE, () => ({
+  status: 'pending',
+}));
 
 export const success = createAction(HOST_CREATE, host => ({
   host,
@@ -16,15 +22,16 @@ export const fail = createAction(HOST_CREATE, error => ({
   error,
 }));
 
-export const create = (clusterId, providerName, hostname, ip) =>
+
+export const create = (serviceId, name, galaxyRole) =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/clusters/${clusterId}/providers/${providerName}/hosts`,
+      url: `${API_URL}/services/${serviceId}/hosts`,
       method: 'POST',
       body: {
-        hostname,
-        ip,
+        name,
+        galaxy_role: galaxyRole,
       },
     })
       .then(host => {
@@ -36,6 +43,7 @@ export const create = (clusterId, providerName, hostname, ip) =>
       });
   };
 
+
 const actions = {
   reset,
   begin,
@@ -43,5 +51,6 @@ const actions = {
   fail,
   create,
 };
+
 
 export default actions;

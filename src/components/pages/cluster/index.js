@@ -1,19 +1,15 @@
-/* eslint new-cap: 0 */
-
 import React from 'react';
 import cssModules from 'react-css-modules';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import InlineEdit from 'react-edit-inline';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import styles from './cluster.scss';
 import actions from './actions/detail';
 import editActions from './actions/edit';
-import pluginActions from './actions/plugin';
-import providerActions from '../provider/actions/create';
+import providerActions from '../../molecules/provider/actions/create';
 import providerActionsRemove from '../provider/actions/remove';
 import serviceActionsRemove from '../../organisms/cluster-service-list/actions/remove';
+import settingsActions from '../../layouts/layout/actions/settings';
 import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import ClusterServiceList from '../../organisms/cluster-service-list';
@@ -22,6 +18,7 @@ import ProviderDetail from '../provider';
 import ServiceProvision from '../service-provision';
 import Add from '../../atoms/add';
 import AllServices from '../../organisms/service-list';
+import CreateProviderForm from '../../molecules/provider/createForm';
 import addService from '../../molecules/dragable-service/actions/add';
 
 
@@ -29,14 +26,13 @@ const mapStateToProps = (state) => {
   const data = {
     cluster: state.clusterDetail.cluster,
     roles: state.clusterDetail.roles,
-    plugins: state.clusterPlugins.plugins,
+    plugins: state.providerPlugins.plugins,
     provider: state.providerCreate.provider,
     providerStatus: state.providerCreate.status,
     providerRemove: state.providerRemove.provider,
     providerRemoveStatus: state.providerRemove.status,
     serviceRemove: state.clusterServiceRemove.service,
     serviceRemoveStatus: state.clusterServiceRemove.status,
-    /* addServiceStatus: state.addService.status,*/
   };
   if (state.clusterEdit.cluster) {
     data.cluster = state.clusterEdit.cluster;
@@ -57,7 +53,6 @@ const ClusterDetail = React.createClass({
     providerRemoveStatus: React.PropTypes.string,
     serviceRemove: React.PropTypes.object,
     serviceRemoveStatus: React.PropTypes.string,
-    addServiceStatus: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -80,7 +75,6 @@ const ClusterDetail = React.createClass({
 
   componentWillMount() {
     store.dispatch(actions.get(this.props.params.clusterId));
-    store.dispatch(pluginActions.get());
   },
 
   componentWillReceiveProps(nextProps) {
@@ -112,21 +106,6 @@ const ClusterDetail = React.createClass({
         data
       )
     );
-  },
-
-  handleTypeChange(event) {
-    const plugin = this.props.plugins.find((pl) =>
-      pl.type === event.target.value
-    );
-    this.setState({ pluginProps: plugin.properties });
-    this.setState({ type: event.target.value });
-  },
-
-  handleFieldChange(event) {
-    const fieldName = event.target.getAttribute('placeholder');
-    const fields = { ...this.state.fields };
-    fields[fieldName] = event.target.value;
-    this.setState({ fields });
   },
 
   handleSubmit(event) {
@@ -165,7 +144,13 @@ const ClusterDetail = React.createClass({
   },
 
   showCreate() {
-    this.setState({ create: true });
+    store.dispatch(settingsActions.open(
+      <div>
+        <CreateProviderForm cluster={this.props.cluster} />
+        <hr style={{ margin: '30px 0' }} />
+        <AllServices />
+      </div>
+    ));
   },
 
   hideCreate() {
@@ -215,51 +200,6 @@ const ClusterDetail = React.createClass({
         </div>
       </div>
     );
-    let clusterAdd = '';
-    if (this.state.create) {
-      clusterAdd = (
-        <div>
-          <div className="disable" onClick={this.hideCreate}>x</div>
-          <h1>Create Provider</h1>
-          <form role="form" onSubmit={this.handleSubmit}>
-            <div>
-              <select onClick={this.handleTypeChange} defaultValue="-1" >
-                <option id="-1" disabled>Select type</option>
-                {
-                  this.props.plugins.map(
-                    plugin =>
-                      <option
-                        key={plugin.type}
-                        value={plugin.type}
-                      > {plugin.type}</option>
-                  )
-                }
-              </select>
-            </div>
-            <div>
-              {
-                this.state.type ?
-                this.state.pluginProps.map(
-                  props =>
-                    <div key={props.name}>
-                      <label>{props.name}
-                        <input
-                          type="text"
-                          placeholder={props.name}
-                          onChange={this.handleFieldChange}
-                        />
-                      </label>
-                    </div>
-                ) : ''
-              }
-            </div>
-            <button className="button">Create</button>
-          </form>
-          <hr />
-          <AllServices />
-        </div>
-      );
-    }
     if (this.props.providerRemoveStatus === 'confirm') {
       return (
         <div>
@@ -309,8 +249,7 @@ const ClusterDetail = React.createClass({
 
 
 const ClusterDetailCss = cssModules(ClusterDetail, styles);
-const ClusterDetailDND = DragDropContext(HTML5Backend)(ClusterDetailCss);
-const ClusterDetailConnect = connect(mapStateToProps, actions)(ClusterDetailDND);
+const ClusterDetailConnect = connect(mapStateToProps, actions)(ClusterDetailCss);
 
 const routes = {
   path: ':clusterId',

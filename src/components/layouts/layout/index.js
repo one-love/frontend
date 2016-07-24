@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
@@ -48,9 +50,16 @@ const Layout = React.createClass({
     muiTheme: React.PropTypes.object.isRequired,
   },
 
-  handleTouchTap(event) {
-    const link = event.target.textContent;
-    history.push(link);
+  handleClustersTouchTap() {
+    history.push('/clusters/');
+  },
+
+  handleServicesTouchTap() {
+    history.push('/services/');
+  },
+
+  handleProvisionsTouchTap() {
+    history.push('/provisions/');
   },
 
   handleHome() {
@@ -98,19 +107,19 @@ const Layout = React.createClass({
               label="clusters"
               primary={this.context.router.isActive('clusters')}
               style={this.context.router.isActive('clusters') ? undefined : styles.inactive}
-              onClick={this.handleTouchTap}
+              onClick={this.handleClustersTouchTap}
             />
             <FlatButton
               label="services"
               primary={this.context.router.isActive('services')}
               style={this.context.router.isActive('services') ? undefined : styles.inactive}
-              onTouchTap={this.handleTouchTap}
+              onTouchTap={this.handleServicesTouchTap}
             />
             <FlatButton
               label="provisions"
               primary={this.context.router.isActive('provisions')}
               style={this.context.router.isActive('provisions') ? undefined : styles.inactive}
-              onTouchTap={this.handleTouchTap}
+              onTouchTap={this.handleProvisionsTouchTap}
             />
           </ToolbarGroup>
           <ToolbarGroup>
@@ -135,4 +144,7 @@ const Layout = React.createClass({
 });
 
 
-export default connect(mapStateToProps, actions)(Layout);
+/* eslint-disable new-cap */
+const LayoutDND = DragDropContext(HTML5Backend)(Layout);
+/* eslint-enable */
+export default connect(mapStateToProps, actions)(LayoutDND);

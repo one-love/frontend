@@ -32,7 +32,7 @@ const ServiceList = React.createClass({
   render() {
     return (
       <div>
-        <h1>Services</h1>
+        <h2>Services</h2>
         {
           this.props.services.map(service => (
             <DragableService key={service.id} id={service.id} name={service.name} />

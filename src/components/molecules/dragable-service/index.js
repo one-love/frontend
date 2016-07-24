@@ -33,10 +33,10 @@ const DragableService = React.createClass({
 
   render() {
     const { connectDragSource } = this.props;
-    const { name, id } = this.props;
+    const { id } = this.props;
     return (
       connectDragSource(
-        <div>{name}: {id}</div>
+        <div>{id}</div>
       )
     );
   },

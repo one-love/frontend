@@ -7,11 +7,10 @@ import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Host from '../../molecules/host';
 import HostDetail from '../host';
-import Sidebar from '../../atoms/sidebar';
 import Add from '../../atoms/add';
-import createActions from '../host/actions/create';
 import hostActionsRemove from '../host/actions/remove';
 import actions from './actions/detail';
+import createActions from '../../molecules/host/actions/create';
 
 
 const mapStateToProps = (state) => {
@@ -101,17 +100,6 @@ const ProviderDetail = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(createActions.create(
-      this.props.params.clusterId,
-      this.props.params.providerName,
-      this.state.hostname,
-      this.state.ip,
-    ));
-    this.setState({
-      hostname: '',
-      ip: '',
-      create: false,
-    });
   },
 
   handleRemove(event) {
@@ -133,39 +121,6 @@ const ProviderDetail = React.createClass({
           <h1>Remove host {this.props.remove.id}?</h1>
           <button className="button" onClick={this.handleRemove}>yes</button>
           <button className="button" onClick={this.handleCancel}>no</button>
-        </div>
-      );
-    }
-    let createHost = '';
-    if (this.state.create) {
-      createHost = (
-        <div>
-          <div className="disable" onClick={this.hideCreate}>x</div>
-          <h1>Create Host</h1>
-          <form role="form" onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="ip">IP</label>
-              <input
-                autoFocus
-                type="text"
-                id="ip"
-                placeholder="IP"
-                onChange={this.handleIPChange}
-                value={this.state.ip}
-              />
-            </div>
-            <div>
-              <label htmlFor="hostname">hostname</label>
-              <input
-                type="text"
-                id="hostname"
-                placeholder="hostname"
-                onChange={this.handleHostnameChange}
-                value={this.state.hostname}
-              />
-            </div>
-            <button className="button">Create</button>
-          </form>
         </div>
       );
     }
@@ -197,9 +152,6 @@ const ProviderDetail = React.createClass({
     );
     return (
       <div>
-        <Sidebar show={this.state.create}>
-          {createHost}
-        </Sidebar>
         <div>
           <h2>Provider</h2>
           Name: {this.props.provider.name}
