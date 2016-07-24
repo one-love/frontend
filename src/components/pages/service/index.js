@@ -7,7 +7,7 @@ import ApplicationList from '../../organisms/application-list';
 import ApplicationDetail from '../application';
 import Add from '../../atoms/add';
 import actions from './actions/detail';
-import createActions from '../application/actions/create';
+import createActions from '../../molecules/application/actions/create';
 import listActions from '../../organisms/application-list/actions';
 import removeActions from '../../organisms/application-list/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';

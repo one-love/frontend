@@ -21,7 +21,6 @@ import Provider from '../../molecules/provider';
 import ProviderDetail from '../provider';
 import ServiceProvision from '../service-provision';
 import Add from '../../atoms/add';
-import Sidebar from '../../atoms/sidebar';
 import AllServices from '../../organisms/service-list';
 import addService from '../../molecules/dragable-service/actions/add';
 
@@ -281,9 +280,6 @@ const ClusterDetail = React.createClass({
     }
     return (
       <div>
-        <Sidebar show={this.state.create}>
-          {clusterAdd}
-        </Sidebar>
         <h2>
           Name:
           <InlineEdit

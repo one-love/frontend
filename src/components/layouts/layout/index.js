@@ -98,7 +98,7 @@ const Layout = React.createClass({
               label="clusters"
               primary={this.context.router.isActive('clusters')}
               style={this.context.router.isActive('clusters') ? undefined : styles.inactive}
-              onTouchTap={this.handleTouchTap}
+              onClick={this.handleTouchTap}
             />
             <FlatButton
               label="services"

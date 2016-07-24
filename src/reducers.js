@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import login from './components/pages/login/reducers';
-import sidebar from './components/atoms/sidebar/reducers';
 import application from './components/pages/application/reducers';
 import applicationList from './components/organisms/application-list/reducers';
 import cluster from './components/pages/cluster/reducers';
@@ -22,85 +21,26 @@ import settings from './components/layouts/layout/reducers';
 
 const reducers = {
   login,
-  sidebar,
   clusterList,
   provisionList,
   serviceProvision,
 };
 
-applicationList.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-cluster.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-clusterList.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-clusterServiceRemove.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-service.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-serviceList.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-provision.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-provider.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-host.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-application.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-addService.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-addCluster.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-addClusterService.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
-
-addServiceApplication.forEach(reducer => {
-  reducers[reducer.name] = reducer;
-});
-
-settings.map(reducer => {
-  reducers[reducer.name] = reducer;
-  return undefined;
-});
+addCluster.forEach(reducer => { reducers[reducer.name] = reducer; });
+addClusterService.forEach(reducer => { reducers[reducer.name] = reducer; });
+addService.forEach(reducer => { reducers[reducer.name] = reducer; });
+addServiceApplication.forEach(reducer => { reducers[reducer.name] = reducer; });
+application.forEach(reducer => { reducers[reducer.name] = reducer; });
+applicationList.forEach(reducer => { reducers[reducer.name] = reducer; });
+cluster.forEach(reducer => { reducers[reducer.name] = reducer; });
+clusterList.forEach(reducer => { reducers[reducer.name] = reducer; });
+clusterServiceRemove.forEach(reducer => { reducers[reducer.name] = reducer; });
+host.forEach(reducer => { reducers[reducer.name] = reducer; });
+provider.forEach(reducer => { reducers[reducer.name] = reducer; });
+provision.forEach(reducer => { reducers[reducer.name] = reducer; });
+service.forEach(reducer => { reducers[reducer.name] = reducer; });
+serviceList.forEach(reducer => { reducers[reducer.name] = reducer; });
+settings.forEach(reducer => { reducers[reducer.name] = reducer; });
 
 
 const rootReducer = combineReducers(reducers);
