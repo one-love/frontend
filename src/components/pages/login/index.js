@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import cssModules from 'react-css-modules';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
 import store from '../../../store';
 import { history } from '../../../constants';
 import { isLoggedIn } from '../../../utils';
 import { login, actions } from './actions';
-import styles from './login.scss';
 
 
 function mapStateToProps(state) {
@@ -17,6 +17,31 @@ function mapStateToProps(state) {
     error: state.login.error,
   };
 }
+
+
+const styles = {
+  root: {
+    display: 'flex',
+    height: '100vh',
+    width: '100vw',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  form: {
+    padding: '50px',
+  },
+
+  button: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  title: {
+    textAlign: 'center',
+  },
+};
 
 
 const Login = React.createClass({
@@ -61,26 +86,28 @@ const Login = React.createClass({
 
   render() {
     return (
-      <div styleName="login">
-        <div>
-          <h1 styleName="center">Login</h1>
-        </div>
-        <form role="form" onSubmit={this.handleSubmit}>
-          <div>
-            <TextField
-              floatingLabelText="Email"
-              onChange={this.handleEmailChange}
-            />
-          </div>
-          <div>
-            <TextField
-              floatingLabelText="Password"
-              type="password"
-              onChange={this.handlePasswordChange}
-            />
-          </div>
-          <RaisedButton label="login" type="submit" />
-        </form>
+      <div style={styles.root}>
+        <Paper zDepth={3}>
+          <form style={styles.form} onSubmit={this.handleSubmit}>
+            <h1 style={styles.title}>Login</h1>
+            <div>
+              <TextField
+                floatingLabelText="Email"
+                onChange={this.handleEmailChange}
+              />
+            </div>
+            <div>
+              <TextField
+                floatingLabelText="Password"
+                type="password"
+                onChange={this.handlePasswordChange}
+              />
+            </div>
+            <div style={styles.button}>
+              <RaisedButton label="login" type="submit" />
+            </div>
+          </form>
+        </Paper>
       </div>
     );
   },
