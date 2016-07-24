@@ -3,6 +3,7 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { CLUSTER_CREATE } from '../constants';
 
+
 export const reset = createAction(CLUSTER_CREATE, () => ({
   status: 'initial',
 }));
@@ -20,6 +21,7 @@ export const fail = createAction(CLUSTER_CREATE, error => ({
   status: 'error',
   error,
 }));
+
 
 export const create = (name, sshKey, username) =>
   dispatch => {
@@ -42,6 +44,7 @@ export const create = (name, sshKey, username) =>
       });
   };
 
+
 const actions = {
   reset,
   begin,
@@ -49,5 +52,6 @@ const actions = {
   fail,
   create,
 };
+
 
 export default actions;

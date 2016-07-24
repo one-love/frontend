@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import FileInput from 'react-file-reader-input';
-import base64 from 'base-64';
 import Cluster from '../../molecules/cluster';
+import CreateClusterForm from '../../molecules/cluster/createForm';
 import List from '../../molecules/transition-appear';
 import store from '../../../store';
 import clusterDetail from '../cluster';
-import Sidebar from '../../atoms/sidebar';
 import Add from '../../atoms/add';
 import actions from './actions';
-import createActions from './actions/create';
+import createActions from '../../molecules/cluster/actions/create';
 import removeActions from './actions/remove';
+import settingsActions from '../../layouts/layout/actions/settings';
 
 
 const mapStateToProps = state => {
@@ -76,7 +75,7 @@ const ClusterList = React.createClass({
   },
 
   showCreate() {
-    this.setState({ create: true });
+    store.dispatch(settingsActions.open(<CreateClusterForm />));
   },
 
   hideCreate() {
@@ -91,16 +90,6 @@ const ClusterList = React.createClass({
 
   handleNameChange(event) {
     this.setState({ name: event.target.value });
-  },
-
-  handleSSHKeyChange(event, results) {
-    if (results.length > 0) {
-      const e = results[0][0];
-      const content = e.target.result;
-      const encodedContent = base64.encode(content);
-      this.setState({ sshKey: encodedContent });
-      this.setState({ sshKeyName: results[0][1].name });
-    }
   },
 
   handleUsernameChange(event) {
@@ -134,44 +123,6 @@ const ClusterList = React.createClass({
   },
 
   render() {
-    let createCluster = '';
-    if (this.state.create) {
-      createCluster = (
-        <div>
-          <div className="disable" onClick={this.hideCreate}>x</div>
-          <h1>Create Cluster</h1>
-          <form role="form" onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="name">Name</label>
-              <input
-                autoFocus
-                type="text"
-                id="name"
-                placeholder="Name"
-                onChange={this.handleNameChange}
-                value={this.state.name}
-              />
-            </div>
-            <div>
-              <FileInput id="ssh" onChange={this.handleSSHKeyChange}>
-                {this.state.sshKeyName ? this.state.sshKeyName : 'Select ssh key'}
-              </FileInput>
-            </div>
-            <div>
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                id="username"
-                placeholder="Username"
-                onChange={this.handleUsernameChange}
-                value={this.state.username}
-              />
-            </div>
-            <button className="button">Create</button>
-          </form>
-        </div>
-      );
-    }
     const clusters = (
       <div>
         <h1>Clusters</h1>
@@ -204,9 +155,6 @@ const ClusterList = React.createClass({
     }
     return (
       <div>
-        <Sidebar show={this.state.create}>
-          {createCluster}
-        </Sidebar>
         <List>
           {clusters}
         </List>
