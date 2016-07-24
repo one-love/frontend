@@ -2,7 +2,6 @@ import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './service.scss';
 import { connect } from 'react-redux';
-import Sidebar from '../../atoms/sidebar';
 import store from '../../../store';
 import ApplicationList from '../../organisms/application-list';
 import ApplicationDetail from '../application';
@@ -11,6 +10,8 @@ import actions from './actions/detail';
 import createActions from '../application/actions/create';
 import listActions from '../../organisms/application-list/actions';
 import removeActions from '../../organisms/application-list/actions/remove';
+import settingsActions from '../../layouts/layout/actions/settings';
+import CreateApplicationForm from '../../molecules/application/createForm';
 
 
 const mapStateToProps = (state) => {
@@ -57,11 +58,9 @@ const ServiceDetail = React.createClass({
     if (nextProps.createStatus === 'success') {
       store.dispatch(createActions.reset());
       store.dispatch(listActions.get(this.props.params.serviceId));
-      this.setState({ create: false });
     } else if (nextProps.removeStatus === 'success') {
       store.dispatch(removeActions.reset());
       store.dispatch(listActions.get(this.props.params.serviceId));
-      this.setState({ create: false });
     }
   },
 
@@ -70,12 +69,15 @@ const ServiceDetail = React.createClass({
   },
 
   showCreate() {
-    this.setState({ create: true });
+    store.dispatch(
+      settingsActions.open(
+        <CreateApplicationForm serviceId={this.props.params.serviceId} />
+      )
+    );
   },
 
   hideCreate() {
     this.setState({
-      create: false,
       name: '',
     });
   },
@@ -123,44 +125,8 @@ const ServiceDetail = React.createClass({
         </div>
       );
     }
-    let createApplication = '';
-    if (this.state.create) {
-      createApplication = (
-        <div>
-          <div className="disable" onClick={this.hideCreate}>x</div>
-          <h1>Create Application</h1>
-          <form role="form" onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="name">Name</label>
-              <input
-                autoFocus
-                type="text"
-                id="name"
-                placeholder="Name"
-                onChange={this.handleNameChange}
-                value={this.state.name}
-              />
-            </div>
-            <div>
-              <label htmlFor="galaxyRole">Galaxy Role</label>
-              <input
-                type="text"
-                id="galaxyRole"
-                placeholder="Galaxy Role"
-                onChange={this.handleGalaxyRoleChange}
-                value={this.state.galaxyRole}
-              />
-            </div>
-            <button className="button">Create</button>
-          </form>
-        </div>
-      );
-    }
     return (
       <div>
-        <Sidebar show={this.state.create}>
-          {createApplication}
-        </Sidebar>
         <div>
           <h2>Service: {this.props.service.name}</h2>
           <div styleName="item">
