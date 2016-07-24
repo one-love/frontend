@@ -13,8 +13,9 @@ import service from './components/pages/service/reducers';
 import serviceList from './components/pages/service-list/reducers';
 import serviceProvision from './components/pages/service-provision/reducers';
 import clusterServiceRemove from './components/organisms/cluster-service-list/reducers';
-import addService from './components/molecules/dragable-service/reducers';
+import addClusterService from './components/molecules/dragable-service/reducers';
 import addCluster from './components/molecules/cluster/reducers';
+import addService from './components/molecules/service/reducers';
 import settings from './components/layouts/layout/reducers';
 
 
@@ -82,6 +83,11 @@ addService.map(reducer => {
 });
 
 addCluster.map(reducer => {
+  reducers[reducer.name] = reducer;
+  return undefined;
+});
+
+addClusterService.map(reducer => {
   reducers[reducer.name] = reducer;
   return undefined;
 });

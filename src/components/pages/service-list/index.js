@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Service from '../../molecules/service';
+import CreateServiceForm from '../../molecules/service/createForm';
 import List from '../../molecules/transition-appear';
-import Sidebar from '../../atoms/sidebar';
-import actions from './actions';
-import createActions from './actions/create';
 import removeActions from './actions/remove';
+import settingsActions from '../../layouts/layout/actions/settings';
 import store from '../../../store';
 import serviceDetail from '../service';
 import Add from '../../atoms/add';
+import actions from './actions';
+import serviceActions from '../../molecules/service/actions/create';
 
 
 const mapStateToProps = state => {
@@ -56,9 +57,8 @@ const ServiceList = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.createStatus === 'success') {
-      store.dispatch(createActions.reset());
       store.dispatch(actions.get());
-      this.setState({ create: false });
+      store.dispatch(serviceActions.reset());
     }
     if (nextProps.removeStatus === 'success') {
       store.dispatch(removeActions.reset());
@@ -72,7 +72,7 @@ const ServiceList = React.createClass({
   },
 
   showCreate() {
-    this.setState({ create: true });
+    store.dispatch(settingsActions.open(<CreateServiceForm />));
   },
 
   hideCreate() {
@@ -84,12 +84,6 @@ const ServiceList = React.createClass({
 
   handleNameChange(event) {
     this.setState({ name: event.target.value });
-  },
-
-  handleSubmit(event) {
-    event.preventDefault();
-    store.dispatch(createActions.create(this.state.name));
-    this.setState({ name: '' });
   },
 
   handleClose(event) {
@@ -108,28 +102,6 @@ const ServiceList = React.createClass({
   },
 
   render() {
-    let createService = '';
-    if (this.state.create) {
-      createService = (
-        <div>
-          <div className="disable" onClick={this.hideCreate}>x</div>
-          <h1>Create Service</h1>
-          <form role="form" onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="name">Name</label>
-              <input
-                autoFocus
-                type="text"
-                id="name"
-                placeholder="Name"
-                onChange={this.handleNameChange}
-              />
-            </div>
-            <button className="button">Create</button>
-          </form>
-        </div>
-      );
-    }
     const services = (
       <div>
         <h1>Services</h1>
@@ -162,9 +134,6 @@ const ServiceList = React.createClass({
     }
     return (
       <div>
-        <Sidebar show={this.state.create}>
-          {createService}
-        </Sidebar>
         <List>
           {services}
         </List>

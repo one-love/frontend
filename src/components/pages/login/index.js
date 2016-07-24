@@ -95,6 +95,7 @@ const Login = React.createClass({
               <TextField
                 floatingLabelText="Email"
                 onChange={this.handleEmailChange}
+                autoFocus
               />
             </div>
             <div>

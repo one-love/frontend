@@ -3,6 +3,7 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { SERVICE_CREATE } from '../constants';
 
+
 export const reset = createAction(SERVICE_CREATE, () => ({
   status: 'initial',
 }));
@@ -21,7 +22,8 @@ export const fail = createAction(SERVICE_CREATE, error => ({
   error,
 }));
 
-export const create = name =>
+
+export const create = (name, sshKey, username) =>
   dispatch => {
     dispatch(begin());
     fetch({
@@ -29,6 +31,8 @@ export const create = name =>
       method: 'POST',
       body: {
         name,
+        sshKey,
+        username,
       },
     })
       .then(service => {
@@ -40,6 +44,7 @@ export const create = name =>
       });
   };
 
+
 const actions = {
   reset,
   begin,
@@ -47,5 +52,6 @@ const actions = {
   fail,
   create,
 };
+
 
 export default actions;
