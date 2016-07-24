@@ -5,10 +5,10 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import LogoutIcon from 'material-ui/svg-icons/action/input';
-import { history, postLogoutURL } from '../../../constants';
 import store from '../../../store';
 import Landing from '../../pages/landing';
+import Settings from '../../molecules/settings';
+import { history } from '../../../constants';
 import actions from './actions/settings';
 
 
@@ -57,13 +57,8 @@ const Layout = React.createClass({
     history.push('/');
   },
 
-  handleLogout() {
-    window.localStorage.removeItem('OneLoveAuthToken');
-    history.push(postLogoutURL);
-  },
-
   handleOpenSettings() {
-    store.dispatch(actions.open());
+    store.dispatch(actions.open(<Settings />));
   },
 
   handleCloseSettings() {
@@ -92,12 +87,7 @@ const Layout = React.createClass({
             style={styles.settings.item}
             rightIcon={closeSettingsIcon}
           />
-          <MenuItem
-            primaryText="Logout"
-            leftIcon={<LogoutIcon />}
-            onTouchTap={this.handleLogout}
-            style={styles.settings.item}
-          />
+          {this.props.settings}
         </Drawer>
         <Toolbar>
           <ToolbarGroup firstChild>
