@@ -29,17 +29,18 @@ const styles = {
   },
 
   form: {
-    padding: '50px',
+    padding: '20px 50px',
   },
 
   button: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: '20px',
   },
 
   title: {
     textAlign: 'center',
+    fontFamily: 'inherit',
   },
 };
 
