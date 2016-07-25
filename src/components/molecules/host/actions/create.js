@@ -23,15 +23,15 @@ export const fail = createAction(HOST_CREATE, error => ({
 }));
 
 
-export const create = (serviceId, name, galaxyRole) =>
+export const create = (clusterId, providerName, hostname, ip) =>
   dispatch => {
     dispatch(begin());
     fetch({
-      url: `${API_URL}/services/${serviceId}/hosts`,
+      url: `${API_URL}/clusters/${clusterId}/providers/${providerName}/hosts`,
       method: 'POST',
       body: {
-        name,
-        galaxy_role: galaxyRole,
+        hostname,
+        ip,
       },
     })
       .then(host => {

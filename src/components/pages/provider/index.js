@@ -1,6 +1,7 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import { Link } from 'react-router';
+import FlatButton from 'material-ui/FlatButton';
 import styles from './provider.scss';
 import { connect } from 'react-redux';
 import store from '../../../store';
@@ -11,6 +12,8 @@ import Add from '../../atoms/add';
 import hostActionsRemove from '../host/actions/remove';
 import actions from './actions/detail';
 import createActions from '../../molecules/host/actions/create';
+import settingsActions from '../../layouts/layout/actions/settings';
+import CreateHostForm from '../../molecules/host/createForm';
 
 
 const mapStateToProps = (state) => {
@@ -79,7 +82,16 @@ const ProviderDetail = React.createClass({
   },
 
   showCreate() {
-    this.setState({ create: true });
+    const clusterId = this.props.params.clusterId;
+    const providerName = this.props.params.providerName;
+    store.dispatch(
+      settingsActions.open(
+        <CreateHostForm
+          clusterId={clusterId}
+          providerName={providerName}
+        />
+      )
+    );
   },
 
   hideCreate() {
@@ -119,8 +131,17 @@ const ProviderDetail = React.createClass({
       return (
         <div>
           <h1>Remove host {this.props.remove.id}?</h1>
-          <button className="button" onClick={this.handleRemove}>yes</button>
-          <button className="button" onClick={this.handleCancel}>no</button>
+          <FlatButton
+            onTouchTap={this.handleRemove}
+            label="yes"
+            secondary
+          />
+          <FlatButton
+            onTouchTap={this.handleCancel}
+            label="no"
+            primary
+          />
+
         </div>
       );
     }

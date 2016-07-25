@@ -1,5 +1,6 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
+import FlatButton from 'material-ui/FlatButton';
 import styles from './service.scss';
 import { connect } from 'react-redux';
 import store from '../../../store';
@@ -120,8 +121,16 @@ const ServiceDetail = React.createClass({
       return (
         <div>
           <h1>Remove application {this.props.remove.id}?</h1>
-          <button className="button" onClick={this.handleRemove}>yes</button>
-          <button className="button" onClick={this.handleCancel}>no</button>
+          <FlatButton
+            label="yes"
+            onTouchTap={this.handleRemove}
+            secondary
+          />
+          <FlatButton
+            label="no"
+            onTouchTap={this.handleCancel}
+            primary
+          />
         </div>
       );
     }

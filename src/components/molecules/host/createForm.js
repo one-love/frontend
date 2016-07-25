@@ -8,7 +8,8 @@ import actions from './actions/create';
 
 const CreateHostForm = React.createClass({
   propTypes: {
-    serviceId: React.PropTypes.string.isRequired,
+    clusterId: React.PropTypes.string.isRequired,
+    providerName: React.PropTypes.string.isRequired,
   },
 
   contextTypes: {
@@ -22,15 +23,20 @@ const CreateHostForm = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
     store.dispatch(actions.create(
-      this.props.serviceId,
-      this.state.name,
-      this.state.galaxyRole,
+      this.props.clusterId,
+      this.props.providerName,
+      this.state.hostname,
+      this.state.ip,
     ));
     store.dispatch(settingsActions.close());
   },
 
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
+  handleHostnameChange(event) {
+    this.setState({ hostname: event.target.value });
+  },
+
+  handleIPChange(event) {
+    this.setState({ ip: event.target.value });
   },
 
   render() {
@@ -38,8 +44,16 @@ const CreateHostForm = React.createClass({
       <form onSubmit={this.handleSubmit}>
         <div>
           <TextField
-            floatingLabelText="Name"
-            onChange={this.handleNameChange}
+            floatingLabelText="Hostname"
+            onChange={this.handleHostnameChange}
+            required
+            autoFocus
+          />
+        </div>
+        <div>
+          <TextField
+            floatingLabelText="IP"
+            onChange={this.handleIPChange}
             required
           />
         </div>
