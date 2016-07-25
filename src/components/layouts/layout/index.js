@@ -4,10 +4,11 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import HomeIcon from 'material-ui/svg-icons/action/home';
+import ReorderIcon from 'material-ui/svg-icons/action/reorder';
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import store from '../../../store';
 import Landing from '../../pages/landing';
 import Settings from '../../molecules/settings';
@@ -83,9 +84,10 @@ const Layout = React.createClass({
     const headerFooter = header + footer;
     styles.content.height = `calc(100vh - ${headerFooter}px - 2 * ${styles.content.padding})`;
     const closeSettingsIcon = (
-      <FontIcon className="material-icons" onTouchTap={this.handleCloseSettings}>
-        close
-      </FontIcon>
+      <FlatButton
+        icon={<CloseIcon />}
+        onClick={this.handleCloseSettings}
+      />
     );
     const homeActive = this.props.location.pathname === '/';
     return (
@@ -128,11 +130,12 @@ const Layout = React.createClass({
               onTouchTap={this.handleProvisionsTouchTap}
             />
           </ToolbarGroup>
-          <ToolbarGroup>
+          <ToolbarGroup lastChild>
             <ToolbarSeparator />
-            <FontIcon className="material-icons" onTouchTap={this.handleOpenSettings}>
-              reorder
-            </FontIcon>
+            <FlatButton
+              icon={<ReorderIcon />}
+              onClick={this.handleOpenSettings}
+            />
           </ToolbarGroup>
         </Toolbar>
         <div style={styles.content}>
