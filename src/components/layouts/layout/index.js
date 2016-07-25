@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import HomeIcon from 'material-ui/svg-icons/action/home';
 import store from '../../../store';
 import Landing from '../../pages/landing';
 import Settings from '../../molecules/settings';
@@ -43,6 +44,7 @@ const Layout = React.createClass({
     children: React.PropTypes.node,
     settings: React.PropTypes.node,
     settingsOpen: React.PropTypes.bool,
+    location: React.PropTypes.object.isRequired,
   },
 
   contextTypes: {
@@ -62,7 +64,7 @@ const Layout = React.createClass({
     history.push('/provisions/');
   },
 
-  handleHome() {
+  handleHomeTouchTap() {
     history.push('/');
   },
 
@@ -85,6 +87,7 @@ const Layout = React.createClass({
         close
       </FontIcon>
     );
+    const homeActive = this.props.location.pathname === '/';
     return (
       <div>
         <Drawer
@@ -100,9 +103,12 @@ const Layout = React.createClass({
         </Drawer>
         <Toolbar>
           <ToolbarGroup firstChild>
-            <FontIcon className="material-icons" onTouchTap={this.handleHome}>
-              home
-            </FontIcon>
+            <FlatButton
+              icon={<HomeIcon />}
+              primary={homeActive}
+              style={homeActive ? undefined : styles.inactive}
+              onClick={this.handleHomeTouchTap}
+            />
             <FlatButton
               label="clusters"
               primary={this.context.router.isActive('clusters')}
