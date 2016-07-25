@@ -4,6 +4,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
+import Snackbar from 'material-ui/Snackbar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import HomeIcon from 'material-ui/svg-icons/action/home';
@@ -135,6 +136,7 @@ const Layout = React.createClass({
             <FlatButton
               icon={<ReorderIcon />}
               onClick={this.handleOpenSettings}
+              style={{ color: 'gray' }}
             />
           </ToolbarGroup>
         </Toolbar>
@@ -147,6 +149,7 @@ const Layout = React.createClass({
             Tilda Center
           </a>
         </div>
+        <Snackbar open message="some message" autoHideDuration={3000} action="close" />
       </div>
     );
   },
