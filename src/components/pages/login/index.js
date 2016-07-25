@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import cssModules from 'react-css-modules';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Snackbar from 'material-ui/Snackbar';
 import Paper from 'material-ui/Paper';
 import store from '../../../store';
-import { history } from '../../../constants';
+import { history, errors } from '../../../constants';
 import { isLoggedIn } from '../../../utils';
-import { login, actions } from './actions';
+import actions from './actions';
 
 
 function mapStateToProps(state) {
@@ -65,9 +66,17 @@ const Login = React.createClass({
     }
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.status === 'error') {
+      this.setState({ status: 'error', message: nextProps.error });
+      store.dispatch(actions.reset());
+    }
+  },
+
   shouldComponentUpdate() {
     if (isLoggedIn()) {
       history.push('/');
+      return false;
     }
     return true;
   },
@@ -82,10 +91,16 @@ const Login = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(login(this.state.email, this.state.password));
+    store.dispatch(actions.login(this.state.email, this.state.password));
+  },
+
+  handleNotificationClose() {
+    this.setState({ status: '', message: '' });
   },
 
   render() {
+    const notificationOpen = this.state.status === 'error';
+    const notification = notificationOpen ? errors.login[this.state.message] : '';
     return (
       <div style={styles.root}>
         <Paper zDepth={3}>
@@ -96,6 +111,7 @@ const Login = React.createClass({
                 floatingLabelText="Email"
                 onChange={this.handleEmailChange}
                 autoFocus
+                required
               />
             </div>
             <div>
@@ -103,6 +119,7 @@ const Login = React.createClass({
                 floatingLabelText="Password"
                 type="password"
                 onChange={this.handlePasswordChange}
+                required
               />
             </div>
             <div style={styles.button}>
@@ -110,6 +127,14 @@ const Login = React.createClass({
             </div>
           </form>
         </Paper>
+        <Snackbar
+          open={notificationOpen}
+          message={notification}
+          autoHideDuration={4000}
+          action="close"
+          onActionTouchTap={this.handleNotificationClose}
+          onRequestClose={this.handleNotificationClose}
+        />
       </div>
     );
   },
