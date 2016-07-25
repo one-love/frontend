@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FlatButton from 'material-ui/FlatButton';
 import { history } from '../../../constants';
 import store from '../../../store';
 import actions from './actions';
@@ -24,6 +25,10 @@ const ServiceProvision = React.createClass({
     return true;
   },
 
+  componentWillUnmount() {
+    store.dispatch(actions.reset());
+  },
+
   handleProvision() {
     store.dispatch(
       actions.provision(
@@ -41,8 +46,16 @@ const ServiceProvision = React.createClass({
     return (
       <div>
         <h2>Are you sure?</h2>
-        <button className="button" onClick={this.handleProvision}>Yes</button>
-        <button className="button" onClick={this.handleCancel}>No</button>
+        <FlatButton
+          onTouchTap={this.handleProvision}
+          label="yes"
+          secondary
+        />
+        <FlatButton
+          onTouchTap={this.handleCancel}
+          label="no"
+          primary
+        />
       </div>
     );
   },

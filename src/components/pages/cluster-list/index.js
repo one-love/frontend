@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import FlatButton from 'material-ui/FlatButton';
 import Cluster from '../../molecules/cluster';
 import CreateClusterForm from '../../molecules/cluster/createForm';
 import List from '../../molecules/transition-appear';
@@ -113,8 +114,16 @@ const ClusterList = React.createClass({
       return (
         <div>
           <h1>Remove cluster {this.props.removeCluster.id}?</h1>
-          <button className="button" onClick={this.handleRemove}>yes</button>
-          <button className="button" onClick={this.handleCancel}>no</button>
+          <FlatButton
+            onTouchTap={this.handleRemove}
+            label="yes"
+            secondary
+          />
+          <FlatButton
+            onTouchTap={this.handleCancel}
+            label="no"
+            primary
+          />
         </div>
       );
     }
