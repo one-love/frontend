@@ -1,16 +1,25 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
-import svg from './add.svg';
-import styles from './add.scss';
+import AddToQueue from 'material-ui/svg-icons/av/add-to-queue';
+
+
+const styles = {
+  icon: {
+    position: 'absolute',
+    height: '100px',
+    width: '100px',
+    right: 0,
+    bottom: 0,
+    margin: '0 10px 20px 0',
+    color: 'gray',
+  },
+};
 
 
 function Add() {
   return (
-    <div styleName="add">
-      <img alt="add" src={svg} />
-    </div>
+    <AddToQueue style={styles.icon} />
   );
 }
 
 
-export default cssModules(Add, styles);
+export default Add;
