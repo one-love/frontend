@@ -51,7 +51,7 @@ const Layout = React.createClass({
     notificationsOpen: React.PropTypes.bool,
     settings: React.PropTypes.node,
     settingsOpen: React.PropTypes.bool,
-    location: React.PropTypes.object.isRequired,
+    location: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -62,6 +62,9 @@ const Layout = React.createClass({
   getDefaultProps() {
     return {
       notifications: '',
+      location: {
+        pathname: '',
+      },
     };
   },
 
