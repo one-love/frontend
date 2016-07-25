@@ -48,6 +48,7 @@ export const login = (email, password) =>
   };
 
 const actions = {
+  reset,
   begin,
   success,
   fail,

@@ -15,6 +15,7 @@ import Landing from '../../pages/landing';
 import Settings from '../../molecules/settings';
 import { history } from '../../../constants';
 import actions from './actions/settings';
+import notificationsActions from './actions/notifications';
 
 
 const styles = {
@@ -38,12 +39,16 @@ const styles = {
 const mapStateToProps = (state) => ({
   settings: state.settings.settings,
   settingsOpen: state.settings.open,
+  notifications: state.notifications.notifications,
+  notificationsOpen: state.notifications.open,
 });
 
 
 const Layout = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
+    notifications: React.PropTypes.node,
+    notificationsOpen: React.PropTypes.bool,
     settings: React.PropTypes.node,
     settingsOpen: React.PropTypes.bool,
     location: React.PropTypes.object.isRequired,
@@ -52,6 +57,12 @@ const Layout = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired,
     muiTheme: React.PropTypes.object.isRequired,
+  },
+
+  getDefaultProps() {
+    return {
+      notifications: '',
+    };
   },
 
   handleClustersTouchTap() {
@@ -76,6 +87,10 @@ const Layout = React.createClass({
 
   handleCloseSettings() {
     store.dispatch(actions.close());
+  },
+
+  handleNotificationClose() {
+    store.dispatch(notificationsActions.close());
   },
 
   render() {
@@ -149,7 +164,14 @@ const Layout = React.createClass({
             Tilda Center
           </a>
         </div>
-        <Snackbar open message="some message" autoHideDuration={3000} action="close" />
+        <Snackbar
+          open={this.props.notificationsOpen}
+          message={this.props.notifications}
+          autoHideDuration={5000}
+          action="close"
+          onActionTouchTap={this.handleNotificationClose}
+          onRequestClose={this.handleNotificationClose}
+        />
       </div>
     );
   },
