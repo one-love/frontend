@@ -1,25 +1,25 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
-import { CLUSTER_PLUGINS } from '../constants';
+import { PROVIDER_PLUGINS } from '../constants';
 
 
-export const reset = createAction(CLUSTER_PLUGINS, () => ({
+export const reset = createAction(PROVIDER_PLUGINS, () => ({
   status: 'initial',
   plugins: [],
 }));
 
-export const begin = createAction(CLUSTER_PLUGINS, () => ({
+export const begin = createAction(PROVIDER_PLUGINS, () => ({
   status: 'pending',
   plugins: [],
 }));
 
-export const success = createAction(CLUSTER_PLUGINS, plugins => ({
+export const success = createAction(PROVIDER_PLUGINS, plugins => ({
   plugins,
   status: 'success',
 }));
 
-export const fail = createAction(CLUSTER_PLUGINS, error => ({
+export const fail = createAction(PROVIDER_PLUGINS, error => ({
   status: 'error',
   error,
 }));
