@@ -3,7 +3,7 @@ const config = require('./webpack.common');
 
 
 config.plugins = [
-  new webpack.DefinePlugin({ 'process.env.NODE_ENV': "'prod'" }),
+  new webpack.DefinePlugin({ 'process.env.NODE_ENV': "'production'" }),
 ];
 
 
