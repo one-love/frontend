@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import { history } from '../../../constants';
-import store from '../../../store';
 import actions from './actions';
 
 
@@ -15,6 +14,8 @@ const mapStateToProps = state => ({
 const ServiceProvision = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
+    reset: React.PropTypes.func.isRequired,
+    provision: React.PropTypes.func.isRequired,
   },
 
   shouldComponentUpdate(nextProps) {
@@ -26,15 +27,13 @@ const ServiceProvision = React.createClass({
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
+    this.props.reset();
   },
 
   handleProvision() {
-    store.dispatch(
-      actions.provision(
-        this.props.params.clusterId,
-        this.props.params.serviceId,
-      )
+    this.props.provision(
+      this.props.params.clusterId,
+      this.props.params.serviceId,
     );
   },
 

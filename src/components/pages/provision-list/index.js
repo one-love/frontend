@@ -2,7 +2,6 @@ import React from 'react';
 import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import store from '../../../store';
 import provisionDetail from '../provision';
 import styles from './provision-list.scss';
 import actions from './actions';
@@ -19,6 +18,8 @@ const ProvisionList = React.createClass({
     children: React.PropTypes.node,
     provisions: React.PropTypes.array,
     status: React.PropTypes.string,
+    get: React.PropTypes.func.isRequired,
+    reset: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -28,11 +29,11 @@ const ProvisionList = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(actions.get());
+    this.props.get();
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
+    this.props.reset();
   },
 
   render() {

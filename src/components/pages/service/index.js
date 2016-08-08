@@ -1,9 +1,6 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
 import FlatButton from 'material-ui/FlatButton';
-import styles from './service.scss';
 import { connect } from 'react-redux';
-import store from '../../../store';
 import ApplicationList from '../../organisms/application-list';
 import ApplicationDetail from '../application';
 import Add from '../../atoms/add';
@@ -34,6 +31,7 @@ const ServiceDetail = React.createClass({
     createStatus: React.PropTypes.string,
     remove: React.PropTypes.object,
     removeStatus: React.PropTypes.string,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -52,25 +50,25 @@ const ServiceDetail = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(actions.get(this.props.params.serviceId));
+    this.props.dispatch(actions.get(this.props.params.serviceId));
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.createStatus === 'success') {
-      store.dispatch(createActions.reset());
-      store.dispatch(listActions.get(this.props.params.serviceId));
+      this.props.dispatch(createActions.reset());
+      this.props.dispatch(listActions.get(this.props.params.serviceId));
     } else if (nextProps.removeStatus === 'success') {
-      store.dispatch(removeActions.reset());
-      store.dispatch(listActions.get(this.props.params.serviceId));
+      this.props.dispatch(removeActions.reset());
+      this.props.dispatch(listActions.get(this.props.params.serviceId));
     }
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
+    this.props.dispatch(actions.reset());
   },
 
   showCreate() {
-    store.dispatch(
+    this.props.dispatch(
       settingsActions.open(
         <CreateApplicationForm serviceId={this.props.params.serviceId} />
       )
@@ -93,7 +91,7 @@ const ServiceDetail = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(createActions.create(
+    this.props.dispatch(createActions.create(
       this.props.params.serviceId,
       this.state.name,
       this.state.galaxyRole,
@@ -106,14 +104,14 @@ const ServiceDetail = React.createClass({
 
   handleRemove(event) {
     event.preventDefault();
-    store.dispatch(removeActions.remove(
+    this.props.dispatch(removeActions.remove(
       this.props.remove.id,
     ));
   },
 
   handleCancel(event) {
     event.preventDefault();
-    store.dispatch(removeActions.reset());
+    this.props.dispatch(removeActions.reset());
   },
 
   render() {
@@ -138,7 +136,7 @@ const ServiceDetail = React.createClass({
       <div>
         <div>
           <h2>Service: {this.props.service.name}</h2>
-          <div styleName="item">
+          <div>
             <h3>email: {this.props.service.user.email}</h3>
           </div>
         </div>
@@ -157,9 +155,7 @@ const ServiceDetail = React.createClass({
 const routes = {
   path: ':serviceId',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(
-      cssModules(ServiceDetail, styles)
-    ),
+    component: connect(mapStateToProps)(ServiceDetail),
   },
   childRoutes: [
     ApplicationDetail,

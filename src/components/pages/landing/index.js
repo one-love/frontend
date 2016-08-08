@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import store from '../../../store';
 import clusterActions from '../cluster-list/actions';
 import serviceActions from '../service-list/actions';
 
@@ -15,15 +14,16 @@ const Landing = React.createClass({
   propTypes: {
     clusters: React.PropTypes.array,
     services: React.PropTypes.array,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   componentWillMount() {
-    store.dispatch(clusterActions.get());
-    store.dispatch(serviceActions.get());
+    this.props.dispatch(clusterActions.get());
+    this.props.dispatch(serviceActions.get());
   },
 
   componentWillUnmount() {
-    store.dispatch(clusterActions.reset());
+    this.props.dispatch(clusterActions.reset());
   },
 
   render() {
@@ -52,4 +52,4 @@ const Landing = React.createClass({
 });
 
 
-export default connect(mapStateToProps, clusterActions)(Landing);
+export default connect(mapStateToProps)(Landing);

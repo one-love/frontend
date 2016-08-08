@@ -7,7 +7,6 @@ import CreateServiceForm from '../../molecules/service/createForm';
 import List from '../../molecules/transition-appear';
 import removeActions from './actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
-import store from '../../../store';
 import serviceDetail from '../service';
 import Add from '../../atoms/add';
 import actions from './actions';
@@ -38,6 +37,7 @@ const ServiceList = React.createClass({
     close: React.PropTypes.func,
     removeStatus: React.PropTypes.string,
     removeService: React.PropTypes.object,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -53,27 +53,27 @@ const ServiceList = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(actions.get());
+    this.props.dispatch(actions.get());
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.createStatus === 'success') {
-      store.dispatch(actions.get());
-      store.dispatch(serviceActions.reset());
+      this.props.dispatch(actions.get());
+      this.props.dispatch(serviceActions.reset());
     }
     if (nextProps.removeStatus === 'success') {
-      store.dispatch(removeActions.reset());
-      store.dispatch(actions.get());
+      this.props.dispatch(removeActions.reset());
+      this.props.dispatch(actions.get());
     }
     return true;
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
+    this.props.dispatch(actions.reset());
   },
 
   showCreate() {
-    store.dispatch(settingsActions.open(<CreateServiceForm />));
+    this.props.dispatch(settingsActions.open(<CreateServiceForm />));
   },
 
   hideCreate() {
@@ -89,17 +89,17 @@ const ServiceList = React.createClass({
 
   handleClose(event) {
     event.preventDefault();
-    store.dispatch(this.props.close(this.props.iconId));
+    this.props.dispatch(this.props.close(this.props.iconId));
   },
 
   handleRemove(event) {
     event.preventDefault();
-    store.dispatch(removeActions.remove(this.props.removeService.id));
+    this.props.dispatch(removeActions.remove(this.props.removeService.id));
   },
 
   handleCancel(event) {
     event.preventDefault();
-    store.dispatch(removeActions.reset());
+    this.props.dispatch(removeActions.reset());
   },
 
   render() {
@@ -157,7 +157,7 @@ const ServiceList = React.createClass({
 const routes = {
   path: 'services',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(ServiceList),
+    component: connect(mapStateToProps)(ServiceList),
   },
   childRoutes: [
     serviceDetail,

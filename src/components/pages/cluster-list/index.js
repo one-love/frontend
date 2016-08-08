@@ -5,7 +5,6 @@ import FlatButton from 'material-ui/FlatButton';
 import Cluster from '../../molecules/cluster';
 import CreateClusterForm from '../../molecules/cluster/createForm';
 import List from '../../molecules/transition-appear';
-import store from '../../../store';
 import clusterDetail from '../cluster';
 import Add from '../../atoms/add';
 import actions from './actions';
@@ -37,6 +36,7 @@ const ClusterList = React.createClass({
     status: React.PropTypes.string,
     removeStatus: React.PropTypes.string,
     removeCluster: React.PropTypes.object,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -54,38 +54,38 @@ const ClusterList = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(actions.get());
+    this.props.dispatch(actions.get());
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.createStatus === 'success') {
-      store.dispatch(createActions.reset());
-      store.dispatch(actions.get());
+      this.props.dispatch(createActions.reset());
+      this.props.dispatch(actions.get());
     }
     if (nextProps.removeStatus === 'success') {
-      store.dispatch(removeActions.reset());
-      store.dispatch(actions.get());
+      this.props.dispatch(removeActions.reset());
+      this.props.dispatch(actions.get());
     }
     return true;
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
-    store.dispatch(removeActions.reset());
+    this.props.dispatch(actions.reset());
+    this.props.dispatch(removeActions.reset());
   },
 
   showCreate() {
-    store.dispatch(settingsActions.open(<CreateClusterForm />));
+    this.props.dispatch(settingsActions.open(<CreateClusterForm />));
   },
 
   handleRemove(event) {
     event.preventDefault();
-    store.dispatch(removeActions.remove(this.props.removeCluster.id));
+    this.props.dispatch(removeActions.remove(this.props.removeCluster.id));
   },
 
   handleCancel(event) {
     event.preventDefault();
-    store.dispatch(removeActions.reset());
+    this.props.dispatch(removeActions.reset());
   },
 
   render() {
@@ -143,7 +143,7 @@ const ClusterList = React.createClass({
 const routes = {
   path: 'clusters',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(ClusterList),
+    component: connect(mapStateToProps)(ClusterList),
   },
   childRoutes: [
     clusterDetail,
