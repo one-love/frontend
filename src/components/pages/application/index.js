@@ -1,10 +1,7 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
-import styles from './application.scss';
+import { connect } from 'react-redux';
 import actions from './actions/detail';
 import editActions from './actions/edit';
-import { connect } from 'react-redux';
-import store from '../../../store';
 
 
 const mapStateToProps = (state) => ({
@@ -16,10 +13,11 @@ const ApplicationDetail = React.createClass({
   propTypes: {
     application: React.PropTypes.object,
     params: React.PropTypes.object,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   componentWillMount() {
-    store.dispatch(
+    this.props.dispatch(
       actions.get(
         this.props.params.serviceId,
         this.props.params.applicationName,
@@ -27,12 +25,12 @@ const ApplicationDetail = React.createClass({
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
-    store.dispatch(editActions.reset());
+    this.props.dispatch(actions.reset());
+    this.props.dispatch(editActions.reset());
   },
 
   render() {
-    if (!this.props.application) { return ''; }
+    if (!this.props.application) { return <div></div>; }
     return (
       <div>
         <h2>Application</h2>
@@ -51,9 +49,7 @@ const ApplicationDetail = React.createClass({
 const routes = {
   path: 'applications/:applicationName',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(
-      cssModules(ApplicationDetail, styles)
-    ),
+    component: connect(mapStateToProps)(ApplicationDetail),
   },
 };
 

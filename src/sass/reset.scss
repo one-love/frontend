@@ -21,21 +21,26 @@ time, mark, audio, video {
 	border: 0;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, main, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
   font-family: Helvetica, Arial;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
@@ -54,9 +59,4 @@ table {
 
 input:invalid {
   box-shadow: none;
-}
-
-:global .disable {
-  text-align: right;
-  cursor: pointer;
 }

@@ -1,10 +1,7 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
-import styles from './host.scss';
+import { connect } from 'react-redux';
 import actions from './actions/detail';
 import editActions from './actions/edit';
-import { connect } from 'react-redux';
-import store from '../../../store';
 
 
 const mapStateToProps = (state) => ({
@@ -16,10 +13,11 @@ const HostDetail = React.createClass({
   propTypes: {
     host: React.PropTypes.object,
     params: React.PropTypes.object,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   componentWillMount() {
-    store.dispatch(
+    this.props.dispatch(
       actions.get(
         this.props.params.clusterId,
         this.props.params.providerName,
@@ -28,12 +26,12 @@ const HostDetail = React.createClass({
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
-    store.dispatch(editActions.reset());
+    this.props.dispatch(actions.reset());
+    this.props.dispatch(editActions.reset());
   },
 
   render() {
-    if (!this.props.host) { return ''; }
+    if (!this.props.host) { return <div></div>; }
     return (
       <div>
         <h2>Host</h2>
@@ -52,9 +50,7 @@ const HostDetail = React.createClass({
 const routes = {
   path: 'hosts/:hostName',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(
-      cssModules(HostDetail, styles)
-    ),
+    component: connect(mapStateToProps)(HostDetail),
   },
 };
 

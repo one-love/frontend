@@ -1,8 +1,8 @@
 /* eslint react/no-is-mounted: 0 */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import Provision from '../../molecules/provision';
-import store from '../../../store';
 import actions from './actions/detail';
 import editActions from './actions/edit';
 import { socketio } from '../../../utils';
@@ -21,6 +21,7 @@ const ProvisionDetail = React.createClass({
   propTypes: {
     provision: React.PropTypes.object,
     params: React.PropTypes.object,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -32,7 +33,7 @@ const ProvisionDetail = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(actions.get(this.props.params.provisionId));
+    this.props.dispatch(actions.get(this.props.params.provisionId));
   },
 
   componentDidMount() {
@@ -40,15 +41,15 @@ const ProvisionDetail = React.createClass({
       if (this.props.provision.id === message.id) {
         switch (message.status) {
           case 'SUCCESS':
-            store.dispatch(actions.successProvision(this.props.provision));
+            this.props.dispatch(actions.successProvision(this.props.provision));
             break;
           case 'FAILED':
-            store.dispatch(
+            this.props.dispatch(
               actions.failProvision(this.props.provision, message)
             );
             break;
           default:
-            store.dispatch(
+            this.props.dispatch(
               actions.failProvision(
                 this.props.provision,
                 'unexpected error on provision',
@@ -68,8 +69,8 @@ const ProvisionDetail = React.createClass({
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
-    store.dispatch(editActions.reset());
+    this.props.dispatch(actions.reset());
+    this.props.dispatch(editActions.reset());
   },
 
   render() {
@@ -80,7 +81,7 @@ const ProvisionDetail = React.createClass({
 const routes = {
   path: ':provisionId',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(ProvisionDetail),
+    component: connect(mapStateToProps)(ProvisionDetail),
   },
 };
 

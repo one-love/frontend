@@ -1,10 +1,7 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
 import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
-import styles from './provider.scss';
 import { connect } from 'react-redux';
-import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import Host from '../../molecules/host';
 import HostDetail from '../host';
@@ -34,6 +31,7 @@ const ProviderDetail = React.createClass({
     params: React.PropTypes.object,
     remove: React.PropTypes.object,
     removeStatus: React.PropTypes.string,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -52,7 +50,7 @@ const ProviderDetail = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(
+    this.props.dispatch(
       actions.get(
         this.props.params.clusterId,
         this.props.params.providerName,
@@ -61,15 +59,15 @@ const ProviderDetail = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.createStatus === 'success') {
-      store.dispatch(createActions.reset());
-      store.dispatch(actions.get(
+      this.props.dispatch(createActions.reset());
+      this.props.dispatch(actions.get(
         this.props.params.clusterId,
         this.props.params.providerName,
       ));
       this.setState({ create: false });
     } else if (nextProps.removeStatus === 'success') {
-      store.dispatch(hostActionsRemove.reset());
-      store.dispatch(actions.get(
+      this.props.dispatch(hostActionsRemove.reset());
+      this.props.dispatch(actions.get(
         this.props.params.clusterId,
         this.props.params.providerName,
       ));
@@ -78,13 +76,13 @@ const ProviderDetail = React.createClass({
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
+    this.props.dispatch(actions.reset());
   },
 
   showCreate() {
     const clusterId = this.props.params.clusterId;
     const providerName = this.props.params.providerName;
-    store.dispatch(
+    this.props.dispatch(
       settingsActions.open(
         <CreateHostForm
           clusterId={clusterId}
@@ -116,14 +114,14 @@ const ProviderDetail = React.createClass({
 
   handleRemove(event) {
     event.preventDefault();
-    store.dispatch(hostActionsRemove.remove(
+    this.props.dispatch(hostActionsRemove.remove(
       this.props.remove.id,
     ));
   },
 
   handleCancel(event) {
     event.preventDefault();
-    store.dispatch(hostActionsRemove.reset());
+    this.props.dispatch(hostActionsRemove.reset());
   },
 
   render() {
@@ -191,9 +189,7 @@ const ProviderDetail = React.createClass({
 const routes = {
   path: 'providers/:providerName',
   indexRoute: {
-    component: connect(mapStateToProps, actions)(
-      cssModules(ProviderDetail, styles)
-    ),
+    component: connect(mapStateToProps)(ProviderDetail),
   },
   childRoutes: [
     HostDetail,

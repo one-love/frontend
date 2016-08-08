@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { actions } from './actions';
-import store from '../../store';
 import { history } from '../../constants';
 import Spinner from '../layout/spinner';
 
@@ -24,6 +23,8 @@ const Register = React.createClass({
     children: React.PropTypes.node,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
+    reset: React.PropTypes.func.isRequired,
+    register: React.PropTypes.func.isRequired,
   },
 
   getInitialState() {
@@ -43,7 +44,7 @@ const Register = React.createClass({
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
+    this.props.reset();
   },
 
   handleFirstNameChange(event) {
@@ -64,13 +65,11 @@ const Register = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(
-      actions.register(
-        this.state.email,
-        this.state.password,
-        this.state.firstName,
-        this.state.lastName
-      )
+    this.props.register(
+      this.state.email,
+      this.state.password,
+      this.state.firstName,
+      this.state.lastName
     );
   },
 

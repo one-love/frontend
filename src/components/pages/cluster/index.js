@@ -1,17 +1,14 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import InlineEdit from 'react-edit-inline';
 import FlatButton from 'material-ui/FlatButton';
-import styles from './cluster.scss';
 import actions from './actions/detail';
 import editActions from './actions/edit';
 import providerActions from '../../molecules/provider/actions/create';
 import providerActionsRemove from '../provider/actions/remove';
 import serviceActionsRemove from '../../organisms/cluster-service-list/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
-import store from '../../../store';
 import List from '../../molecules/transition-appear';
 import ClusterServiceList from '../../organisms/cluster-service-list';
 import Provider from '../../molecules/provider';
@@ -54,6 +51,7 @@ const ClusterDetail = React.createClass({
     providerRemoveStatus: React.PropTypes.string,
     serviceRemove: React.PropTypes.object,
     serviceRemoveStatus: React.PropTypes.string,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -75,33 +73,33 @@ const ClusterDetail = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(actions.get(this.props.params.clusterId));
+    this.props.dispatch(actions.get(this.props.params.clusterId));
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.providerStatus === 'success') {
-      store.dispatch(actions.get(this.props.params.clusterId));
-      store.dispatch(providerActions.reset());
+      this.props.dispatch(actions.get(this.props.params.clusterId));
+      this.props.dispatch(providerActions.reset());
       this.setState({ create: false });
     } else if (nextProps.providerRemoveStatus === 'success') {
-      store.dispatch(actions.get(this.props.params.clusterId));
-      store.dispatch(providerActionsRemove.reset());
+      this.props.dispatch(actions.get(this.props.params.clusterId));
+      this.props.dispatch(providerActionsRemove.reset());
     } else if (nextProps.serviceRemoveStatus === 'success') {
-      store.dispatch(actions.get(this.props.params.clusterId));
-      store.dispatch(serviceActionsRemove.reset());
+      this.props.dispatch(actions.get(this.props.params.clusterId));
+      this.props.dispatch(serviceActionsRemove.reset());
     } else if (nextProps.addServiceStatus === 'success') {
-      store.dispatch(actions.get(this.props.params.clusterId));
-      store.dispatch(addService.reset());
+      this.props.dispatch(actions.get(this.props.params.clusterId));
+      this.props.dispatch(addService.reset());
     }
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
-    store.dispatch(editActions.reset());
+    this.props.dispatch(actions.reset());
+    this.props.dispatch(editActions.reset());
   },
 
   dataChanged(data) {
-    store.dispatch(
+    this.props.dispatch(
       editActions.edit(
         this.props.params.clusterId,
         data
@@ -111,7 +109,7 @@ const ClusterDetail = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(
+    this.props.dispatch(
       providerActions.create(
         this.props.params.clusterId,
         this.state.type,
@@ -122,30 +120,30 @@ const ClusterDetail = React.createClass({
 
   handleRemove(event) {
     event.preventDefault();
-    store.dispatch(providerActionsRemove.remove(
+    this.props.dispatch(providerActionsRemove.remove(
       this.props.providerRemove.id,
     ));
   },
 
   handleCancel(event) {
     event.preventDefault();
-    store.dispatch(providerActionsRemove.reset());
+    this.props.dispatch(providerActionsRemove.reset());
   },
 
   handleRemoveService(event) {
     event.preventDefault();
-    store.dispatch(serviceActionsRemove.remove(
+    this.props.dispatch(serviceActionsRemove.remove(
       this.props.serviceRemove.id,
     ));
   },
 
   handleCancelService(event) {
     event.preventDefault();
-    store.dispatch(serviceActionsRemove.reset());
+    this.props.dispatch(serviceActionsRemove.reset());
   },
 
   showCreate() {
-    store.dispatch(settingsActions.open(
+    this.props.dispatch(settingsActions.open(
       <div>
         <CreateProviderForm cluster={this.props.cluster} />
         <hr style={{ margin: '30px 0' }} />
@@ -184,10 +182,10 @@ const ClusterDetail = React.createClass({
     );
     const roles = (
       <div>
-        <div styleName="label">
+        <div>
           roles:
         </div>
-        <div styleName="item">
+        <div>
           {
             this.props.cluster.roles ?
             this.props.cluster.roles.map(
@@ -265,13 +263,10 @@ const ClusterDetail = React.createClass({
 });
 
 
-const ClusterDetailCss = cssModules(ClusterDetail, styles);
-const ClusterDetailConnect = connect(mapStateToProps, actions)(ClusterDetailCss);
-
 const routes = {
   path: ':clusterId',
   indexRoute: {
-    component: ClusterDetailConnect,
+    component: connect(mapStateToProps)(ClusterDetail),
   },
   childRoutes: [
     ProviderDetail,
