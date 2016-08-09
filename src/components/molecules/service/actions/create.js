@@ -4,26 +4,26 @@ import { API_URL } from '../../../../backend_url';
 import { SERVICE_CREATE } from '../constants';
 
 
-export const reset = createAction(SERVICE_CREATE, () => ({
+const reset = createAction(SERVICE_CREATE, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(SERVICE_CREATE, () => ({
+const begin = createAction(SERVICE_CREATE, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(SERVICE_CREATE, service => ({
+const success = createAction(SERVICE_CREATE, service => ({
   service,
   status: 'success',
 }));
 
-export const fail = createAction(SERVICE_CREATE, error => ({
+const fail = createAction(SERVICE_CREATE, error => ({
   status: 'error',
   error,
 }));
 
 
-export const create = (name, sshKey, username) =>
+const create = (name, sshKey, username) =>
   dispatch => {
     dispatch(begin());
     fetch({

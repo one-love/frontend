@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import { DropTarget } from 'react-dnd';
 import { connect as reduxConnect } from 'react-redux';
-import store from '../../../store';
 import Service from '../../molecules/service';
 import List from '../../molecules/transition-appear';
 import actions from '../../molecules/dragable-service/actions/add';
@@ -33,6 +32,7 @@ const ClusterServiceList = React.createClass({
     connectDropTarget: React.PropTypes.func.isRequired,
     isOver: React.PropTypes.bool.isRequired,
     canDrop: React.PropTypes.bool.isRequired,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -56,7 +56,7 @@ const ClusterServiceList = React.createClass({
       this.setState({ services });
     }
     if (nextProps.addService) {
-      store.dispatch(actions.reset());
+      this.props.dispatch(actions.reset());
     }
   },
 
@@ -107,7 +107,7 @@ const ClusterServiceDNDList = DropTarget(ItemTypes.SERVICE, clusterTarget, (conn
   isOver: monitor.isOver(),
   canDrop: monitor.canDrop(),
 }))(ClusterServiceList);
-const ClusterServiceConnect = reduxConnect(mapStateToProps, actions)(ClusterServiceDNDList);
+const ClusterServiceConnect = reduxConnect(mapStateToProps)(ClusterServiceDNDList);
 
 
 export default ClusterServiceConnect;

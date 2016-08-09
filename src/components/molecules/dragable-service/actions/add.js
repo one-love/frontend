@@ -3,25 +3,25 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { CLUSTER_SERVICE_ADD } from '../constants';
 
-export const reset = createAction(CLUSTER_SERVICE_ADD, () => ({
+const reset = createAction(CLUSTER_SERVICE_ADD, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(CLUSTER_SERVICE_ADD, () => ({
+const begin = createAction(CLUSTER_SERVICE_ADD, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(CLUSTER_SERVICE_ADD, service => ({
+const success = createAction(CLUSTER_SERVICE_ADD, service => ({
   service,
   status: 'success',
 }));
 
-export const fail = createAction(CLUSTER_SERVICE_ADD, error => ({
+const fail = createAction(CLUSTER_SERVICE_ADD, error => ({
   status: 'error',
   error,
 }));
 
-export const add = (clusterId, itemId) =>
+const add = (clusterId, itemId) =>
   dispatch => {
     dispatch(begin());
     fetch({

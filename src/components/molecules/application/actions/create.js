@@ -4,26 +4,26 @@ import { API_URL } from '../../../../backend_url';
 import { APPLICATION_CREATE } from '../constants';
 
 
-export const reset = createAction(APPLICATION_CREATE, () => ({
+const reset = createAction(APPLICATION_CREATE, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(APPLICATION_CREATE, () => ({
+const begin = createAction(APPLICATION_CREATE, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(APPLICATION_CREATE, application => ({
+const success = createAction(APPLICATION_CREATE, application => ({
   application,
   status: 'success',
 }));
 
-export const fail = createAction(APPLICATION_CREATE, error => ({
+const fail = createAction(APPLICATION_CREATE, error => ({
   status: 'error',
   error,
 }));
 
 
-export const create = (serviceId, name, galaxyRole) =>
+const create = (serviceId, name, galaxyRole) =>
   dispatch => {
     dispatch(begin());
     fetch({

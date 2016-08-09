@@ -3,21 +3,21 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { HOST_REMOVE } from '../constants';
 
-export const reset = createAction(HOST_REMOVE, () => ({ status: 'initial' }));
-export const begin = createAction(HOST_REMOVE, () => ({ status: 'pending' }));
+const reset = createAction(HOST_REMOVE, () => ({ status: 'initial' }));
+const begin = createAction(HOST_REMOVE, () => ({ status: 'pending' }));
 
-export const success = createAction(HOST_REMOVE, host => ({
+const success = createAction(HOST_REMOVE, host => ({
   host,
   status: 'success',
 }));
 
-export const fail = createAction(HOST_REMOVE, error => ({
+const fail = createAction(HOST_REMOVE, error => ({
   status: 'error',
   error,
 }));
 
 
-export const confirm = createAction(HOST_REMOVE, id => ({
+const confirm = createAction(HOST_REMOVE, id => ({
   status: 'confirm',
   host: {
     id,
@@ -25,7 +25,7 @@ export const confirm = createAction(HOST_REMOVE, id => ({
 }));
 
 
-export const remove = id =>
+const remove = id =>
   dispatch => {
     dispatch(begin());
     fetch({

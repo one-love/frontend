@@ -4,16 +4,16 @@ import { API_URL } from '../../../../backend_url';
 import { PROVISION_DETAIL } from '../constants';
 
 
-export const reset = createAction(PROVISION_DETAIL, () => ({ status: 'initial' }));
+const reset = createAction(PROVISION_DETAIL, () => ({ status: 'initial' }));
 
-export const begin = createAction(PROVISION_DETAIL, () => ({ status: 'pending' }));
+const begin = createAction(PROVISION_DETAIL, () => ({ status: 'pending' }));
 
-export const success = createAction(PROVISION_DETAIL, provision => ({
+const success = createAction(PROVISION_DETAIL, provision => ({
   status: 'success',
   provision,
 }));
 
-export const successProvision = createAction(PROVISION_DETAIL, provision => ({
+const successProvision = createAction(PROVISION_DETAIL, provision => ({
   status: 'success',
   provision: {
     ...provision,
@@ -21,12 +21,12 @@ export const successProvision = createAction(PROVISION_DETAIL, provision => ({
   },
 }));
 
-export const fail = createAction(PROVISION_DETAIL, error => ({
+const fail = createAction(PROVISION_DETAIL, error => ({
   status: 'error',
   error,
 }));
 
-export const failProvision = createAction(PROVISION_DETAIL, (provision, error) => ({
+const failProvision = createAction(PROVISION_DETAIL, (provision, error) => ({
   status: 'error',
   error,
   provision: {
@@ -35,7 +35,7 @@ export const failProvision = createAction(PROVISION_DETAIL, (provision, error) =
   },
 }));
 
-export const get = id =>
+const get = id =>
   dispatch => {
     dispatch(begin());
     fetch({

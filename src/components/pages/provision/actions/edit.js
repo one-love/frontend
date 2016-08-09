@@ -5,25 +5,25 @@ import { PROVISION_EDIT } from '../constants';
 import { get } from './detail';
 
 
-export const reset = createAction(PROVISION_EDIT, () => ({
+const reset = createAction(PROVISION_EDIT, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(PROVISION_EDIT, () => ({
+const begin = createAction(PROVISION_EDIT, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(PROVISION_EDIT, provision => ({
+const success = createAction(PROVISION_EDIT, provision => ({
   provision,
   status: 'success',
 }));
 
-export const fail = createAction(PROVISION_EDIT, error => ({
+const fail = createAction(PROVISION_EDIT, error => ({
   status: 'error',
   error,
 }));
 
-export const edit = (id, fields) =>
+const edit = (id, fields) =>
   dispatch => {
     dispatch(begin());
     fetch({

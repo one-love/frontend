@@ -30,7 +30,7 @@ const ApplicationDetail = React.createClass({
   },
 
   render() {
-    if (!this.props.application) { return <div></div>; }
+    if (!this.props.application) { return <div />; }
     return (
       <div>
         <h2>Application</h2>

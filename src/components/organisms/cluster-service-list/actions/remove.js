@@ -4,25 +4,25 @@ import { API_URL } from '../../../../backend_url';
 import { CLUSTER_SERVICE_REMOVE } from '../constants';
 
 
-export const reset = createAction(CLUSTER_SERVICE_REMOVE, () => ({
+const reset = createAction(CLUSTER_SERVICE_REMOVE, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(CLUSTER_SERVICE_REMOVE, () => ({
+const begin = createAction(CLUSTER_SERVICE_REMOVE, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(CLUSTER_SERVICE_REMOVE, service => ({
+const success = createAction(CLUSTER_SERVICE_REMOVE, service => ({
   service,
   status: 'success',
 }));
 
-export const fail = createAction(CLUSTER_SERVICE_REMOVE, error => ({
+const fail = createAction(CLUSTER_SERVICE_REMOVE, error => ({
   status: 'error',
   error,
 }));
 
-export const confirm = createAction(CLUSTER_SERVICE_REMOVE, id => ({
+const confirm = createAction(CLUSTER_SERVICE_REMOVE, id => ({
   status: 'confirm',
   service: {
     id,
@@ -30,7 +30,7 @@ export const confirm = createAction(CLUSTER_SERVICE_REMOVE, id => ({
 }));
 
 
-export const remove = id =>
+const remove = id =>
   dispatch => {
     dispatch(begin());
     fetch({

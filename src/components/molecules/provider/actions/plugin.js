@@ -4,27 +4,27 @@ import { API_URL } from '../../../../backend_url';
 import { PROVIDER_PLUGINS } from '../constants';
 
 
-export const reset = createAction(PROVIDER_PLUGINS, () => ({
+const reset = createAction(PROVIDER_PLUGINS, () => ({
   status: 'initial',
   plugins: [],
 }));
 
-export const begin = createAction(PROVIDER_PLUGINS, () => ({
+const begin = createAction(PROVIDER_PLUGINS, () => ({
   status: 'pending',
   plugins: [],
 }));
 
-export const success = createAction(PROVIDER_PLUGINS, plugins => ({
+const success = createAction(PROVIDER_PLUGINS, plugins => ({
   plugins,
   status: 'success',
 }));
 
-export const fail = createAction(PROVIDER_PLUGINS, error => ({
+const fail = createAction(PROVIDER_PLUGINS, error => ({
   status: 'error',
   error,
 }));
 
-export const get = () =>
+const get = () =>
   dispatch => {
     dispatch(begin());
     fetch({
