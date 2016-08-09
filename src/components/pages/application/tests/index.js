@@ -1,9 +1,9 @@
-import applicationEditTest from './edit';
 import applicationDetailTest from './detail';
+import applicationEditTest from './edit';
 
 const application = {
-  applicationEditTest,
   applicationDetailTest,
+  applicationEditTest,
 };
 
 export default application;
