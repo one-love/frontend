@@ -4,25 +4,25 @@ import { API_URL } from '../../../../backend_url';
 import { HOST_EDIT } from '../constants';
 import { get } from './detail';
 
-export const reset = createAction(HOST_EDIT, () => ({
+const reset = createAction(HOST_EDIT, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(HOST_EDIT, () => ({
+const begin = createAction(HOST_EDIT, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(HOST_EDIT, host => ({
+const success = createAction(HOST_EDIT, host => ({
   host,
   status: 'success',
 }));
 
-export const fail = createAction(HOST_EDIT, error => ({
+const fail = createAction(HOST_EDIT, error => ({
   status: 'error',
   error,
 }));
 
-export const edit = (id, fields) =>
+const edit = (id, fields) =>
   dispatch => {
     dispatch(begin());
     fetch({

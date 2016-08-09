@@ -3,20 +3,20 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { PROVIDER_DETAIL } from '../constants';
 
-export const reset = createAction(PROVIDER_DETAIL, () => ({ status: 'initial' }));
-export const begin = createAction(PROVIDER_DETAIL, () => ({ status: 'pending' }));
+const reset = createAction(PROVIDER_DETAIL, () => ({ status: 'initial' }));
+const begin = createAction(PROVIDER_DETAIL, () => ({ status: 'pending' }));
 
-export const success = createAction(PROVIDER_DETAIL, provider => ({
+const success = createAction(PROVIDER_DETAIL, provider => ({
   provider,
   status: 'success',
 }));
 
-export const fail = createAction(PROVIDER_DETAIL, error => ({
+const fail = createAction(PROVIDER_DETAIL, error => ({
   status: 'error',
   error,
 }));
 
-export const get = (clusterId, providerName) =>
+const get = (clusterId, providerName) =>
   dispatch => {
     dispatch(begin());
     fetch({

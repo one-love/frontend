@@ -3,32 +3,32 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { CLUSTER_REMOVE } from '../constants';
 
-export const reset = createAction(CLUSTER_REMOVE, () => ({
+const reset = createAction(CLUSTER_REMOVE, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(CLUSTER_REMOVE, () => ({
+const begin = createAction(CLUSTER_REMOVE, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(CLUSTER_REMOVE, cluster => ({
+const success = createAction(CLUSTER_REMOVE, cluster => ({
   cluster,
   status: 'success',
 }));
 
-export const fail = createAction(CLUSTER_REMOVE, error => ({
+const fail = createAction(CLUSTER_REMOVE, error => ({
   status: 'error',
   error,
 }));
 
-export const confirm = createAction(CLUSTER_REMOVE, id => ({
+const confirm = createAction(CLUSTER_REMOVE, id => ({
   status: 'confirm',
   cluster: {
     id,
   },
 }));
 
-export const remove = id =>
+const remove = id =>
   dispatch => {
     dispatch(begin());
     fetch({

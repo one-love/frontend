@@ -4,26 +4,26 @@ import { API_URL } from '../../../../backend_url';
 import { CLUSTER_CREATE } from '../constants';
 
 
-export const reset = createAction(CLUSTER_CREATE, () => ({
+const reset = createAction(CLUSTER_CREATE, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(CLUSTER_CREATE, () => ({
+const begin = createAction(CLUSTER_CREATE, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(CLUSTER_CREATE, cluster => ({
+const success = createAction(CLUSTER_CREATE, cluster => ({
   cluster,
   status: 'success',
 }));
 
-export const fail = createAction(CLUSTER_CREATE, error => ({
+const fail = createAction(CLUSTER_CREATE, error => ({
   status: 'error',
   error,
 }));
 
 
-export const create = (name, sshKey, username) =>
+const create = (name, sshKey, username) =>
   dispatch => {
     dispatch(begin());
     fetch({

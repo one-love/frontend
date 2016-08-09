@@ -4,26 +4,26 @@ import { API_URL } from '../../../../backend_url';
 import { PROVIDER_REMOVE } from '../constants';
 
 
-export const reset = createAction(PROVIDER_REMOVE, () => ({
+const reset = createAction(PROVIDER_REMOVE, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(PROVIDER_REMOVE, () => ({
+const begin = createAction(PROVIDER_REMOVE, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(PROVIDER_REMOVE, provider => ({
+const success = createAction(PROVIDER_REMOVE, provider => ({
   provider,
   status: 'success',
 }));
 
-export const fail = createAction(PROVIDER_REMOVE, error => ({
+const fail = createAction(PROVIDER_REMOVE, error => ({
   status: 'error',
   error,
 }));
 
 
-export const confirm = createAction(PROVIDER_REMOVE, id => ({
+const confirm = createAction(PROVIDER_REMOVE, id => ({
   status: 'confirm',
   provider: {
     id,
@@ -31,7 +31,7 @@ export const confirm = createAction(PROVIDER_REMOVE, id => ({
 }));
 
 
-export const remove = id =>
+const remove = id =>
   dispatch => {
     dispatch(begin());
     fetch({

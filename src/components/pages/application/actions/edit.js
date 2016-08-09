@@ -4,25 +4,25 @@ import { API_URL } from '../../../../backend_url';
 import { APPLICATION_EDIT } from '../constants';
 import { get } from './detail';
 
-export const reset = createAction(APPLICATION_EDIT, () => ({
+const reset = createAction(APPLICATION_EDIT, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(APPLICATION_EDIT, () => ({
+const begin = createAction(APPLICATION_EDIT, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(APPLICATION_EDIT, application => ({
+const success = createAction(APPLICATION_EDIT, application => ({
   application,
   status: 'success',
 }));
 
-export const fail = createAction(APPLICATION_EDIT, error => ({
+const fail = createAction(APPLICATION_EDIT, error => ({
   status: 'error',
   error,
 }));
 
-export const edit = (id, fields) =>
+const edit = (id, fields) =>
   dispatch => {
     dispatch(begin());
     fetch({

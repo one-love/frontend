@@ -3,27 +3,28 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { SERVICE_LIST } from '../constants';
 
-export const reset = createAction(SERVICE_LIST, () => ({
+
+const reset = createAction(SERVICE_LIST, () => ({
   status: 'initial',
   services: [],
 }));
 
-export const begin = createAction(SERVICE_LIST, () => ({
+const begin = createAction(SERVICE_LIST, () => ({
   status: 'pending',
   services: [],
 }));
 
-export const success = createAction(SERVICE_LIST, services => ({
+const success = createAction(SERVICE_LIST, services => ({
   services,
   status: 'success',
 }));
 
-export const fail = createAction(SERVICE_LIST, error => ({
+const fail = createAction(SERVICE_LIST, error => ({
   status: 'error',
   error,
 }));
 
-export const get = () =>
+const get = () =>
   dispatch => {
     dispatch(begin());
     fetch({

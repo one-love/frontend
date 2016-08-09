@@ -4,25 +4,25 @@ import { API_URL } from '../../../../backend_url';
 import { CLUSTER_EDIT } from '../constants';
 import { get } from './detail';
 
-export const reset = createAction(CLUSTER_EDIT, () => ({
+const reset = createAction(CLUSTER_EDIT, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(CLUSTER_EDIT, () => ({
+const begin = createAction(CLUSTER_EDIT, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(CLUSTER_EDIT, cluster => ({
+const success = createAction(CLUSTER_EDIT, cluster => ({
   cluster,
   status: 'success',
 }));
 
-export const fail = createAction(CLUSTER_EDIT, error => ({
+const fail = createAction(CLUSTER_EDIT, error => ({
   status: 'error',
   error,
 }));
 
-export const edit = (id, fields) =>
+const edit = (id, fields) =>
   dispatch => {
     dispatch(begin());
     fetch({

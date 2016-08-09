@@ -4,15 +4,15 @@ import { API_URL } from '../../../backend_url';
 import { LOGIN } from './constants';
 
 
-export const reset = createAction(LOGIN, () => ({
+const reset = createAction(LOGIN, () => ({
   status: 'initial',
 }));
 
-export const begin = createAction(LOGIN, () => ({
+const begin = createAction(LOGIN, () => ({
   status: 'pending',
 }));
 
-export const success = createAction(LOGIN, json => {
+const success = createAction(LOGIN, json => {
   window.localStorage.OneLoveAuthToken = json.token;
   return {
     token: json.token,
@@ -20,13 +20,13 @@ export const success = createAction(LOGIN, json => {
   };
 });
 
-export const fail = createAction(LOGIN, error => ({
+const fail = createAction(LOGIN, error => ({
   error: error.message,
   status: 'error',
 }));
 
 
-export const login = (email, password) =>
+const login = (email, password) =>
   dispatch => {
     dispatch(begin());
     fetch({
