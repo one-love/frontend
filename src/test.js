@@ -7,6 +7,7 @@ import servicePage from './components/pages/service/tests';
 import clusterListPage from './components/pages/cluster-list/tests';
 import serviceListPage from './components/pages/service-list/tests';
 import provisionPage from './components/pages/provision/tests';
+import provisionListPage from './components/pages/provision-list/tests';
 
 
 /* PAGES */
@@ -19,3 +20,4 @@ servicePage;
 clusterListPage;
 serviceListPage;
 provisionPage;
+provisionListPage;
