@@ -5,6 +5,7 @@ import hostPage from './components/pages/host/tests';
 import providerPage from './components/pages/provider/tests';
 import servicePage from './components/pages/service/tests';
 import clusterListPage from './components/pages/cluster-list/tests';
+import serviceListPage from './components/pages/service-list/tests';
 
 
 /* PAGES */
@@ -15,3 +16,4 @@ hostPage;
 providerPage;
 servicePage;
 clusterListPage;
+serviceListPage;
