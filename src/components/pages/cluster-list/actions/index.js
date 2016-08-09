@@ -3,27 +3,27 @@ import { fetch } from '../../../../utils';
 import { API_URL } from '../../../../backend_url';
 import { CLUSTER_LIST } from '../constants';
 
-export const reset = createAction(CLUSTER_LIST, () => ({
+const reset = createAction(CLUSTER_LIST, () => ({
   status: 'initial',
   clusters: [],
 }));
 
-export const begin = createAction(CLUSTER_LIST, () => ({
+const begin = createAction(CLUSTER_LIST, () => ({
   status: 'pending',
   clusters: [],
 }));
 
-export const success = createAction(CLUSTER_LIST, clusters => ({
+const success = createAction(CLUSTER_LIST, clusters => ({
   clusters,
   status: 'success',
 }));
 
-export const fail = createAction(CLUSTER_LIST, error => ({
+const fail = createAction(CLUSTER_LIST, error => ({
   status: 'error',
   error,
 }));
 
-export const get = () =>
+const get = () =>
   dispatch => {
     dispatch(begin());
     fetch({

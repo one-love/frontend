@@ -1,4 +1,5 @@
 /* eslint global-require: 0 */
+/* eslint import/no-extraneous-dependencies: 0 */
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';

@@ -28,7 +28,7 @@ const Landing = React.createClass({
 
   render() {
     if (!this.props.clusters || !this.props.services) {
-      return (<div></div>);
+      return (<div />);
     }
     if (this.props.clusters.length) {
       return (

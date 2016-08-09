@@ -31,7 +31,7 @@ const HostDetail = React.createClass({
   },
 
   render() {
-    if (!this.props.host) { return <div></div>; }
+    if (!this.props.host) { return <div />; }
     return (
       <div>
         <h2>Host</h2>

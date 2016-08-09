@@ -4,21 +4,21 @@ import { API_URL } from '../../../../backend_url';
 import { APPLICATION_REMOVE } from '../constants';
 
 
-export const reset = createAction(APPLICATION_REMOVE, () => ({ status: 'initial' }));
-export const begin = createAction(APPLICATION_REMOVE, () => ({ status: 'pending' }));
+const reset = createAction(APPLICATION_REMOVE, () => ({ status: 'initial' }));
+const begin = createAction(APPLICATION_REMOVE, () => ({ status: 'pending' }));
 
-export const success = createAction(APPLICATION_REMOVE, application => ({
+const success = createAction(APPLICATION_REMOVE, application => ({
   application,
   status: 'success',
 }));
 
-export const fail = createAction(APPLICATION_REMOVE, error => ({
+const fail = createAction(APPLICATION_REMOVE, error => ({
   status: 'error',
   error,
 }));
 
 
-export const confirm = createAction(APPLICATION_REMOVE, id => ({
+const confirm = createAction(APPLICATION_REMOVE, id => ({
   status: 'confirm',
   application: {
     id,
@@ -26,7 +26,7 @@ export const confirm = createAction(APPLICATION_REMOVE, id => ({
 }));
 
 
-export const remove = id =>
+const remove = id =>
   dispatch => {
     dispatch(begin());
     fetch({

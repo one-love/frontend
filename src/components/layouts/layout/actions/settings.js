@@ -2,13 +2,13 @@ import { createAction } from 'redux-actions';
 import { SETTINGS } from '../constants';
 
 
-export const open = createAction(SETTINGS, settings => ({
+const open = createAction(SETTINGS, settings => ({
   settings,
   open: true,
 }));
 
 
-export const close = createAction(SETTINGS, () => ({
+const close = createAction(SETTINGS, () => ({
   open: false,
 }));
 

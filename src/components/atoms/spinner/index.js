@@ -6,8 +6,8 @@ import styles from './spinner.scss';
 function Spinner() {
   return (
     <div styleName="faceoff">
-      <div styleName="preloader"></div>
-      <div styleName="preloader-section"></div>
+      <div styleName="preloader" />
+      <div styleName="preloader-section" />
     </div>
   );
 }
