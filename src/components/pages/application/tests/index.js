@@ -2,8 +2,8 @@ import applicationEditTest from './edit';
 import applicationDetailTest from './detail';
 
 const application = {
-  applicationEditTest,
   applicationDetailTest,
+  applicationEditTest,
 };
 
 export default application;
