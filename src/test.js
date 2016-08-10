@@ -12,6 +12,7 @@ import serviceProvisionPage from './components/pages/service-provision/tests';
 import applicationMolecule from './components/molecules/application/tests';
 import clusterMolecule from './components/molecules/cluster/tests';
 import hostMolecule from './components/molecules/host/tests';
+import serviceMolecule from './components/molecules/service/tests';
 
 
 /* PAGES */
@@ -32,3 +33,4 @@ serviceProvisionPage;
 applicationMolecule;
 clusterMolecule;
 hostMolecule;
+serviceMolecule;
