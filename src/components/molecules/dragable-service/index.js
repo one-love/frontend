@@ -43,9 +43,8 @@ const DragableService = React.createClass({
 });
 
 
-/* eslint-disable new-cap */
+// eslint-disable-next-line new-cap
 export default DragSource(ItemTypes.SERVICE, serviceSource, (connect, monitor) => ({
-  /* eslint-enable */
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
 }))(DragableService);

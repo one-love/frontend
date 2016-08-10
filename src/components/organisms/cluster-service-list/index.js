@@ -100,9 +100,8 @@ const ClusterServiceList = React.createClass({
 });
 
 
-/* eslint-disable new-cap */
+// eslint-disable-next-line new-cap
 const ClusterServiceDNDList = DropTarget(ItemTypes.SERVICE, clusterTarget, (connect, monitor) => ({
-  /* eslint-enable */
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
   canDrop: monitor.canDrop(),
