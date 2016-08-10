@@ -6,14 +6,18 @@ import serviceActions from '../service-list/actions';
 
 const mapStateToProps = (state) => ({
   clusters: state.clusterList.clusters,
+  clusterStatus: state.clusterList.status,
   services: state.serviceList.services,
+  serviceStatus: state.serviceList.status,
 });
 
 
 const Landing = React.createClass({
   propTypes: {
     clusters: React.PropTypes.array,
+    clusterStatus: React.PropTypes.string,
     services: React.PropTypes.array,
+    serviceStatus: React.PropTypes.string,
     dispatch: React.PropTypes.func.isRequired,
   },
 
@@ -42,12 +46,14 @@ const Landing = React.createClass({
           </div>
         </div>
       );
+    } else if (this.props.clusterStatus === 'success') {
+      return (
+        <div>
+          <h1>Would you like to create your first cluster and service?</h1>
+        </div>
+      );
     }
-    return (
-      <div>
-        <h1>Would you like to create your first cluster and service?</h1>
-      </div>
-    );
+    return (<div />);
   },
 });
 

@@ -109,10 +109,15 @@ export function pathnameToBreadcrumbs(pathname) {
   crumbBlueprint.forEach((element, index) => {
     const item = {
       name: breadcrumbItems[element.name],
-      path: element.argument ? `/${element.argument}/${element.name}` : `/${element.name}`,
+      original: element.name,
+      path: `/${element.name}`,
     };
     if (element.argument) {
-      item.path = `${result[index - 1].path}${item.path}`;
+      let path = `${result[index - 1].path}/${result[index - 1].original}/${element.argument}`;
+      if (index === 1) {
+        path = `${result[index - 1].path}/${element.argument}`;
+      }
+      item.path = path;
     }
     result.push(item);
   });
