@@ -8,7 +8,8 @@ import clusterListPage from './components/pages/cluster-list/tests';
 import serviceListPage from './components/pages/service-list/tests';
 import provisionPage from './components/pages/provision/tests';
 import provisionListPage from './components/pages/provision-list/tests';
-import serviceProvisionTest from './components/pages/service-provision/tests';
+import serviceProvisionPage from './components/pages/service-provision/tests';
+import applicationMolecule from './components/molecules/application/tests';
 
 
 /* PAGES */
@@ -22,4 +23,8 @@ clusterListPage;
 serviceListPage;
 provisionPage;
 provisionListPage;
-serviceProvisionTest;
+serviceProvisionPage;
+
+/* MOLECULES */
+
+applicationMolecule;
