@@ -16,7 +16,6 @@ import '../sass/reset.scss';
 const muiTheme = getMuiTheme({
   footer: {
     height: 25,
-    lineHeight: '25px',
     textAlign: 'center',
     color: '#bbb',
     fontFamily: 'Roboto, sans-serif',
@@ -24,6 +23,18 @@ const muiTheme = getMuiTheme({
     a: {
       color: 'gray',
     },
+  },
+
+  breadcrumbs: {
+    height: 25,
+  },
+
+  inactive: {
+    color: 'gray',
+  },
+
+  content: {
+    padding: 10,
   },
 });
 
