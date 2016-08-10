@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -11,29 +12,12 @@ import HomeIcon from 'material-ui/svg-icons/action/home';
 import ReorderIcon from 'material-ui/svg-icons/action/reorder';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import store from '../../../store';
+import { pathnameToBreadcrumbs } from '../../../utils';
 import Landing from '../../pages/landing';
 import Settings from '../../molecules/settings';
 import { history } from '../../../constants';
 import actions from './actions/settings';
 import notificationsActions from './actions/notifications';
-
-
-const styles = {
-  inactive: {
-    color: 'gray',
-  },
-
-  content: {
-    fontFamily: 'Roboto, sans-serif',
-    padding: '10px',
-  },
-
-  settings: {
-    item: {
-      cursor: 'pointer',
-    },
-  },
-};
 
 
 const mapStateToProps = (state) => ({
@@ -97,11 +81,51 @@ const Layout = React.createClass({
   },
 
   render() {
-    const content = this.props.children ? this.props.children : <Landing />;
+    const theme = this.context.muiTheme;
     const header = this.context.muiTheme.toolbar.height;
     const footer = this.context.muiTheme.footer.height;
     const headerFooter = header + footer;
-    styles.content.height = `calc(100vh - ${headerFooter}px - 2 * ${styles.content.padding})`;
+    const allButContent = headerFooter + (2 * theme.content.padding) + theme.breadcrumbs.height;
+    const styles = {
+      inactive: {
+        color: this.context.muiTheme.inactive.color,
+      },
+
+      content: {
+        fontFamily: 'Roboto, sans-serif',
+        padding: `${theme.content.padding}px`,
+        height: `calc(100vh - ${allButContent}px)`,
+        overflow: 'auto',
+      },
+
+      settings: {
+        item: {
+          cursor: 'pointer',
+        },
+      },
+
+      footer: {
+        height: `${theme.footer.height}px`,
+        lineHeight: `${theme.footer.height}px`,
+        color: `${theme.footer.color}`,
+        fontFamily: `${theme.footer.fontFamily}`,
+        boxShadow: `${theme.footer.boxShadow}`,
+        textAlign: 'center',
+      },
+
+      breadcrumbs: {
+        height: `${theme.breadcrumbs.height}px`,
+        lineHeight: `${theme.breadcrumbs.height}px`,
+        textAlign: 'right',
+        padding: '0 10px',
+        backgroundColor: theme.breadcrumbs.backgroundColor,
+        link: {
+          color: theme.palette.primary2Color,
+        },
+      },
+    };
+    const content = this.props.children ? this.props.children : <Landing />;
+    const breadCrumbs = pathnameToBreadcrumbs(this.props.location.pathname);
     const closeSettingsIcon = (
       <FlatButton
         icon={<CloseIcon />}
@@ -158,12 +182,24 @@ const Layout = React.createClass({
             />
           </ToolbarGroup>
         </Toolbar>
+        <div style={styles.breadcrumbs}>
+          {breadCrumbs.map(element => (
+            <span key={element.name}>
+              / <Link
+                style={styles.breadcrumbs.link}
+                key={element.name}
+                to={element.path}
+              >
+                {element.name}
+              </Link> /
+            </span>
+          ))}
+        </div>
         <div style={styles.content}>
           {content}
         </div>
-        <div style={this.context.muiTheme.footer}>
-          Made by:
-          <a href="http://tilda.center/" style={{ color: this.context.muiTheme.footer.a.color }}>
+        <div style={styles.footer}>
+          Made by: <a href="http://tilda.center/" style={{ color: theme.footer.a.color }}>
             Tilda Center
           </a>
         </div>

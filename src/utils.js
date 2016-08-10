@@ -67,3 +67,59 @@ export function socketio() {
   }
   return socket.io;
 }
+
+
+export function pathnameToBreadcrumbs(pathname) {
+  let arg;
+  const pathElements = [];
+  const result = [];
+  const crumbBlueprint = [];
+  const breadcrumbItems = {
+    applications: 'Applications',
+    clusters: 'Clusters',
+    hosts: 'Hosts',
+    providers: 'Providers',
+    provisions: 'Provisions',
+    services: 'Services',
+  };
+  pathname.split('/').forEach(element => {
+    if (element !== '') {
+      pathElements.push(element);
+    }
+  });
+  pathElements.forEach(element => {
+    const elementIsCrumb = breadcrumbItems[element] !== undefined;
+    if (elementIsCrumb) {
+      if (arg) {
+        crumbBlueprint.push({
+          name: element,
+          argument: arg,
+        });
+      } else {
+        crumbBlueprint.push({
+          name: element,
+        });
+      }
+      arg = undefined;
+    } else {
+      arg = element;
+    }
+  });
+
+  crumbBlueprint.forEach((element, index) => {
+    const item = {
+      name: breadcrumbItems[element.name],
+      original: element.name,
+      path: `/${element.name}`,
+    };
+    if (element.argument) {
+      let path = `${result[index - 1].path}/${result[index - 1].original}/${element.argument}`;
+      if (index === 1) {
+        path = `${result[index - 1].path}/${element.argument}`;
+      }
+      item.path = path;
+    }
+    result.push(item);
+  });
+  return result;
+}
