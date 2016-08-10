@@ -31,3 +31,4 @@ serviceProvisionPage;
 
 applicationMolecule;
 clusterMolecule;
+hostMolecule;
