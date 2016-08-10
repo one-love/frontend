@@ -1,7 +1,6 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
+import Paper from 'material-ui/Paper';
 import store from '../../../store';
-import styles from './icon.scss';
 
 
 const Icon = React.createClass({
@@ -20,30 +19,55 @@ const Icon = React.createClass({
   },
 
   render() {
+    const styles = {
+      paper: {
+        height: '120px',
+        width: '120px',
+        borderRadius: '10px',
+      },
+
+      img: {
+        height: '80px',
+        width: '90px',
+      },
+
+      close: {
+        display: 'block',
+        marginLeft: '107px',
+      },
+
+      content: {
+        display: 'table',
+        margin: '0 auto',
+        text: {
+          textAlign: 'center',
+        },
+      },
+    };
     let name = 'IconName';
     if (this.props.name) {
       name = this.props.name;
     }
     let content = (
-      <div>
+      <div style={styles.content}>
         <img
           src={this.props.img}
           alt={this.props.alt ? this.props.alt : 'icon'}
-          styleName="icon-img"
+          style={styles.img}
         />
-        <div>
+        <div style={styles.content.text}>
           {name}
         </div>
       </div>
     );
     return (
-      <div styleName="icon">
-        <div styleName="icon-close" onClick={this.handleClose}>x</div>
+      <Paper style={styles.paper}>
+        <div style={styles.close} onClick={this.handleClose}>x</div>
         {content}
-      </div>
+      </Paper>
     );
   },
 });
 
 
-export default cssModules(Icon, styles);
+export default Icon;
