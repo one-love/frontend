@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../utils';
-import { API_URL } from '../../../backend_url';
 import { SERVICE_PROVISION } from './constants';
 
 
@@ -23,10 +22,11 @@ const fail = createAction(SERVICE_PROVISION, error => ({
 }));
 
 const provision = (clusterId, serviceId) =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/clusters/${clusterId}/services/${serviceId}/provision`,
+      url: `${apiUrl}/clusters/${clusterId}/services/${serviceId}/provision`,
     })
       .then(prov => {
         dispatch(success(prov));

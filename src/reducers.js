@@ -11,7 +11,7 @@ import cluster from './components/pages/cluster/reducers';
 import clusterList from './components/pages/cluster-list/reducers';
 import clusterServiceRemove from './components/organisms/cluster-service-list/reducers';
 import host from './components/pages/host/reducers';
-import login from './components/pages/login/reducers';
+import { backend, login } from './components/pages/login/reducers';
 import provider from './components/pages/provider/reducers';
 import provision from './components/pages/provision/reducers';
 import provisionList from './components/pages/provision-list/reducers';
@@ -22,6 +22,7 @@ import settings from './components/layouts/layout/reducers';
 
 
 const reducers = {
+  backend,
   login,
   clusterList,
   provisionList,

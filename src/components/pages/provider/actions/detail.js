@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { PROVIDER_DETAIL } from '../constants';
 
 const reset = createAction(PROVIDER_DETAIL, () => ({ status: 'initial' }));
@@ -17,10 +16,11 @@ const fail = createAction(PROVIDER_DETAIL, error => ({
 }));
 
 const get = (clusterId, providerName) =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/clusters/${clusterId}/providers/${providerName}`,
+      url: `${apiUrl}/clusters/${clusterId}/providers/${providerName}`,
     })
       .then(provider => {
         dispatch(success(provider));

@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { CLUSTER_CREATE } from '../constants';
 
 
@@ -24,10 +23,11 @@ const fail = createAction(CLUSTER_CREATE, error => ({
 
 
 const create = (name, sshKey, username) =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/clusters`,
+      url: `${apiUrl}/clusters`,
       method: 'POST',
       body: {
         name,

@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { PROVIDER_CREATE } from '../constants';
 
 
@@ -23,10 +22,11 @@ const fail = createAction(PROVIDER_CREATE, error => ({
 }));
 
 const create = (clusterId, type, properties) =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/clusters/${clusterId}/providers`,
+      url: `${apiUrl}/clusters/${clusterId}/providers`,
       method: 'POST',
       body: {
         ...properties,

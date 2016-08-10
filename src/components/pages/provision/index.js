@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
   const data = {
     provision: state.provisionDetail.provision,
     error: state.provisionDetail.error,
+    socketIoUrl: state.backend.socketIoUrl,
   };
   return data;
 };
@@ -22,6 +23,7 @@ const ProvisionDetail = React.createClass({
     provision: React.PropTypes.object,
     params: React.PropTypes.object,
     dispatch: React.PropTypes.func.isRequired,
+    socketIoUrl: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -37,7 +39,7 @@ const ProvisionDetail = React.createClass({
   },
 
   componentDidMount() {
-    socketio().on('provision', message => {
+    socketio(this.props.socketIoUrl).on('provision', message => {
       if (this.props.provision.id === message.id) {
         switch (message.status) {
           case 'SUCCESS':
@@ -59,7 +61,7 @@ const ProvisionDetail = React.createClass({
         }
       }
     });
-    socketio().on('log', message => {
+    socketio(this.props.socketIoUrl).on('log', message => {
       const provision = this.props.provision;
       provision.logs.push(message);
       if (this.isMounted()) {

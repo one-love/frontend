@@ -1,7 +1,6 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../utils';
-import { API_URL } from '../../../backend_url';
-import { LOGIN } from './constants';
+import { BACKEND, LOGIN } from './constants';
 
 
 const reset = createAction(LOGIN, () => ({
@@ -13,6 +12,7 @@ const begin = createAction(LOGIN, () => ({
 }));
 
 const success = createAction(LOGIN, json => {
+  // eslint-disable-next-line no-undef
   window.localStorage.OneLoveAuthToken = json.token;
   return {
     token: json.token,
@@ -27,10 +27,11 @@ const fail = createAction(LOGIN, error => ({
 
 
 const login = (email, password) =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/auth/tokens`,
+      url: `${apiUrl}/auth/tokens`,
       body: {
         email,
         password,
@@ -47,12 +48,20 @@ const login = (email, password) =>
       });
   };
 
+
+const setBackendUrl = createAction(BACKEND, hostname => ({
+  apiUrl: `http://${hostname}:5000/api/v0`,
+  socketIoUrl: `http://${hostname}:5000/onelove`,
+}));
+
+
 const actions = {
   reset,
   begin,
   success,
   fail,
   login,
+  setBackendUrl,
 };
 
 export default actions;

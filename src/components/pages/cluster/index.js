@@ -182,10 +182,8 @@ const ClusterDetail = React.createClass({
     );
     const roles = (
       <div>
-        <div>
-          roles:
-        </div>
-        <div>
+        roles:
+        <span>
           {
             this.props.cluster.roles ?
             this.props.cluster.roles.map(
@@ -196,7 +194,7 @@ const ClusterDetail = React.createClass({
             ) :
             'No roles right now'
           }
-        </div>
+        </span>
       </div>
     );
     if (this.props.providerRemoveStatus === 'confirm') {
