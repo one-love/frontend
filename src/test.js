@@ -10,6 +10,8 @@ import provisionPage from './components/pages/provision/tests';
 import provisionListPage from './components/pages/provision-list/tests';
 import serviceProvisionPage from './components/pages/service-provision/tests';
 import applicationMolecule from './components/molecules/application/tests';
+import clusterMolecule from './components/molecules/cluster/tests';
+import hostMolecule from './components/molecules/host/tests';
 
 
 /* PAGES */
@@ -28,3 +30,4 @@ serviceProvisionPage;
 /* MOLECULES */
 
 applicationMolecule;
+clusterMolecule;
