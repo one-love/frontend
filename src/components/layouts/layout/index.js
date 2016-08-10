@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
+import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import Snackbar from 'material-ui/Snackbar';
 import Drawer from 'material-ui/Drawer';
@@ -11,11 +11,9 @@ import MenuItem from 'material-ui/MenuItem';
 import HomeIcon from 'material-ui/svg-icons/action/home';
 import ReorderIcon from 'material-ui/svg-icons/action/reorder';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
-import store from '../../../store';
 import { pathnameToBreadcrumbs } from '../../../utils';
 import Landing from '../../pages/landing';
 import Settings from '../../molecules/settings';
-import { history } from '../../../constants';
 import actions from './actions/settings';
 import notificationsActions from './actions/notifications';
 
@@ -36,6 +34,7 @@ const Layout = React.createClass({
     settings: React.PropTypes.node,
     settingsOpen: React.PropTypes.bool,
     location: React.PropTypes.object,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   contextTypes: {
@@ -53,36 +52,36 @@ const Layout = React.createClass({
   },
 
   handleClustersTouchTap() {
-    history.push('/clusters/');
+    this.context.router.push('/clusters/');
   },
 
   handleServicesTouchTap() {
-    history.push('/services/');
+    this.context.router.push('/services/');
   },
 
   handleProvisionsTouchTap() {
-    history.push('/provisions/');
+    this.context.router.push('/provisions/');
   },
 
   handleHomeTouchTap() {
-    history.push('/');
+    this.context.router.push('/');
   },
 
   handleOpenSettings() {
-    store.dispatch(actions.open(<Settings />));
+    this.props.dispatch(actions.open(<Settings />));
   },
 
   handleCloseSettings() {
-    store.dispatch(actions.close());
+    this.props.dispatch(actions.close());
   },
 
   handleNotificationClose() {
-    store.dispatch(notificationsActions.close());
+    this.props.dispatch(notificationsActions.close());
   },
 
   render() {
     const theme = this.context.muiTheme;
-    const header = this.context.muiTheme.toolbar.height;
+    const header = this.context.muiTheme.appBar.height;
     const footer = this.context.muiTheme.footer.height;
     const headerFooter = header + footer;
     const allButContent = headerFooter + (2 * theme.content.padding) + theme.breadcrumbs.height;
@@ -132,7 +131,6 @@ const Layout = React.createClass({
         onClick={this.handleCloseSettings}
       />
     );
-    const homeActive = this.props.location.pathname === '/';
     return (
       <div>
         <Drawer
@@ -146,42 +144,23 @@ const Layout = React.createClass({
           />
           {this.props.settings}
         </Drawer>
-        <Toolbar>
-          <ToolbarGroup firstChild>
+        <AppBar
+          title="One Love"
+          iconElementLeft={
             <FlatButton
               icon={<HomeIcon />}
-              primary={homeActive}
-              style={homeActive ? undefined : styles.inactive}
               onClick={this.handleHomeTouchTap}
+              style={{ color: theme.palette.primary2Color }}
             />
-            <FlatButton
-              label="clusters"
-              primary={this.context.router.isActive('clusters')}
-              style={this.context.router.isActive('clusters') ? undefined : styles.inactive}
-              onClick={this.handleClustersTouchTap}
-            />
-            <FlatButton
-              label="services"
-              primary={this.context.router.isActive('services')}
-              style={this.context.router.isActive('services') ? undefined : styles.inactive}
-              onTouchTap={this.handleServicesTouchTap}
-            />
-            <FlatButton
-              label="provisions"
-              primary={this.context.router.isActive('provisions')}
-              style={this.context.router.isActive('provisions') ? undefined : styles.inactive}
-              onTouchTap={this.handleProvisionsTouchTap}
-            />
-          </ToolbarGroup>
-          <ToolbarGroup lastChild>
-            <ToolbarSeparator />
+                          }
+          iconElementRight={
             <FlatButton
               icon={<ReorderIcon />}
               onClick={this.handleOpenSettings}
-              style={{ color: 'gray' }}
+              style={{ color: theme.palette.primary2Color }}
             />
-          </ToolbarGroup>
-        </Toolbar>
+                           }
+        />
         <div style={styles.breadcrumbs}>
           {breadCrumbs.map(element => (
             <span key={element.name}>
@@ -219,4 +198,4 @@ const Layout = React.createClass({
 
 // eslint-disable-next-line new-cap
 const LayoutDND = DragDropContext(HTML5Backend)(Layout);
-export default connect(mapStateToProps, actions)(LayoutDND);
+export default connect(mapStateToProps)(LayoutDND);
