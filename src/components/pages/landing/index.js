@@ -41,9 +41,9 @@ const Landing = React.createClass({
   render() {
     const styles = {
       paper: {
-        width: '100px',
-        height: '100px',
-        lineHeight: '90px',
+        width: '120px',
+        height: '120px',
+        lineHeight: '110px',
         display: 'inline-block',
         marginRight: '5px',
         borderRadius: '10px',

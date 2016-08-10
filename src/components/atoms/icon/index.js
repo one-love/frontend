@@ -24,6 +24,7 @@ const Icon = React.createClass({
         height: '120px',
         width: '120px',
         borderRadius: '10px',
+        display: 'inline-block',
       },
 
       img: {

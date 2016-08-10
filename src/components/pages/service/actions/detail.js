@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { SERVICE_DETAIL } from '../constants';
 
 const reset = createAction(SERVICE_DETAIL, () => ({ status: 'initial' }));
@@ -17,10 +16,11 @@ const fail = createAction(SERVICE_DETAIL, error => ({
 }));
 
 const get = id =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/services/${id}`,
+      url: `${apiUrl}/services/${id}`,
     })
       .then(service => {
         dispatch(success(service));

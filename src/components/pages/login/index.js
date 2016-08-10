@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
 import Paper from 'material-ui/Paper';
-import store from '../../../store';
 import { history, errors } from '../../../constants';
 import { isLoggedIn } from '../../../utils';
 import actions from './actions';
@@ -51,6 +50,13 @@ const Login = React.createClass({
     children: React.PropTypes.node,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
+    setBackendUrl: React.PropTypes.func.isRequired,
+    reset: React.PropTypes.func.isRequired,
+    login: React.PropTypes.func.isRequired,
+  },
+
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
   },
 
   getInitialState() {
@@ -62,14 +68,16 @@ const Login = React.createClass({
 
   componentWillMount() {
     if (isLoggedIn()) {
-      history.push('/');
+      this.context.router.push('/');
     }
+    // eslint-disable-next-line no-undef
+    this.props.setBackendUrl(window.location.hostname);
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.status === 'error') {
       this.setState({ status: 'error', message: nextProps.error });
-      store.dispatch(actions.reset());
+      this.props.reset();
     }
   },
 
@@ -91,7 +99,7 @@ const Login = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.login(this.state.email, this.state.password));
+    this.props.login(this.state.email, this.state.password);
   },
 
   handleNotificationClose() {

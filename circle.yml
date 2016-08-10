@@ -10,6 +10,4 @@ machine:
 
 test:
   override:
-    - echo "export const SOCKETIO_URL = 'http://localhost:5000/onelove';" > ./src/backend_url.js
-    - echo "export const API_URL = 'http://localhost:5000/api/v0';" >> ./src/backend_url.js
     - npm test

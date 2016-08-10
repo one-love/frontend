@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { PROVISION_DETAIL } from '../constants';
 
 
@@ -36,10 +35,11 @@ const failProvision = createAction(PROVISION_DETAIL, (provision, error) => ({
 }));
 
 const get = id =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/provisions/${id}`,
+      url: `${apiUrl}/provisions/${id}`,
     })
       .then(provision => {
         dispatch(success(provision));

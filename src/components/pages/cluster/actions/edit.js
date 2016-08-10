@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { CLUSTER_EDIT } from '../constants';
 import { get } from './detail';
 
@@ -23,10 +22,11 @@ const fail = createAction(CLUSTER_EDIT, error => ({
 }));
 
 const edit = (id, fields) =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/clusters/${id}`,
+      url: `${apiUrl}/clusters/${id}`,
       method: 'PATCH',
       body: fields,
     })

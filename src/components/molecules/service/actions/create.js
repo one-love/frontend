@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { SERVICE_CREATE } from '../constants';
 
 
@@ -24,10 +23,11 @@ const fail = createAction(SERVICE_CREATE, error => ({
 
 
 const create = (name, sshKey, username) =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/services`,
+      url: `${apiUrl}/services`,
       method: 'POST',
       body: {
         name,

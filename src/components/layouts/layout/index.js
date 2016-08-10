@@ -16,6 +16,7 @@ import Landing from '../../pages/landing';
 import Settings from '../../molecules/settings';
 import actions from './actions/settings';
 import notificationsActions from './actions/notifications';
+import loginActions from '../../pages/login/actions';
 
 
 const mapStateToProps = (state) => ({
@@ -49,6 +50,11 @@ const Layout = React.createClass({
         pathname: '',
       },
     };
+  },
+
+  componentWillMount() {
+    // eslint-disable-next-line no-undef
+    this.props.dispatch(loginActions.setBackendUrl(window.location.hostname));
   },
 
   handleClustersTouchTap() {

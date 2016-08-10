@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { HOST_REMOVE } from '../constants';
 
 const reset = createAction(HOST_REMOVE, () => ({ status: 'initial' }));
@@ -26,10 +25,11 @@ const confirm = createAction(HOST_REMOVE, id => ({
 
 
 const remove = id =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/${id}`,
+      url: `${apiUrl}/${id}`,
       method: 'DELETE',
     })
       .then(host => {

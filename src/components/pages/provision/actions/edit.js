@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { PROVISION_EDIT } from '../constants';
 import { get } from './detail';
 
@@ -24,10 +23,11 @@ const fail = createAction(PROVISION_EDIT, error => ({
 }));
 
 const edit = (id, fields) =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/provisions/${id}`,
+      url: `${apiUrl}/provisions/${id}`,
       method: 'PATCH',
       body: fields,
     })

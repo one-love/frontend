@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { CLUSTER_REMOVE } from '../constants';
 
 const reset = createAction(CLUSTER_REMOVE, () => ({
@@ -29,10 +28,11 @@ const confirm = createAction(CLUSTER_REMOVE, id => ({
 }));
 
 const remove = id =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/clusters/${id}`,
+      url: `${apiUrl}/clusters/${id}`,
       method: 'DELETE',
       body: {
         id,

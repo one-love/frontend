@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { API_URL } from '../../../../backend_url';
 import { APPLICATION_REMOVE } from '../constants';
 
 
@@ -27,10 +26,11 @@ const confirm = createAction(APPLICATION_REMOVE, id => ({
 
 
 const remove = id =>
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(begin());
+    const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${API_URL}/${id}`,
+      url: `${apiUrl}/${id}`,
       method: 'DELETE',
     })
       .then(application => {
