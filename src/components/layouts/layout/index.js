@@ -93,7 +93,7 @@ const Layout = React.createClass({
 
       content: {
         fontFamily: 'Roboto, sans-serif',
-        padding: `${this.context.muiTheme.content.padding}px`,
+        padding: `${theme.content.padding}px`,
         height: `calc(100vh - ${allButContent}px)`,
         overflow: 'auto',
       },
@@ -105,19 +105,23 @@ const Layout = React.createClass({
       },
 
       footer: {
-        height: `${this.context.muiTheme.footer.height}px`,
-        lineHeight: `${this.context.muiTheme.footer.height}px`,
-        color: `${this.context.muiTheme.footer.color}`,
-        fontFamily: `${this.context.muiTheme.footer.fontFamily}`,
-        boxShadow: `${this.context.muiTheme.footer.boxShadow}`,
+        height: `${theme.footer.height}px`,
+        lineHeight: `${theme.footer.height}px`,
+        color: `${theme.footer.color}`,
+        fontFamily: `${theme.footer.fontFamily}`,
+        boxShadow: `${theme.footer.boxShadow}`,
         textAlign: 'center',
       },
 
       breadcrumbs: {
-        height: `${this.context.muiTheme.breadcrumbs.height}px`,
-        lineHeight: `${this.context.muiTheme.breadcrumbs.height}px`,
+        height: `${theme.breadcrumbs.height}px`,
+        lineHeight: `${theme.breadcrumbs.height}px`,
         textAlign: 'right',
         padding: '0 10px',
+        backgroundColor: theme.breadcrumbs.backgroundColor,
+        link: {
+          color: theme.palette.primary2Color,
+        },
       },
     };
     const content = this.props.children ? this.props.children : <Landing />;
@@ -180,15 +184,22 @@ const Layout = React.createClass({
         </Toolbar>
         <div style={styles.breadcrumbs}>
           {breadCrumbs.map(element => (
-            <Link key={element.name} to={element.path}>/ {element.name} /</Link>
+            <span key={element.name}>
+              / <Link
+                style={styles.breadcrumbs.link}
+                key={element.name}
+                to={element.path}
+              >
+                {element.name}
+              </Link> /
+            </span>
           ))}
         </div>
         <div style={styles.content}>
           {content}
         </div>
         <div style={styles.footer}>
-          Made by:
-          <a href="http://tilda.center/" style={{ color: this.context.muiTheme.footer.a.color }}>
+          Made by: <a href="http://tilda.center/" style={{ color: theme.footer.a.color }}>
             Tilda Center
           </a>
         </div>
