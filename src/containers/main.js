@@ -27,7 +27,7 @@ const muiTheme = getMuiTheme({
 
   breadcrumbs: {
     height: 25,
-    backgroundColor: '#e8e8e8',
+    backgroundColor: 'rgba(166, 234, 255, 0.20)',
   },
 
   inactive: {
