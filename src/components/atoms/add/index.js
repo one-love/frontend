@@ -1,23 +1,23 @@
 import React from 'react';
-import AddToQueue from 'material-ui/svg-icons/av/add-to-queue';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 
 const styles = {
   icon: {
     position: 'absolute',
-    height: '100px',
-    width: '100px',
     right: 0,
     bottom: 0,
-    margin: '0 10px 20px 0',
-    color: 'gray',
+    margin: '0 20px 40px 0',
   },
 };
 
 
 function Add() {
   return (
-    <AddToQueue style={styles.icon} />
+    <FloatingActionButton style={styles.icon}>
+      <ContentAdd />
+    </FloatingActionButton>
   );
 }
 
