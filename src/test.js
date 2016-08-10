@@ -13,6 +13,7 @@ import applicationMolecule from './components/molecules/application/tests';
 import clusterMolecule from './components/molecules/cluster/tests';
 import hostMolecule from './components/molecules/host/tests';
 import serviceMolecule from './components/molecules/service/tests';
+import providerMolecule from './components/molecules/provider/tests';
 
 
 /* PAGES */
@@ -34,3 +35,4 @@ applicationMolecule;
 clusterMolecule;
 hostMolecule;
 serviceMolecule;
+providerMolecule;
