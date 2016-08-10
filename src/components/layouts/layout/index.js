@@ -217,7 +217,6 @@ const Layout = React.createClass({
 });
 
 
-/* eslint-disable new-cap */
+// eslint-disable-next-line new-cap
 const LayoutDND = DragDropContext(HTML5Backend)(Layout);
-/* eslint-enable */
 export default connect(mapStateToProps, actions)(LayoutDND);

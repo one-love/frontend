@@ -4,6 +4,7 @@ import { SOCKETIO_URL } from './backend_url';
 import { socket } from './constants';
 
 export function getAuthToken() {
+  // eslint-disable-next-line no-undef
   return window.localStorage.OneLoveAuthToken;
 }
 
@@ -56,11 +57,13 @@ export function fetch(args) {
 
 export function socketio() {
   if (socket.io) { return socket.io; }
+  // eslint-disable-next-line no-undef
   if (window.localStorage.OneLoveAuthToken) {
     socket.io = io(
       SOCKETIO_URL,
       {
         transports: ['websocket'],
+        // eslint-disable-next-line no-undef
         query: `token=${window.localStorage.OneLoveAuthToken}`,
       },
     );
@@ -113,11 +116,11 @@ export function pathnameToBreadcrumbs(pathname) {
       path: `/${element.name}`,
     };
     if (element.argument) {
-      let path = `${result[index - 1].path}/${result[index - 1].original}/${element.argument}`;
       if (index === 1) {
-        path = `${result[index - 1].path}/${element.argument}`;
+        item.path = `${result[index - 1].path}/${element.argument}`;
+      } else {
+        item.path = `${result[index - 1].path}/${result[index - 1].original}/${element.argument}`;
       }
-      item.path = path;
     }
     result.push(item);
   });
