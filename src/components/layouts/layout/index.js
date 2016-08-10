@@ -11,6 +11,7 @@ import MenuItem from 'material-ui/MenuItem';
 import HomeIcon from 'material-ui/svg-icons/action/home';
 import ReorderIcon from 'material-ui/svg-icons/action/reorder';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
+import IconButton from 'material-ui/IconButton';
 import { pathnameToBreadcrumbs } from '../../../utils';
 import Landing from '../../pages/landing';
 import Settings from '../../molecules/settings';
@@ -153,18 +154,14 @@ const Layout = React.createClass({
         <AppBar
           title="One Love"
           iconElementLeft={
-            <FlatButton
-              icon={<HomeIcon />}
-              onClick={this.handleHomeTouchTap}
-              style={{ color: theme.palette.primary2Color }}
-            />
+            <IconButton onTouchTap={this.handleHomeTouchTap} >
+              <HomeIcon />
+            </IconButton>
                           }
           iconElementRight={
-            <FlatButton
-              icon={<ReorderIcon />}
-              onClick={this.handleOpenSettings}
-              style={{ color: theme.palette.primary2Color }}
-            />
+            <IconButton onTouchTap={this.handleOpenSettings} >
+              <ReorderIcon />
+            </IconButton>
                            }
         />
         <div style={styles.breadcrumbs}>
