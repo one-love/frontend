@@ -14,6 +14,7 @@ import clusterMolecule from './components/molecules/cluster/tests';
 import hostMolecule from './components/molecules/host/tests';
 import serviceMolecule from './components/molecules/service/tests';
 import providerMolecule from './components/molecules/provider/tests';
+import dragableMolecule from './components/molecules/dragable-service/tests';
 
 
 /* PAGES */
@@ -36,3 +37,4 @@ clusterMolecule;
 hostMolecule;
 serviceMolecule;
 providerMolecule;
+dragableMolecule;
