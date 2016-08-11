@@ -94,7 +94,7 @@ const CreateProviderForm = React.createClass({
       (prop) => (
         <div key={prop.name}>
           <TextField
-            floatingLabelText="name"
+            floatingLabelText={prop.name}
             onChange={this.handleFieldChange}
             id={prop.name}
             required
