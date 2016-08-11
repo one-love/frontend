@@ -21,12 +21,12 @@ const fail = createAction(HOST_EDIT, error => ({
   error,
 }));
 
-const edit = (id, fields) =>
+const edit = (cId, pId, hId, fields) =>
   (dispatch, getState) => {
     dispatch(begin());
     const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${apiUrl}/hosts/${id}`,
+      url: `${apiUrl}/clusters/${cId}/providers/${pId}/hosts/${hId}`,
       method: 'PATCH',
       body: fields,
     })
