@@ -2,13 +2,10 @@ import { createAction } from 'redux-actions';
 import { NOTIFICATIONS } from '../constants';
 
 
-const open = createAction(NOTIFICATIONS, notifications => {
-  console.log(notifications);
-  return {
-    notifications,
-    open: true,
-  };
-});
+const open = createAction(NOTIFICATIONS, notifications => ({
+  notifications,
+  open: true,
+}));
 
 
 const close = createAction(NOTIFICATIONS, () => ({
