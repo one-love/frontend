@@ -4,7 +4,7 @@ import actions from './actions/detail';
 import editActions from './actions/edit';
 import InlineEdit from 'react-edit-inline';
 import { history } from '../../../constants';
-import Snackbar from 'material-ui/Snackbar';
+import notificationActions from '../../layouts/layout/actions/notifications';
 
 
 const mapStateToProps = (state) => ({
@@ -25,10 +25,6 @@ const HostDetail = React.createClass({
     editHost: React.PropTypes.object,
   },
 
-  getInitialState() {
-    return {};
-  },
-
   componentWillMount() {
     this.props.dispatch(
       actions.get(
@@ -40,7 +36,14 @@ const HostDetail = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.status === 'error') {
-      this.setState({ status: 'error', message: nextProps.error });
+      this.props.dispatch(editActions.reset());
+      this.props.dispatch(notificationActions.open(nextProps.error));
+      this.props.dispatch(
+        actions.get(
+          this.props.params.clusterId,
+          this.props.params.providerName,
+          this.props.params.hostName,
+        ));
     }
   },
 
@@ -72,21 +75,7 @@ const HostDetail = React.createClass({
     );
   },
 
-  handleNotificationClose() {
-    this.props.dispatch(editActions.reset());
-    this.props.dispatch(
-      actions.get(
-        this.props.params.clusterId,
-        this.props.params.providerName,
-        this.props.params.hostName,
-    ));
-    this.setState({ status: '', message: '' });
-  },
-
-
   render() {
-    const notificationOpen = this.props.status === 'error';
-    const notification = notificationOpen ? this.state.message : '';
     if (!this.props.host) { return <div />; }
     return (
       <div>
@@ -107,14 +96,6 @@ const HostDetail = React.createClass({
             change={this.dataChanged}
           />
         </div>
-        <Snackbar
-          open={notificationOpen}
-          message={notification}
-          autoHideDuration={4000}
-          action="close"
-          onActionTouchTap={this.handleNotificationClose}
-          onRequestClose={this.handleNotificationClose}
-        />
       </div>
     );
   },

@@ -1,1 +1,2 @@
 export const SETTINGS = 'SETTINGS';
+export const NOTIFICATIONS = 'NOTIFICATIONS';
