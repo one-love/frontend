@@ -54,7 +54,6 @@ const HostDetail = React.createClass({
       link += `/hosts/${nextProps.editHost.host.hostname}/`;
       history.push(link);
       this.props.dispatch(editActions.reset());
-      return false;
     }
     return true;
   },
@@ -69,7 +68,7 @@ const HostDetail = React.createClass({
       editActions.edit(
         this.props.params.clusterId,
         this.props.params.providerName,
-        this.props.host.hostname,
+        this.props.params.hostName,
         data
       )
     );
