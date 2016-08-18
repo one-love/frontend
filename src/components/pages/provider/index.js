@@ -8,9 +8,13 @@ import HostDetail from '../host';
 import Add from '../../atoms/add';
 import hostActionsRemove from '../host/actions/remove';
 import actions from './actions/detail';
+import editActions from './actions/edit';
 import createActions from '../../molecules/host/actions/create';
 import settingsActions from '../../layouts/layout/actions/settings';
 import CreateHostForm from '../../molecules/host/createForm';
+import InlineEdit from 'react-edit-inline';
+import { history } from '../../../constants';
+import notificationActions from '../../layouts/layout/actions/notifications';
 
 
 const mapStateToProps = (state) => {
@@ -19,6 +23,9 @@ const mapStateToProps = (state) => {
     createStatus: state.hostCreate.status,
     removeStatus: state.hostRemove.status,
     remove: state.hostRemove.host,
+    editProvider: state.providerEdit,
+    editError: state.providerEdit.error,
+    editStatus: state.providerEdit.status,
   };
   return data;
 };
@@ -32,12 +39,16 @@ const ProviderDetail = React.createClass({
     remove: React.PropTypes.object,
     removeStatus: React.PropTypes.string,
     dispatch: React.PropTypes.func.isRequired,
+    editProvider: React.PropTypes.object,
+    editStatus: React.PropTypes.string,
+    editError: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
       provider: {
         hosts: [],
+        name: '',
       },
     };
   },
@@ -73,6 +84,25 @@ const ProviderDetail = React.createClass({
       ));
       this.setState({ create: false });
     }
+    if (nextProps.editStatus === 'error') {
+      this.props.dispatch(editActions.reset());
+      this.props.dispatch(notificationActions.open(nextProps.editError));
+      this.props.dispatch(
+        actions.get(
+          this.props.params.clusterId,
+          this.props.params.providerName,
+        ));
+    }
+  },
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.editStatus === 'success') {
+      let link = `/clusters/${nextProps.params.clusterId}`;
+      link += `/providers/${nextProps.editProvider.provider.name}`;
+      history.push(link);
+      this.props.dispatch(editActions.reset());
+    }
+    return true;
   },
 
   componentWillUnmount() {
@@ -124,6 +154,16 @@ const ProviderDetail = React.createClass({
     this.props.dispatch(hostActionsRemove.reset());
   },
 
+  dataChanged(data) {
+    this.props.dispatch(
+      editActions.edit(
+        this.props.params.clusterId,
+        this.props.params.providerName,
+        data
+      )
+    );
+  },
+
   render() {
     if (this.props.removeStatus === 'confirm') {
       return (
@@ -173,7 +213,12 @@ const ProviderDetail = React.createClass({
       <div>
         <div>
           <h2>Provider</h2>
-          Name: {this.props.provider.name}
+          Name:
+          <InlineEdit
+            paramName="name"
+            text={this.props.provider.name}
+            change={this.dataChanged}
+          />
           <h3>Hosts</h3>
           {hosts}
         </div>
