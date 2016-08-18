@@ -5,11 +5,14 @@ import ApplicationList from '../../organisms/application-list';
 import ApplicationDetail from '../application';
 import Add from '../../atoms/add';
 import actions from './actions/detail';
+import editActions from './actions/edit';
 import createActions from '../../molecules/application/actions/create';
 import listActions from '../../organisms/application-list/actions';
 import removeActions from '../../organisms/application-list/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
 import CreateApplicationForm from '../../molecules/application/createForm';
+import InlineEdit from 'react-edit-inline';
+import notificationActions from '../../layouts/layout/actions/notifications';
 
 
 const mapStateToProps = (state) => {
@@ -18,6 +21,9 @@ const mapStateToProps = (state) => {
     createStatus: state.applicationCreate.status,
     remove: state.applicationRemove.application,
     removeStatus: state.applicationRemove.status,
+    serviceEdit: state.serviceEdit.service,
+    serviceEditStatus: state.serviceEdit.status,
+    error: state.serviceEdit.error,
   };
   return data;
 };
@@ -26,18 +32,22 @@ const mapStateToProps = (state) => {
 const ServiceDetail = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
-    service: React.PropTypes.object,
+    service: React.PropTypes.object.isRequired,
     params: React.PropTypes.object,
     createStatus: React.PropTypes.string,
     remove: React.PropTypes.object,
     removeStatus: React.PropTypes.string,
     dispatch: React.PropTypes.func.isRequired,
+    serviceEdit: React.PropTypes.object,
+    serviceEditStatus: React.PropTypes.string,
+    error: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
       service: {
         user: {},
+        name: 'Name',
       },
     };
   },
@@ -61,10 +71,24 @@ const ServiceDetail = React.createClass({
       this.props.dispatch(removeActions.reset());
       this.props.dispatch(listActions.get(this.props.params.serviceId));
     }
+    if (nextProps.serviceEditStatus === 'error') {
+      this.props.dispatch(editActions.reset());
+      this.props.dispatch(notificationActions.open(nextProps.error));
+      this.props.dispatch(actions.get(this.props.params.serviceId));
+    }
   },
 
   componentWillUnmount() {
     this.props.dispatch(actions.reset());
+  },
+
+  dataChanged(data) {
+    this.props.dispatch(
+      editActions.edit(
+        this.props.params.serviceId,
+        data,
+      )
+    );
   },
 
   showCreate() {
@@ -135,7 +159,14 @@ const ServiceDetail = React.createClass({
     return (
       <div>
         <div>
-          <h2>Service: {this.props.service.name}</h2>
+        <h2>
+          Name:
+          <InlineEdit
+            paramName="name"
+            text={this.props.service.name}
+            change={this.dataChanged}
+          />
+        </h2>
           <div>
             <h3>email: {this.props.service.user.email}</h3>
           </div>
