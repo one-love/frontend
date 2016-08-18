@@ -21,12 +21,12 @@ const fail = createAction(APPLICATION_EDIT, error => ({
   error,
 }));
 
-const edit = (id, fields) =>
+const edit = (sId, aName, fields) =>
   (dispatch, getState) => {
     dispatch(begin());
     const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${apiUrl}/applications/${id}`,
+      url: `${apiUrl}/services/${sId}/applications/${aName}`,
       method: 'PATCH',
       body: fields,
     })

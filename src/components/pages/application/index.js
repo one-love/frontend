@@ -2,10 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import actions from './actions/detail';
 import editActions from './actions/edit';
+import notificationActions from '../../layouts/layout/actions/notifications';
+import InlineEdit from 'react-edit-inline';
+import { history } from '../../../constants';
 
 
 const mapStateToProps = (state) => ({
   application: state.applicationDetail.application,
+  status: state.applicationEdit.status,
+  error: state.applicationEdit.error,
+  editApplication: state.applicationEdit,
 });
 
 
@@ -14,6 +20,8 @@ const ApplicationDetail = React.createClass({
     application: React.PropTypes.object,
     params: React.PropTypes.object,
     dispatch: React.PropTypes.func.isRequired,
+    status: React.PropTypes.string,
+    error: React.PropTypes.string,
   },
 
   componentWillMount() {
@@ -24,9 +32,40 @@ const ApplicationDetail = React.createClass({
       ));
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.status === 'error') {
+      this.props.dispatch(editActions.reset());
+      this.props.dispatch(notificationActions.open(nextProps.error));
+      this.props.dispatch(
+        actions.get(
+          this.props.params.serviceId,
+          this.props.params.applicationName,
+        ));
+    }
+  },
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.status === 'success') {
+      let link = `/services/${nextProps.params.serviceId}`;
+      link += `/applications/${nextProps.editApplication.application.name}/`;
+      history.push(link);
+      this.props.dispatch(editActions.reset());
+    }
+    return true;
+  },
   componentWillUnmount() {
     this.props.dispatch(actions.reset());
     this.props.dispatch(editActions.reset());
+  },
+
+  dataChanged(data) {
+    this.props.dispatch(
+      editActions.edit(
+        this.props.params.serviceId,
+        this.props.params.applicationName,
+        data
+      )
+    );
   },
 
   render() {
@@ -35,10 +74,20 @@ const ApplicationDetail = React.createClass({
       <div>
         <h2>Application</h2>
         <div>
-          name: {this.props.application.name}
+          Name:
+          <InlineEdit
+            paramName="name"
+            text={this.props.application.name}
+            change={this.dataChanged}
+          />
         </div>
         <div>
-          galaxy role: {this.props.application.galaxy_role}
+          Galaxy role:
+          <InlineEdit
+            paramName="galaxy_role"
+            text={this.props.application.galaxy_role}
+            change={this.dataChanged}
+          />
         </div>
       </div>
     );
