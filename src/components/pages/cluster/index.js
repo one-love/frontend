@@ -18,6 +18,7 @@ import Add from '../../atoms/add';
 import AllServices from '../../organisms/service-list';
 import CreateProviderForm from '../../molecules/provider/createForm';
 import addService from '../../molecules/dragable-service/actions/add';
+import notificationActions from '../../layouts/layout/actions/notifications';
 
 
 const mapStateToProps = (state) => {
@@ -31,6 +32,8 @@ const mapStateToProps = (state) => {
     providerRemoveStatus: state.providerRemove.status,
     serviceRemove: state.clusterServiceRemove.service,
     serviceRemoveStatus: state.clusterServiceRemove.status,
+    clusterEditStatus: state.clusterEdit.status,
+    clusterEditError: state.clusterEdit.error,
   };
   if (state.clusterEdit.cluster) {
     data.cluster = state.clusterEdit.cluster;
@@ -51,6 +54,8 @@ const ClusterDetail = React.createClass({
     providerRemoveStatus: React.PropTypes.string,
     serviceRemove: React.PropTypes.object,
     serviceRemoveStatus: React.PropTypes.string,
+    clusterEditStatus: React.PropTypes.string,
+    clusterEditError: React.PropTypes.string,
     dispatch: React.PropTypes.func.isRequired,
   },
 
@@ -90,6 +95,11 @@ const ClusterDetail = React.createClass({
     } else if (nextProps.addServiceStatus === 'success') {
       this.props.dispatch(actions.get(this.props.params.clusterId));
       this.props.dispatch(addService.reset());
+    }
+    if (nextProps.clusterEditStatus === 'error') {
+      this.props.dispatch(editActions.reset());
+      this.props.dispatch(notificationActions.open(nextProps.clusterEditError));
+      this.props.dispatch(actions.get(this.props.params.clusterId));
     }
   },
 
