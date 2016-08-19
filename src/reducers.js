@@ -11,7 +11,7 @@ import cluster from './components/pages/cluster/reducers';
 import clusterList from './components/pages/cluster-list/reducers';
 import clusterServiceRemove from './components/organisms/cluster-service-list/reducers';
 import host from './components/pages/host/reducers';
-import { backend, login } from './components/pages/login/reducers';
+import login from './components/pages/login/reducers';
 import provider from './components/pages/provider/reducers';
 import provision from './components/pages/provision/reducers';
 import provisionList from './components/pages/provision-list/reducers';
@@ -19,14 +19,18 @@ import service from './components/pages/service/reducers';
 import serviceList from './components/pages/service-list/reducers';
 import serviceProvision from './components/pages/service-provision/reducers';
 import settings from './components/layouts/layout/reducers';
+import theme from './containers/reducers';
+import { backend, notifications } from './containers/app/reducers';
 
 
 const reducers = {
   backend,
-  login,
   clusterList,
+  login,
+  notifications,
   provisionList,
   serviceProvision,
+  theme,
 };
 
 addCluster.forEach(reducer => { reducers[reducer.name] = reducer; });

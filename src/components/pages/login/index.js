@@ -50,7 +50,6 @@ const Login = React.createClass({
     children: React.PropTypes.node,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
-    setBackendUrl: React.PropTypes.func.isRequired,
     reset: React.PropTypes.func.isRequired,
     login: React.PropTypes.func.isRequired,
   },
@@ -70,8 +69,6 @@ const Login = React.createClass({
     if (isLoggedIn()) {
       this.context.router.push('/');
     }
-    // eslint-disable-next-line no-undef
-    this.props.setBackendUrl(window.location.hostname);
   },
 
   componentWillReceiveProps(nextProps) {
