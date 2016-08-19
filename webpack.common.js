@@ -5,7 +5,6 @@ const autoprefixer = require('autoprefixer');
 const localIdentName = '[path]___[name]__[local]___[hash:base64:5]';
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
   entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
