@@ -1,2 +1,2 @@
-export const BACKEND = 'BACKEND';
-export const LOGIN = 'LOGIN';
+const LOGIN = 'LOGIN';
+export default LOGIN;

@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../utils';
-import { BACKEND, LOGIN } from './constants';
+import LOGIN from './constants';
 
 
 const reset = createAction(LOGIN, () => ({
@@ -49,19 +49,12 @@ const login = (email, password) =>
   };
 
 
-const setBackendUrl = createAction(BACKEND, hostname => ({
-  apiUrl: `http://${hostname}:5000/api/v0`,
-  socketIoUrl: `http://${hostname}:5000/onelove`,
-}));
-
-
 const actions = {
   reset,
   begin,
   success,
   fail,
   login,
-  setBackendUrl,
 };
 
 export default actions;
