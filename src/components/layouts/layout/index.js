@@ -5,7 +5,6 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
-import Snackbar from 'material-ui/Snackbar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import HomeIcon from 'material-ui/svg-icons/action/home';
@@ -16,23 +15,17 @@ import { pathnameToBreadcrumbs } from '../../../utils';
 import Landing from '../../pages/landing';
 import Settings from '../../molecules/settings';
 import actions from './actions/settings';
-import notificationsActions from './actions/notifications';
-import loginActions from '../../pages/login/actions';
 
 
 const mapStateToProps = (state) => ({
   settings: state.settings.settings,
   settingsOpen: state.settings.open,
-  notifications: state.notifications.notifications,
-  notificationsOpen: state.notifications.open,
 });
 
 
 const Layout = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
-    notifications: React.PropTypes.node,
-    notificationsOpen: React.PropTypes.bool,
     settings: React.PropTypes.node,
     settingsOpen: React.PropTypes.bool,
     location: React.PropTypes.object,
@@ -53,23 +46,6 @@ const Layout = React.createClass({
     };
   },
 
-  componentWillMount() {
-    // eslint-disable-next-line no-undef
-    this.props.dispatch(loginActions.setBackendUrl(window.location.hostname));
-  },
-
-  handleClustersTouchTap() {
-    this.context.router.push('/clusters/');
-  },
-
-  handleServicesTouchTap() {
-    this.context.router.push('/services/');
-  },
-
-  handleProvisionsTouchTap() {
-    this.context.router.push('/provisions/');
-  },
-
   handleHomeTouchTap() {
     this.context.router.push('/');
   },
@@ -80,10 +56,6 @@ const Layout = React.createClass({
 
   handleCloseSettings() {
     this.props.dispatch(actions.close());
-  },
-
-  handleNotificationClose() {
-    this.props.dispatch(notificationsActions.close());
   },
 
   render() {
@@ -185,14 +157,6 @@ const Layout = React.createClass({
             Tilda Center
           </a>
         </div>
-        <Snackbar
-          open={this.props.notificationsOpen}
-          message={this.props.notifications}
-          autoHideDuration={5000}
-          action="close"
-          onActionTouchTap={this.handleNotificationClose}
-          onRequestClose={this.handleNotificationClose}
-        />
       </div>
     );
   },
