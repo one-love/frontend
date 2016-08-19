@@ -1,6 +1,7 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
+import InlineEdit from 'react-edit-inline';
 import ApplicationList from '../../organisms/application-list';
 import ApplicationDetail from '../application';
 import Add from '../../atoms/add';
@@ -11,8 +12,7 @@ import listActions from '../../organisms/application-list/actions';
 import removeActions from '../../organisms/application-list/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
 import CreateApplicationForm from '../../molecules/application/createForm';
-import InlineEdit from 'react-edit-inline';
-import notificationActions from '../../layouts/layout/actions/notifications';
+import notificationActions from '../../../containers/app/actions';
 
 
 const mapStateToProps = (state) => {

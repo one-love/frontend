@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import InlineEdit from 'react-edit-inline';
 import actions from './actions/detail';
 import editActions from './actions/edit';
-import InlineEdit from 'react-edit-inline';
 import { history } from '../../../constants';
-import notificationActions from '../../layouts/layout/actions/notifications';
+import notificationActions from '../../../containers/app/actions';
 
 
 const mapStateToProps = (state) => ({

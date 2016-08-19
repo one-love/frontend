@@ -29,13 +29,11 @@ module.exports = {
         include: path.join(__dirname, 'src'),
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         loaders: [
           'style?sourceMap',
           `css?sourceMap&modules&importLoaders=1&localIdentName=${localIdentName}`,
           'postcss',
-          'sass?sourceMap',
-          'sass-resources',
         ],
       },
       {
@@ -47,12 +45,6 @@ module.exports = {
       },
     ],
   },
-  sassLoader: {
-    includePaths: [path.resolve(__dirname, './src/sass')],
-  },
-  sassResources: [
-    './src/sass/vars.scss',
-  ],
   postcss() {
     return [precss, autoprefixer];
   },

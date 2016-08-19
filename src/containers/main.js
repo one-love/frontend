@@ -10,7 +10,8 @@ import Provisions from '../components/pages/provision-list';
 import Login from '../components/pages/login';
 import NotFound from '../components/pages/not-found';
 import Layout from '../components/layouts/layout';
-import '../sass/reset.scss';
+import App from './app';
+import '../reset.css';
 
 
 const muiTheme = getMuiTheme({
@@ -40,21 +41,8 @@ const muiTheme = getMuiTheme({
 });
 
 
-function Component(props) {
-  return (
-    <div>
-      {props.children}
-    </div>
-  );
-}
-
-Component.propTypes = {
-  children: React.PropTypes.node,
-};
-
-
 const routes = {
-  component: Component,
+  component: App,
   childRoutes: [
     {
       path: '/',

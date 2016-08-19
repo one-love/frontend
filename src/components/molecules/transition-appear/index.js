@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import './list.scss';
+import './styles.css';
 
 
 export default function List(props) {
