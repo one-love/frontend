@@ -1,7 +1,7 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import Log from '../../atoms/log';
-import styles from './provision.scss';
+import styles from './styles.css';
 
 
 const Provision = React.createClass({

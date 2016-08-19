@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { NOTIFICATIONS } from '../constants';
+import { BACKEND, NOTIFICATIONS } from './constants';
 
 
 const open = createAction(NOTIFICATIONS, notifications => ({
@@ -14,9 +14,15 @@ const close = createAction(NOTIFICATIONS, () => ({
 }));
 
 
+const setBackendUrl = createAction(BACKEND, hostname => ({
+  apiUrl: `http://${hostname}:5000/api/v0`,
+}));
+
+
 const actions = {
   open,
   close,
+  setBackendUrl,
 };
 
 export default actions;

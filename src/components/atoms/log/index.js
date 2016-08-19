@@ -1,6 +1,6 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
-import styles from './log.scss';
+import styles from './styles.css';
 
 
 function Log(props) {

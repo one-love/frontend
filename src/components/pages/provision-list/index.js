@@ -3,7 +3,7 @@ import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import provisionDetail from '../provision';
-import styles from './provision-list.scss';
+import styles from './styles.css';
 import actions from './actions';
 
 

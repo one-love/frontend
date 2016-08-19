@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
+import InlineEdit from 'react-edit-inline';
 import List from '../../molecules/transition-appear';
 import Host from '../../molecules/host';
 import HostDetail from '../host';
@@ -12,9 +13,8 @@ import editActions from './actions/edit';
 import createActions from '../../molecules/host/actions/create';
 import settingsActions from '../../layouts/layout/actions/settings';
 import CreateHostForm from '../../molecules/host/createForm';
-import InlineEdit from 'react-edit-inline';
 import { history } from '../../../constants';
-import notificationActions from '../../layouts/layout/actions/notifications';
+import notificationActions from '../../../containers/app/actions';
 
 
 const mapStateToProps = (state) => {

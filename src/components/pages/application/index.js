@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import InlineEdit from 'react-edit-inline';
 import actions from './actions/detail';
 import editActions from './actions/edit';
-import notificationActions from '../../layouts/layout/actions/notifications';
-import InlineEdit from 'react-edit-inline';
+import notificationActions from '../../../containers/app/actions';
 import { history } from '../../../constants';
 
 

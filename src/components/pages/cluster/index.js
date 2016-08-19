@@ -18,7 +18,7 @@ import Add from '../../atoms/add';
 import AllServices from '../../organisms/service-list';
 import CreateProviderForm from '../../molecules/provider/createForm';
 import addService from '../../molecules/dragable-service/actions/add';
-import notificationActions from '../../layouts/layout/actions/notifications';
+import notificationActions from '../../../containers/app/actions';
 
 
 const mapStateToProps = (state) => {
