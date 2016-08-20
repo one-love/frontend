@@ -41,24 +41,24 @@ const Landing = React.createClass({
   render() {
     const styles = {
       paper: {
-        width: '120px',
-        height: '120px',
+        width: 120,
+        height: 120,
         lineHeight: '110px',
         display: 'inline-block',
-        marginRight: '5px',
-        borderRadius: '10px',
-        padding: '5px',
+        marginRight: 5,
+        borderRadius: 10,
+        padding: 5,
         textAlign: 'center',
       },
 
       title: {
-        marginBottom: '5px',
+        marginBottom: 5,
       },
     };
     if (!this.props.clusters || !this.props.services || !this.props.provisions) {
       return (<div />);
     }
-    if (this.props.clusters.length) {
+    if (this.props.clusters.length || this.props.services.length) {
       return (
         <div>
           <h1 style={styles.title}>Dashboard</h1>
