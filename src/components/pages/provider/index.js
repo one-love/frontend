@@ -7,7 +7,7 @@ import List from '../../molecules/transition-appear';
 import Host from '../../molecules/host';
 import HostDetail from '../host';
 import Add from '../../atoms/add';
-import hostActionsRemove from '../host/actions/remove';
+import hostActionsRemove from '../../molecules/host/actions/remove';
 import actions from './actions/detail';
 import editActions from './actions/edit';
 import createActions from '../../molecules/host/actions/create';

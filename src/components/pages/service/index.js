@@ -9,7 +9,7 @@ import actions from './actions/detail';
 import editActions from './actions/edit';
 import createActions from '../../molecules/application/actions/create';
 import listActions from '../../organisms/application-list/actions';
-import removeActions from '../../organisms/application-list/actions/remove';
+import removeActions from '../../molecules/application/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
 import CreateApplicationForm from '../../molecules/application/createForm';
 import notificationActions from '../../../containers/app/actions';

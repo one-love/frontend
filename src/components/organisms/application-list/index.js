@@ -5,7 +5,7 @@ import Application from '../../molecules/application';
 import List from '../../molecules/transition-appear';
 import store from '../../../store';
 import actions from './actions';
-import removeActions from './actions/remove';
+import removeActions from '../../molecules/application/actions/remove';
 
 
 const mapStateToProps = state => ({

@@ -1,28 +1,54 @@
 import React from 'react';
-import svg from './application.svg';
-import Icon from '../../atoms/icon';
+import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
+import ApplicationIcon from 'material-ui/svg-icons/action/dashboard';
+import actions from './actions/remove';
 
 
-export default function Application(props) {
-  let name = 'AppName';
-  if (props && props.name) {
-    name = props.name;
-  }
-  const iconId = `services/${props.iconId.serviceId}/applications/${props.iconId.applicationName}`;
-  return (
-    <Icon
-      alt="application"
-      img={svg}
-      name={name}
-      iconId={iconId}
-      close={props.close}
-    />
-  );
-}
+const mapStateToProps = (state) => ({
+  theme: state.theme.theme,
+});
 
 
-Application.propTypes = {
-  name: React.PropTypes.string,
-  iconId: React.PropTypes.object,
-  close: React.PropTypes.func,
-};
+const Application = React.createClass({
+  propTypes: {
+    name: React.PropTypes.string,
+    iconId: React.PropTypes.string,
+    close: React.PropTypes.func,
+  },
+
+  handleClose(event) {
+    event.preventDefault();
+  },
+
+  render() {
+    const styles = {
+      paper: {
+        height: 120,
+        width: 120,
+        borderRadius: 10,
+        textAlign: 'center',
+        margin: 3,
+      },
+
+      close: {
+        marginLeft: 100,
+      },
+
+      icon: {
+        height: '60%',
+        width: '100%',
+      },
+    };
+    return (
+      <Paper style={styles.paper}>
+        <div style={styles.close} onClick={this.handleClose}>x</div>
+        <ApplicationIcon color="#ccc" style={styles.icon} />
+        <div>{this.props.name}</div>
+      </Paper>
+    );
+  },
+});
+
+
+export default connect(mapStateToProps, actions)(Application);

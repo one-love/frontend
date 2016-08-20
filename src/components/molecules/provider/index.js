@@ -46,16 +46,9 @@ const Provider = React.createClass({
     };
     return (
       <Paper style={styles.paper}>
-        <div
-          style={styles.close}
-          onClick={this.handleClose}
-        >
-          x
-        </div>
+        <div style={styles.close} onClick={this.handleClose}>x</div>
         <ProviderIcon color="#ccc" style={styles.icon} />
-        <div>
-          Provider
-        </div>
+        <div>{this.props.name}</div>
       </Paper>
     );
   },
