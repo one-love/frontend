@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import actions from './actions/detail';
 import editActions from './actions/edit';
 import providerActions from '../../molecules/provider/actions/create';
-import providerActionsRemove from '../provider/actions/remove';
+import providerActionsRemove from '../../molecules/provider/actions/remove';
 import serviceActionsRemove from '../../organisms/cluster-service-list/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
 import List from '../../molecules/transition-appear';
@@ -174,15 +174,11 @@ const ClusterDetail = React.createClass({
       this.props.cluster.providers.map(
         provider => {
           const url = `${clusterUrl}/providers/${provider.name}`;
-          const identifier = {
-            clusterId: this.props.params.clusterId,
-            name: provider.name,
-          };
           return (
             <Link to={url} key={provider.name}>
               <Provider
                 name={provider.name}
-                iconId={identifier}
+                clusterId={this.props.params.clusterId}
                 close={providerActionsRemove.confirm}
               />
             </Link>
