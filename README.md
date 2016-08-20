@@ -1,7 +1,7 @@
 One love web client
 ===================
 
-[![Run Status](https://circleci.com/gh/one-love/frontend.png?style=shield&circle-token=3a03c8879767bbb85815eefc3bcfc6389fc010c4)](https://circleci.com/gh/one-love/frontend)
+[![CircleCI](https://circleci.com/gh/one-love/frontend.svg?style=svg)](https://circleci.com/gh/one-love/frontend)
 [![Stories in Ready](https://badge.waffle.io/one-love/frontend.png?label=ready&title=Ready)](https://waffle.io/one-love/frontend)
 
 This is ReactJS based web client for [One Love](https://one-love.github.io) project.
