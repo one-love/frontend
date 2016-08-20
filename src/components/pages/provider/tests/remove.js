@@ -3,7 +3,7 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/remove';
+import actions from '../../../molecules/provider/actions/remove';
 import store from '../../../../store';
 import { PROVIDER_REMOVE } from '../constants';
 
