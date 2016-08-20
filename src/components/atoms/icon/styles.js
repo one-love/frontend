@@ -5,6 +5,7 @@ const styles = {
     borderRadius: 10,
     textAlign: 'center',
     margin: 3,
+    display: 'inline-block',
   },
 
   close: {

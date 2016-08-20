@@ -19,9 +19,7 @@ const fail = createAction(APPLICATION_REMOVE, error => ({
 
 const confirm = createAction(APPLICATION_REMOVE, id => ({
   status: 'confirm',
-  application: {
-    id,
-  },
+  application: { id },
 }));
 
 
