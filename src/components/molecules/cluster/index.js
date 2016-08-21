@@ -13,13 +13,13 @@ const mapStateToProps = (state) => ({
 
 const Cluster = React.createClass({
   propTypes: {
-    name: React.PropTypes.string,
-    iconId: React.PropTypes.string,
-    close: React.PropTypes.func,
+    cluster: React.PropTypes.object.isRequired,
+    confirm: React.PropTypes.func.isRequired,
   },
 
   handleClose(event) {
     event.preventDefault();
+    this.props.confirm(this.props.cluster.id);
   },
 
   render() {
@@ -27,7 +27,7 @@ const Cluster = React.createClass({
       <Paper style={styles.paper}>
         <div style={styles.close} onClick={this.handleClose}>x</div>
         <ClusterIcon color={styles.icon.color} style={styles.icon} />
-        <div>{this.props.name}</div>
+        <div>{this.props.cluster.name}</div>
       </Paper>
     );
   },

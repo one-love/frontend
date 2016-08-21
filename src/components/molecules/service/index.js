@@ -13,13 +13,14 @@ const mapStateToProps = (state) => ({
 
 const Service = React.createClass({
   propTypes: {
-    name: React.PropTypes.string,
-    iconId: React.PropTypes.string,
-    close: React.PropTypes.func,
+    name: React.PropTypes.string.isRequired,
+    serviceId: React.PropTypes.string.isRequired,
+    confirm: React.PropTypes.func.isRequired,
   },
 
   handleClose(event) {
     event.preventDefault();
+    this.props.confirm(this.props.serviceId);
   },
 
   render() {

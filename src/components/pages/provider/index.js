@@ -31,7 +31,7 @@ const mapStateToProps = (state) => {
 };
 
 
-const ProviderDetail = React.createClass({
+const Provider = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     provider: React.PropTypes.object,
@@ -191,17 +191,12 @@ const ProviderDetail = React.createClass({
         {
           this.props.provider.hosts.map(host => {
             const link = `${providerUrl}/hosts/${host.hostname}`;
-            const identifier = {
-              clusterId: this.props.params.clusterId,
-              providerName: this.props.params.providerName,
-              hostname: host.hostname,
-            };
             return (
               <Link key={host.hostname} to={link}>
                 <Host
                   name={host.hostname}
-                  iconId={identifier}
-                  close={hostActionsRemove.confirm}
+                  clusterId={clusterId}
+                  providerName={providerName}
                 />
               </Link>
             );
@@ -234,7 +229,7 @@ const ProviderDetail = React.createClass({
 const routes = {
   path: 'providers/:providerName',
   indexRoute: {
-    component: connect(mapStateToProps)(ProviderDetail),
+    component: connect(mapStateToProps)(Provider),
   },
   childRoutes: [
     HostDetail,

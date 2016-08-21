@@ -22,9 +22,7 @@ const fail = createAction(CLUSTER_REMOVE, error => ({
 
 const confirm = createAction(CLUSTER_REMOVE, id => ({
   status: 'confirm',
-  cluster: {
-    id,
-  },
+  cluster: { id },
 }));
 
 const remove = id =>

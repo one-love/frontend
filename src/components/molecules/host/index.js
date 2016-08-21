@@ -13,13 +13,19 @@ const mapStateToProps = (state) => ({
 
 const Application = React.createClass({
   propTypes: {
-    name: React.PropTypes.string,
-    iconId: React.PropTypes.string,
-    close: React.PropTypes.func,
+    name: React.PropTypes.string.isRequired,
+    clusterId: React.PropTypes.string.isRequired,
+    providerName: React.PropTypes.string.isRequired,
+    confirm: React.PropTypes.func.isRequired,
   },
 
   handleClose(event) {
     event.preventDefault();
+    const { clusterId, providerName, name } = this.props;
+    const clusterUrl = `clusters/${clusterId}`;
+    const providerUrl = `${clusterUrl}/providers/${providerName}`;
+    const url = `${providerUrl}/hosts/${name}`;
+    this.props.confirm(url);
   },
 
   render() {

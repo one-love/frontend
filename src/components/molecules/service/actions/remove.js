@@ -23,9 +23,7 @@ const fail = createAction(SERVICE_REMOVE, error => ({
 
 const confirm = createAction(SERVICE_REMOVE, id => ({
   status: 'confirm',
-  service: {
-    id,
-  },
+  service: { id },
 }));
 
 

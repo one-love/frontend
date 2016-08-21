@@ -98,11 +98,7 @@ const ClusterList = React.createClass({
               const url = `clusters/${cluster.id}`;
               return (
                 <Link to={url} key={cluster.id}>
-                  <Cluster
-                    name={cluster.name}
-                    iconId={cluster.id}
-                    close={removeActions.confirm}
-                  />
+                  <Cluster cluster={cluster} />
                 </Link>
               );
             }

@@ -18,9 +18,7 @@ const fail = createAction(HOST_REMOVE, error => ({
 
 const confirm = createAction(HOST_REMOVE, id => ({
   status: 'confirm',
-  host: {
-    id,
-  },
+  host: { id },
 }));
 
 

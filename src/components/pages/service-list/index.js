@@ -112,11 +112,7 @@ const ServiceList = React.createClass({
               const url = `services/${service.id}`;
               return (
                 <Link to={url} key={service.id}>
-                  <Service
-                    name={service.name}
-                    iconId={service.id}
-                    close={removeActions.confirm}
-                  />
+                  <Service name={service.name} serviceId={service.id} />
                 </Link>
               );
             }

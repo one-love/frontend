@@ -41,15 +41,11 @@ const ApplicationList = React.createClass({
           this.props.applications.map(
             application => {
               const url = `/services/${this.props.serviceId}/applications/${application.name}`;
-              const identifier = {
-                serviceId: this.props.serviceId,
-                applicationName: application.name,
-              };
               return (
                 <Link to={url} key={application.name}>
                   <Application
                     name={application.name}
-                    iconId={identifier}
+                    serviceId={this.props.serviceId}
                     close={removeActions.confirm}
                   />
                 </Link>

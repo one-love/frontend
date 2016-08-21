@@ -4,7 +4,7 @@
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../actions/remove';
+import actions from '../../../molecules/cluster/actions/remove';
 import store from '../../../../store';
 import { CLUSTER_REMOVE } from '../constants';
 
