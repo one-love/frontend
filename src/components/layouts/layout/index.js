@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import HomeIcon from 'material-ui/svg-icons/action/home';
@@ -104,12 +103,6 @@ const Layout = React.createClass({
     };
     const content = this.props.children ? this.props.children : <Landing />;
     const breadCrumbs = pathnameToBreadcrumbs(this.props.location.pathname);
-    const closeSettingsIcon = (
-      <FlatButton
-        icon={<CloseIcon />}
-        onClick={this.handleCloseSettings}
-      />
-    );
     return (
       <div>
         <Drawer
@@ -119,7 +112,7 @@ const Layout = React.createClass({
           <MenuItem
             primaryText="&nbsp;"
             style={styles.settings.item}
-            rightIcon={closeSettingsIcon}
+            rightIcon={<CloseIcon onClick={this.handleCloseSettings} />}
           />
           {this.props.settings}
         </Drawer>
