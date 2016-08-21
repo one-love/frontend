@@ -7,15 +7,15 @@ a {
     font-weight: bold;
 
     a {
-      color: $ok_color;
+      color: #4f800a;
     }
   }
 
-  .PENDING {
+  .RUNNING, .PENDING {
     font-weight: bold;
 
     a {
-      color: $running_color;
+      color: #9c9c1c;
     }
   }
 
@@ -23,7 +23,7 @@ a {
     font-weight: bold;
 
     a {
-      color: $failed_color;
+      color: #af3434;
     }
   }
 }

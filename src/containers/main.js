@@ -1,8 +1,7 @@
 import React from 'react';
-import { Router } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { history } from '../constants';
 import { requireAuth } from '../utils';
 import Services from '../components/pages/service-list';
 import Clusters from '../components/pages/cluster-list';
@@ -47,7 +46,7 @@ const mapStateToProps = (state) => ({
 function Main(props) {
   return (
     <MuiThemeProvider muiTheme={props.theme}>
-      <Router history={history} routes={routes} />
+      <Router history={hashHistory} routes={routes} />
     </MuiThemeProvider>
   );
 }

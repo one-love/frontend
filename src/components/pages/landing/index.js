@@ -29,6 +29,10 @@ const Landing = React.createClass({
     dispatch: React.PropTypes.func.isRequired,
   },
 
+  contextTypes: {
+    socket: React.PropTypes.object.isRequired,
+  },
+
   componentWillMount() {
     this.props.dispatch(clusterActions.get());
     this.props.dispatch(serviceActions.get());

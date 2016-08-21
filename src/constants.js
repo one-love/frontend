@@ -1,10 +1,7 @@
-import { hashHistory } from 'react-router';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
-export const history = hashHistory;
 export const postLogoutURL = '/login/';
-export const socket = {};
 
 
 export const errors = {

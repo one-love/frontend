@@ -4,13 +4,13 @@
 }
 
 .ok, .success {
-  color: $ok_color;
+  color: #4f800a;
 }
 
 .failed, .unreachable {
-  color: $failed_color;
+  color: #af3434;
 }
 
 .running {
-  color: $running_color;
+  color: #9c9c1c;
 }
