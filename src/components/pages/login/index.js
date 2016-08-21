@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
 import Paper from 'material-ui/Paper';
-import { history, errors } from '../../../constants';
+import { errors } from '../../../constants';
 import { isLoggedIn } from '../../../utils';
 import actions from './actions';
 
@@ -80,7 +80,7 @@ const Login = React.createClass({
 
   shouldComponentUpdate() {
     if (isLoggedIn()) {
-      history.push('/');
+      this.context.router.push('/');
       return false;
     }
     return true;

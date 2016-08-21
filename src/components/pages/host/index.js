@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import InlineEdit from 'react-edit-inline';
 import actions from './actions/detail';
 import editActions from './actions/edit';
-import { history } from '../../../constants';
 import notificationActions from '../../../containers/app/actions';
 
 
@@ -23,6 +22,10 @@ const HostDetail = React.createClass({
     status: React.PropTypes.string,
     error: React.PropTypes.string,
     editHost: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
   },
 
   componentWillMount() {
@@ -52,7 +55,7 @@ const HostDetail = React.createClass({
       let link = `/clusters/${nextProps.params.clusterId}`;
       link += `/providers/${nextProps.params.providerName}`;
       link += `/hosts/${nextProps.editHost.host.hostname}/`;
-      history.push(link);
+      this.context.router.push(link);
       this.props.dispatch(editActions.reset());
     }
     return true;

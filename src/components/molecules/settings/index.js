@@ -1,7 +1,7 @@
 import React from 'react';
 import LogoutIcon from 'material-ui/svg-icons/action/input';
 import MenuItem from 'material-ui/MenuItem';
-import { history, postLogoutURL } from '../../../constants';
+import { postLogoutURL } from '../../../constants';
 
 
 const styles = {
@@ -14,9 +14,14 @@ const styles = {
 
 
 const Settings = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
+  },
+
   handleLogout() {
+    // eslint-disable-next-line no-undef
     window.localStorage.removeItem('OneLoveAuthToken');
-    history.push(postLogoutURL);
+    this.context.router.push(postLogoutURL);
   },
 
   render() {
