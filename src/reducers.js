@@ -9,7 +9,7 @@ import application from './components/pages/application/reducers';
 import applicationList from './components/organisms/application-list/reducers';
 import cluster from './components/pages/cluster/reducers';
 import clusterList from './components/pages/cluster-list/reducers';
-import clusterServiceRemove from './components/organisms/cluster-service-list/reducers';
+import clusterServiceRemove from './components/molecules/cluster-service/reducers';
 import host from './components/pages/host/reducers';
 import login from './components/pages/login/reducers';
 import provider from './components/pages/provider/reducers';

@@ -1,5 +1,4 @@
-import { CLUSTER_SERVICE_REMOVE } from '../constants';
-
+import CLUSTER_SERVICE_REMOVE from '../constants';
 
 export default function clusterServiceRemove(
   state = { status: 'initial', service: {} },

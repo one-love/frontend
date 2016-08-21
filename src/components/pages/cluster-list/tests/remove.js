@@ -6,7 +6,7 @@
 import expect from 'expect';
 import actions from '../../../molecules/cluster/actions/remove';
 import store from '../../../../store';
-import { CLUSTER_REMOVE } from '../constants';
+import { CLUSTER_REMOVE } from '../../../molecules/cluster/constants';
 
 
 const clusterRemoveTest = describe('Testing remove of cluster', () => {

@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { CLUSTER_SERVICE_REMOVE } from '../constants';
+import CLUSTER_SERVICE_REMOVE from '../constants';
 
 
 const reset = createAction(CLUSTER_SERVICE_REMOVE, () => ({
@@ -23,9 +23,7 @@ const fail = createAction(CLUSTER_SERVICE_REMOVE, error => ({
 
 const confirm = createAction(CLUSTER_SERVICE_REMOVE, id => ({
   status: 'confirm',
-  service: {
-    id,
-  },
+  service: { id },
 }));
 
 
