@@ -5,14 +5,12 @@ import { connect } from 'react-redux';
 import Provision from '../../molecules/provision';
 import actions from './actions/detail';
 import editActions from './actions/edit';
-import { socketio } from '../../../utils';
 
 
 const mapStateToProps = (state) => {
   const data = {
     provision: state.provisionDetail.provision,
     error: state.provisionDetail.error,
-    socketIoUrl: state.backend.socketIoUrl,
   };
   return data;
 };
@@ -23,7 +21,10 @@ const ProvisionDetail = React.createClass({
     provision: React.PropTypes.object,
     params: React.PropTypes.object,
     dispatch: React.PropTypes.func.isRequired,
-    socketIoUrl: React.PropTypes.string,
+  },
+
+  contextTypes: {
+    socket: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -39,7 +40,7 @@ const ProvisionDetail = React.createClass({
   },
 
   componentDidMount() {
-    socketio(this.props.socketIoUrl).on('provision', message => {
+    this.context.socket.on('provision', message => {
       if (this.props.provision.id === message.id) {
         switch (message.status) {
           case 'SUCCESS':
@@ -61,7 +62,7 @@ const ProvisionDetail = React.createClass({
         }
       }
     });
-    socketio(this.props.socketIoUrl).on('log', message => {
+    this.context.socket.on('log', message => {
       const provision = this.props.provision;
       provision.logs.push(message);
       if (this.isMounted()) {

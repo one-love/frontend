@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
-import { history } from '../../../constants';
 import actions from './actions';
 
 
@@ -18,9 +17,13 @@ const ServiceProvision = React.createClass({
     provision: React.PropTypes.func.isRequired,
   },
 
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
+  },
+
   shouldComponentUpdate(nextProps) {
     if (nextProps.status === 'success') {
-      history.push(`/provisions/${nextProps.prov.id}`);
+      this.context.router.push(`/provisions/${nextProps.prov.id}`);
       return false;
     }
     return true;
@@ -38,7 +41,7 @@ const ServiceProvision = React.createClass({
   },
 
   handleCancel() {
-    history.push(`/clusters/${this.props.params.clusterId}`);
+    this.context.router.push(`/clusters/${this.props.params.clusterId}`);
   },
 
   render() {

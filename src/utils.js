@@ -1,6 +1,6 @@
 import isomorphicFetch from 'isomorphic-fetch';
 import io from 'socket.io-client';
-import { socket } from './constants';
+
 
 export function getAuthToken() {
   // eslint-disable-next-line no-undef
@@ -55,10 +55,9 @@ export function fetch(args) {
 
 
 export function socketio(socketIoUrl) {
-  if (socket.io) { return socket.io; }
   // eslint-disable-next-line no-undef
   if (window.localStorage.OneLoveAuthToken) {
-    socket.io = io(
+    return io(
       socketIoUrl,
       {
         transports: ['websocket'],
@@ -67,7 +66,7 @@ export function socketio(socketIoUrl) {
       },
     );
   }
-  return socket.io;
+  return undefined;
 }
 
 
