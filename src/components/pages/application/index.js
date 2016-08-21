@@ -4,7 +4,6 @@ import InlineEdit from 'react-edit-inline';
 import actions from './actions/detail';
 import editActions from './actions/edit';
 import notificationActions from '../../../containers/app/actions';
-import { history } from '../../../constants';
 
 
 const mapStateToProps = (state) => ({
@@ -22,6 +21,10 @@ const ApplicationDetail = React.createClass({
     dispatch: React.PropTypes.func.isRequired,
     status: React.PropTypes.string,
     error: React.PropTypes.string,
+  },
+
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
   },
 
   componentWillMount() {
@@ -48,7 +51,7 @@ const ApplicationDetail = React.createClass({
     if (nextProps.status === 'success') {
       let link = `/services/${nextProps.params.serviceId}`;
       link += `/applications/${nextProps.editApplication.application.name}/`;
-      history.push(link);
+      this.context.router.push(link);
       this.props.dispatch(editActions.reset());
     }
     return true;

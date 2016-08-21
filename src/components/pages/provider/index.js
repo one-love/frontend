@@ -13,7 +13,6 @@ import editActions from './actions/edit';
 import createActions from '../../molecules/host/actions/create';
 import settingsActions from '../../layouts/layout/actions/settings';
 import CreateHostForm from '../../molecules/host/createForm';
-import { history } from '../../../constants';
 import notificationActions from '../../../containers/app/actions';
 
 
@@ -42,6 +41,10 @@ const Provider = React.createClass({
     editProvider: React.PropTypes.object,
     editStatus: React.PropTypes.string,
     editError: React.PropTypes.string,
+  },
+
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -99,7 +102,7 @@ const Provider = React.createClass({
     if (nextProps.editStatus === 'success') {
       let link = `/clusters/${nextProps.params.clusterId}`;
       link += `/providers/${nextProps.editProvider.provider.name}`;
-      history.push(link);
+      this.context.push(link);
       this.props.dispatch(editActions.reset());
     }
     return true;
