@@ -32,6 +32,7 @@ module.exports = {
         loaders: [
           'style?sourceMap',
           `css?sourceMap&modules&importLoaders=1&localIdentName=${localIdentName}`,
+          'resolve-url',
           'postcss',
         ],
       },
@@ -42,6 +43,10 @@ module.exports = {
           'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
         ],
       },
+      {
+        test: /\.(png|woff(2)?|eot|ttf|)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'base64-font-loader'
+      }
     ],
   },
   postcss() {
