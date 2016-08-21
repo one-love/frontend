@@ -9,7 +9,7 @@ import clusterDetail from '../cluster';
 import Add from '../../atoms/add';
 import actions from './actions';
 import createActions from '../../molecules/cluster/actions/create';
-import removeActions from './actions/remove';
+import removeActions from '../../molecules/cluster/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
 
 
@@ -98,11 +98,7 @@ const ClusterList = React.createClass({
               const url = `clusters/${cluster.id}`;
               return (
                 <Link to={url} key={cluster.id}>
-                  <Cluster
-                    name={cluster.name}
-                    iconId={cluster.id}
-                    close={removeActions.confirm}
-                  />
+                  <Cluster cluster={cluster} />
                 </Link>
               );
             }

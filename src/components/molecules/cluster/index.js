@@ -1,27 +1,37 @@
 import React from 'react';
-import svg from './cloud.svg';
-import Icon from '../../atoms/icon';
+import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
+import ClusterIcon from 'material-ui/svg-icons/file/cloud-queue';
+import actions from './actions/remove';
+import styles from '../../atoms/icon/styles';
 
 
-export default function Cluster(props) {
-  let name = 'ClusterName';
-  if (props && props.name) {
-    name = props.name;
-  }
-  return (
-    <Icon
-      alt="cluster"
-      img={svg}
-      name={name}
-      iconId={props.iconId}
-      close={props.close}
-    />
-  );
-}
+const mapStateToProps = (state) => ({
+  theme: state.theme.theme,
+});
 
 
-Cluster.propTypes = {
-  name: React.PropTypes.string,
-  iconId: React.PropTypes.string,
-  close: React.PropTypes.func,
-};
+const Cluster = React.createClass({
+  propTypes: {
+    cluster: React.PropTypes.object.isRequired,
+    confirm: React.PropTypes.func.isRequired,
+  },
+
+  handleClose(event) {
+    event.preventDefault();
+    this.props.confirm(this.props.cluster.id);
+  },
+
+  render() {
+    return (
+      <Paper style={styles.paper}>
+        <div style={styles.close} onClick={this.handleClose}>x</div>
+        <ClusterIcon color={styles.icon.color} style={styles.icon} />
+        <div>{this.props.cluster.name}</div>
+      </Paper>
+    );
+  },
+});
+
+
+export default connect(mapStateToProps, actions)(Cluster);

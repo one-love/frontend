@@ -1,27 +1,38 @@
 import React from 'react';
-import Icon from '../../atoms/icon';
-import svg from './service.svg';
+import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
+import ServiceIcon from 'material-ui/svg-icons/action/build';
+import actions from './actions/remove';
+import styles from '../../atoms/icon/styles';
 
 
-export default function Service(props) {
-  let name = 'ServiceName';
-  if (props && props.name) {
-    name = props.name;
-  }
-  return (
-    <Icon
-      alt="service"
-      img={svg}
-      name={name}
-      iconId={props.iconId}
-      close={props.close}
-    />
-  );
-}
+const mapStateToProps = (state) => ({
+  theme: state.theme.theme,
+});
 
 
-Service.propTypes = {
-  name: React.PropTypes.string,
-  iconId: React.PropTypes.string,
-  close: React.PropTypes.func,
-};
+const Service = React.createClass({
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
+    serviceId: React.PropTypes.string.isRequired,
+    confirm: React.PropTypes.func.isRequired,
+  },
+
+  handleClose(event) {
+    event.preventDefault();
+    this.props.confirm(this.props.serviceId);
+  },
+
+  render() {
+    return (
+      <Paper style={styles.paper}>
+        <div style={styles.close} onClick={this.handleClose}>x</div>
+        <ServiceIcon color={styles.icon.color} style={styles.icon} />
+        <div>{this.props.name}</div>
+      </Paper>
+    );
+  },
+});
+
+
+export default connect(mapStateToProps, actions)(Service);

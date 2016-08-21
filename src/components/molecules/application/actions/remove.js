@@ -1,26 +1,25 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { HOST_REMOVE } from '../constants';
+import { APPLICATION_REMOVE } from '../constants';
 
-const reset = createAction(HOST_REMOVE, () => ({ status: 'initial' }));
-const begin = createAction(HOST_REMOVE, () => ({ status: 'pending' }));
 
-const success = createAction(HOST_REMOVE, host => ({
-  host,
+const reset = createAction(APPLICATION_REMOVE, () => ({ status: 'initial' }));
+const begin = createAction(APPLICATION_REMOVE, () => ({ status: 'pending' }));
+
+const success = createAction(APPLICATION_REMOVE, application => ({
+  application,
   status: 'success',
 }));
 
-const fail = createAction(HOST_REMOVE, error => ({
+const fail = createAction(APPLICATION_REMOVE, error => ({
   status: 'error',
   error,
 }));
 
 
-const confirm = createAction(HOST_REMOVE, id => ({
+const confirm = createAction(APPLICATION_REMOVE, id => ({
   status: 'confirm',
-  host: {
-    id,
-  },
+  application: { id },
 }));
 
 
@@ -32,9 +31,9 @@ const remove = id =>
       url: `${apiUrl}/${id}`,
       method: 'DELETE',
     })
-      .then(host => {
-        dispatch(success(host));
-        return host;
+      .then(application => {
+        dispatch(success(application));
+        return application;
       })
       .catch(error => {
         dispatch(fail(error.message));

@@ -7,7 +7,7 @@ import actions from './actions/detail';
 import editActions from './actions/edit';
 import providerActions from '../../molecules/provider/actions/create';
 import providerActionsRemove from '../../molecules/provider/actions/remove';
-import serviceActionsRemove from '../../organisms/cluster-service-list/actions/remove';
+import serviceActionsRemove from '../../molecules/cluster-service/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
 import List from '../../molecules/transition-appear';
 import ClusterServiceList from '../../organisms/cluster-service-list';

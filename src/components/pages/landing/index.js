@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper';
 import clusterActions from '../cluster-list/actions';
 import provisionActions from '../provision-list/actions';
 import serviceActions from '../service-list/actions';
+import iconStyles from '../../atoms/icon/styles';
 
 
 const mapStateToProps = (state) => ({
@@ -40,19 +41,13 @@ const Landing = React.createClass({
 
   render() {
     const styles = {
-      paper: {
-        width: 120,
-        height: 120,
-        lineHeight: '110px',
-        display: 'inline-block',
-        marginRight: 5,
-        borderRadius: 10,
-        padding: 5,
-        textAlign: 'center',
-      },
-
       title: {
         marginBottom: 5,
+      },
+
+      paper: {
+        ...iconStyles.paper,
+        lineHeight: `${iconStyles.paper.height}px`,
       },
     };
     if (!this.props.clusters || !this.props.services || !this.props.provisions) {

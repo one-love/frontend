@@ -1,31 +1,29 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { CLUSTER_SERVICE_REMOVE } from '../constants';
+import { SERVICE_REMOVE } from '../constants';
 
 
-const reset = createAction(CLUSTER_SERVICE_REMOVE, () => ({
+const reset = createAction(SERVICE_REMOVE, () => ({
   status: 'initial',
 }));
 
-const begin = createAction(CLUSTER_SERVICE_REMOVE, () => ({
+const begin = createAction(SERVICE_REMOVE, () => ({
   status: 'pending',
 }));
 
-const success = createAction(CLUSTER_SERVICE_REMOVE, service => ({
+const success = createAction(SERVICE_REMOVE, service => ({
   service,
   status: 'success',
 }));
 
-const fail = createAction(CLUSTER_SERVICE_REMOVE, error => ({
+const fail = createAction(SERVICE_REMOVE, error => ({
   status: 'error',
   error,
 }));
 
-const confirm = createAction(CLUSTER_SERVICE_REMOVE, id => ({
+const confirm = createAction(SERVICE_REMOVE, id => ({
   status: 'confirm',
-  service: {
-    id,
-  },
+  service: { id },
 }));
 
 
@@ -34,7 +32,7 @@ const remove = id =>
     dispatch(begin());
     const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${apiUrl}/${id}`,
+      url: `${apiUrl}/services/${id}`,
       method: 'DELETE',
       body: {
         id,

@@ -1,54 +1,49 @@
 import { createAction } from 'redux-actions';
 import { fetch } from '../../../../utils';
-import { SERVICE_REMOVE } from '../constants';
+import { CLUSTER_REMOVE } from '../constants';
 
-
-const reset = createAction(SERVICE_REMOVE, () => ({
+const reset = createAction(CLUSTER_REMOVE, () => ({
   status: 'initial',
 }));
 
-const begin = createAction(SERVICE_REMOVE, () => ({
+const begin = createAction(CLUSTER_REMOVE, () => ({
   status: 'pending',
 }));
 
-const success = createAction(SERVICE_REMOVE, service => ({
-  service,
+const success = createAction(CLUSTER_REMOVE, cluster => ({
+  cluster,
   status: 'success',
 }));
 
-const fail = createAction(SERVICE_REMOVE, error => ({
+const fail = createAction(CLUSTER_REMOVE, error => ({
   status: 'error',
   error,
 }));
 
-const confirm = createAction(SERVICE_REMOVE, id => ({
+const confirm = createAction(CLUSTER_REMOVE, id => ({
   status: 'confirm',
-  service: {
-    id,
-  },
+  cluster: { id },
 }));
-
 
 const remove = id =>
   (dispatch, getState) => {
     dispatch(begin());
     const apiUrl = getState().backend.apiUrl;
     fetch({
-      url: `${apiUrl}/services/${id}`,
+      url: `${apiUrl}/clusters/${id}`,
       method: 'DELETE',
       body: {
         id,
       },
     })
-      .then(service => {
-        dispatch(success(service));
-        return service;
+      .then(cluster => {
+        dispatch(success(cluster));
+        return cluster;
       })
       .catch(error => {
         dispatch(fail(error.message));
       });
   };
-
 
 const actions = {
   reset,

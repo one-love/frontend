@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 import { DropTarget } from 'react-dnd';
 import { connect as reduxConnect } from 'react-redux';
-import Service from '../../molecules/service';
+import Service from '../../molecules/cluster-service';
 import List from '../../molecules/transition-appear';
 import actions from '../../molecules/dragable-service/actions/add';
-import removeActions from './actions/remove';
 import ItemTypes from '../../molecules/dragable-service/item-types';
 
 
@@ -51,12 +50,10 @@ const ClusterServiceList = React.createClass({
     const services = nextProps.services;
     if (nextProps.addService) {
       services.push(nextProps.addService);
+      this.props.dispatch(actions.reset());
     }
     if (services !== this.state.services) {
       this.setState({ services });
-    }
-    if (nextProps.addService) {
-      this.props.dispatch(actions.reset());
     }
   },
 
@@ -64,13 +61,12 @@ const ClusterServiceList = React.createClass({
     const clusterUrl = `clusters/${this.props.clusterId}`;
     const serviceContent = this.state.services.map(service => {
       const url = `${clusterUrl}/services/${service.id}/provision`;
-      const iconId = `${clusterUrl}/services/${service.id}`;
       return (
         <Link to={url} key={service.id}>
           <Service
             name={service.name}
-            iconId={iconId}
-            close={removeActions.confirm}
+            serviceId={service.id}
+            clusterId={this.props.clusterId}
           />
         </Link>
       );

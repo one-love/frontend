@@ -5,7 +5,7 @@ import Application from '../../molecules/application';
 import List from '../../molecules/transition-appear';
 import store from '../../../store';
 import actions from './actions';
-import removeActions from './actions/remove';
+import removeActions from '../../molecules/application/actions/remove';
 
 
 const mapStateToProps = state => ({
@@ -41,15 +41,11 @@ const ApplicationList = React.createClass({
           this.props.applications.map(
             application => {
               const url = `/services/${this.props.serviceId}/applications/${application.name}`;
-              const identifier = {
-                serviceId: this.props.serviceId,
-                applicationName: application.name,
-              };
               return (
                 <Link to={url} key={application.name}>
                   <Application
                     name={application.name}
-                    iconId={identifier}
+                    serviceId={this.props.serviceId}
                     close={removeActions.confirm}
                   />
                 </Link>

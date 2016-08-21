@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Service from '../../molecules/service';
 import CreateServiceForm from '../../molecules/service/createForm';
 import List from '../../molecules/transition-appear';
-import removeActions from './actions/remove';
+import removeActions from '../../molecules/service/actions/remove';
 import settingsActions from '../../layouts/layout/actions/settings';
 import serviceDetail from '../service';
 import Add from '../../atoms/add';
@@ -112,11 +112,7 @@ const ServiceList = React.createClass({
               const url = `services/${service.id}`;
               return (
                 <Link to={url} key={service.id}>
-                  <Service
-                    name={service.name}
-                    iconId={service.id}
-                    close={removeActions.confirm}
-                  />
+                  <Service name={service.name} serviceId={service.id} />
                 </Link>
               );
             }

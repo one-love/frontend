@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
-import ProviderIcon from 'material-ui/svg-icons/device/storage';
+import ServiceIcon from 'material-ui/svg-icons/action/build';
 import actions from './actions/remove';
 import styles from '../../atoms/icon/styles';
 
@@ -11,26 +11,26 @@ const mapStateToProps = (state) => ({
 });
 
 
-const Provider = React.createClass({
+const ClusterService = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     clusterId: React.PropTypes.string.isRequired,
+    serviceId: React.PropTypes.string.isRequired,
     confirm: React.PropTypes.func.isRequired,
   },
 
   handleClose(event) {
     event.preventDefault();
-    const clusterId = this.props.clusterId;
-    const name = this.props.name;
-    const id = `clusters/${clusterId}/providers/${name}`;
-    this.props.confirm(id);
+    const clusterUrl = `clusters/${this.props.clusterId}`;
+    const url = `${clusterUrl}/services/${this.props.serviceId}`;
+    this.props.confirm(url);
   },
 
   render() {
     return (
       <Paper style={styles.paper}>
         <div style={styles.close} onClick={this.handleClose}>x</div>
-        <ProviderIcon color={styles.icon.color} style={styles.icon} />
+        <ServiceIcon color={styles.icon.color} style={styles.icon} />
         <div>{this.props.name}</div>
       </Paper>
     );
@@ -38,4 +38,4 @@ const Provider = React.createClass({
 });
 
 
-export default connect(mapStateToProps, actions)(Provider);
+export default connect(mapStateToProps, actions)(ClusterService);
