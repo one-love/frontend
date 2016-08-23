@@ -1,11 +1,10 @@
+import styles from './styles.js';
+import radium from 'radium';
 import React from 'react';
-import cssModules from 'react-css-modules';
-import styles from './styles.css';
-
 
 function Log(props) {
   return (
-    <div styleName="provisions">
+    <div style={styles.provisions}>
       {props.children}
     </div>
   );
@@ -17,4 +16,4 @@ Log.propTypes = {
 };
 
 
-export default cssModules(Log, styles);
+export default radium(Log);

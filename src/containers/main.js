@@ -9,8 +9,8 @@ import Provisions from '../components/pages/provision-list';
 import Login from '../components/pages/login';
 import NotFound from '../components/pages/not-found';
 import Layout from '../components/layouts/layout';
+import { StyleRoot } from 'radium';
 import App from './app';
-import '../reset.css';
 
 
 const routes = {
@@ -45,9 +45,11 @@ const mapStateToProps = (state) => ({
 
 function Main(props) {
   return (
-    <MuiThemeProvider muiTheme={props.theme}>
-      <Router history={hashHistory} routes={routes} />
-    </MuiThemeProvider>
+    <StyleRoot>
+      <MuiThemeProvider muiTheme={props.theme}>
+        <Router history={hashHistory} routes={routes} />
+      </MuiThemeProvider>
+    </StyleRoot>
   );
 }
 

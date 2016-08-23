@@ -1,9 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import Snackbar from 'material-ui/Snackbar';
-import actions from './actions';
+import reset from '../../reset.js';
+import fonts from '../../fonts/fonts.js';
 import { socketio } from '../../utils';
-
+import { connect } from 'react-redux';
+import actions from './actions';
+import { Style } from 'radium';
+import React from 'react';
 
 const mapStateToProps = (state) => ({
   notifications: state.notifications.notifications,
@@ -47,6 +49,8 @@ const App = React.createClass({
   render() {
     return (
       <div>
+        <Style rules={fonts} />
+        <Style rules={reset} />
         {this.props.children}
         <Snackbar
           open={this.props.notificationsOpen}
