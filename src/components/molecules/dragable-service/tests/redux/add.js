@@ -3,9 +3,9 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/add';
-import store from '../../../../store';
-import { CLUSTER_SERVICE_ADD } from '../constants';
+import actions from '../../actions/add';
+import store from '../../../../../store';
+import { CLUSTER_SERVICE_ADD } from '../../constants';
 
 
 const clusterServiceTests = describe('Testing add service to cluster', () => {

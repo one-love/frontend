@@ -3,9 +3,9 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/detail';
-import store from '../../../../store';
-import { PROVIDER_DETAIL } from '../constants';
+import actions from '../../actions/detail';
+import store from '../../../../../store';
+import { PROVIDER_DETAIL } from '../../constants';
 
 
 const providerDetailTest = describe('Testing detail of provider', () => {

@@ -4,9 +4,9 @@
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../../../molecules/service/actions/remove';
-import store from '../../../../store';
-import { SERVICE_REMOVE } from '../../../molecules/service/constants';
+import actions from '../../../../molecules/service/actions/remove';
+import store from '../../../../../store';
+import { SERVICE_REMOVE } from '../../../../molecules/service/constants';
 
 
 const serviceRemoveTest = describe('Testing remove of service', () => {

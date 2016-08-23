@@ -3,9 +3,9 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/plugin';
-import store from '../../../../store';
-import { PROVIDER_PLUGINS } from '../constants';
+import actions from '../../actions/plugin';
+import store from '../../../../../store';
+import { PROVIDER_PLUGINS } from '../../constants';
 
 
 const providerPluginsTest = describe('Testing plugins of provider', () => {

@@ -4,9 +4,9 @@
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../actions/edit';
-import store from '../../../../store';
-import { CLUSTER_EDIT } from '../constants';
+import actions from '../../actions/edit';
+import store from '../../../../../store';
+import { CLUSTER_EDIT } from '../../constants';
 
 
 const clusterEditTest = describe('Testing edit of cluster', () => {

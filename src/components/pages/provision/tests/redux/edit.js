@@ -4,9 +4,9 @@
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../actions/edit';
-import store from '../../../../store';
-import { PROVISION_EDIT } from '../constants';
+import actions from '../../actions/edit';
+import store from '../../../../../store';
+import { PROVISION_EDIT } from '../../constants';
 
 
 const provisionEditTest = describe('Testing edit of provision', () => {

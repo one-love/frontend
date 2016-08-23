@@ -4,9 +4,9 @@
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../../../molecules/cluster/actions/remove';
-import store from '../../../../store';
-import { CLUSTER_REMOVE } from '../../../molecules/cluster/constants';
+import actions from '../../../../molecules/cluster/actions/remove';
+import store from '../../../../../store';
+import { CLUSTER_REMOVE } from '../../../../molecules/cluster/constants';
 
 
 const clusterRemoveTest = describe('Testing remove of cluster', () => {

@@ -14,11 +14,11 @@ import clusterListPage from './components/pages/cluster-list/tests/redux';
 import clusterPage from './components/pages/cluster/tests/redux';
 import hostPage from './components/pages/host/tests/redux';
 import providerPage from './components/pages/provider/tests/redux';
-import provisionListPage from './components/pages/provision-list/tests/redux';
+import provisionListPage from './components/pages/provision-list/tests';
 import provisionPage from './components/pages/provision/tests/redux';
 import serviceListPage from './components/pages/service-list/tests/redux';
 import servicePage from './components/pages/service/tests/redux';
-import serviceProvisionPage from './components/pages/service-provision/tests/redux';
+import serviceProvisionPage from './components/pages/service-provision/tests';
 
 
 /* MOLECULES */

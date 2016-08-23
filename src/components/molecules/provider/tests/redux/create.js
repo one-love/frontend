@@ -3,9 +3,9 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/create';
-import store from '../../../../store';
-import { PROVIDER_CREATE } from '../constants';
+import actions from '../../actions/create';
+import store from '../../../../../store';
+import { PROVIDER_CREATE } from '../../constants';
 
 
 const providerCreateTest = describe('Testing create of provider', () => {

@@ -4,9 +4,9 @@
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../actions';
-import store from '../../../../store';
-import { SERVICE_LIST } from '../constants';
+import actions from '../../actions';
+import store from '../../../../../store';
+import { SERVICE_LIST } from '../../constants';
 
 
 const serviceListTest = describe('Testing service list', () => {
