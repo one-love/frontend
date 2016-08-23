@@ -3,29 +3,35 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/create';
-import store from '../../../../store';
-import { APPLICATION_CREATE } from '../constants';
+import actions from '../../actions/detail';
+import store from '../../../../../store';
+import { PROVIDER_DETAIL } from '../../constants';
 
 
-const applicationCreateTest = describe('Testing create of application', () => {
+const providerDetailTest = describe('Testing detail of provider', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: APPLICATION_CREATE,
+        type: PROVIDER_DETAIL,
       });
   }),
   it('get success state', () => {
-    expect(store.dispatch(actions.success({})))
+    expect(store.dispatch(actions.success({
+      'providername': 'string',
+      'ip': 'string',
+    })))
       .toEqual({
         payload: {
-          application: {},
+          provider: {
+            'providername': 'string',
+            'ip': 'string',
+          },
           status: 'success',
         },
-        type: APPLICATION_CREATE,
+        type: PROVIDER_DETAIL,
       });
   }),
   it('get pending state', () => {
@@ -34,7 +40,7 @@ const applicationCreateTest = describe('Testing create of application', () => {
         payload: {
           status: 'pending',
         },
-        type: APPLICATION_CREATE,
+        type: PROVIDER_DETAIL,
       });
   }),
   it('get error state', () => {
@@ -44,9 +50,9 @@ const applicationCreateTest = describe('Testing create of application', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: APPLICATION_CREATE,
+        type: PROVIDER_DETAIL,
       });
   });
 });
 
-export default applicationCreateTest;
+export default providerDetailTest;

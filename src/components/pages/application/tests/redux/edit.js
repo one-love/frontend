@@ -3,9 +3,9 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/edit';
-import store from '../../../../store';
-import { APPLICATION_EDIT } from '../constants';
+import actions from '../../actions/edit';
+import store from '../../../../../store';
+import { APPLICATION_EDIT } from '../../constants';
 
 
 const applicationEditTest = describe('Testing edit of application', () => {

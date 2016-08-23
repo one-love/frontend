@@ -3,29 +3,29 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../../../molecules/provider/actions/remove';
-import store from '../../../../store';
-import { PROVIDER_REMOVE } from '../constants';
+import actions from '../../actions/add';
+import store from '../../../../../store';
+import { CLUSTER_SERVICE_ADD } from '../../constants';
 
 
-const providerRemoveTest = describe('Testing remove of provider', () => {
+const clusterServiceTests = describe('Testing add service to cluster', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: PROVIDER_REMOVE,
+        type: CLUSTER_SERVICE_ADD,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          provider: {},
+          service: {},
           status: 'success',
         },
-        type: PROVIDER_REMOVE,
+        type: CLUSTER_SERVICE_ADD,
       });
   }),
   it('get pending state', () => {
@@ -34,7 +34,7 @@ const providerRemoveTest = describe('Testing remove of provider', () => {
         payload: {
           status: 'pending',
         },
-        type: PROVIDER_REMOVE,
+        type: CLUSTER_SERVICE_ADD,
       });
   }),
   it('get error state', () => {
@@ -44,9 +44,9 @@ const providerRemoveTest = describe('Testing remove of provider', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: PROVIDER_REMOVE,
+        type: CLUSTER_SERVICE_ADD,
       });
   });
 });
 
-export default providerRemoveTest;
+export default clusterServiceTests;

@@ -3,44 +3,40 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/detail';
-import store from '../../../../store';
-import { APPLICATION_DETAIL } from '../constants';
+import actions from '../../actions/plugin';
+import store from '../../../../../store';
+import { PROVIDER_PLUGINS } from '../../constants';
 
 
-const applicationDetailTest = describe('Testing detail of application', () => {
+const providerPluginsTest = describe('Testing plugins of provider', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
+          plugins: [],
           status: 'initial',
         },
-        type: APPLICATION_DETAIL,
+        type: PROVIDER_PLUGINS,
       });
   }),
   it('get success state', () => {
-    expect(store.dispatch(actions.success({
-      'galaxy_role': 'onelove-roles.common',
-      'name': 'Joseph',
-    })))
+    expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          application: {
-            'galaxy_role': 'onelove-roles.common',
-            'name': 'Joseph',
-          },
+          plugins: {},
           status: 'success',
         },
-        type: APPLICATION_DETAIL,
+        type: PROVIDER_PLUGINS,
       });
   }),
   it('get pending state', () => {
     expect(store.dispatch(actions.begin()))
       .toEqual({
         payload: {
+          plugins: [],
           status: 'pending',
         },
-        type: APPLICATION_DETAIL,
+        type: PROVIDER_PLUGINS,
       });
   }),
   it('get error state', () => {
@@ -50,9 +46,9 @@ const applicationDetailTest = describe('Testing detail of application', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: APPLICATION_DETAIL,
+        type: PROVIDER_PLUGINS,
       });
   });
 });
 
-export default applicationDetailTest;
+export default providerPluginsTest;

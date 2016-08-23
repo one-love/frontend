@@ -1,42 +1,41 @@
-/* eslint no-undef: 0 */
+/* eslint no-undef:  0 */
 /* eslint no-unused-expressions: 0 */
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
+
 import expect from 'expect';
-import actions from '../actions/plugin';
-import store from '../../../../store';
-import { PROVIDER_PLUGINS } from '../constants';
+import actions from '../../../../molecules/service/actions/remove';
+import store from '../../../../../store';
+import { SERVICE_REMOVE } from '../../../../molecules/service/constants';
 
 
-const providerPluginsTest = describe('Testing plugins of provider', () => {
+const serviceRemoveTest = describe('Testing remove of service', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
-          plugins: [],
           status: 'initial',
         },
-        type: PROVIDER_PLUGINS,
+        type: SERVICE_REMOVE,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          plugins: {},
+          service: {},
           status: 'success',
         },
-        type: PROVIDER_PLUGINS,
+        type: SERVICE_REMOVE,
       });
   }),
   it('get pending state', () => {
     expect(store.dispatch(actions.begin()))
       .toEqual({
         payload: {
-          plugins: [],
           status: 'pending',
         },
-        type: PROVIDER_PLUGINS,
+        type: SERVICE_REMOVE,
       });
   }),
   it('get error state', () => {
@@ -46,9 +45,9 @@ const providerPluginsTest = describe('Testing plugins of provider', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: PROVIDER_PLUGINS,
+        type: SERVICE_REMOVE,
       });
   });
 });
 
-export default providerPluginsTest;
+export default serviceRemoveTest;

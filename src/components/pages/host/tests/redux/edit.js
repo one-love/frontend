@@ -3,29 +3,29 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/create';
-import store from '../../../../store';
-import { SERVICE_CREATE } from '../constants';
+import actions from '../../actions/edit';
+import store from '../../../../../store';
+import { HOST_EDIT } from '../../constants';
 
 
-const serviceCreateTest = describe('Testing create of service', () => {
+const hostEditTest = describe('Testing edit of host', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: SERVICE_CREATE,
+        type: HOST_EDIT,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          service: {},
+          host: {},
           status: 'success',
         },
-        type: SERVICE_CREATE,
+        type: HOST_EDIT,
       });
   }),
   it('get pending state', () => {
@@ -34,7 +34,7 @@ const serviceCreateTest = describe('Testing create of service', () => {
         payload: {
           status: 'pending',
         },
-        type: SERVICE_CREATE,
+        type: HOST_EDIT,
       });
   }),
   it('get error state', () => {
@@ -44,9 +44,9 @@ const serviceCreateTest = describe('Testing create of service', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: SERVICE_CREATE,
+        type: HOST_EDIT,
       });
   });
 });
 
-export default serviceCreateTest;
+export default hostEditTest;

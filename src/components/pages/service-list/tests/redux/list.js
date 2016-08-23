@@ -1,32 +1,33 @@
-/* eslint no-undef: 0 */
+/* eslint no-undef:  0 */
 /* eslint no-unused-expressions: 0 */
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../actions/edit';
-import store from '../../../../store';
-import { PROVISION_EDIT } from '../constants';
+import actions from '../../actions';
+import store from '../../../../../store';
+import { SERVICE_LIST } from '../../constants';
 
 
-const provisionEditTest = describe('Testing edit of provision', () => {
+const serviceListTest = describe('Testing service list', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
+          services: [],
         },
-        type: PROVISION_EDIT,
+        type: SERVICE_LIST,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          provision: {},
+          services: {},
           status: 'success',
         },
-        type: PROVISION_EDIT,
+        type: SERVICE_LIST,
       });
   }),
   it('get pending state', () => {
@@ -34,20 +35,22 @@ const provisionEditTest = describe('Testing edit of provision', () => {
       .toEqual({
         payload: {
           status: 'pending',
+          services: [],
         },
-        type: PROVISION_EDIT,
+        type: SERVICE_LIST,
       });
   }),
+
   it('get error state', () => {
-    expect(store.dispatch(actions.fail('ErorR')))
+    expect(store.dispatch(actions.fail('erroR')))
       .toEqual({
         payload: {
           status: 'error',
-          error: 'ErorR',
+          error: 'erroR',
         },
-        type: PROVISION_EDIT,
+        type: SERVICE_LIST,
       });
   });
 });
 
-export default provisionEditTest;
+export default serviceListTest;

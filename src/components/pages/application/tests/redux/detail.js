@@ -3,35 +3,35 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/detail';
-import store from '../../../../store';
-import { SERVICE_DETAIL } from '../constants';
+import actions from '../../actions/detail';
+import store from '../../../../../store';
+import { APPLICATION_DETAIL } from '../../constants';
 
 
-const serviceDetailTest = describe('Testing detail of service', () => {
+const applicationDetailTest = describe('Testing detail of application', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: SERVICE_DETAIL,
+        type: APPLICATION_DETAIL,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({
-      'servicename': 'string',
-      'ip': 'string',
+      'galaxy_role': 'onelove-roles.common',
+      'name': 'Joseph',
     })))
       .toEqual({
         payload: {
-          service: {
-            'servicename': 'string',
-            'ip': 'string',
+          application: {
+            'galaxy_role': 'onelove-roles.common',
+            'name': 'Joseph',
           },
           status: 'success',
         },
-        type: SERVICE_DETAIL,
+        type: APPLICATION_DETAIL,
       });
   }),
   it('get pending state', () => {
@@ -40,7 +40,7 @@ const serviceDetailTest = describe('Testing detail of service', () => {
         payload: {
           status: 'pending',
         },
-        type: SERVICE_DETAIL,
+        type: APPLICATION_DETAIL,
       });
   }),
   it('get error state', () => {
@@ -50,9 +50,9 @@ const serviceDetailTest = describe('Testing detail of service', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: SERVICE_DETAIL,
+        type: APPLICATION_DETAIL,
       });
   });
 });
 
-export default serviceDetailTest;
+export default applicationDetailTest;

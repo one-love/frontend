@@ -3,35 +3,29 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/detail';
-import store from '../../../../store';
-import { PROVIDER_DETAIL } from '../constants';
+import actions from '../../actions/create';
+import store from '../../../../../store';
+import { PROVIDER_CREATE } from '../../constants';
 
 
-const providerDetailTest = describe('Testing detail of provider', () => {
+const providerCreateTest = describe('Testing create of provider', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: PROVIDER_DETAIL,
+        type: PROVIDER_CREATE,
       });
   }),
   it('get success state', () => {
-    expect(store.dispatch(actions.success({
-      'providername': 'string',
-      'ip': 'string',
-    })))
+    expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          provider: {
-            'providername': 'string',
-            'ip': 'string',
-          },
+          provider: {},
           status: 'success',
         },
-        type: PROVIDER_DETAIL,
+        type: PROVIDER_CREATE,
       });
   }),
   it('get pending state', () => {
@@ -40,7 +34,7 @@ const providerDetailTest = describe('Testing detail of provider', () => {
         payload: {
           status: 'pending',
         },
-        type: PROVIDER_DETAIL,
+        type: PROVIDER_CREATE,
       });
   }),
   it('get error state', () => {
@@ -50,9 +44,9 @@ const providerDetailTest = describe('Testing detail of provider', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: PROVIDER_DETAIL,
+        type: PROVIDER_CREATE,
       });
   });
 });
 
-export default providerDetailTest;
+export default providerCreateTest;

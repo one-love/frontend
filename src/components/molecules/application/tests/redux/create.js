@@ -3,29 +3,29 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/create';
-import store from '../../../../store';
-import { CLUSTER_CREATE } from '../constants';
+import actions from '../../actions/create';
+import store from '../../../../../store';
+import { APPLICATION_CREATE } from '../../constants';
 
 
-const clusterCreateTest = describe('Testing create of cluster', () => {
+const applicationCreateTest = describe('Testing create of application', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: CLUSTER_CREATE,
+        type: APPLICATION_CREATE,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          cluster: {},
+          application: {},
           status: 'success',
         },
-        type: CLUSTER_CREATE,
+        type: APPLICATION_CREATE,
       });
   }),
   it('get pending state', () => {
@@ -34,7 +34,7 @@ const clusterCreateTest = describe('Testing create of cluster', () => {
         payload: {
           status: 'pending',
         },
-        type: CLUSTER_CREATE,
+        type: APPLICATION_CREATE,
       });
   }),
   it('get error state', () => {
@@ -44,9 +44,9 @@ const clusterCreateTest = describe('Testing create of cluster', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: CLUSTER_CREATE,
+        type: APPLICATION_CREATE,
       });
   });
 });
 
-export default clusterCreateTest;
+export default applicationCreateTest;

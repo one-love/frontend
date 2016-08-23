@@ -3,19 +3,19 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/add';
-import store from '../../../../store';
-import { CLUSTER_SERVICE_ADD } from '../constants';
+import actions from '../../actions/create';
+import store from '../../../../../store';
+import { SERVICE_CREATE } from '../../constants';
 
 
-const clusterServiceTests = describe('Testing add service to cluster', () => {
+const serviceCreateTest = describe('Testing create of service', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: CLUSTER_SERVICE_ADD,
+        type: SERVICE_CREATE,
       });
   }),
   it('get success state', () => {
@@ -25,7 +25,7 @@ const clusterServiceTests = describe('Testing add service to cluster', () => {
           service: {},
           status: 'success',
         },
-        type: CLUSTER_SERVICE_ADD,
+        type: SERVICE_CREATE,
       });
   }),
   it('get pending state', () => {
@@ -34,7 +34,7 @@ const clusterServiceTests = describe('Testing add service to cluster', () => {
         payload: {
           status: 'pending',
         },
-        type: CLUSTER_SERVICE_ADD,
+        type: SERVICE_CREATE,
       });
   }),
   it('get error state', () => {
@@ -44,9 +44,9 @@ const clusterServiceTests = describe('Testing add service to cluster', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: CLUSTER_SERVICE_ADD,
+        type: SERVICE_CREATE,
       });
   });
 });
 
-export default clusterServiceTests;
+export default serviceCreateTest;

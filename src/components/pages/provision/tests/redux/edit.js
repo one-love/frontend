@@ -1,32 +1,32 @@
-/* eslint no-undef:  0 */
+/* eslint no-undef: 0 */
 /* eslint no-unused-expressions: 0 */
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../../../molecules/cluster/actions/remove';
-import store from '../../../../store';
-import { CLUSTER_REMOVE } from '../../../molecules/cluster/constants';
+import actions from '../../actions/edit';
+import store from '../../../../../store';
+import { PROVISION_EDIT } from '../../constants';
 
 
-const clusterRemoveTest = describe('Testing remove of cluster', () => {
+const provisionEditTest = describe('Testing edit of provision', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: CLUSTER_REMOVE,
+        type: PROVISION_EDIT,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          cluster: {},
+          provision: {},
           status: 'success',
         },
-        type: CLUSTER_REMOVE,
+        type: PROVISION_EDIT,
       });
   }),
   it('get pending state', () => {
@@ -35,7 +35,7 @@ const clusterRemoveTest = describe('Testing remove of cluster', () => {
         payload: {
           status: 'pending',
         },
-        type: CLUSTER_REMOVE,
+        type: PROVISION_EDIT,
       });
   }),
   it('get error state', () => {
@@ -45,9 +45,9 @@ const clusterRemoveTest = describe('Testing remove of cluster', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: CLUSTER_REMOVE,
+        type: PROVISION_EDIT,
       });
   });
 });
 
-export default clusterRemoveTest;
+export default provisionEditTest;

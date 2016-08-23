@@ -3,35 +3,29 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/detail';
-import store from '../../../../store';
-import { HOST_DETAIL } from '../constants';
+import actions from '../../actions/create';
+import store from '../../../../../store';
+import { CLUSTER_CREATE } from '../../constants';
 
 
-const hostDetailTest = describe('Testing detail of host', () => {
+const clusterCreateTest = describe('Testing create of cluster', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: HOST_DETAIL,
+        type: CLUSTER_CREATE,
       });
   }),
   it('get success state', () => {
-    expect(store.dispatch(actions.success({
-      'hostname': 'string',
-      'ip': 'string',
-    })))
+    expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          host: {
-            'hostname': 'string',
-            'ip': 'string',
-          },
+          cluster: {},
           status: 'success',
         },
-        type: HOST_DETAIL,
+        type: CLUSTER_CREATE,
       });
   }),
   it('get pending state', () => {
@@ -40,7 +34,7 @@ const hostDetailTest = describe('Testing detail of host', () => {
         payload: {
           status: 'pending',
         },
-        type: HOST_DETAIL,
+        type: CLUSTER_CREATE,
       });
   }),
   it('get error state', () => {
@@ -50,9 +44,9 @@ const hostDetailTest = describe('Testing detail of host', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: HOST_DETAIL,
+        type: CLUSTER_CREATE,
       });
   });
 });
 
-export default hostDetailTest;
+export default clusterCreateTest;

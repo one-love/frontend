@@ -4,29 +4,30 @@
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../../../molecules/service/actions/remove';
-import store from '../../../../store';
-import { SERVICE_REMOVE } from '../../../molecules/service/constants';
+import actions from '../../actions';
+import store from '../../../../../store';
+import { CLUSTER_LIST } from '../../constants';
 
 
-const serviceRemoveTest = describe('Testing remove of service', () => {
+const clusterListTest = describe('Testing cluster list', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
+          clusters: [],
         },
-        type: SERVICE_REMOVE,
+        type: CLUSTER_LIST,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          service: {},
+          clusters: {},
           status: 'success',
         },
-        type: SERVICE_REMOVE,
+        type: CLUSTER_LIST,
       });
   }),
   it('get pending state', () => {
@@ -34,20 +35,22 @@ const serviceRemoveTest = describe('Testing remove of service', () => {
       .toEqual({
         payload: {
           status: 'pending',
+          clusters: [],
         },
-        type: SERVICE_REMOVE,
+        type: CLUSTER_LIST,
       });
   }),
+
   it('get error state', () => {
-    expect(store.dispatch(actions.fail('ErorR')))
+    expect(store.dispatch(actions.fail('erroR')))
       .toEqual({
         payload: {
           status: 'error',
-          error: 'ErorR',
+          error: 'erroR',
         },
-        type: SERVICE_REMOVE,
+        type: CLUSTER_LIST,
       });
   });
 });
 
-export default serviceRemoveTest;
+export default clusterListTest;

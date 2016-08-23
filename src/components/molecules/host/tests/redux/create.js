@@ -1,33 +1,31 @@
-/* eslint no-undef:  0 */
+/* eslint no-undef: 0 */
 /* eslint no-unused-expressions: 0 */
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
-
 import expect from 'expect';
-import actions from '../actions';
-import store from '../../../../store';
-import { SERVICE_LIST } from '../constants';
+import actions from '../../actions/create';
+import store from '../../../../../store';
+import { HOST_CREATE } from '../../constants';
 
 
-const serviceListTest = describe('Testing service list', () => {
+const hostCreateTest = describe('Testing create of host', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
-          services: [],
         },
-        type: SERVICE_LIST,
+        type: HOST_CREATE,
       });
   }),
   it('get success state', () => {
     expect(store.dispatch(actions.success({})))
       .toEqual({
         payload: {
-          services: {},
+          host: {},
           status: 'success',
         },
-        type: SERVICE_LIST,
+        type: HOST_CREATE,
       });
   }),
   it('get pending state', () => {
@@ -35,22 +33,20 @@ const serviceListTest = describe('Testing service list', () => {
       .toEqual({
         payload: {
           status: 'pending',
-          services: [],
         },
-        type: SERVICE_LIST,
+        type: HOST_CREATE,
       });
   }),
-
   it('get error state', () => {
-    expect(store.dispatch(actions.fail('erroR')))
+    expect(store.dispatch(actions.fail('ErorR')))
       .toEqual({
         payload: {
           status: 'error',
-          error: 'erroR',
+          error: 'ErorR',
         },
-        type: SERVICE_LIST,
+        type: HOST_CREATE,
       });
   });
 });
 
-export default serviceListTest;
+export default hostCreateTest;

@@ -4,9 +4,9 @@
 /* eslint quote-props: 0 */
 
 import expect from 'expect';
-import actions from '../actions/detail';
-import store from '../../../../store';
-import { CLUSTER_DETAIL } from '../constants';
+import actions from '../../actions/detail';
+import store from '../../../../../store';
+import { CLUSTER_DETAIL } from '../../constants';
 
 
 const clusterDetailTest = describe('Testing detail of cluster', () => {

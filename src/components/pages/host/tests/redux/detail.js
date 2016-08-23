@@ -3,29 +3,35 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/create';
-import store from '../../../../store';
-import { HOST_CREATE } from '../constants';
+import actions from '../../actions/detail';
+import store from '../../../../../store';
+import { HOST_DETAIL } from '../../constants';
 
 
-const hostCreateTest = describe('Testing create of host', () => {
+const hostDetailTest = describe('Testing detail of host', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: HOST_CREATE,
+        type: HOST_DETAIL,
       });
   }),
   it('get success state', () => {
-    expect(store.dispatch(actions.success({})))
+    expect(store.dispatch(actions.success({
+      'hostname': 'string',
+      'ip': 'string',
+    })))
       .toEqual({
         payload: {
-          host: {},
+          host: {
+            'hostname': 'string',
+            'ip': 'string',
+          },
           status: 'success',
         },
-        type: HOST_CREATE,
+        type: HOST_DETAIL,
       });
   }),
   it('get pending state', () => {
@@ -34,7 +40,7 @@ const hostCreateTest = describe('Testing create of host', () => {
         payload: {
           status: 'pending',
         },
-        type: HOST_CREATE,
+        type: HOST_DETAIL,
       });
   }),
   it('get error state', () => {
@@ -44,9 +50,9 @@ const hostCreateTest = describe('Testing create of host', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: HOST_CREATE,
+        type: HOST_DETAIL,
       });
   });
 });
 
-export default hostCreateTest;
+export default hostDetailTest;

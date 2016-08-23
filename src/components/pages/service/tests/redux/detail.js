@@ -3,29 +3,35 @@
 /* eslint no-sequences: 0 */
 /* eslint quote-props: 0 */
 import expect from 'expect';
-import actions from '../actions/edit';
-import store from '../../../../store';
-import { HOST_EDIT } from '../constants';
+import actions from '../../actions/detail';
+import store from '../../../../../store';
+import { SERVICE_DETAIL } from '../../constants';
 
 
-const hostEditTest = describe('Testing edit of host', () => {
+const serviceDetailTest = describe('Testing detail of service', () => {
   it('get initial state', () => {
     expect(store.dispatch(actions.reset()))
       .toEqual({
         payload: {
           status: 'initial',
         },
-        type: HOST_EDIT,
+        type: SERVICE_DETAIL,
       });
   }),
   it('get success state', () => {
-    expect(store.dispatch(actions.success({})))
+    expect(store.dispatch(actions.success({
+      'servicename': 'string',
+      'ip': 'string',
+    })))
       .toEqual({
         payload: {
-          host: {},
+          service: {
+            'servicename': 'string',
+            'ip': 'string',
+          },
           status: 'success',
         },
-        type: HOST_EDIT,
+        type: SERVICE_DETAIL,
       });
   }),
   it('get pending state', () => {
@@ -34,7 +40,7 @@ const hostEditTest = describe('Testing edit of host', () => {
         payload: {
           status: 'pending',
         },
-        type: HOST_EDIT,
+        type: SERVICE_DETAIL,
       });
   }),
   it('get error state', () => {
@@ -44,9 +50,9 @@ const hostEditTest = describe('Testing edit of host', () => {
           status: 'error',
           error: 'ErorR',
         },
-        type: HOST_EDIT,
+        type: SERVICE_DETAIL,
       });
   });
 });
 
-export default hostEditTest;
+export default serviceDetailTest;
