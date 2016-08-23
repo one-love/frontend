@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import cssModules from 'react-css-modules';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
@@ -8,6 +7,7 @@ import Paper from 'material-ui/Paper';
 import { errors } from '../../../constants';
 import { isLoggedIn } from '../../../utils';
 import actions from './actions';
+import radium from 'radium';
 
 
 function mapStateToProps(state) {
@@ -146,4 +146,4 @@ const Login = React.createClass({
 });
 
 
-export default connect(mapStateToProps, actions)(cssModules(Login, styles));
+export default connect(mapStateToProps, actions)(radium(Login));

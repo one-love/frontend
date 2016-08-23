@@ -1,10 +1,10 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import provisionDetail from '../provision';
-import styles from './styles.css';
+import styles from './styles.js';
 import actions from './actions';
+import radium from 'radium';
 
 
 const mapStateToProps = state => ({
@@ -38,17 +38,17 @@ const ProvisionList = React.createClass({
 
   render() {
     return (
-      <div styleName="provision">
+      <div style={styles.provision}>
         <h1>Provisions</h1>
         {
-          this.props.provisions.map(
-            provision =>
-              <div key={provision.id} styleName={provision.status}>
-                <Link
-                  key={provision.id}
-                  to={`/provisions/${provision.id}/`}
-                > {provision.id} </Link>
-              </div>
+          this.props.provisions.map(provision =>
+            <div key={provision.id}>
+              <Link
+                key={provision.id}
+                to={`/provisions/${provision.id}/`}
+                style={styles[provision.status]}
+              > {provision.id} </Link>
+            </div>
           )
         }
       </div>
@@ -56,12 +56,11 @@ const ProvisionList = React.createClass({
   },
 });
 
-
 const routes = {
   path: 'provisions',
   indexRoute: {
     component: connect(mapStateToProps, actions)(
-      cssModules(ProvisionList, styles)
+      radium(ProvisionList)
     ),
   },
   childRoutes: [

@@ -11,6 +11,9 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/',
   },
+  watchOptions: {
+    poll: true,
+  },
   resolveLoader: {
     fallback: path.join(__dirname, 'node_modules'),
   },
