@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { StyleRoot } from 'radium';
 import { requireAuth } from '../utils';
 import Services from '../components/pages/service-list';
 import Clusters from '../components/pages/cluster-list';
@@ -9,7 +10,6 @@ import Provisions from '../components/pages/provision-list';
 import Login from '../components/pages/login';
 import NotFound from '../components/pages/not-found';
 import Layout from '../components/layouts/layout';
-import { StyleRoot } from 'radium';
 import App from './app';
 
 
