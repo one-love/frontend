@@ -11,9 +11,6 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/',
   },
-  watchOptions: {
-    poll: true,
-  },
   resolveLoader: {
     fallback: path.join(__dirname, 'node_modules'),
   },
@@ -48,8 +45,8 @@ module.exports = {
       },
       {
         test: /\.(png|woff(2)?|eot|ttf|)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'base64-font-loader'
-      }
+        loader: 'base64-font-loader',
+      },
     ],
   },
   postcss() {
