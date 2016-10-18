@@ -1,8 +1,10 @@
-import devStore from './configure-store.dev';
-import prodStore from './configure-store.prod';
+let store;
+
+if (process.env.NODE_ENV === 'production') {
+  store = require('./configure-store.prod');
+} else {
+  store = require('./configure-store.dev');
+}
 
 
-const store = process.env.NODE_ENV === 'production' ? prodStore : devStore;
-
-
-export default store;
+export default store.default;
