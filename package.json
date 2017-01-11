@@ -7,8 +7,9 @@
     "start": "webpack-dev-server --inline --hot --host 0.0.0.0 --color",
     "build": "webpack -p --progress --config webpack.config.prod.js",
     "pretest": "eslint src/",
-    "test": "NODE_ENV=production node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- -R xunit-file src/test.js",
-    "test-render": "mocha src/test/.setup.js src/test/**/*.test.js",
+    "test-redux": "NODE_ENV=production node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- -R xunit-file src/test.js",
+      "test-render": "mocha src/test/.setup.js src/test/**/*.test.js",
+      "test": "npm run test-redux; npm run test-render",
     "coverage": "NODE_ENV=production istanbul report cobertura --dir shippable/codecoverage/"
   },
   "repository": {
