@@ -14,7 +14,7 @@ import ServiceIcon from 'material-ui/svg-icons/action/build';
 import styles from '../../components/atoms/icon/styles';
 
 
-describe("Service", function () {
+describe("Molecule Service", function () {
   const renderer = ReactTestUtils.createRenderer();
   renderer.render(
     <Service
