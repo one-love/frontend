@@ -27,23 +27,19 @@ describe("Molecule Service", () => {
     expect(result.props.style).to.equal(styles.paper);
   });
 
-  it("First child", () => {
-    const child = result.props.children[0];
-    expect(child.type).to.equal('div');
-    expect(child.props.children).to.equal('x');
-    expect(child.props.style).to.equal(styles.close);
-  });
+  it("Testing children of service", () => {
+    const firstChild = result.props.children[0];
+    expect(firstChild.type).to.equal('div');
+    expect(firstChild.props.children).to.equal('x');
+    expect(firstChild.props.style).to.equal(styles.close);
 
-  it("Second child", () => {
-    const child = result.props.children[1];
-    expect(child.type).to.equal(ServiceIcon);
-    expect(child.props.style).to.equal(styles.icon);
-    expect(child.props.color).to.equal(styles.icon.color);
-  });
+    const secondChild = result.props.children[1];
+    expect(secondChild.type).to.equal(ServiceIcon);
+    expect(secondChild.props.style).to.equal(styles.icon);
+    expect(secondChild.props.color).to.equal(styles.icon.color);
 
-  it("Third child", () => {
-    const child = result.props.children[2];
-    expect(child.type).to.equal('div');
-    expect(child.props.children).to.equal('vagrant');
+    const thirdChild = result.props.children[2];
+    expect(thirdChild.type).to.equal('div');
+    expect(thirdChild.props.children).to.equal('vagrant');
   });
 });
