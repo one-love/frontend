@@ -22,7 +22,7 @@ describe("Molecule Service", () => {
   );
   const result = renderer.getRenderOutput();
 
-  it("Service should be return paper element", () => {
+  it("Service return paper element", () => {
     expect(result.type).to.equal(Paper);
     expect(result.props.style).to.equal(styles.paper);
   });
