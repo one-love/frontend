@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 
-const Service = React.createClass({
+export const Service = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     serviceId: React.PropTypes.string.isRequired,
