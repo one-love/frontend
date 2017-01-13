@@ -3,11 +3,15 @@
   "version": "0.0.0",
   "description": "WEB Client for One Love",
   "main": "server.js",
+  "jest": {
+    "bail": true,
+    "collectCoverage": true
+  },
   "scripts": {
     "start": "webpack-dev-server --inline --hot --host 0.0.0.0 --color",
     "build": "webpack -p --progress --config webpack.config.prod.js",
     "pretest": "eslint src/",
-    "test": "NODE_ENV=production node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- -R xunit-file src/test.js",
+    "test": "jest",
     "coverage": "NODE_ENV=production istanbul report cobertura --dir shippable/codecoverage/"
   },
   "repository": {
@@ -21,13 +25,19 @@
   "homepage": "https://github.com/one-love/",
   "devDependencies": {
     "base64-font-loader": "0.0.4",
+    "chai": "^3.5.0",
+    "enzyme": "^2.7.0",
+    "enzyme-to-json": "^1.4.5",
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-react": "^4.3.0",
     "expect": "^1.20.2",
     "istanbul": "^0.4.5",
-    "mocha": "^2.5.3",
+    "jest": "^18.1.0",
+    "jsdom": "^9.9.1",
+    "react-addons-test-utils": "^15.4.2",
+    "react-shallow-testutils": "^2.0.0",
     "redux-devtools": "^3.3.1",
     "redux-devtools-diff-monitor": "^5.0.5",
     "redux-devtools-dock-monitor": "^1.1.1",
@@ -78,7 +88,6 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "^1.16.2",
-    "webpack-hot-middleware": "^2.13.2",
-    "xunit-file": "0.0.9"
+    "webpack-hot-middleware": "^2.13.2"
   }
 }
