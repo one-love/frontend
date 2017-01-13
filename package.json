@@ -11,7 +11,7 @@
     "start": "webpack-dev-server --inline --hot --host 0.0.0.0 --color",
     "build": "webpack -p --progress --config webpack.config.prod.js",
     "pretest": "eslint src/",
-    "test": "./node_modules/jest/bin/jest.js",
+    "test": "jest",
     "coverage": "NODE_ENV=production istanbul report cobertura --dir shippable/codecoverage/"
   },
   "repository": {
