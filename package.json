@@ -27,6 +27,7 @@
     "base64-font-loader": "0.0.4",
     "chai": "^3.5.0",
     "enzyme": "^2.7.0",
+    "enzyme-to-json": "^1.4.5",
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-loader": "^1.6.1",

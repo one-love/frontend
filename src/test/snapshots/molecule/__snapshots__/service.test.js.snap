@@ -1,0 +1,39 @@
+exports[`Service Molecule (snapshot) Service molecule render paper 1`] = `
+<Paper
+  circle={false}
+  rounded={true}
+  style={
+    Object {
+      "borderRadius": 10,
+      "display": "inline-block",
+      "height": 120,
+      "margin": 3,
+      "textAlign": "center",
+      "width": 120,
+    }
+  }
+  transitionEnabled={true}
+  zDepth={1}>
+  <div
+    onClick={[Function]}
+    style={
+      Object {
+        "marginLeft": 100,
+      }
+    }>
+    x
+  </div>
+  <ActionBuild
+    color="#ccc"
+    style={
+      Object {
+        "color": "#ccc",
+        "height": "60%",
+        "width": "100%",
+      }
+    } />
+  <div>
+    vagrant
+  </div>
+</Paper>
+`;
