@@ -1,0 +1,29 @@
+exports[`Create service form(snapshot) Create service form render form 1`] = `
+<form
+  onSubmit={[Function]}>
+  <div>
+    <TextField
+      autoFocus={true}
+      disabled={false}
+      floatingLabelFixed={false}
+      floatingLabelText="Name"
+      fullWidth={false}
+      multiLine={false}
+      onChange={[Function]}
+      required={true}
+      rows={1}
+      type="text"
+      underlineShow={true} />
+  </div>
+  <div>
+    <RaisedButton
+      disabled={false}
+      fullWidth={false}
+      label="Create"
+      labelPosition="after"
+      primary={false}
+      secondary={false}
+      type="submit" />
+  </div>
+</form>
+`;

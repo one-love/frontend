@@ -13,14 +13,22 @@ import styles from '../../components/atoms/icon/styles';
 
 
 describe("Molecule Service", () => {
-  const renderer = ReactTestUtils.createRenderer();
-  renderer.render(
-    <Service
-      name="vagrant"
-      serviceId="1337testId"
-    />
-  );
-  const result = renderer.getRenderOutput();
+  const setup = () => {
+    const renderer = ReactTestUtils.createRenderer();
+    const props = {
+      name: "vagrant",
+      serviceId: "1337testId",
+      confirm: jest.fn(),
+    };
+
+    renderer.render(
+      <Service {...props} />
+    );
+
+    return renderer.getRenderOutput();
+  };
+
+  const result = setup();
 
   it("Service return paper element", () => {
     expect(result.type).to.equal(Paper);

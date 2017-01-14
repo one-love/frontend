@@ -9,13 +9,17 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 describe("Service Molecule (snapshot)", () => {
+  const setup = () => {
+    const props = {
+      name: "vagrant",
+      serviceId: "1337testId",
+      confirm: jest.fn(),
+    };
+    return shallow(<Service {...props} />);
+  };
+
   it("Service molecule render paper", () => {
-    const component = shallow(
-      <Service
-        name="vagrant"
-        serviceId="1337testId"
-      />
-    );
+    const component = setup();
     expect(toJson(component)).toMatchSnapshot();
   });
 });
