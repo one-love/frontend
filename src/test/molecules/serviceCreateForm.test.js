@@ -31,18 +31,31 @@ describe(" Create Service form", () => {
   };
 
   const result = setup();
+  const wrapper = mountWithContext(<CreateServiceForm />);
+
   it("Render one form", () => {
     expect(result.type).to.equal('form');
   });
 
   it("Form handle submit", () => {
     const handleSubmit = sinon.spy();
-    const wrapper = mountWithContext(<CreateServiceForm />);
     wrapper.node.handleSubmit = handleSubmit;
     wrapper.setState({ name: 'TotalBrutal' });
     wrapper.simulate('submit');
     expect(handleSubmit.calledOnce).to.equal(true);
   });
+
+  it("Handle on change text", () => {
+    const TextFieldChild = wrapper.find(TextField);
+    const event = {
+      target: {
+        value: 'wordpress',
+      },
+    };
+    TextFieldChild.node.props.onChange({ ...event });
+    expect(wrapper.state()).to.eql({ name: 'wordpress' });
+  });
+
   it("Test children", () => {
     const firstChild = result.props.children[0];
     expect(firstChild.type).to.equal('div');
@@ -50,6 +63,7 @@ describe(" Create Service form", () => {
     const secondChild = result.props.children[1];
     expect(secondChild.type).to.equal('div');
   });
+
   it("return TextField and RaisedButton", () => {
     const firstChild = result.props.children[0];
     const secondChild = result.props.children[1];
@@ -63,7 +77,5 @@ describe(" Create Service form", () => {
     const RaisedButtonChild = secondChild.props.children;
     expect(RaisedButtonChild.type).to.equal(RaisedButton);
     expect(RaisedButtonChild.props.label).to.equal('Create');
-  });
-  it("RaisedButton is clickable", () => {
   });
 });
