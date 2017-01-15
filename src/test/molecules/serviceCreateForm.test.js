@@ -5,12 +5,15 @@
 import React from 'react';
 import { expect } from 'chai';
 import ReactTestUtils from 'react-addons-test-utils';
+import { mount } from 'enzyme';
+import sinon from 'sinon';
 
 import CreateServiceForm from '../../components/molecules/service/createForm';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-describe(" Create Service form", () => {
+describe("Create Service form", () => {
   const setup = () => {
     const renderer = ReactTestUtils.createRenderer();
     renderer.render(
@@ -19,10 +22,40 @@ describe(" Create Service form", () => {
     return renderer.getRenderOutput();
   };
 
+  const mountWithContext = (node) => {
+    const muiTheme = getMuiTheme();
+    return mount(node, {
+      context: { muiTheme },
+      childContextTypes: { muiTheme: React.PropTypes.object },
+    });
+  };
+
   const result = setup();
-  it("Render one TextField", () => {
+  const wrapper = mountWithContext(<CreateServiceForm />);
+
+  it("Render one form", () => {
     expect(result.type).to.equal('form');
   });
+
+  it("Form handle submit", () => {
+    const handleSubmit = sinon.spy();
+    wrapper.node.handleSubmit = handleSubmit;
+    wrapper.setState({ name: 'TotalBrutal' });
+    wrapper.simulate('submit');
+    expect(handleSubmit.calledOnce).to.equal(true);
+  });
+
+  it("Handle on change text", () => {
+    const TextFieldChild = wrapper.find(TextField);
+    const event = {
+      target: {
+        value: 'wordpress',
+      },
+    };
+    TextFieldChild.node.props.onChange({ ...event });
+    expect(wrapper.state()).to.eql({ name: 'wordpress' });
+  });
+
   it("Test children", () => {
     const firstChild = result.props.children[0];
     expect(firstChild.type).to.equal('div');
@@ -30,6 +63,7 @@ describe(" Create Service form", () => {
     const secondChild = result.props.children[1];
     expect(secondChild.type).to.equal('div');
   });
+
   it("return TextField and RaisedButton", () => {
     const firstChild = result.props.children[0];
     const secondChild = result.props.children[1];
