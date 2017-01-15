@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 
-const Cluster = React.createClass({
+export const Cluster = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object.isRequired,
     confirm: React.PropTypes.func.isRequired,
