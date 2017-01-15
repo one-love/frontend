@@ -52,7 +52,7 @@ describe("Create Cluster Form", () => {
     expect(handleSubmit.calledOnce).to.equal(true);
   });
 
-  it("Handle on change text", () => {
+  it("Handle on change username", () => {
     const NameTextFieldChild = wrapper.find(TextField).nodes[0];
     const event = {
       target: {
@@ -63,7 +63,7 @@ describe("Create Cluster Form", () => {
     expect(wrapper.state().name).to.equal('target');
   });
 
-  it("Handle on change text", () => {
+  it("Handle on change name", () => {
     const UsernameTextFieldChild = wrapper.find(TextField).nodes[1];
     const event = {
       target: {
