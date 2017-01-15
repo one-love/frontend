@@ -13,7 +13,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-describe(" Create Service form", () => {
+describe("Create Service form", () => {
   const setup = () => {
     const renderer = ReactTestUtils.createRenderer();
     renderer.render(
