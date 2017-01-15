@@ -82,6 +82,7 @@
     "redux-actions": "^0.9.1",
     "redux-thunk": "^1.0.3",
     "sass-resources-loader": "^1.1.0",
+    "sinon": "^1.17.7",
     "socket.io-client": "^1.7.0",
     "style-loader": "^0.13.1",
     "trash": "^3.4.2",
