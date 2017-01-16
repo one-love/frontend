@@ -8,7 +8,7 @@ import ReactTestUtils from 'react-addons-test-utils';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import CreateHostForm from '../../components/molecules/host/createForm';
+import CreateApplicationForm from '../../components/molecules/application/createForm';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -33,11 +33,10 @@ describe("Create Service form", () => {
   };
 
   const props = {
-    clusterId: "1231231212123",
-    providerName: "DigitalOcean",
+    serviceId: "808080",
   };
-  const result = setup(<CreateHostForm { ...props } />);
-  const wrapper = mountWithContext(<CreateHostForm { ...props } />);
+  const result = setup(<CreateApplicationForm { ...props } />);
+  const wrapper = mountWithContext(<CreateApplicationForm { ...props } />);
 
   it("Render one form", () => {
     expect(result.type).to.equal('form');
@@ -46,31 +45,31 @@ describe("Create Service form", () => {
   it("Form handle submit", () => {
     const handleSubmit = sinon.spy();
     wrapper.node.handleSubmit = handleSubmit;
-    wrapper.setState({ name: 'TotalBrutal' });
+    wrapper.setState({ name: 'ngnix' });
     wrapper.simulate('submit');
     expect(handleSubmit.calledOnce).to.equal(true);
   });
 
-  it("Handle on change hostname", () => {
+  it("Handle on change name", () => {
     const TextFieldChild = wrapper.find(TextField).nodes[0];
     const event = {
       target: {
-        value: 'DO',
+        value: 'Ngnix',
       },
     };
     TextFieldChild.props.onChange({ ...event });
-    expect(wrapper.state().hostname).to.equal('DO');
+    expect(wrapper.state().name).to.equal('Ngnix');
   });
 
-  it("Handle on change ip", () => {
+  it("Handle on change galaxyRole", () => {
     const TextFieldChild = wrapper.find(TextField).nodes[1];
     const event = {
       target: {
-        value: '127.0.0.1',
+        value: 'one-love/ngnix',
       },
     };
     TextFieldChild.props.onChange({ ...event });
-    expect(wrapper.state().ip).to.equal('127.0.0.1');
+    expect(wrapper.state().galaxyRole).to.equal('one-love/ngnix');
   });
 
   it("Test children", () => {
@@ -89,13 +88,12 @@ describe("Create Service form", () => {
     const HostnameTextFieldChild = firstChild.props.children;
     expect(HostnameTextFieldChild.type).to.equal(TextField);
     expect(HostnameTextFieldChild.props.required).to.equal(true);
-    expect(HostnameTextFieldChild.props.autoFocus).to.equal(true);
-    expect(HostnameTextFieldChild.props.floatingLabelText).to.equal('Hostname');
+    expect(HostnameTextFieldChild.props.floatingLabelText).to.equal('Name');
 
     const IPTextFieldChild = secondChild.props.children;
     expect(IPTextFieldChild.type).to.equal(TextField);
     expect(IPTextFieldChild.props.required).to.equal(true);
-    expect(IPTextFieldChild.props.floatingLabelText).to.equal('IP');
+    expect(IPTextFieldChild.props.floatingLabelText).to.equal('Galaxy Role');
 
     const RaisedButtonChild = thirdChild.props.children;
     expect(RaisedButtonChild.type).to.equal(RaisedButton);
