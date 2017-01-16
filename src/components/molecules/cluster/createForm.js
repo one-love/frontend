@@ -6,6 +6,8 @@ import base64 from 'base-64';
 import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 
 const CreateClusterForm = React.createClass({

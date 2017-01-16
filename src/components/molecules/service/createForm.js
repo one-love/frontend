@@ -4,7 +4,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 const CreateServiceForm = React.createClass({
   getInitialState() {
