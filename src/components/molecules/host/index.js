@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 
-const Application = React.createClass({
+export const Host = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     clusterId: React.PropTypes.string.isRequired,
@@ -40,4 +40,4 @@ const Application = React.createClass({
 });
 
 
-export default connect(mapStateToProps, actions)(Application);
+export default connect(mapStateToProps, actions)(Host);
