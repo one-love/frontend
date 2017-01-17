@@ -12,6 +12,8 @@ import CreateServiceForm from '../../components/molecules/service/createForm';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 describe("Create Service form", () => {
   const setup = () => {

@@ -8,9 +8,6 @@ import { errors } from '../../../constants';
 import { isLoggedIn } from '../../../utils';
 import actions from './actions';
 import radium from 'radium';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
 
 function mapStateToProps(state) {
   return {
