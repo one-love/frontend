@@ -9,7 +9,6 @@ import { isLoggedIn } from '../../../utils';
 import actions from './actions';
 import radium from 'radium';
 
-
 function mapStateToProps(state) {
   return {
     token: state.login.token,

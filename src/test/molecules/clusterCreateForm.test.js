@@ -12,7 +12,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FileInput from 'react-file-reader-input';
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 describe("Create Cluster Form", () => {
   const setup = () => {

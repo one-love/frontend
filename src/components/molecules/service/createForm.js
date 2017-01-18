@@ -5,7 +5,6 @@ import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 
-
 const CreateServiceForm = React.createClass({
   getInitialState() {
     return {};

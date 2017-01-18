@@ -7,7 +7,6 @@ import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 
-
 const CreateClusterForm = React.createClass({
   contextTypes: {
     muiTheme: React.PropTypes.object.isRequired,

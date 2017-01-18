@@ -9,7 +9,6 @@ import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 import pluginActions from './actions/plugin';
 
-
 const styles = {
   button: {
     display: 'flex',
