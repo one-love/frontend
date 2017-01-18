@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 
-const ClusterService = React.createClass({
+export const ClusterService = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     clusterId: React.PropTypes.string.isRequired,
