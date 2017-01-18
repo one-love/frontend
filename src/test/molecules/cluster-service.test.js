@@ -12,7 +12,7 @@ import ServiceIcon from 'material-ui/svg-icons/action/build';
 import styles from '../../components/atoms/icon/styles';
 
 
-describe("Molecule Applcation", () => {
+describe("Molecule ClusterService", () => {
   const setup = () => {
     const renderer = ReactTestUtils.createRenderer();
     const props = {
@@ -31,12 +31,12 @@ describe("Molecule Applcation", () => {
 
   const result = setup();
 
-  it("Application return paper element", () => {
+  it("ClusterService return paper element", () => {
     expect(result.type).to.equal(Paper);
     expect(result.props.style).to.equal(styles.paper);
   });
 
-  it("Testing children of app", () => {
+  it("Testing children of clusterservice", () => {
     const firstChild = result.props.children[0];
     expect(firstChild.type).to.equal('div');
     expect(firstChild.props.children).to.equal('x');
