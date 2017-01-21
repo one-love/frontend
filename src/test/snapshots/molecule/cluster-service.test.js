@@ -4,7 +4,7 @@
 /* eslint quotes: 0 */
 
 import React from 'react';
-import { ClusterService } from '../../../components/molecules/cluster-servoce';
+import { ClusterService } from '../../../components/molecules/cluster-service';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
