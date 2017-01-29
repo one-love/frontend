@@ -6,6 +6,10 @@ import actions from './actions/add';
 
 
 const serviceSource = {
+  propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
+  },
+
   beginDrag(props) {
     return {
       id: props.id,
@@ -17,7 +21,7 @@ const serviceSource = {
     const dropResult = monitor.getDropResult();
     const cluster = store.getState().clusterDetail.cluster;
     if (dropResult) {
-      store.dispatch(actions.add(cluster.id, item.id));
+      this.props.dispatch(actions.add(cluster.id, item.id));
     }
   },
 };

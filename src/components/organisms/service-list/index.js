@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DragableService from '../../molecules/dragable-service';
 import actions from '../../pages/service-list/actions';
-import store from '../../../store';
-
 
 const mapStateToProps = state => {
   const data = {
@@ -17,6 +15,7 @@ const mapStateToProps = state => {
 const ServiceList = React.createClass({
   propTypes: {
     services: React.PropTypes.array,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -26,7 +25,7 @@ const ServiceList = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(actions.get());
+    this.props.dispatch(actions.get());
   },
 
   render() {

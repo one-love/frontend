@@ -1,13 +1,13 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 
 const CreateApplicationForm = React.createClass({
   propTypes: {
     serviceId: React.PropTypes.string.isRequired,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   contextTypes: {
@@ -20,12 +20,12 @@ const CreateApplicationForm = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.create(
+    this.props.dispatch(actions.create(
       this.props.serviceId,
       this.state.name,
       this.state.galaxyRole,
     ));
-    store.dispatch(settingsActions.close());
+    this.props.dispatch(settingsActions.close());
   },
 
   handleNameChange(event) {

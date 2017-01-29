@@ -3,11 +3,14 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FileInput from 'react-file-reader-input';
 import base64 from 'base-64';
-import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 
 const CreateClusterForm = React.createClass({
+  propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
+  },
+
   contextTypes: {
     muiTheme: React.PropTypes.object.isRequired,
   },
@@ -18,12 +21,12 @@ const CreateClusterForm = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.create(
+    this.props.dispatch(actions.create(
       this.state.name,
       this.state.sshKey,
       this.state.username,
     ));
-    store.dispatch(settingsActions.close());
+    this.props.dispatch(settingsActions.close());
   },
 
   handleNameChange(event) {
