@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Application from '../../molecules/application';
 import List from '../../molecules/transition-appear';
-import store from '../../../store';
 import actions from './actions';
 import removeActions from '../../molecules/application/actions/remove';
 
@@ -18,6 +17,7 @@ const ApplicationList = React.createClass({
     applications: React.PropTypes.array,
     status: React.PropTypes.string,
     serviceId: React.PropTypes.string,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -27,11 +27,11 @@ const ApplicationList = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(actions.get(this.props.serviceId));
+    this.props.dispatch(actions.get(this.props.serviceId));
   },
 
   componentWillUnmount() {
-    store.dispatch(actions.reset());
+    this.props.dispatch(actions.reset());
   },
 
   render() {
