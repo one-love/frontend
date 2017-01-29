@@ -12,11 +12,14 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 describe("Create cluster form(snapshot)", () => {
   const setup = () => {
     const muiTheme = getMuiTheme();
+    const props = {
+      dispatch: jest.fn(),
+    };
     const context = {
       context: { muiTheme },
       childContextTypes: { muiTheme: React.PropTypes.object },
     };
-    return shallow(<CreateClusterForm />, { ...context });
+    return shallow(<CreateClusterForm {...props} />, { ...context });
   };
   it("Create service form render form", () => {
     const component = setup();

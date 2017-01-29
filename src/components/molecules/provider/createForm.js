@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 };
 
 
-const CreateProviderForm = React.createClass({
+export const CreateProviderForm = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     plugins: React.PropTypes.array,

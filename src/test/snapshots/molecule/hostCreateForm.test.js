@@ -14,6 +14,7 @@ describe("Create host form(snapshot)", () => {
     const props = {
       clusterId: "1231231212123",
       providerName: "DigitalOcean",
+      dispatch: jest.fn(),
     };
 
     const muiTheme = getMuiTheme();

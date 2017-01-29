@@ -15,6 +15,7 @@ describe("ClusterService Molecule (snapshot)", () => {
       serviceId: "808080",
       clusterId: "12121122",
       confirm: jest.fn(),
+      dispatch: jest.fn(),
     };
     return shallow(<ClusterService {...props} />);
   };

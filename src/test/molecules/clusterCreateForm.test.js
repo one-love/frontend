@@ -16,14 +16,14 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 describe("Create Cluster Form", () => {
-  const setup = () => {
+  const setup = node => {
     const muiTheme = getMuiTheme();
     const context = {
       context: { muiTheme },
       childContextTypes: { muiTheme: React.PropTypes.object },
     };
     return shallow(
-      <CreateClusterForm />,
+      node,
       { ...context }
     );
   };
@@ -35,9 +35,12 @@ describe("Create Cluster Form", () => {
       childContextTypes: { muiTheme: React.PropTypes.object },
     });
   };
+  const props = {
+    dispatch: jest.fn(),
+  };
 
-  const result = setup();
-  const wrapper = mountWithContext(<CreateClusterForm />);
+  const result = setup(<CreateClusterForm {...props} />);
+  const wrapper = mountWithContext(<CreateClusterForm {...props} />);
 
   it("Render one form", () => {
     expect(result.type()).to.equal('form');

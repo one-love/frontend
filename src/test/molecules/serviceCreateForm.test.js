@@ -16,10 +16,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 describe("Create Service form", () => {
-  const setup = () => {
+  const setup = node => {
     const renderer = ReactTestUtils.createRenderer();
     renderer.render(
-      <CreateServiceForm />
+      node
     );
     return renderer.getRenderOutput();
   };
@@ -32,8 +32,11 @@ describe("Create Service form", () => {
     });
   };
 
-  const result = setup();
-  const wrapper = mountWithContext(<CreateServiceForm />);
+  const props = {
+    dispatch: jest.fn(),
+  };
+  const result = setup(<CreateServiceForm {...props} />);
+  const wrapper = mountWithContext(<CreateServiceForm {...props} />);
 
   it("Render one form", () => {
     expect(result.type).to.equal('form');

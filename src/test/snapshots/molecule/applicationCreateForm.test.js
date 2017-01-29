@@ -13,6 +13,7 @@ describe("Create application form(snapshot)", () => {
   const setup = () => {
     const props = {
       serviceId: "808080",
+      dispatch: jest.fn(),
     };
 
     const muiTheme = getMuiTheme();
