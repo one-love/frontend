@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 
@@ -9,6 +8,7 @@ const CreateHostForm = React.createClass({
   propTypes: {
     clusterId: React.PropTypes.string.isRequired,
     providerName: React.PropTypes.string.isRequired,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   contextTypes: {
@@ -21,13 +21,13 @@ const CreateHostForm = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(actions.create(
+    this.props.dispatch(actions.create(
       this.props.clusterId,
       this.props.providerName,
       this.state.hostname,
       this.state.ip,
     ));
-    store.dispatch(settingsActions.close());
+    this.props.dispatch(settingsActions.close());
   },
 
   handleHostnameChange(event) {

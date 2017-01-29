@@ -4,27 +4,42 @@
 /* eslint quotes: 0 */
 
 import React from 'react';
-import CreateHostForm from '../../../components/molecules/host/createForm';
+import { CreateProviderForm } from '../../../components/molecules/provider/createForm';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-describe("Create host form(snapshot)", () => {
+describe("Create provider form(snapshot)", () => {
   const setup = () => {
     const props = {
-      clusterId: "1231231212123",
-      providerName: "DigitalOcean",
+      cluster: {
+        id: "2311231",
+      },
+      plugins: [
+        {
+          properties: [],
+          type: "DO",
+        },
+        {
+          properties: [
+            {
+              name: "name",
+              type: "string",
+            },
+          ],
+          type: "SSH",
+        },
+      ],
       dispatch: jest.fn(),
     };
-
     const muiTheme = getMuiTheme();
     const context = {
       context: { muiTheme },
       childContextTypes: { muiTheme: React.PropTypes.object },
     };
-    return shallow(<CreateHostForm { ...props } />, { ...context });
+    return shallow(<CreateProviderForm { ...props } />, { ...context });
   };
-  it("Create host form render form", () => {
+  it("Create provider form render form", () => {
     const component = setup();
     expect(toJson(component)).toMatchSnapshot();
   });

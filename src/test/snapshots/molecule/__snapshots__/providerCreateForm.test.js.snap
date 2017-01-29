@@ -1,0 +1,47 @@
+exports[`Create provider form(snapshot) Create provider form render form 1`] = `
+<form
+  onSubmit={[Function]}>
+  <h2>
+    Create Provider
+  </h2>
+  <SelectField
+    autoWidth={false}
+    disabled={false}
+    fullWidth={false}
+    hintText="Select Provider Type"
+    onChange={[Function]}>
+    <MenuItem
+      checked={false}
+      desktop={false}
+      disabled={false}
+      focusState="none"
+      insetChildren={false}
+      primaryText="DO"
+      value={0} />
+    <MenuItem
+      checked={false}
+      desktop={false}
+      disabled={false}
+      focusState="none"
+      insetChildren={false}
+      primaryText="SSH"
+      value={1} />
+  </SelectField>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "justifyContent": "center",
+      }
+    }>
+    <RaisedButton
+      disabled={false}
+      fullWidth={false}
+      label="Create"
+      labelPosition="after"
+      primary={false}
+      secondary={false}
+      type="submit" />
+  </div>
+</form>
+`;

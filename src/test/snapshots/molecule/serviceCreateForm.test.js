@@ -9,7 +9,10 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 describe("Create service form(snapshot)", () => {
-  const setup = () => shallow(<CreateServiceForm />);
+  const props = {
+    dispatch: jest.fn(),
+  };
+  const setup = () => shallow(<CreateServiceForm {...props} />);
   it("Create service form render form", () => {
     const component = setup();
     expect(toJson(component)).toMatchSnapshot();

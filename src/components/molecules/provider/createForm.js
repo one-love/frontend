@@ -4,7 +4,6 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
-import store from '../../../store';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 import pluginActions from './actions/plugin';
@@ -31,7 +30,7 @@ const mapStateToProps = (state) => {
 };
 
 
-const CreateProviderForm = React.createClass({
+export const CreateProviderForm = React.createClass({
   propTypes: {
     cluster: React.PropTypes.object,
     plugins: React.PropTypes.array,
@@ -39,6 +38,7 @@ const CreateProviderForm = React.createClass({
     providerStatus: React.PropTypes.string,
     providerRemove: React.PropTypes.object,
     providerRemoveStatus: React.PropTypes.string,
+    dispatch: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -55,7 +55,7 @@ const CreateProviderForm = React.createClass({
   },
 
   componentWillMount() {
-    store.dispatch(pluginActions.get());
+    this.props.dispatch(pluginActions.get());
   },
 
   handleTypeChange(event, key) {
@@ -73,14 +73,14 @@ const CreateProviderForm = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(
+    this.props.dispatch(
       actions.create(
         this.props.cluster.id,
         this.state.type,
         this.state.fields,
       )
     );
-    store.dispatch(settingsActions.close());
+    this.props.dispatch(settingsActions.close());
   },
 
   render() {

@@ -36,6 +36,7 @@ describe("Create Service form", () => {
 
   const props = {
     serviceId: "808080",
+    dispatch: jest.fn(),
   };
   const result = setup(<CreateApplicationForm { ...props } />);
   const wrapper = mountWithContext(<CreateApplicationForm { ...props } />);

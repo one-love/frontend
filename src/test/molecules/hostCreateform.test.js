@@ -37,6 +37,7 @@ describe("Create Service form", () => {
   const props = {
     clusterId: "1231231212123",
     providerName: "DigitalOcean",
+    dispatch: jest.fn(),
   };
   const result = setup(<CreateHostForm { ...props } />);
   const wrapper = mountWithContext(<CreateHostForm { ...props } />);
