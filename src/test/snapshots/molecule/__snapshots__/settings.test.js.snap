@@ -1,0 +1,16 @@
+exports[`Service Molecule (snapshot) Settings snapshot 1`] = `
+<MenuItem
+  checked={false}
+  desktop={false}
+  disabled={false}
+  focusState="none"
+  insetChildren={false}
+  leftIcon={<ActionInput />}
+  onTouchTap={[Function]}
+  primaryText="Logout"
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  } />
+`;
