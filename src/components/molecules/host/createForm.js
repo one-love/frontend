@@ -4,6 +4,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 
+const mapStateToProps = () => ({});
+
 const CreateHostForm = React.createClass({
   propTypes: {
     clusterId: React.PropTypes.string.isRequired,
