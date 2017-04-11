@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FileInput from 'react-file-reader-input';
@@ -6,9 +7,12 @@ import base64 from 'base-64';
 import settingsActions from '../../layouts/layout/actions/settings';
 import actions from './actions/create';
 
+const mapStateToProps = () => ({});
+
 const CreateClusterForm = React.createClass({
   propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
+    create: React.PropTypes.func.isRequired,
+    close: React.PropTypes.func.isRequired,
   },
 
   contextTypes: {
@@ -21,12 +25,12 @@ const CreateClusterForm = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(actions.create(
+    this.props.create(
       this.state.name,
       this.state.sshKey,
       this.state.username,
-    ));
-    this.props.dispatch(settingsActions.close());
+    );
+    this.props.close();
   },
 
   handleNameChange(event) {
@@ -79,4 +83,4 @@ const CreateClusterForm = React.createClass({
 });
 
 
-export default CreateClusterForm;
+export default connect(mapStateToProps, { ...actions, ...settingsActions })(CreateClusterForm);

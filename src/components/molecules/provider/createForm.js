@@ -5,7 +5,7 @@ import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import settingsActions from '../../layouts/layout/actions/settings';
-import actions from './actions/create';
+import createActions from './actions/create';
 import pluginActions from './actions/plugin';
 
 const styles = {
@@ -38,7 +38,9 @@ export const CreateProviderForm = React.createClass({
     providerStatus: React.PropTypes.string,
     providerRemove: React.PropTypes.object,
     providerRemoveStatus: React.PropTypes.string,
-    dispatch: React.PropTypes.func.isRequired,
+    get: React.PropTypes.func.isRequired,
+    create: React.PropTypes.func.isRequired,
+    close: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -55,7 +57,7 @@ export const CreateProviderForm = React.createClass({
   },
 
   componentWillMount() {
-    this.props.dispatch(pluginActions.get());
+    this.props.get();
   },
 
   handleTypeChange(event, key) {
@@ -73,14 +75,12 @@ export const CreateProviderForm = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(
-      actions.create(
+    this.props.create(
         this.props.cluster.id,
         this.state.type,
         this.state.fields,
-      )
     );
-    this.props.dispatch(settingsActions.close());
+    this.props.close();
   },
 
   render() {
@@ -117,5 +117,10 @@ export const CreateProviderForm = React.createClass({
   },
 });
 
+const actions = {
+  ...settingsActions,
+  ...createActions,
+  ...pluginActions,
+};
 
 export default connect(mapStateToProps, actions)(CreateProviderForm);

@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 const ServiceList = React.createClass({
   propTypes: {
     services: React.PropTypes.array,
-    dispatch: React.PropTypes.func.isRequired,
+    get: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -25,7 +25,7 @@ const ServiceList = React.createClass({
   },
 
   componentWillMount() {
-    this.props.dispatch(actions.get());
+    this.props.get();
   },
 
   render() {
