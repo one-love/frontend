@@ -1,0 +1,5 @@
+---
+devel_packages:
+  - name: node
+  - name: yarn
+  - name: secadm

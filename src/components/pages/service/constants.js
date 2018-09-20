@@ -1,2 +1,0 @@
-export const SERVICE_DETAIL = 'SERVICE_DETAIL';
-export const SERVICE_EDIT = 'SERVICE_EDIT';

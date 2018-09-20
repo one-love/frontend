@@ -1,26 +1,27 @@
-/* eslint global-require: 0 */
-/* eslint import/no-extraneous-dependencies: 0 */
-
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from '../reducers';
-import DevTools from '../containers/dev-tools';
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import createSagaMiddleware from 'redux-saga'
+import rootReducer from './reducers'
 
 
-const enhancer = compose(
-  applyMiddleware(thunk),
-  DevTools.instrument(),
-);
+const sagaMiddleware = createSagaMiddleware()
+
+
+const enhancer = composeWithDevTools(
+  applyMiddleware(sagaMiddleware),
+)
 
 
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {
-    module.hot.accept('../reducers', () =>
-      store.replaceReducer(require('../reducers').default)
-    );
+    module.hot.accept(
+      './reducers',
+      // eslint-disable-next-line
+      () => store.replaceReducer(require('./reducers').default)
+    )
   }
 
-  return store;
+  return store
 }

@@ -1,3 +1,0 @@
-export const CLUSTER_DETAIL = 'CLUSTER_DETAIL';
-export const CLUSTER_EDIT = 'CLUSTER_EDIT';
-export const CLUSTER_PLUGINS = 'CLUSTER_PLUGINS';
