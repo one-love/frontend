@@ -1,2 +1,0 @@
-export const SERVICE_CREATE = 'SERVICE_CREATE';
-export const SERVICE_REMOVE = 'SERVICE_REMOVE';

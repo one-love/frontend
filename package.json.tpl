@@ -31,5 +31,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://oneloveback.thinker.home.meka.rs:5000"
+  "proxy": "HTTP_PROXY"
 }
