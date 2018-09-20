@@ -10,7 +10,7 @@ import {
 } from './actions'
 
 
-export function* requestLogout(action) {
+export function* requestLogout() {
   try {
     const result = yield call(service.logout)
     yield put({ type: LOGOUT_SUCCESS, result })
@@ -20,7 +20,7 @@ export function* requestLogout(action) {
 }
 
 
-export function* requestMe(action) {
+export function* requestMe() {
   try {
     const result = yield call(service.me)
     yield put({ type: ME_SUCCESS, result })
@@ -30,7 +30,7 @@ export function* requestMe(action) {
 }
 
 
-export function* requestRefresh(action) {
+export function* requestRefresh() {
   try {
     const result = yield call(service.refresh)
     yield put({ type: REFRESH_SUCCESS, result })

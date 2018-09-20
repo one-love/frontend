@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Template from 'templates/default'
 import errorActions from 'templates/empty/actions'
 
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = () => ({})
 
 
 class Home extends Component {
@@ -22,9 +23,9 @@ class Home extends Component {
 }
 
 
-Home.contextTypes = {
-	router: PropTypes.object.isRequired,
+Home.propTypes = {
+  requestError: PropTypes.func.isRequired,
 }
 
 
-export default connect(mapStateToProps, errorActions)(Home)
+export default connect(mapStateToProps, errorActions)(withRouter(Home))

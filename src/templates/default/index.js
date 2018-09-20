@@ -51,18 +51,18 @@ class Template extends Component {
   }
 
   render() {
-    const AnonButton = <Link to="/login" style={styles.login}>
-                         <Button color="inherit">Login</Button>
-                       </Link>
-    const LoggedinButton = <Button color="inherit" onClick={this.handleLogout}>
-                             Logout
-                           </Button>
-    const AuthButton = this.props.authState
-                     ? LoggedinButton
-                     : AnonButton
-    const menuButtonAction = this.props.authState
-                           ? this.handleMenuOpen
-                           : null
+    const AnonButton = (
+      <Link to="/login" style={styles.login}>
+        <Button color="inherit">Login</Button>
+      </Link>
+    )
+    const LoggedinButton = (
+      <Button color="inherit" onClick={this.handleLogout}>
+        Logout
+      </Button>
+    )
+    const AuthButton = this.props.authState ? LoggedinButton : AnonButton
+    const menuButtonAction = this.props.authState ? this.handleMenuOpen : null
     return (
       <EmptyTemplate secure={this.props.secure}>
         <AppBar position="static">
@@ -91,6 +91,9 @@ class Template extends Component {
           <div
             onClick={this.handleMenuClose}
             style={styles.menu}
+            role="button"
+            onKeyDown={this.handleMenuClose}
+            tabIndex={0}
           >
             <Link to="/" style={styles.a}>
               <MenuItem>
@@ -128,7 +131,7 @@ Template.propTypes = {
   auth: PropTypes.func.isRequired,
   authState: PropTypes.bool,
   children: PropTypes.node,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   requestLogout: PropTypes.func.isRequired,
   secure: PropTypes.bool,
 }

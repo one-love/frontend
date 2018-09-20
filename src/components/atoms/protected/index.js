@@ -21,7 +21,7 @@ class ProtectedComponent extends Component {
 
   componentWillMount() {
     this.props.requestMe()
-	}
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.status === 200) {
@@ -49,6 +49,8 @@ class ProtectedComponent extends Component {
 
 ProtectedComponent.propTypes = {
   auth: PropTypes.func.isRequired,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  refreshStatus: PropTypes.number,
   requestMe: PropTypes.func.isRequired,
   requestRefresh: PropTypes.func.isRequired,
   requestRefreshReset: PropTypes.func.isRequired,

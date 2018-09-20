@@ -6,7 +6,7 @@ export default class NoPage extends Component {
   render() {
     return (
       <div style={styles.root}>
-				<h1>No Such Page</h1>
+        <h1>No Such Page</h1>
       </div>
     )
   }

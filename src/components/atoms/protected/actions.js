@@ -11,7 +11,7 @@ export const ME_FAILURE = 'ME_FAILURE'
 export const REFRESH = 'REFRESH'
 export const REFRESH_SUCCESS = 'REFRESH_SUCCESS'
 export const REFRESH_FAILURE = 'REFRESH_FAILURE'
-export const REFRESH_RESET= 'REFRESH_RESET'
+export const REFRESH_RESET = 'REFRESH_RESET'
 
 
 export function requestMe() {

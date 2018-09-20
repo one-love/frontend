@@ -1,8 +1,8 @@
 export default {
   root: {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     height: '100vh',
   },
 }

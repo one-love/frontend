@@ -15,9 +15,7 @@ const mapStateToProps = (state) => ({
 
 class EmptyTemplate extends Component {
   render() {
-    const Secure = this.props.secure
-                 ? <ProtectedComponent />
-                 : <div />
+    const Secure = this.props.secure ? <ProtectedComponent /> : <div />
     return (
       <div>
         {Secure}
@@ -28,7 +26,7 @@ class EmptyTemplate extends Component {
           open={this.props.open}
           onClose={this.props.requestErrorReset}
           message={this.props.error}
-          action={
+          action={(
             <Button
               color="secondary"
               size="small"
@@ -36,7 +34,7 @@ class EmptyTemplate extends Component {
             >
               CLOSE
             </Button>
-          }
+          )}
         />
       </div>
     )
@@ -48,7 +46,6 @@ EmptyTemplate.propTypes = {
   children: PropTypes.node,
   error: PropTypes.string,
   open: PropTypes.bool,
-  requestError: PropTypes.func.isRequired,
   requestErrorReset: PropTypes.func.isRequired,
   secure: PropTypes.bool,
 }

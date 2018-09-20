@@ -5,7 +5,7 @@ import { LOGIN } from 'pages/login/actions'
 import { LOGOUT, ME, REFRESH } from 'components/atoms/protected/actions'
 
 // Sagas
-import { requestLogin } from 'pages/login/sagas'
+import requestLogin from 'pages/login/sagas'
 import {
   requestLogout,
   requestMe,

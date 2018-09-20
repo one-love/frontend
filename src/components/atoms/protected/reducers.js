@@ -43,13 +43,11 @@ export function logoutReducer(state = {}, action) {
         status: 200,
       }
     case LOGOUT_FAILURE:
-      const error = action.error.response.data.msg
-      const status = action.error.response.status
       return {
         ...state,
         pending: false,
-        error,
-        status,
+        error: action.error.response.data.msg,
+        status: action.error.response.status,
       }
     default:
       return state
@@ -103,13 +101,11 @@ export function refreshReducer(state = {}, action) {
         status: 200,
       }
     case REFRESH_FAILURE:
-      const error = action.error.response.data.msg
-      const status = action.error.response.status
       return {
         ...state,
         pending: false,
-        error,
-        status,
+        error: action.error.response.data.msg,
+        status: action.error.response.status,
       }
     case REFRESH_RESET:
       return {
