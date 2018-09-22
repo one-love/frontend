@@ -1,6 +1,6 @@
 {
-  "name": "pulsar",
-  "version": "0.0.1",
+  "name": "one-love",
+  "version": "0.0.2",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.1.0",
@@ -15,9 +15,13 @@
     "redux": "^4.0.0",
     "redux-actions": "^2.6.1",
     "redux-devtools-extension": "^2.13.5",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "redux-saga-testing": "^1.0.5"
   },
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "eslint": "^5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
