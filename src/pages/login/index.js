@@ -17,7 +17,7 @@ const mapStateToProps = (state) => ({
 })
 
 
-class Login extends Component {
+export class Login extends Component {
   state = {
     email: '',
     password: '',
@@ -25,7 +25,7 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.status === 200) {
-      this.history.push('/')
+      this.props.history.push('/')
     } else if (nextProps.status === 403) {
       this.props.requestError(nextProps.error)
     }
@@ -62,6 +62,7 @@ class Login extends Component {
                     onChange={this.handleEmail}
                     value={this.state.email}
                     type="email"
+                    data-id="email"
                     required
                     autoFocus
                   />
@@ -73,6 +74,7 @@ class Login extends Component {
                     margin="normal"
                     onChange={this.handlePassword}
                     value={this.state.password}
+                    data-id="password"
                     required
                   />
                 </div>
@@ -92,9 +94,10 @@ class Login extends Component {
 
 
 Login.propTypes = {
-  requestLogin: PropTypes.func.isRequired,
-  requestError: PropTypes.func.isRequired,
   error: PropTypes.string,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  requestError: PropTypes.func.isRequired,
+  requestLogin: PropTypes.func.isRequired,
   status: PropTypes.number,
 }
 
