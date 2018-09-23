@@ -18,8 +18,6 @@ jobs:
       - run:
           name: Publish code coverage
           command: |
-            ls -al
-            ls -al coverage || true
             cat coverage/lcov.info | node_modules/.bin/coveralls || true
 workflows:
   version: 2
