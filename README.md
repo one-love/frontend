@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/one-love/frontend.svg?style=svg)](https://circleci.com/gh/one-love/frontend) [![Coverage Status](https://coveralls.io/repos/github/one-love/frontend/badge.svg?branch=master)](https://coveralls.io/github/one-love/frontend?branch=master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
