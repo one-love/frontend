@@ -99,6 +99,7 @@ export function refreshReducer(state = {}, action) {
         pending: false,
         error: null,
         status: 200,
+        expire: action.result.expire,
       }
     case REFRESH_FAILURE:
       return {

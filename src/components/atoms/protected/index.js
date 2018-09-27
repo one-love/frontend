@@ -1,44 +1,53 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import errorActions from 'templates/empty/actions'
 import actions from './actions'
+import styles from './styles'
 
 
 const mapStateToProps = (state) => ({
-  error: state.me.error,
-  status: state.me.status,
-  pending: state.me.pending,
-  refreshError: state.refresh.error,
-  refreshStatus: state.refresh.status,
+  expire: state.refresh.expire,
+  status: state.refresh.status,
 })
 
 
 class ProtectedComponent extends Component {
   state = {
-    refreshRequested: false,
+    logged: false,
   }
 
   componentWillMount() {
-    this.props.requestMe()
+    this.props.requestRefresh()
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.status === 200) {
+    if (nextProps.status === 200 && !this.state.logged) {
+      this.interval = setInterval(
+        () => { this.props.requestRefresh() },
+        (this.props.expire - 1) * 1000,
+      )
+      this.setState({ logged: true })
       this.props.auth(true)
-    } else if (nextProps.refreshStatus === 401) {
+    } else if (nextProps.status !== null) {
       this.props.auth(false)
-      this.props.requestRefreshReset()
-      this.props.history.push('/landing')
-    } else if (nextProps.refreshStatus === 200) {
-      this.setState({ refreshRequested: false })
-      this.props.requestMe()
-    } else if (nextProps.status === 401) {
-      if (!this.state.refreshRequested) {
-        this.setState({ refreshRequested: true })
-        this.props.requestRefresh()
+      if (this.state.logged) {
+        const error = (
+          <div>
+            Error refreshing login token. Please go to &nbsp;
+            <Link to="/login" style={styles.link}>Login</Link>
+          </div>
+        )
+        this.props.requestError(error)
+      } else {
+        this.props.history.push('/landing')
       }
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
 
   render() {
@@ -49,13 +58,19 @@ class ProtectedComponent extends Component {
 
 ProtectedComponent.propTypes = {
   auth: PropTypes.func.isRequired,
+  expire: PropTypes.number,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
-  refreshStatus: PropTypes.number,
-  requestMe: PropTypes.func.isRequired,
+  requestError: PropTypes.func.isRequired,
   requestRefresh: PropTypes.func.isRequired,
-  requestRefreshReset: PropTypes.func.isRequired,
   status: PropTypes.number,
 }
 
 
-export default connect(mapStateToProps, actions)(withRouter(ProtectedComponent))
+ProtectedComponent.defaultProps = {
+  expire: 900,
+}
+
+
+export default connect(mapStateToProps, { ...errorActions, ...actions })(
+  withRouter(ProtectedComponent),
+)

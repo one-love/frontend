@@ -25,9 +25,10 @@ import actions from 'components/atoms/protected/actions'
 import styles from './styles'
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   open: state.error.open,
   authState: state.auth.state,
+  title: state.title.title,
 })
 
 
@@ -45,9 +46,10 @@ class Template extends Component {
   }
 
   handleLogout = () => {
-    this.props.auth(false)
-    this.props.requestLogout()
-    this.props.history.push('/landing')
+    const { auth, requestLogout, history } = this.props
+    auth(false)
+    requestLogout()
+    history.push('/landing')
   }
 
   render() {
@@ -64,64 +66,67 @@ class Template extends Component {
     const AuthButton = this.props.authState ? LoggedinButton : AnonButton
     const menuButtonAction = this.props.authState ? this.handleMenuOpen : null
     return (
-      <EmptyTemplate secure={this.props.secure}>
+      <div>
         <AppBar position="static">
           <Toolbar>
             <IconButton color="inherit" onClick={menuButtonAction}>
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" style={styles.flex}>
-              Pulsar
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              One Love - {this.props.title}
             </Typography>
             {AuthButton}
           </Toolbar>
         </AppBar>
-        {this.props.children}
-        <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
-          <AppBar position="static">
-            <Toolbar>
-              <Typography variant="title" color="inherit" style={styles.flex}>
-                &nbsp;
-              </Typography>
-              <IconButton color="inherit" onClick={this.handleMenuClose}>
-                <CloseIcon />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <div
-            onClick={this.handleMenuClose}
-            style={styles.menu}
-            role="button"
-            onKeyDown={this.handleMenuClose}
-            tabIndex={0}
-          >
-            <Link to="/" style={styles.a}>
-              <MenuItem>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                Dashboard
-              </MenuItem>
-            </Link>
-            <Link to="/tasks" style={styles.a}>
-              <MenuItem>
-                <ListItemIcon>
-                  <TaskIcon />
-                </ListItemIcon>
-                Tasks
-              </MenuItem>
-            </Link>
-            <Link to="/workflows" style={styles.a}>
-              <MenuItem>
-                <ListItemIcon>
-                  <WorkflowIcon />
-                </ListItemIcon>
-                Workflows
-              </MenuItem>
-            </Link>
-          </div>
-        </Drawer>
-      </EmptyTemplate>
+        <EmptyTemplate secure={this.props.secure}>
+          {this.props.children}
+          <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
+            <AppBar position="static">
+              <Toolbar>
+                <Typography variant="title" color="inherit" style={styles.flex}>
+                  &nbsp;
+                </Typography>
+                <IconButton color="inherit" onClick={this.handleMenuClose}>
+                  <CloseIcon />
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+            <div
+              role="button"
+              onClick={this.handleMenuClose}
+              style={styles.menu}
+              tabIndex={0}
+              onKeyDown={this.handleMenuClose}
+            >
+              <Link to="/" style={styles.a}>
+                <MenuItem>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  Dashboard
+                </MenuItem>
+              </Link>
+              <Link to="/tasks" style={styles.a}>
+                <MenuItem>
+                  <ListItemIcon>
+                    <TaskIcon />
+                  </ListItemIcon>
+                  Tasks
+                </MenuItem>
+              </Link>
+              <Link to="/workflows" style={styles.a}>
+                <MenuItem>
+                  <ListItemIcon>
+                    <WorkflowIcon />
+                  </ListItemIcon>
+                  Workflows
+                </MenuItem>
+              </Link>
+            </div>
+          </Drawer>
+        </EmptyTemplate>
+      </div>
     )
   }
 }
@@ -134,6 +139,7 @@ Template.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   requestLogout: PropTypes.func.isRequired,
   secure: PropTypes.bool,
+  title: PropTypes.string,
 }
 
 

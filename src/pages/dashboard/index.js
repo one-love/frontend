@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Template from 'templates/default'
 import errorActions from 'templates/empty/actions'
+import titleActions from 'templates/default/actions'
 
 
 const mapStateToProps = () => ({})
 
 
-class Home extends Component {
+export class Dashboard extends Component {
+  componentWillMount() {
+    this.props.requestTitle('Dashboard')
+  }
+
   render() {
     return (
       <Template secure>
@@ -23,9 +27,12 @@ class Home extends Component {
 }
 
 
-Home.propTypes = {
+Dashboard.propTypes = {
   requestError: PropTypes.func.isRequired,
+  requestTitle: PropTypes.func.isRequired,
 }
 
 
-export default connect(mapStateToProps, errorActions)(withRouter(Home))
+export default connect(mapStateToProps, { ...errorActions, ...titleActions })(
+  Dashboard,
+)
