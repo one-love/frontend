@@ -5,17 +5,17 @@ import { LOGIN } from 'pages/login/actions'
 import { LOGOUT, ME, REFRESH } from 'components/atoms/protected/actions'
 
 // Sagas
-import requestLogin from 'pages/login/sagas'
+import loginSaga from 'pages/login/sagas'
 import {
-  requestLogout,
-  requestMe,
-  requestRefresh,
+  logoutSaga,
+  meSaga,
+  refreshSaga,
 } from 'components/atoms/protected/sagas'
 
 
 export default function* greenSaga() {
-  yield takeLatest(LOGIN, requestLogin)
-  yield takeLatest(LOGOUT, requestLogout)
-  yield takeLatest(ME, requestMe)
-  yield takeLatest(REFRESH, requestRefresh)
+  yield takeLatest(LOGIN, loginSaga)
+  yield takeLatest(LOGOUT, logoutSaga)
+  yield takeLatest(ME, meSaga)
+  yield takeLatest(REFRESH, refreshSaga)
 }
