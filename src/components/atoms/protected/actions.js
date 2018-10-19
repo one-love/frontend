@@ -14,41 +14,31 @@ export const REFRESH_FAILURE = 'REFRESH_FAILURE'
 export const REFRESH_RESET = 'REFRESH_RESET'
 
 
-export function requestMe(service = undefined) {
-  const action = { type: ME }
-  if (service !== undefined) { action.service = service }
-  return action
+export function requestMe() {
+  return { type: ME }
 }
 
 
-export function requestRefresh(service = undefined) {
-  const action = { type: REFRESH }
-  if (service !== undefined) { action.service = service }
-  return action
+export function requestRefresh() {
+  return { type: REFRESH }
 }
 
 
-export function requestRefreshReset(service = undefined) {
-  const action = { type: REFRESH_RESET }
-  if (service !== undefined) { action.service = service }
-  return action
+export function requestRefreshReset() {
+  return { type: REFRESH_RESET }
 }
 
 
-export function auth(state, service = undefined) {
-  const action = {
+export function auth(state) {
+  return {
     state,
     type: AUTH,
   }
-  if (service !== undefined) { action.service = service }
-  return action
 }
 
 
-export function requestLogout(service = undefined) {
-  const action = { type: LOGOUT }
-  if (service !== undefined) { action.service = service }
-  return action
+export function requestLogout() {
+  return { type: LOGOUT }
 }
 
 

@@ -10,10 +10,9 @@ import {
 } from './actions'
 
 
-export function* logoutSaga(action) {
+export function* logoutSaga() {
   try {
-    const service = action.service ? action.service : ProtectedService.logout
-    const result = yield call(service)
+    const result = yield call(ProtectedService.logout)
     yield put({ type: LOGOUT_SUCCESS, result })
   } catch (error) {
     yield put({ type: LOGOUT_FAILURE, error })
@@ -21,10 +20,9 @@ export function* logoutSaga(action) {
 }
 
 
-export function* meSaga(action) {
+export function* meSaga() {
   try {
-    const service = action.service ? action.service : ProtectedService.me
-    const result = yield call(service)
+    const result = yield call(ProtectedService.me)
     yield put({ type: ME_SUCCESS, result })
   } catch (error) {
     yield put({ type: ME_FAILURE, error })
@@ -32,10 +30,9 @@ export function* meSaga(action) {
 }
 
 
-export function* refreshSaga(action) {
+export function* refreshSaga() {
   try {
-    const service = action.service ? action.service : ProtectedService.refresh
-    const result = yield call(service)
+    const result = yield call(ProtectedService.refresh)
     yield put({ type: REFRESH_SUCCESS, result })
   } catch (error) {
     yield put({ type: REFRESH_FAILURE, error })
