@@ -32,7 +32,7 @@ export class ServiceList extends Component {
               Services
             </Typography>
             <Typography color="textSecondary">
-              Groups of hosts
+              Groups of services
             </Typography>
           </CardContent>
           <CardActions>

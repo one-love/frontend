@@ -1,21 +1,21 @@
 import {
-  PROVIDER_LIST,
-  PROVIDER_LIST_SUCCESS,
-  PROVIDER_LIST_FAILURE,
-  PROVIDER_LIST_RESET,
+  PROVISION_LIST,
+  PROVISION_LIST_SUCCESS,
+  PROVISION_LIST_FAILURE,
+  PROVISION_LIST_RESET,
 } from './actions'
 
 
-export default function providerListReducer(state = { }, action) {
+export default function provisionListReducer(state = { }, action) {
   switch (action.type) {
-    case PROVIDER_LIST:
+    case PROVISION_LIST:
       return {
         ...state,
         error: null,
         pending: true,
         status: null,
       }
-    case PROVIDER_LIST_SUCCESS:
+    case PROVISION_LIST_SUCCESS:
       return {
         ...state,
         error: null,
@@ -23,14 +23,14 @@ export default function providerListReducer(state = { }, action) {
         result: action.result,
         status: 200,
       }
-    case PROVIDER_LIST_FAILURE:
+    case PROVISION_LIST_FAILURE:
       return {
         ...state,
         error: action.error.response.data.message,
         pending: false,
         status: action.error.response.status,
       }
-    case PROVIDER_LIST_RESET:
+    case PROVISION_LIST_RESET:
       return {
         ...state,
         error: null,
