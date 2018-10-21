@@ -6,7 +6,7 @@ import {
   refreshReducer,
 } from 'components/atoms/protected/reducers'
 import clusterListReducer from 'components/organisms/cluster-list/reducers'
-import providerListReducer from 'components/organisms/provider-list/reducers'
+import provisionListReducer from 'components/organisms/provision-list/reducers'
 import serviceListReducer from 'components/organisms/service-list/reducers'
 import loginReducer from 'pages/login/reducers'
 import userListReducer from 'pages/user-list/reducers'
@@ -21,7 +21,7 @@ export default combineReducers({
   login: loginReducer,
   logout: logoutReducer,
   me: meReducer,
-  providerList: providerListReducer,
+  provisionList: provisionListReducer,
   refresh: refreshReducer,
   serviceList: serviceListReducer,
   title: titleReducer,

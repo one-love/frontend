@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withTheme } from '@material-ui/core/styles'
 import Template from 'templates/default'
 import ClusterList from 'components/organisms/cluster-list'
-import ProviderList from 'components/organisms/provider-list'
+import ProvisionList from 'components/organisms/provision-list'
 import ServiceList from 'components/organisms/service-list'
 import titleActions from 'templates/default/actions'
 import getStyles from './styles'
@@ -24,7 +24,7 @@ export class Dashboard extends Component {
       <Template secure>
         <div style={styles.root}>
           <ClusterList />
-          <ProviderList />
+          <ProvisionList />
           <ServiceList />
         </div>
       </Template>

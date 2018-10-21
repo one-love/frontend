@@ -13,30 +13,30 @@ import actions from './actions'
 
 
 const mapStateToProps = (state) => ({
-  providerList: state.providerList.result,
+  provisionList: state.provisionList.result,
 })
 
 
-export class ProviderList extends Component {
+export class ProvisionList extends Component {
   componentWillMount() {
-    this.props.requestProviderList()
+    this.props.requestProvisionList()
   }
 
   render() {
     const styles = this.props.theme
     return (
-      <Badge badgeContent={this.props.providerList.total} color="primary">
+      <Badge badgeContent={this.props.provisionList.total} color="primary">
         <Card style={styles.overrides.Execution}>
           <CardContent>
             <Typography variant="headline" component="h2">
-              Providers
+              Provisions
             </Typography>
             <Typography color="textSecondary">
-              Groups of hosts
+              Groups of provisions
             </Typography>
           </CardContent>
           <CardActions>
-            <Link to="/providers" style={styles.overrides.noDecorationLink}>
+            <Link to="/provisions" style={styles.overrides.noDecorationLink}>
               <Button size="small">Explore</Button>
             </Link>
           </CardActions>
@@ -47,10 +47,10 @@ export class ProviderList extends Component {
 }
 
 
-ProviderList.propTypes = {
+ProvisionList.propTypes = {
   theme: PropTypes.shape().isRequired,
-  requestProviderList: PropTypes.func.isRequired,
-  providerList: PropTypes.shape({
+  requestProvisionList: PropTypes.func.isRequired,
+  provisionList: PropTypes.shape({
     data: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
@@ -61,8 +61,8 @@ ProviderList.propTypes = {
 }
 
 
-ProviderList.defaultProps = {
-  providerList: {
+ProvisionList.defaultProps = {
+  provisionList: {
     data: [],
     pages: 0,
     total: 0,
@@ -70,4 +70,4 @@ ProviderList.defaultProps = {
 }
 
 
-export default connect(mapStateToProps, actions)(withTheme()(ProviderList))
+export default connect(mapStateToProps, actions)(withTheme()(ProvisionList))
