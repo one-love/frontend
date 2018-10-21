@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Button from '@material-ui/core/Button'
+import { withTheme } from '@material-ui/core/styles'
 import Template from 'templates/default'
-import errorActions from 'templates/empty/actions'
+import ClusterList from 'components/organisms/cluster-list'
+import ProviderList from 'components/organisms/provider-list'
+import ServiceList from 'components/organisms/service-list'
 import titleActions from 'templates/default/actions'
+import getStyles from './styles'
 
 
 const mapStateToProps = () => ({})
@@ -16,11 +19,14 @@ export class Dashboard extends Component {
   }
 
   render() {
+    const styles = getStyles(this.props.theme, 3)
     return (
       <Template secure>
-        <Button variant="contained" onClick={() => this.props.requestError('Error message')}>
-          Display Error
-        </Button>
+        <div style={styles.root}>
+          <ClusterList />
+          <ProviderList />
+          <ServiceList />
+        </div>
       </Template>
     )
   }
@@ -28,11 +34,9 @@ export class Dashboard extends Component {
 
 
 Dashboard.propTypes = {
-  requestError: PropTypes.func.isRequired,
   requestTitle: PropTypes.func.isRequired,
+  theme: PropTypes.shape().isRequired,
 }
 
 
-export default connect(mapStateToProps, { ...errorActions, ...titleActions })(
-  Dashboard,
-)
+export default connect(mapStateToProps, titleActions)(withTheme()(Dashboard))

@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import Snackbar from '@material-ui/core/Snackbar'
 import ProtectedComponent from 'components/atoms/protected'
 import actions from './actions'
+import styles from './styles'
 
 
 const mapStateToProps = (state) => ({
@@ -17,7 +18,7 @@ class EmptyTemplate extends Component {
   render() {
     const Secure = this.props.secure ? <ProtectedComponent /> : <div />
     return (
-      <div>
+      <div style={styles.root}>
         {Secure}
         {this.props.children}
         <Snackbar
