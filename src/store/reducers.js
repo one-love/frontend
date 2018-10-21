@@ -6,6 +6,7 @@ import {
   refreshReducer,
 } from 'components/atoms/protected/reducers'
 import loginReducer from 'pages/login/reducers'
+import userListReducer from 'pages/user-list/reducers'
 import errorReducer from 'templates/empty/reducers'
 import titleReducer from 'templates/default/reducers'
 
@@ -18,4 +19,5 @@ export default combineReducers({
   me: meReducer,
   refresh: refreshReducer,
   title: titleReducer,
+  userList: userListReducer,
 })

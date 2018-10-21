@@ -17,8 +17,7 @@ import Typography from '@material-ui/core/Typography'
 import CloseIcon from '@material-ui/icons/Clear'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import MenuIcon from '@material-ui/icons/Menu'
-import TaskIcon from '@material-ui/icons/FitnessCenter'
-import WorkflowIcon from '@material-ui/icons/Tune'
+import UsersIcon from '@material-ui/icons/Group'
 
 import EmptyTemplate from 'templates/empty'
 import actions from 'components/atoms/protected/actions'
@@ -107,20 +106,12 @@ class Template extends Component {
                   Dashboard
                 </MenuItem>
               </Link>
-              <Link to="/tasks" style={styles.a}>
+              <Link to="/users" style={styles.a}>
                 <MenuItem>
                   <ListItemIcon>
-                    <TaskIcon />
+                    <UsersIcon />
                   </ListItemIcon>
-                  Tasks
-                </MenuItem>
-              </Link>
-              <Link to="/workflows" style={styles.a}>
-                <MenuItem>
-                  <ListItemIcon>
-                    <WorkflowIcon />
-                  </ListItemIcon>
-                  Workflows
+                  Users
                 </MenuItem>
               </Link>
             </div>
