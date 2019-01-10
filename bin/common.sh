@@ -34,4 +34,3 @@ setup() {
   sed -e "s;HTTP_PROXY;${HTTP_PROXY};g" package.json.tpl >package.json
   ${PACKAGE_MANAGER} install
 }
-
