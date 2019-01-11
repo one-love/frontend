@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import Template from 'templates/default'
 import titleActions from 'templates/default/actions'
+import styles from './styles'
 
 
 const mapStateToProps = () => ({})
@@ -16,10 +17,12 @@ export class Landing extends Component {
 
   render() {
     return (
-      <Template>
-        <Button variant="contained">
-          Landing
-        </Button>
+      <Template style={{}}>
+        <div style={styles.photo}>
+          <Button variant="contained">
+            Landing
+          </Button>
+        </div>
       </Template>
     )
   }
