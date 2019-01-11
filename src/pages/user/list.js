@@ -14,7 +14,6 @@ export class UserList extends Component {
   }
 
   render() {
-    console.log(store.user.list)
     const users = store.user.list.data.map(user => (
       <ListItem dense button key={user.id}>
         <Avatar src={user.avatar} />

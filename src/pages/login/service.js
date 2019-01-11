@@ -21,7 +21,7 @@ async function refresh() {
     {},
     {
       headers: { 'X-CSRF-TOKEN': csrf },
-    }
+    },
   )
   return response.data
 }
