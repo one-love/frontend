@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withTheme } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -9,23 +8,18 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Badge from '@material-ui/core/Badge'
-import actions from './actions'
-
-
-const mapStateToProps = (state) => ({
-  serviceList: state.serviceList.result,
-})
+import store from 'store'
 
 
 export class ServiceList extends Component {
   componentWillMount() {
-    this.props.requestServiceList()
+    store.service.fetchAll()
   }
 
   render() {
     const styles = this.props.theme
     return (
-      <Badge badgeContent={this.props.serviceList.total} color="primary">
+      <Badge badgeContent={store.service.list.total} color="primary">
         <Card style={styles.overrides.Execution}>
           <CardContent>
             <Typography variant="headline" component="h2">
@@ -49,25 +43,7 @@ export class ServiceList extends Component {
 
 ServiceList.propTypes = {
   theme: PropTypes.shape().isRequired,
-  requestServiceList: PropTypes.func.isRequired,
-  serviceList: PropTypes.shape({
-    data: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })),
-    pages: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
-  }),
 }
 
 
-ServiceList.defaultProps = {
-  serviceList: {
-    data: [],
-    pages: 0,
-    total: 0,
-  },
-}
-
-
-export default connect(mapStateToProps, actions)(withTheme()(ServiceList))
+export default withTheme()(ServiceList)

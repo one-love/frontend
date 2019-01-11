@@ -2,7 +2,7 @@ import axios from 'axios'
 import { API_ROOT } from 'utils'
 
 
-async function provisionList(page) {
+async function fetchAll(page) {
   const response = await axios.get(
     `${API_ROOT}/provision`,
     { headers: { 'X-Page': page } },
@@ -11,4 +11,6 @@ async function provisionList(page) {
 }
 
 
-export default { provisionList }
+export default {
+  fetchAll,
+}
