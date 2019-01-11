@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
+import { observer } from 'mobx-react'
 
 // Components
 import AppBar from '@material-ui/core/AppBar'
@@ -17,20 +17,13 @@ import Typography from '@material-ui/core/Typography'
 import CloseIcon from '@material-ui/icons/Clear'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import MenuIcon from '@material-ui/icons/Menu'
-import UsersIcon from '@material-ui/icons/Group'
 
 import EmptyTemplate from 'templates/empty'
-import actions from 'components/atoms/protected/actions'
+import store from 'store'
 import styles from './styles'
 
 
-const mapStateToProps = state => ({
-  open: state.error.open,
-  authState: state.auth.state,
-  title: state.title.title,
-})
-
-
+@observer
 class Template extends Component {
   state = {
     showMenu: false,
@@ -45,13 +38,14 @@ class Template extends Component {
   }
 
   handleLogout = () => {
-    const { auth, requestLogout, history } = this.props
-    auth(false)
-    requestLogout()
-    history.push('/landing')
+    store.auth.auth = false
+    store.auth.email = ''
+    store.auth.password = ''
+    this.props.history.push('/landing')
   }
 
   render() {
+    const { auth, title } = store
     const AnonButton = (
       <Link to="/login" style={styles.login}>
         <Button color="inherit">Login</Button>
@@ -62,8 +56,8 @@ class Template extends Component {
         Logout
       </Button>
     )
-    const AuthButton = this.props.authState ? LoggedinButton : AnonButton
-    const menuButtonAction = this.props.authState ? this.handleMenuOpen : null
+    const AuthButton = auth.auth ? LoggedinButton : AnonButton
+    const menuButtonAction = auth.auth ? this.handleMenuOpen : null
     return (
       <div>
         <AppBar position="static">
@@ -73,12 +67,12 @@ class Template extends Component {
             </IconButton>
             <Typography variant="title" color="inherit" style={styles.flex}>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              One Love - {this.props.title}
+              Frontend Startkit - {title.title}
             </Typography>
             {AuthButton}
           </Toolbar>
         </AppBar>
-        <EmptyTemplate secure={this.props.secure}>
+        <EmptyTemplate secure={this.props.secure} style={this.props.style}>
           {this.props.children}
           <Drawer open={this.state.showMenu} onClose={this.handleMenuClose}>
             <AppBar position="static">
@@ -106,14 +100,6 @@ class Template extends Component {
                   Dashboard
                 </MenuItem>
               </Link>
-              <Link to="/users" style={styles.a}>
-                <MenuItem>
-                  <ListItemIcon>
-                    <UsersIcon />
-                  </ListItemIcon>
-                  Users
-                </MenuItem>
-              </Link>
             </div>
           </Drawer>
         </EmptyTemplate>
@@ -124,14 +110,11 @@ class Template extends Component {
 
 
 Template.propTypes = {
-  auth: PropTypes.func.isRequired,
-  authState: PropTypes.bool,
   children: PropTypes.node,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
-  requestLogout: PropTypes.func.isRequired,
   secure: PropTypes.bool,
-  title: PropTypes.string,
+  style: PropTypes.shape({}),
 }
 
 
-export default connect(mapStateToProps, actions)(withRouter(Template))
+export default withRouter(Template)
