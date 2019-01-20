@@ -11,7 +11,7 @@ class AuthStore {
 
   @observable refreshExpire = 0
 
-  @observable auth = false
+  @observable auth = null
 
   @observable email = ''
 
@@ -45,10 +45,29 @@ class AuthStore {
     }
   }
 
+  async logout() {
+    try {
+      await service.logout()
+      this.auth = false
+      this.accessToken = ''
+      this.accessExpire = 0
+      this.refreshToken = ''
+      this.refreshExpire = 0
+      return {
+        status: 200,
+        error: '',
+      }
+    } catch (error) {
+      return {
+        error: error.response.data.message,
+        status: error.response.status,
+      }
+    }
+  }
+
   async refresh() {
     try {
       const result = await service.refresh()
-      this.auth = true
       this.accessToken = result.access
       this.accessExpire = result.accessExpire
       this.refreshExpire = result.refreshExpire

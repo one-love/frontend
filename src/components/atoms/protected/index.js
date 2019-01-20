@@ -11,8 +11,13 @@ class ProtectedComponent extends React.Component {
 
   expired = true
 
-  componentWillMount() {
-    store.auth.refresh()
+  async componentWillMount() {
+    const { auth, me } = store
+    const result = await auth.refresh()
+    auth.auth = result.status === 200
+    if (auth.auth) {
+      me.fetch()
+    }
   }
 
   componentWillUnmount() {
@@ -20,40 +25,41 @@ class ProtectedComponent extends React.Component {
     clearInterval(this.interval)
   }
 
-  componentWillReact() {
-    const { auth, error } = store
+  refresh = async () => {
+    const { auth, error, me } = store
+    const result = await auth.refresh()
+    if (2 * auth.accessExpire > auth.refreshExpire) {
+      error.message = 'Refresh token is soon to expire! Please go to login page.'
+      error.open = true
+    }
+    store.auth.auth = result.status === 200
+    if (auth.auth) {
+      me.fetch()
+    }
+  }
+
+  render() {
+    const { auth, me } = store
     if (auth.auth) {
       if (!this.logged) {
         if (auth.accessExpire > 1) {
           this.logged = true
+          me.fetch()
           this.interval = setInterval(
-            async () => {
-              await auth.refresh()
-              if (2 * auth.accessExpire > auth.refreshExpire) {
-                error.message = 'Refresh token is soon to expire! Please go to login page.'
-                error.open = true
-              }
-            },
+            this.refresh,
             (auth.accessExpire - 1) * 1000,
           )
         }
       }
     } else if (this.logged) {
-      if (this.expired) {
-        this.expired = false
-        clearInterval(this.interval)
-        error.message = 'Error refreshing login token! Please login!'
-        error.open = true
-      }
+      this.expired = false
+      clearInterval(this.interval)
       if (this.props.redirect) {
         this.props.history.push('/login')
       }
-    } else if (this.props.redirect) {
+    } else if (this.props.redirect && auth.auth === false) {
       this.props.history.push('/landing')
     }
-  }
-
-  render() {
     return null
   }
 }
