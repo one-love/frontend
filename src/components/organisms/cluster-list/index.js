@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Badge from '@material-ui/core/Badge'
 import store from 'store'
+import styles from './styles'
 
 
 export class ClusterList extends Component {
@@ -17,10 +18,13 @@ export class ClusterList extends Component {
   }
 
   render() {
-    const styles = this.props.theme
     return (
-      <Badge badgeContent={store.cluster.list.total} color="primary">
-        <Card style={styles.overrides.Execution}>
+      <Badge
+        badgeContent={store.cluster.list.total}
+        color="primary"
+        style={styles.root}
+      >
+        <Card style={this.props.theme.overrides.Execution}>
           <CardContent>
             <Typography variant="headline" component="h2">
               Clusters
@@ -30,7 +34,7 @@ export class ClusterList extends Component {
             </Typography>
           </CardContent>
           <CardActions>
-            <Link to="/clusters" style={styles.overrides.noDecorationLink}>
+            <Link to="/clusters" style={this.props.theme.overrides.noDecorationLink}>
               <Button variant="outlined" size="small">Explore</Button>
             </Link>
           </CardActions>
