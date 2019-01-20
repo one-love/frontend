@@ -31,7 +31,7 @@ export class ServiceList extends Component {
           </CardContent>
           <CardActions>
             <Link to="/services" style={styles.overrides.noDecorationLink}>
-              <Button size="small">Explore</Button>
+              <Button variant="outlined" size="small">Explore</Button>
             </Link>
           </CardActions>
         </Card>

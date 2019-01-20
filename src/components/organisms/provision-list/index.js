@@ -31,7 +31,7 @@ export class ProvisionList extends Component {
           </CardContent>
           <CardActions>
             <Link to="/provisions" style={styles.overrides.noDecorationLink}>
-              <Button size="small">Explore</Button>
+              <Button variant="outlined" size="small">Explore</Button>
             </Link>
           </CardActions>
         </Card>
