@@ -50,9 +50,9 @@ export default class ClusterStore {
     }
   }
 
-  async create(data) {
+  async create(name) {
     try {
-      const result = await service.create(data)
+      const result = await service.create(name)
       this.list.total += 1
       this.list.data.push(result)
       return {
