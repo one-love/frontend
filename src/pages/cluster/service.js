@@ -2,10 +2,11 @@ import axios from 'axios'
 import { API_ROOT, getCookie } from 'utils'
 
 
-async function remove(id) {
+async function create(name) {
   const csrf = getCookie('csrf_access_token')
-  const response = await axios.delete(
-    `${API_ROOT}/cluster/${id}`,
+  const response = await axios.post(
+    `${API_ROOT}/cluster`,
+    { name },
     {
       headers: {
         'X-CSRF-TOKEN': csrf,
@@ -16,11 +17,11 @@ async function remove(id) {
 }
 
 
-async function create(name) {
+async function edit(cluster, data) {
   const csrf = getCookie('csrf_access_token')
-  const response = await axios.post(
-    `${API_ROOT}/cluster`,
-    { name },
+  const response = await axios.patch(
+    `${API_ROOT}/cluster/${cluster.id}`,
+    data,
     {
       headers: {
         'X-CSRF-TOKEN': csrf,
@@ -58,8 +59,23 @@ async function fetch(id) {
 }
 
 
+async function remove(id) {
+  const csrf = getCookie('csrf_access_token')
+  const response = await axios.delete(
+    `${API_ROOT}/cluster/${id}`,
+    {
+      headers: {
+        'X-CSRF-TOKEN': csrf,
+      },
+    },
+  )
+  return response.data
+}
+
+
 export default {
   create,
+  edit,
   fetch,
   fetchAll,
   remove,

@@ -88,15 +88,17 @@ export default class ClusterStore {
     }
   }
 
-  async edit(cluster, data) {
+  async edit(cluster, data, inplace = false) {
     try {
       await service.edit(cluster, data)
       if (this.detail.id === cluster.id) {
         this.detail = { ...this.detail, ...data }
       }
-      Object.keys(data).forEach(property => {
-        cluster[property] = data[property]
-      })
+      if (inplace) {
+        Object.keys(data).forEach(property => {
+          cluster[property] = data[property]
+        })
+      }
       return {
         status: 200,
         error: '',

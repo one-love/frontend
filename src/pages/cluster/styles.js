@@ -1,3 +1,10 @@
+const center = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+
 export default {
   actions: {
     display: 'flex',
@@ -16,9 +23,7 @@ export default {
   },
 
   center: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...center,
     marginTop: 10,
   },
 
@@ -29,5 +34,28 @@ export default {
 
   detail: {
     marginRight: 20,
+  },
+
+  root: {
+    ...center,
+    height: 'calc(100vh - 65px - 40px)',
+  },
+
+  paper: {
+    display: 'inline-block',
+    padding: 20,
+  },
+
+  button: {
+    marginLeft: 20,
+  },
+
+  name: {
+    margin: 0,
+  },
+
+  id: {
+    color: 'gray',
+    fontSize: '0.8rem',
   },
 }

@@ -39,7 +39,6 @@ class Template extends Component {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="title" color="inherit" style={styles.flex}>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
               One Love - {title.title}
             </Typography>
             {AuthButton}
