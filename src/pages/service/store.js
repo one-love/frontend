@@ -50,9 +50,9 @@ export default class ServiceStore {
     }
   }
 
-  async create(data) {
+  async create(name) {
     try {
-      const result = await service.create(data)
+      const result = await service.create(name)
       this.list.total += 1
       this.list.data.push(result)
       return {
@@ -88,15 +88,17 @@ export default class ServiceStore {
     }
   }
 
-  async edit(cluster, data) {
+  async edit(srv, data, inplace = false) {
     try {
-      await service.edit(cluster, data)
-      if (this.detail.id === cluster.id) {
+      await service.edit(srv, data)
+      if (this.detail.id === srv.id) {
         this.detail = { ...this.detail, ...data }
       }
-      Object.keys(data).forEach(property => {
-        cluster[property] = data[property]
-      })
+      if (inplace) {
+        Object.keys(data).forEach(property => {
+          srv[property] = data[property]
+        })
+      }
       return {
         status: 200,
         error: '',
