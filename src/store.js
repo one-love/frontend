@@ -13,9 +13,9 @@ import User from 'pages/user/store'
 
 export default {
   auth: new Auth(),
-  me: new Me(),
   cluster: new Cluster(),
   error: new Error(),
+  me: new Me(),
   provision: new Provision(),
   service: new Service(),
   title: new Title(),

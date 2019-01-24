@@ -9,6 +9,8 @@ import Dashboard from 'pages/dashboard'
 import Landing from 'pages/landing'
 import Login from 'pages/login'
 import NoPage from 'pages/nopage'
+import ServiceDetail from 'pages/service/detail'
+import ServiceList from 'pages/service/list'
 import UserList from 'pages/user/list'
 
 import ResolutionContext from 'resolution'
@@ -45,6 +47,9 @@ export default class App extends Component {
               <Route exact path="/clusters" component={ClusterList} />
               <Route exact path="/clusters/:page" component={ClusterList} />
               <Route exact path="/cluster/:id" component={ClusterDetail} />
+              <Route exact path="/services" component={ServiceList} />
+              <Route exact path="/services/:page" component={ServiceList} />
+              <Route exact path="/service/:id" component={ServiceDetail} />
               <Route path="*" component={NoPage} />
             </Switch>
           </BrowserRouter>
