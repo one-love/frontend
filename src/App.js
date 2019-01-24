@@ -9,6 +9,8 @@ import Dashboard from 'pages/dashboard'
 import Landing from 'pages/landing'
 import Login from 'pages/login'
 import NoPage from 'pages/nopage'
+import ProviderDetail from 'pages/provider/detail'
+import ProviderList from 'pages/provider/list'
 import ServiceDetail from 'pages/service/detail'
 import ServiceList from 'pages/service/list'
 import UserList from 'pages/user/list'
@@ -41,15 +43,18 @@ export default class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/landing" component={Landing} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/users" component={UserList} />
+              <Route exact path="/cluster/:id" component={ClusterDetail} />
               <Route exact path="/clusters" component={ClusterList} />
               <Route exact path="/clusters/:page" component={ClusterList} />
-              <Route exact path="/cluster/:id" component={ClusterDetail} />
+              <Route exact path="/landing" component={Landing} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/provider/:id" component={ProviderDetail} />
+              <Route exact path="/providers" component={ProviderList} />
+              <Route exact path="/providers/:page" component={ProviderList} />
+              <Route exact path="/service/:id" component={ServiceDetail} />
               <Route exact path="/services" component={ServiceList} />
               <Route exact path="/services/:page" component={ServiceList} />
-              <Route exact path="/service/:id" component={ServiceDetail} />
+              <Route exact path="/users" component={UserList} />
               <Route path="*" component={NoPage} />
             </Switch>
           </BrowserRouter>

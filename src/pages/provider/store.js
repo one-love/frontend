@@ -1,0 +1,113 @@
+import { observable } from 'mobx'
+import service from './service'
+
+
+export default class ProviderStore {
+  @observable detail = {
+    author: {},
+  }
+
+  @observable list = {
+    data: [],
+    total: 0,
+    pages: 0,
+  }
+
+  async fetch(id) {
+    try {
+      const result = await service.fetch(id)
+      this.detail = result
+      return {
+        status: 200,
+        error: '',
+      }
+    } catch (error) {
+      return {
+        error: error.response.data.message,
+        status: error.response.status,
+      }
+    }
+  }
+
+  async fetchAll(page = 0) {
+    try {
+      const result = await service.fetchAll(page)
+      this.list.total = result.total
+      this.list.pages = result.pages
+      this.list.data = result.data
+      return {
+        status: 200,
+        error: '',
+      }
+    } catch (error) {
+      this.list.total = 0
+      this.list.pages = 0
+      this.list.data = []
+      return {
+        error: error.response.data.message,
+        status: error.response.status,
+      }
+    }
+  }
+
+  async create(name) {
+    try {
+      const result = await service.create(name)
+      this.list.total += 1
+      this.list.data.push(result)
+      return {
+        status: 200,
+        error: '',
+        data: result,
+      }
+    } catch (error) {
+      return {
+        error: error.response.data.message,
+        status: error.response.status,
+      }
+    }
+  }
+
+  async remove(id) {
+    try {
+      const result = await service.remove(id)
+      this.list.data = this.list.data.filter(item => id !== item.id)
+      if (this.detail.id === id) {
+        this.detail = {}
+      }
+      return {
+        status: 200,
+        error: '',
+        data: result,
+      }
+    } catch (error) {
+      return {
+        error: error.response.data.message,
+        status: error.response.status,
+      }
+    }
+  }
+
+  async edit(provider, data, inplace = false) {
+    try {
+      await service.edit(provider, data)
+      if (this.detail.id === provider.id) {
+        this.detail = { ...this.detail, ...data }
+      }
+      if (inplace) {
+        Object.keys(data).forEach(property => {
+          provider[property] = data[property]
+        })
+      }
+      return {
+        status: 200,
+        error: '',
+      }
+    } catch (error) {
+      return {
+        error: error.response.data.message,
+        status: error.response.status,
+      }
+    }
+  }
+}
