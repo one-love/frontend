@@ -1,6 +1,7 @@
 import React from 'react'
 import Template from 'templates/default'
 import ClusterList from 'components/organisms/cluster-list'
+import ProviderList from 'components/organisms/provider-list'
 import ProvisionList from 'components/organisms/provision-list'
 import ServiceList from 'components/organisms/service-list'
 import store from 'store'
@@ -17,6 +18,7 @@ export class Dashboard extends React.Component {
       <Template secure>
         <div style={styles.root}>
           <ClusterList />
+          <ProviderList />
           <ServiceList />
           <ProvisionList />
         </div>
