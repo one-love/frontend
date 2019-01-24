@@ -12,12 +12,9 @@ class ProtectedComponent extends React.Component {
   expired = true
 
   async componentWillMount() {
-    const { auth, me } = store
+    const { auth } = store
     const result = await auth.refresh()
     auth.auth = result.status === 200
-    if (auth.auth) {
-      me.fetch()
-    }
   }
 
   componentWillUnmount() {
@@ -26,25 +23,28 @@ class ProtectedComponent extends React.Component {
   }
 
   refresh = async () => {
-    const { auth, error, me } = store
+    const { auth, error } = store
     const result = await auth.refresh()
     if (2 * auth.accessExpire > auth.refreshExpire) {
-      error.message = 'Refresh token is soon to expire! Please go to login page.'
+      error.message = (
+        <div>
+          Refresh token is soon to expire! Please go to
+          &nbsp;
+          <a href="/login">login page</a>.
+        </div>
+      )
       error.open = true
     }
-    store.auth.auth = result.status === 200
-    if (auth.auth) {
-      me.fetch()
-    }
+    auth.auth = result.status === 200
   }
 
   render() {
     const { auth, me } = store
     if (auth.auth) {
       if (!this.logged) {
+        this.logged = true
+        me.fetch()
         if (auth.accessExpire > 1) {
-          this.logged = true
-          me.fetch()
           this.interval = setInterval(
             this.refresh,
             (auth.accessExpire - 1) * 1000,
