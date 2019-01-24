@@ -7,23 +7,23 @@ NPM=`which npm 2>/dev/null`
 YARN=`which yarn 2>/dev/null`
 
 
-if [ ! -z "${YARN}" ]; then
-  export PACKAGE_MANAGER="${YARN}"
-else
+if [ ! -z "${NPM}" ]; then
   export PACKAGE_MANAGER="${NPM}"
+else
+  export PACKAGE_MANAGER="${YARN}"
 fi
 
 
 setup() {
-  if [ -e "${PROJECT_ROOT}/project.conf" ]; then
-    . "${PROJECT_ROOT}/project.conf"
-  else
-    echo -n "Please create ${PROJECT_ROOT}/project.conf" >&2
-    echo " containing HTTP_PROXY" >&2
+  if [ ! -e "${PROJECT_ROOT}/project.conf" ]; then
+    echo -n "${PROJECT_ROOT}/project.conf" >&2
+    echo " does not contain HTTP_PROXY" >&2
     echo "Example: HTTP_PROXY=http://localhost:5000" >&2
-    read novar || sleep 15
-    exit 1
+    echo -n "Enter HTTP_PROXY value: "
+    read HTTP_PROXY
+    echo "HTTP_PROXY=${HTTP_PROXY}" >"${PROJECT_ROOT}/project.conf"
   fi
+  . "${PROJECT_ROOT}/project.conf"
 
   if [ -z "${PACKAGE_MANAGER}" ]; then
     echo "Install npm or yarn" >&2
@@ -32,5 +32,5 @@ setup() {
 
   cd ${PROJECT_ROOT}
   sed -e "s;HTTP_PROXY;${HTTP_PROXY};g" package.json.tpl >package.json
-  ${PACKAGE_MANAGER} install
+  "${PACKAGE_MANAGER}" install
 }
