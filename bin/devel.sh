@@ -9,3 +9,4 @@ setup
 echo "Frontend"
 echo "========"
 ${PACKAGE_MANAGER} start
+sleep 20
